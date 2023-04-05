@@ -10,8 +10,8 @@
     <TemplateGuid>{77efb91c-a7e9-4b0e-a7c5-31eeec3c6d46}</TemplateGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OpenCV.Android</RootNamespace>
-    <AssemblyName>OpenCV.Android</AssemblyName>
+    <RootNamespace>OpenCvSdk.Android</RootNamespace>
+    <AssemblyName>OpenCvSdk.Android</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <Deterministic>True</Deterministic>
     <TargetFrameworkVersion>v13.0</TargetFrameworkVersion>
@@ -20,17 +20,17 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
     <PackOnBuild>true</PackOnBuild>
     <GeneratePackageOnBuild>$(PackOnBuild)</GeneratePackageOnBuild>
-    <PackageId>OpenCV.Android</PackageId>
+    <PackageId>OpenCvSdk.Android</PackageId>
     <PackageVersion>4.7.0</PackageVersion>
     <Authors>Howard Good</Authors>
     <PackageLicenseUrl>https://github.com/opencv/opencv/blob/4.x/LICENSE</PackageLicenseUrl>
     <Owners>https://www.nuget.org/profiles/v-hogood</Owners>
-    <RepositoryUrl>https://github.com/opencv/opencv/tree/4.x/platforms/android</RepositoryUrl>
+    <RepositoryUrl>https://github.com/opencv/opencv/tree/4.x/modules/java</RepositoryUrl>
     <PackageProjectUrl>https://github.com/v-hogood/OpenCVBinding</PackageProjectUrl>
-    <Summary>Xamarin Android bindings for OpenCV Library</Summary>
+    <Summary>Android .NET bindings for OpenCV SDK</Summary>
     <PackageTags>xamarin android opencv</PackageTags>
     <Title>OpenCV.Android</Title>
-    <Description>Xamarin Android bindings for OpenCV Library.</Description>
+    <Description>Android .NET bindings for OpenCV SDK.</Description>
     <NoWarn>0108;0114;BG8403</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
