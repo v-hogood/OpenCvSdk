@@ -1,0 +1,15 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="CopySources" BeforeTargets="BeforeCompile">
+    <ItemGroup>
+      <Sources Include="$(MSBuildThisFileDirectory)../jni/**/*.*" />
+      <LibFiles Include="$(_AndroidLibrayProjectIntermediatePath)**/jni/**/*.*" />
+      <Libs Include="@(LibFiles)">
+        <JniIdx>$([System.String]::new('%(LibFiles.RecursiveDir)').IndexOf("jni"))</JniIdx>
+        <JniDir>$([System.String]::new('%(LibFiles.RecursiveDir)').Substring(%(Libs.JniIdx)))</JniDir>
+        <LibDir>$([System.String]::new('%(Libs.JniDir)').Substring(4))</LibDir>
+      </Libs>
+    </ItemGroup>
+    <Copy SourceFiles="@(Sources)" DestinationFolder="$(BaseIntermediateOutputPath)jni/%(RecursiveDir)" SkipUnchangedFiles="true" ContinueOnError="false" />
+    <Copy SourceFiles="@(Libs)" DestinationFolder="$(BaseIntermediateOutputPath)libs/%(LibDir)" SkipUnchangedFiles="true" ContinueOnError="false" />
+  </Target>
+</Project>

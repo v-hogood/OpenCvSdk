@@ -84,4 +84,20 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <Target Name="AddSources" AfterTargets="CopyFilesToOutputDirectory">
+    <ItemGroup>
+      <Content Include="jni\**\*">
+        <IncludeInPackage>true</IncludeInPackage>
+        <PackagePath>jni</PackagePath>
+        <PackageCopyToOutput>true</PackageCopyToOutput>
+        <Pack>true</Pack>
+      </Content>
+      <Content Include="OpenCvSdk.Android.targets">
+        <IncludeInPackage>true</IncludeInPackage>
+        <PackagePath>build\OpenCvSdk.Android.targets</PackagePath>
+        <PackageCopyToOutput>true</PackageCopyToOutput>
+        <Pack>true</Pack>
+      </Content>
+    </ItemGroup>
+  </Target>
 </Project>
