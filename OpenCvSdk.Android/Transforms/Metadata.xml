@@ -1,0 +1,82 @@
+﻿<metadata>
+  <!--
+  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
+  
+  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
+  -->
+  <!-- Hide "private" Property fields -->
+  <remove-node path="/api/package[@name='org.opencv.core']/class[@name='Core']/field[@name='BORDER_REFLECT101']" />
+  <remove-node path="/api/package[@name='org.opencv.core']/class[@name='Core']/field[@name='VERSION_MAJOR']" />
+  <remove-node path="/api/package[@name='org.opencv.core']/class[@name='Core']/field[@name='VERSION_MINOR']" />
+  <remove-node path="/api/package[@name='org.opencv.core']/class[@name='Core']/field[@name='VERSION_REVISION']" />
+  <remove-node path="/api/package[@name='org.opencv.features2d']/class[@name='AgastFeatureDetector']/field[@name='NONMAX_SUPPRESSION']" />
+  <remove-node path="/api/package[@name='org.opencv.features2d']/class[@name='AgastFeatureDetector']/field[@name='THRESHOLD']" />
+  <remove-node path="/api/package[@name='org.opencv.features2d']/class[@name='FastFeatureDetector']/field[@name='NONMAX_SUPPRESSION']" />
+  <remove-node path="/api/package[@name='org.opencv.features2d']/class[@name='FastFeatureDetector']/field[@name='THRESHOLD']" />
+  <remove-node path="/api/package[@name='org.opencv.ml']/class[@name='SVM']/field[@name='DEGREE']" />
+  <remove-node path="/api/package[@name='org.opencv.ml']/class[@name='SVM']/field[@name='GAMMA']" />
+  <remove-node path="/api/package[@name='org.opencv.ml']/class[@name='SVM']/field[@name='NU']" />
+
+  <!-- Change the visibility of a class -->
+  <attr path="/api/package[@name='org.opencv.android']/class[@name='JavaCameraView.JavaCameraFrame']" name="visibility">public</attr>
+
+  <!-- Change the visibility of a method --> 
+  <attr path="/api/package[@name='org.opencv.android']/class[@name='CameraGLRendererBase']/method[@name='setCameraPreviewSize']" name="visibility">public</attr>
+  <attr path="/api/package[@name='org.opencv.android']/class[@name='Camera2Renderer']/method[@name='setCameraPreviewSize']" name="visibility">public</attr>
+
+  <attr path="/api/package[@name='org.opencv.android']/class[@name='CameraBridgeViewBase']/method[@name='setCvCameraViewListener' and parameter[1][@type='org.opencv.android.CameraBridgeViewBase.CvCameraViewListener2']]" name="managedName">SetCvCameraViewListener2</attr>
+  
+  <attr path="/api/package[@name='org.opencv.android']/class[@name='BaseLoaderCallback']/field[@name='mAppContext']" name="managedName">AppContext</attr>
+  <attr path="/api/package[@name='org.opencv.android']/class[@name='CameraBridgeViewBase']/field[@name='mCameraIndex']" name="managedName">CameraIndex</attr>
+  <attr path="/api/package[@name='org.opencv.android']/class[@name='CameraBridgeViewBase']/field[@name='mCameraPermissionGranted']" name="managedName">CameraPermissionGranted</attr>
+  <attr path="/api/package[@name='org.opencv.android']/class[@name='CameraBridgeViewBase']/field[@name='mFpsMeter']" name="managedName">FpsMeter</attr>
+  <attr path="/api/package[@name='org.opencv.android']/class[@name='CameraBridgeViewBase']/field[@name='mFrameHeight']" name="managedName">FrameHeight</attr>
+  <attr path="/api/package[@name='org.opencv.android']/class[@name='CameraBridgeViewBase']/field[@name='mFrameWidth']" name="managedName">FrameWidth</attr>
+  <attr path="/api/package[@name='org.opencv.android']/class[@name='CameraBridgeViewBase']/field[@name='mMaxHeight']" name="managedName">MaxHeight</attr>
+  <attr path="/api/package[@name='org.opencv.android']/class[@name='CameraBridgeViewBase']/field[@name='mMaxWidth']" name="managedName">MaxWidth</attr>
+  <attr path="/api/package[@name='org.opencv.android']/class[@name='CameraBridgeViewBase']/field[@name='mPreviewFormat']" name="managedName">PreviewFormat</attr>
+  <attr path="/api/package[@name='org.opencv.android']/class[@name='CameraBridgeViewBase']/field[@name='mScale']" name="managedName">Scale</attr>
+  <attr path="/api/package[@name='org.opencv.android']/class[@name='CameraBridgeViewBase']/field[@name='mEnabled']" name="managedName">IsEnabled</attr>
+  <attr path="/api/package[@name='org.opencv.android']/class[@name='CameraGLRendererBase']/field[@name='mEnabled']" name="managedName">IsEnabled</attr>
+  <attr path="/api/package[@name='org.opencv.android']/class[@name='CameraGLRendererBase']/field[@name='mCameraIndex']" name="managedName">CameraIndex</attr>
+  <attr path="/api/package[@name='org.opencv.android']/class[@name='CameraGLRendererBase']/field[@name='mCameraHeight']" name="managedName">CameraHeight</attr>
+  <attr path="/api/package[@name='org.opencv.android']/class[@name='CameraGLRendererBase']/field[@name='mCameraWidth']" name="managedName">CameraWidth</attr>
+  <attr path="/api/package[@name='org.opencv.android']/class[@name='CameraGLRendererBase']/field[@name='mFBOHeight']" name="managedName">FBOHeight</attr>
+  <attr path="/api/package[@name='org.opencv.android']/class[@name='CameraGLRendererBase']/field[@name='mFBOWidth']" name="managedName">FBOWidth</attr>
+  <attr path="/api/package[@name='org.opencv.android']/class[@name='CameraGLRendererBase']/field[@name='mHaveFBO']" name="managedName">HaveFBO</attr>
+  <attr path="/api/package[@name='org.opencv.android']/class[@name='CameraGLRendererBase']/field[@name='mHaveSurface']" name="managedName">HaveSurface</attr>
+  <attr path="/api/package[@name='org.opencv.android']/class[@name='CameraGLRendererBase']/field[@name='mIsStarted']" name="managedName">IsStarted</attr>
+  <attr path="/api/package[@name='org.opencv.android']/class[@name='CameraGLRendererBase']/field[@name='mMaxCameraHeight']" name="managedName">MaxCameraHeight</attr>
+  <attr path="/api/package[@name='org.opencv.android']/class[@name='CameraGLRendererBase']/field[@name='mMaxCameraWidth']" name="managedName">MaxCameraWidth</attr>
+  <attr path="/api/package[@name='org.opencv.android']/class[@name='CameraGLRendererBase']/field[@name='mSTexture']" name="managedName">STexture</attr>
+  <attr path="/api/package[@name='org.opencv.android']/class[@name='CameraGLRendererBase']/field[@name='mUpdateST']" name="managedName">UpdateST</attr>
+  <attr path="/api/package[@name='org.opencv.android']/class[@name='CameraGLRendererBase']/field[@name='mView']" name="managedName">View</attr>
+  <attr path="/api/package[@name='org.opencv.android']/class[@name='JavaCamera2View']/field[@name='mBackgroundHandler']" name="managedName">BackgroundHandler</attr>
+  <attr path="/api/package[@name='org.opencv.android']/class[@name='JavaCamera2View']/field[@name='mCameraDevice']" name="managedName">CameraDevice</attr>
+  <attr path="/api/package[@name='org.opencv.android']/class[@name='JavaCamera2View']/field[@name='mCameraID']" name="managedName">CameraID</attr>
+  <attr path="/api/package[@name='org.opencv.android']/class[@name='JavaCamera2View']/field[@name='mCaptureSession']" name="managedName">CaptureSession</attr>
+  <attr path="/api/package[@name='org.opencv.android']/class[@name='JavaCamera2View']/field[@name='mImageReader']" name="managedName">ImageReader</attr>
+  <attr path="/api/package[@name='org.opencv.android']/class[@name='JavaCamera2View']/field[@name='mPreviewFormat']" name="managedName">PreviewFormat</attr>
+  <attr path="/api/package[@name='org.opencv.android']/class[@name='JavaCamera2View']/field[@name='mPreviewSize']" name="managedName">PreviewSize</attr>
+  <attr path="/api/package[@name='org.opencv.android']/class[@name='JavaCamera2View']/field[@name='mPreviewRequestBuilder']" name="managedName">PreviewRequestBuilder</attr>
+  <attr path="/api/package[@name='org.opencv.android']/class[@name='JavaCameraView']/field[@name='mCamera']" name="managedName">Camera</attr>
+  <attr path="/api/package[@name='org.opencv.android']/class[@name='JavaCameraView']/field[@name='mCameraFrame']" name="managedName">CameraFrame</attr>
+
+  <attr path="/api/package[@name='org.opencv.android']" name="managedName">OpenCV.Android</attr>
+  <attr path="/api/package[@name='org.opencv.calib3d']" name="managedName">OpenCV.Calib3d</attr>
+  <attr path="/api/package[@name='org.opencv.core']" name="managedName">OpenCV.Core</attr>
+  <attr path="/api/package[@name='org.opencv.dnn']" name="managedName">OpenCV.Dnn</attr>
+  <attr path="/api/package[@name='org.opencv.engine']" name="managedName">OpenCV.Engine</attr>
+  <attr path="/api/package[@name='org.opencv.features2d']" name="managedName">OpenCV.Features2d</attr>
+  <attr path="/api/package[@name='org.opencv.imgcodecs']" name="managedName">OpenCV.ImgCodecs</attr>
+  <attr path="/api/package[@name='org.opencv.imgproc']" name="managedName">OpenCV.ImgProc</attr>
+  <attr path="/api/package[@name='org.opencv.ml']" name="managedName">OpenCV.ML</attr>
+  <attr path="/api/package[@name='org.opencv.objdetect']" name="managedName">OpenCV.ObjDetect</attr>
+  <attr path="/api/package[@name='org.opencv.osgi']" name="managedName">OpenCV.OSGi</attr>
+  <attr path="/api/package[@name='org.opencv.photo']" name="managedName">OpenCV.Photo</attr>
+  <attr path="/api/package[@name='org.opencv.utils']" name="managedName">OpenCV.Utils</attr>
+  <attr path="/api/package[@name='org.opencv.video']" name="managedName">OpenCV.Video</attr>
+  <attr path="/api/package[@name='org.opencv.videoio']" name="managedName">OpenCV.VideoIO</attr>
+</metadata>

@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D96713B4-5249-462D-BCB8-B11806D44627}</ProjectGuid>
+    <ProjectTypeGuids>{10368E6C-D01B-4462-8E8B-01FC667A7035};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TemplateGuid>{77efb91c-a7e9-4b0e-a7c5-31eeec3c6d46}</TemplateGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OpenCvSdk.Android</RootNamespace>
+    <AssemblyName>OpenCvSdk.Android</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>True</Deterministic>
+    <TargetFrameworkVersion>v13.0</TargetFrameworkVersion>
+    <AndroidClassParser>class-parse</AndroidClassParser>
+    <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+    <PackOnBuild>true</PackOnBuild>
+    <GeneratePackageOnBuild>$(PackOnBuild)</GeneratePackageOnBuild>
+    <PackageId>OpenCvSdk.Android</PackageId>
+    <PackageVersion>4.7.1</PackageVersion>
+    <Authors>Howard Good</Authors>
+    <PackageLicenseUrl>https://github.com/opencv/opencv/blob/4.x/LICENSE</PackageLicenseUrl>
+    <Owners>https://www.nuget.org/profiles/v-hogood</Owners>
+    <RepositoryUrl>https://github.com/opencv/opencv/tree/4.x/modules/java</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/v-hogood/OpenCVBinding</PackageProjectUrl>
+    <Summary>Android .NET bindings for OpenCV SDK</Summary>
+    <PackageTags>xamarin android opencv</PackageTags>
+    <Title>OpenCV.Android</Title>
+    <Description>Android .NET bindings for OpenCV SDK.</Description>
+    <NoWarn>0108;0114;BG8403</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>portable</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Mono.Android" />
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Jars\AboutJars.txt" />
+    <None Include="Additions\AboutAdditions.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <TransformFile Include="Transforms\Metadata.xml" />
+    <TransformFile Include="Transforms\EnumFields.xml" />
+    <TransformFile Include="Transforms\EnumMethods.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <LibraryProjectZip Include="Jars\opencv-release.aar" />
+  </ItemGroup>
+  <ItemGroup>
+    <JavaSourceJar Include="Jars\opencv-sources.jar" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="NuGet.Build.Tasks.Pack">
+      <Version>6.6.0</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <Target Name="AddSources" AfterTargets="CopyFilesToOutputDirectory">
+    <ItemGroup>
+      <Content Include="jni\**\*">
+        <IncludeInPackage>true</IncludeInPackage>
+        <PackagePath>jni</PackagePath>
+        <PackageCopyToOutput>true</PackageCopyToOutput>
+        <Pack>true</Pack>
+      </Content>
+      <Content Include="OpenCvSdk.Android.targets">
+        <IncludeInPackage>true</IncludeInPackage>
+        <PackagePath>build\OpenCvSdk.Android.targets</PackagePath>
+        <PackageCopyToOutput>true</PackageCopyToOutput>
+        <Pack>true</Pack>
+      </Content>
+    </ItemGroup>
+  </Target>
+</Project>
