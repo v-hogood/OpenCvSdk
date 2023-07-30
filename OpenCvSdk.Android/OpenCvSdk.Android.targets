@@ -1,5 +1,5 @@
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Target Name="CopySources" BeforeTargets="BeforeCompile">
+<Project>
+  <Target Name="CopySources" BeforeTargets="CoreCompile">
     <ItemGroup>
       <Sources Include="$(MSBuildThisFileDirectory)../jni/**/*.*" />
       <LibFiles Include="$(_AndroidLibrayProjectIntermediatePath)**/jni/**/*.*" />

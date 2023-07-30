@@ -85,6 +85,16 @@ set_target_properties(tbb PROPERTIES
 list(APPEND _IMPORT_CHECK_TARGETS tbb )
 list(APPEND _IMPORT_CHECK_FILES_FOR_tbb "${_IMPORT_PREFIX}/sdk/native/3rdparty/libs/x86/libtbb.a" )
 
+# Import target "ippiw" for configuration "Release"
+set_property(TARGET ippiw APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
+set_target_properties(ippiw PROPERTIES
+  IMPORTED_LINK_INTERFACE_LANGUAGES_RELEASE "C"
+  IMPORTED_LOCATION_RELEASE "${_IMPORT_PREFIX}/sdk/native/3rdparty/libs/x86/libippiw.a"
+  )
+
+list(APPEND _IMPORT_CHECK_TARGETS ippiw )
+list(APPEND _IMPORT_CHECK_FILES_FOR_ippiw "${_IMPORT_PREFIX}/sdk/native/3rdparty/libs/x86/libippiw.a" )
+
 # Import target "libprotobuf" for configuration "Release"
 set_property(TARGET libprotobuf APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
 set_target_properties(libprotobuf PROPERTIES

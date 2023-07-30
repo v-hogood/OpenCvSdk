@@ -25,11 +25,11 @@
 #      - OpenCV_INCLUDE_DIRS             : The OpenCV include directories.
 #      - OpenCV_COMPUTE_CAPABILITIES     : The version of compute capability.
 #      - OpenCV_ANDROID_NATIVE_API_LEVEL : Minimum required level of Android API.
-#      - OpenCV_VERSION                  : The version of this OpenCV build: "4.7.0"
+#      - OpenCV_VERSION                  : The version of this OpenCV build: "4.8.0"
 #      - OpenCV_VERSION_MAJOR            : Major version part of OpenCV_VERSION: "4"
-#      - OpenCV_VERSION_MINOR            : Minor version part of OpenCV_VERSION: "7"
+#      - OpenCV_VERSION_MINOR            : Minor version part of OpenCV_VERSION: "8"
 #      - OpenCV_VERSION_PATCH            : Patch version part of OpenCV_VERSION: "0"
-#      - OpenCV_VERSION_STATUS           : Development status of this build: "-dev"
+#      - OpenCV_VERSION_STATUS           : Development status of this build: ""
 #
 #    Advanced variables:
 #      - OpenCV_SHARED                   : Use OpenCV as shared library
@@ -45,12 +45,12 @@
 # ======================================================
 #  Version variables:
 # ======================================================
-SET(OpenCV_VERSION 4.7.0)
+SET(OpenCV_VERSION 4.8.0)
 SET(OpenCV_VERSION_MAJOR  4)
-SET(OpenCV_VERSION_MINOR  7)
+SET(OpenCV_VERSION_MINOR  8)
 SET(OpenCV_VERSION_PATCH  0)
 SET(OpenCV_VERSION_TWEAK  0)
-SET(OpenCV_VERSION_STATUS "-dev")
+SET(OpenCV_VERSION_STATUS "")
 
 include(FindPackageHandleStandardArgs)
 
@@ -109,13 +109,6 @@ if(OpenCV_ANDROID_NATIVE_API_LEVEL GREATER ANDROID_NATIVE_API_LEVEL)
 endif()
 
 
-if(NOT TARGET ippicv)
-  add_library(ippicv STATIC IMPORTED)
-  set_target_properties(ippicv PROPERTIES
-    IMPORTED_LINK_INTERFACE_LIBRARIES ""
-    IMPORTED_LOCATION "${OpenCV_INSTALL_PATH}/sdk/native/3rdparty/libs/x86_64/libippicv.a"
-  )
-endif()
 
 
 
