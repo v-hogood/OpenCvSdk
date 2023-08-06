@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0-ios</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>true</ImplicitUsings>
+    <IsBindingProject>true</IsBindingProject>
+    <PackOnBuild>true</PackOnBuild>
+    <GeneratePackageOnBuild>$(PackOnBuild)</GeneratePackageOnBuild>
+    <PackageId>OpenCvSdk.iOS</PackageId>
+    <PackageVersion>4.8.0</PackageVersion>
+    <Authors>Howard Good</Authors>
+    <PackageLicenseUrl>https://github.com/opencv/opencv/blob/master/LICENSE</PackageLicenseUrl>
+    <Owners>https://www.nuget.org/profiles/v-hogood</Owners>
+    <RepositoryUrl>https://github.com/opencv/opencv</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/v-hogood/OpenCvSdk</PackageProjectUrl>
+    <Summary>.iOS .NET bindings for OpenCV SDK Library.</Summary>
+    <PackageTags>xamarin ios opencv</PackageTags>
+    <Title>TensorFlowLite</Title>
+    <Description>iOS .NET bindings for OpenDV SDK Library.</Description>
+    <NoWarn>0108;0114</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
+    <ObjcBindingCoreSource Include="StructsAndEnums.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="NuGet.Build.Tasks.Pack" Version="6.6.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <NativeReference Include="opencv2.framework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+      <ForceLoad>True</ForceLoad>
+      <IsCxx>True</IsCxx>
+      <LinkerFlags>-ObjC -L/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib/swift -L/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos -Wl,-rpath -Wl,@executable_path/Frameworks</LinkerFlags>
+    </NativeReference>
+  </ItemGroup>
+  <Target Name="DownloadFile" BeforeTargets="BeforeBuild">
+    <DownloadFile SourceUrl="https://github.com/opencv/opencv/releases/download/4.8.0/opencv-4.8.0-ios-framework.zip" DestinationFolder="." />
+    <Exec Command="tar -xf opencv-4.8.0-ios-framework.zip --strip-components=2 -s/A/opencv2.framework/ opencv2.framework/Versions/A" />
+    <Exec Command="lipo -remove armv7 -remove armv7s -remove i386 opencv2 -output opencv2" WorkingDirectory="./opencv2.framework" />
+  </Target>
+</Project>
