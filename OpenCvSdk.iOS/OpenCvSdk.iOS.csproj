@@ -24,7 +24,7 @@
     <ObjcBindingCoreSource Include="StructsAndEnums.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NuGet.Build.Tasks.Pack" Version="6.6.1" />
+    <PackageReference Include="NuGet.Build.Tasks.Pack" Version="6.7.0" />
   </ItemGroup>
   <ItemGroup>
     <NativeReference Include="opencv2.framework">

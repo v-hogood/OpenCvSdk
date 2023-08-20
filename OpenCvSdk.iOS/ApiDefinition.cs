@@ -450,7 +450,7 @@ namespace OpenCvSdk
 
 		// -(CGImageRef _Nonnull)toCGImage __attribute__((cf_returns_retained));
 		[Export ("toCGImage")]
-		CGImage ToCGImage { get; }
+		CGImage ToCGImage ();
 
 		// -(instancetype _Nonnull)initWithCGImage:(CGImageRef _Nonnull)image;
 		[Export ("initWithCGImage:")]
@@ -462,7 +462,7 @@ namespace OpenCvSdk
 
 		// -(UIImage * _Nonnull)toUIImage;
 		[Export ("toUIImage")]
-		UIImage ToUIImage { get; }
+		UIImage ToUIImage ();
 
 		// -(instancetype _Nonnull)initWithUIImage:(UIImage * _Nonnull)image;
 		[Export ("initWithUIImage:")]
@@ -566,7 +566,7 @@ namespace OpenCvSdk
 
 	// @interface Double3 : NSObject
 	[BaseType (typeof(NSObject))]
-	interface Double3 : INativeObject
+	interface Double3
 	{
 		// @property double v0;
 		[Export ("v0")]
@@ -632,7 +632,7 @@ namespace OpenCvSdk
 
 	// @interface Range : NSObject
 	[BaseType (typeof(NSObject))]
-	interface Range : INativeObject
+	interface Range
 	{
 		// @property int start;
 		[Export ("start")]
@@ -694,7 +694,7 @@ namespace OpenCvSdk
 
 	// @interface Size2f : NSObject
 	[BaseType (typeof(NSObject))]
-	interface Size2f : INativeObject
+	interface Size2f
 	{
 		// @property float width;
 		[Export ("width")]
@@ -752,7 +752,7 @@ namespace OpenCvSdk
 
 	// @interface CvType : NSObject
 	[BaseType (typeof(NSObject))]
-	interface CvType : INativeObject
+	partial interface CvType
 	{
 		// +(int)makeType:(int)depth channels:(int)channels;
 		[Static]
@@ -890,7 +890,7 @@ namespace OpenCvSdk
 
 	// @interface Point2d : NSObject
 	[BaseType (typeof(NSObject))]
-	interface Point2d : INativeObject
+	interface Point2d
 	{
 		// @property double x;
 		[Export ("x")]
@@ -939,7 +939,7 @@ namespace OpenCvSdk
 
 	// @interface Point3i : NSObject
 	[BaseType (typeof(NSObject))]
-	interface Point3i : INativeObject
+	interface Point3i
 	{
 		// @property int x;
 		[Export ("x")]
@@ -1053,7 +1053,7 @@ namespace OpenCvSdk
 
 	// @interface Point3d : NSObject
 	[BaseType (typeof(NSObject))]
-	interface Point3d : INativeObject
+	interface Point3d
 	{
 		// @property double x;
 		[Export ("x")]
@@ -1191,7 +1191,7 @@ namespace OpenCvSdk
 
 	// @interface Rect2d : NSObject
 	[BaseType (typeof(NSObject))]
-	interface Rect2d : INativeObject
+	interface Rect2d
 	{
 		// @property double x;
 		[Export ("x")]
@@ -1439,7 +1439,7 @@ namespace OpenCvSdk
 
 	// @interface Converters : NSObject
 	[BaseType (typeof(NSObject))]
-	interface Converters : INativeObject
+	interface Converters
 	{
 		// +(Mat * _Nonnull)vector_Point_to_Mat:(NSArray<Point2i *> * _Nonnull)pts __attribute__((swift_name("vector_Point_to_Mat(_:)")));
 		[Static]
@@ -1604,7 +1604,7 @@ namespace OpenCvSdk
 
 	// @interface ByteVector : NSObject
 	[BaseType (typeof(NSObject))]
-	interface ByteVector : INativeObject
+	interface ByteVector
 	{
 		// -(instancetype _Nonnull)initWithData:(NSData * _Nonnull)data;
 		[Export ("initWithData:")]
@@ -1637,7 +1637,7 @@ namespace OpenCvSdk
 
 	// @interface Rect2f : NSObject
 	[BaseType (typeof(NSObject))]
-	interface Rect2f : INativeObject
+	interface Rect2f
 	{
 		// @property float x;
 		[Export ("x")]
@@ -1825,7 +1825,7 @@ namespace OpenCvSdk
 
 	// @interface FloatVector : NSObject
 	[BaseType (typeof(NSObject))]
-	interface FloatVector : INativeObject
+	interface FloatVector
 	{
 		// -(instancetype _Nonnull)initWithData:(NSData * _Nonnull)data;
 		[Export ("initWithData:")]
@@ -1858,7 +1858,7 @@ namespace OpenCvSdk
 
 	// @interface TermCriteria : NSObject
 	[BaseType (typeof(NSObject))]
-	interface TermCriteria : INativeObject
+	interface TermCriteria
 	{
 		// @property (readonly, class) int COUNT;
 		[Static]
@@ -1988,7 +1988,7 @@ namespace OpenCvSdk
 
 	// @interface Scalar : NSObject
 	[BaseType (typeof(NSObject))]
-	interface Scalar : INativeObject
+	interface Scalar
 	{
 		// @property (readonly) NSArray<NSNumber *> * _Nonnull val;
 		[Export ("val")]
@@ -2145,7 +2145,7 @@ namespace OpenCvSdk
 
 	// @interface DoubleVector : NSObject
 	[BaseType (typeof(NSObject))]
-	interface DoubleVector : INativeObject
+	interface DoubleVector
 	{
 		// -(instancetype _Nonnull)initWithData:(NSData * _Nonnull)data;
 		[Export ("initWithData:")]
@@ -2178,7 +2178,7 @@ namespace OpenCvSdk
 
 	// @interface Size2d : NSObject
 	[BaseType (typeof(NSObject))]
-	interface Size2d : INativeObject
+	interface Size2d
 	{
 		// @property double width;
 		[Export ("width")]
@@ -2236,7 +2236,7 @@ namespace OpenCvSdk
 
 	// @interface MinMaxLocResult : NSObject
 	[BaseType (typeof(NSObject))]
-	interface MinMaxLocResult : INativeObject
+	interface MinMaxLocResult
 	{
 		// @property double minVal;
 		[Export ("minVal")]
@@ -2348,7 +2348,7 @@ namespace OpenCvSdk
 
 	// @interface Size2i : NSObject
 	[BaseType (typeof(NSObject))]
-	interface Size2i : INativeObject
+	interface Size2i
 	{
 		// @property int width;
 		[Export ("width")]
@@ -2505,7 +2505,7 @@ namespace OpenCvSdk
 
 	// @interface Double2 : NSObject
 	[BaseType (typeof(NSObject))]
-	interface Double2 : INativeObject
+	interface Double2
 	{
 		// @property double v0;
 		[Export ("v0")]
@@ -2596,7 +2596,7 @@ namespace OpenCvSdk
 
 	// @interface Core : NSObject
 	[BaseType (typeof(NSObject))]
-	interface Core : INativeObject
+	interface Core
 	{
 		// @property (readonly, class) int SVD_MODIFY_A __attribute__((swift_name("SVD_MODIFY_A")));
 		[Static]
@@ -3692,7 +3692,7 @@ namespace OpenCvSdk
 
 	// @interface Algorithm : NSObject
 	[BaseType (typeof(NSObject))]
-	interface Algorithm : INativeObject
+	interface Algorithm
 	{
 		// -(void)clear __attribute__((swift_name("clear()")));
 		[Export ("clear")]
@@ -3713,7 +3713,7 @@ namespace OpenCvSdk
 
 	// @interface TickMeter : NSObject
 	[BaseType (typeof(NSObject))]
-	interface TickMeter : INativeObject
+	interface TickMeter
 	{
 		// -(void)start __attribute__((swift_name("start()")));
 		[Export ("start")]
@@ -3762,7 +3762,7 @@ namespace OpenCvSdk
 
 	// @interface Moments : NSObject
 	[BaseType (typeof(NSObject))]
-	interface Moments : INativeObject
+	interface Moments
 	{
 		// @property double m00;
 		[Export ("m00")]
@@ -3883,7 +3883,7 @@ namespace OpenCvSdk
 
 	// @interface Imgproc : NSObject
 	[BaseType (typeof(NSObject))]
-	interface Imgproc : INativeObject
+	interface Imgproc
 	{
 		// @property (readonly, class) int CV_GAUSSIAN_5x5 __attribute__((swift_name("CV_GAUSSIAN_5x5")));
 		[Static]
@@ -5779,7 +5779,7 @@ namespace OpenCvSdk
 
 	// @interface Subdiv2D : NSObject
 	[BaseType (typeof(NSObject))]
-	interface Subdiv2D : INativeObject
+	interface Subdiv2D
 	{
 		// @property (readonly, class) int PTLOC_ERROR __attribute__((swift_name("PTLOC_ERROR")));
 		[Static]
@@ -5933,7 +5933,7 @@ namespace OpenCvSdk
 
 	// @interface IntelligentScissorsMB : NSObject
 	[BaseType (typeof(NSObject))]
-	interface IntelligentScissorsMB : INativeObject
+	interface IntelligentScissorsMB
 	{
 		// -(IntelligentScissorsMB * _Nonnull)setWeights:(float)weight_non_edge weight_gradient_direction:(float)weight_gradient_direction weight_gradient_magnitude:(float)weight_gradient_magnitude __attribute__((swift_name("setWeights(weight_non_edge:weight_gradient_direction:weight_gradient_magnitude:)")));
 		[Export ("setWeights:weight_gradient_direction:weight_gradient_magnitude:")]
@@ -5994,7 +5994,7 @@ namespace OpenCvSdk
 
 	// @interface Ml : NSObject
 	[BaseType (typeof(NSObject))]
-	interface Ml : INativeObject
+	interface Ml
 	{
 	}
 
@@ -6660,7 +6660,7 @@ namespace OpenCvSdk
 
 	// @interface ParamGrid : NSObject
 	[BaseType (typeof(NSObject))]
-	interface ParamGrid : INativeObject
+	interface ParamGrid
 	{
 		// +(ParamGrid * _Nonnull)create:(double)minVal maxVal:(double)maxVal logstep:(double)logstep __attribute__((swift_name("create(minVal:maxVal:logstep:)")));
 		[Static]
@@ -6989,7 +6989,7 @@ namespace OpenCvSdk
 
 	// @interface TrainData : NSObject
 	[BaseType (typeof(NSObject))]
-	interface TrainData : INativeObject
+	interface TrainData
 	{
 		// -(int)getLayout __attribute__((swift_name("getLayout()")));
 		[Export ("getLayout")]
@@ -7193,7 +7193,7 @@ namespace OpenCvSdk
 
 	// @interface Photo : NSObject
 	[BaseType (typeof(NSObject))]
-	interface Photo : INativeObject
+	interface Photo
 	{
 		// @property (readonly, class) int INPAINT_NS __attribute__((swift_name("INPAINT_NS")));
 		[Static]
@@ -7964,7 +7964,7 @@ namespace OpenCvSdk
 
 	// @interface Dnn : NSObject
 	[BaseType (typeof(NSObject))]
-	interface Dnn : INativeObject
+	interface Dnn
 	{
 		// +(Net * _Nonnull)readNetFromDarknetFile:(NSString * _Nonnull)cfgFile darknetModel:(NSString * _Nonnull)darknetModel __attribute__((swift_name("readNetFromDarknet(cfgFile:darknetModel:)")));
 		[Static]
@@ -8339,7 +8339,7 @@ namespace OpenCvSdk
 
 	// @interface Model : NSObject
 	[BaseType (typeof(NSObject))]
-	interface Model : INativeObject
+	interface Model
 	{
 		// -(instancetype _Nonnull)initWithModel:(NSString * _Nonnull)model config:(NSString * _Nonnull)config;
 		[Export ("initWithModel:config:")]
@@ -8482,7 +8482,7 @@ namespace OpenCvSdk
 
 	// @interface DictValue : NSObject
 	[BaseType (typeof(NSObject))]
-	interface DictValue : INativeObject
+	interface DictValue
 	{
 		// -(instancetype _Nonnull)initWithI:(int)i;
 		[Export ("initWithI:")]
@@ -8535,7 +8535,7 @@ namespace OpenCvSdk
 
 	// @interface Image2BlobParams : NSObject
 	[BaseType (typeof(NSObject))]
-	interface Image2BlobParams : INativeObject
+	interface Image2BlobParams
 	{
 		// -(instancetype _Nonnull)initWithScalefactor:(Scalar * _Nonnull)scalefactor size:(Size2i * _Nonnull)size mean:(Scalar * _Nonnull)mean swapRB:(BOOL)swapRB ddepth:(int)ddepth datalayout:(DataLayout)datalayout mode:(ImagePaddingMode)mode;
 		[Export ("initWithScalefactor:size:mean:swapRB:ddepth:datalayout:mode:")]
@@ -8654,7 +8654,7 @@ namespace OpenCvSdk
 
 	// @interface Net : NSObject
 	[BaseType (typeof(NSObject))]
-	interface Net : INativeObject
+	interface Net
 	{
 		// +(Net * _Nonnull)readFromModelOptimizer:(NSString * _Nonnull)xml bin:(NSString * _Nonnull)bin __attribute__((swift_name("readFromModelOptimizer(xml:bin:)")));
 		[Static]
@@ -9042,7 +9042,7 @@ namespace OpenCvSdk
 
 	// @interface Features2d : NSObject
 	[BaseType (typeof(NSObject))]
-	interface Features2d : INativeObject
+	interface Features2d
 	{
 		// +(void)drawKeypoints:(Mat * _Nonnull)image keypoints:(NSArray<KeyPoint *> * _Nonnull)keypoints outImage:(Mat * _Nonnull)outImage color:(Scalar * _Nonnull)color flags:(DrawMatchesFlags)flags __attribute__((swift_name("drawKeypoints(image:keypoints:outImage:color:flags:)")));
 		[Static]
@@ -9651,7 +9651,7 @@ namespace OpenCvSdk
 
 	// @interface BOWImgDescriptorExtractor : NSObject
 	[BaseType (typeof(NSObject))]
-	interface BOWImgDescriptorExtractor : INativeObject
+	interface BOWImgDescriptorExtractor
 	{
 		// -(void)setVocabulary:(Mat * _Nonnull)vocabulary __attribute__((swift_name("setVocabulary(vocabulary:)")));
 		[Export ("setVocabulary:")]
@@ -9676,7 +9676,7 @@ namespace OpenCvSdk
 
 	// @interface BOWTrainer : NSObject
 	[BaseType (typeof(NSObject))]
-	interface BOWTrainer : INativeObject
+	interface BOWTrainer
 	{
 		// -(void)add:(Mat * _Nonnull)descriptors __attribute__((swift_name("add(descriptors:)")));
 		[Export ("add:")]
@@ -10411,7 +10411,7 @@ namespace OpenCvSdk
 
 	// @interface SimpleBlobDetectorParams : NSObject
 	[BaseType (typeof(NSObject))]
-	interface SimpleBlobDetectorParams : INativeObject
+	interface SimpleBlobDetectorParams
 	{
 		// @property float thresholdStep;
 		[Export ("thresholdStep")]
@@ -10496,7 +10496,7 @@ namespace OpenCvSdk
 
 	// @interface MatConverters : NSObject
 	[BaseType (typeof(NSObject))]
-	interface MatConverters : INativeObject
+	interface MatConverters
 	{
 		// +(CGImageRef _Nonnull)convertMatToCGImageRef:(Mat * _Nonnull)mat __attribute__((cf_returns_retained));
 		[Static]
@@ -10531,7 +10531,7 @@ namespace OpenCvSdk
 
 	// @interface MatQuickLook : NSObject
 	[BaseType (typeof(NSObject))]
-	interface MatQuickLook : INativeObject
+	interface MatQuickLook
 	{
 		// +(id _Nonnull)matDebugQuickLookObject:(Mat * _Nonnull)mat;
 		[Static]
@@ -10541,7 +10541,7 @@ namespace OpenCvSdk
 
 	// @interface Imgcodecs : NSObject
 	[BaseType (typeof(NSObject))]
-	interface Imgcodecs : INativeObject
+	interface Imgcodecs
 	{
 		// +(Mat * _Nonnull)imread:(NSString * _Nonnull)filename flags:(int)flags __attribute__((swift_name("imread(filename:flags:)")));
 		[Static]
@@ -10636,7 +10636,7 @@ namespace OpenCvSdk
 
 	// @interface CvAbstractCamera2 : NSObject
 	[BaseType (typeof(NSObject))]
-	interface CvAbstractCamera2 : INativeObject
+	interface CvAbstractCamera2
 	{
 		// @property UIDeviceOrientation currentDeviceOrientation;
 		[Export ("currentDeviceOrientation", ArgumentSemantic.Assign)]
@@ -10763,7 +10763,7 @@ namespace OpenCvSdk
 	*/
 	[Protocol]
 	[BaseType (typeof(NSObject))]
-	interface CvVideoCameraDelegate2 : INativeObject
+	interface CvVideoCameraDelegate2
 	{
 		// @required -(void)processImage:(Mat *)image;
 		[Abstract]
@@ -10845,7 +10845,7 @@ namespace OpenCvSdk
 	*/
 	[Protocol]
 	[BaseType (typeof(NSObject))]
-	interface CvPhotoCameraDelegate2 : INativeObject
+	interface CvPhotoCameraDelegate2
 	{
 		// @required -(void)photoCamera:(CvPhotoCamera2 *)photoCamera capturedImage:(UIImage *)image;
 		[Abstract]
@@ -10882,7 +10882,7 @@ namespace OpenCvSdk
 
 	// @interface Videoio : NSObject
 	[BaseType (typeof(NSObject))]
-	interface Videoio : INativeObject
+	interface Videoio
 	{
 		// @property (readonly, class) int CAP_PROP_DC1394_OFF __attribute__((swift_name("CAP_PROP_DC1394_OFF")));
 		[Static]
@@ -12202,7 +12202,7 @@ namespace OpenCvSdk
 
 	// @interface VideoCapture : NSObject
 	[BaseType (typeof(NSObject))]
-	interface VideoCapture : INativeObject
+	interface VideoCapture
 	{
 		// -(instancetype _Nonnull)initWithFilename:(NSString * _Nonnull)filename apiPreference:(int)apiPreference;
 		[Export ("initWithFilename:apiPreference:")]
@@ -12295,7 +12295,7 @@ namespace OpenCvSdk
 
 	// @interface VideoWriter : NSObject
 	[BaseType (typeof(NSObject))]
-	interface VideoWriter : INativeObject
+	interface VideoWriter
 	{
 		// -(instancetype _Nonnull)initWithFilename:(NSString * _Nonnull)filename fourcc:(int)fourcc fps:(double)fps frameSize:(Size2i * _Nonnull)frameSize isColor:(BOOL)isColor;
 		[Export ("initWithFilename:fourcc:fps:frameSize:isColor:")]
@@ -12373,7 +12373,7 @@ namespace OpenCvSdk
 
 	// @interface Calib3d : NSObject
 	[BaseType (typeof(NSObject))]
-	interface Calib3d : INativeObject
+	interface Calib3d
 	{
 		// @property (readonly, class) int CV_ITERATIVE __attribute__((swift_name("CV_ITERATIVE")));
 		[Static]
@@ -13881,7 +13881,7 @@ namespace OpenCvSdk
 
 	// @interface CirclesGridFinderParameters : NSObject
 	[BaseType (typeof(NSObject))]
-	interface CirclesGridFinderParameters : INativeObject
+	interface CirclesGridFinderParameters
 	{
 		// @property Size2f * _Nonnull densityNeighborhoodSize;
 		[Export ("densityNeighborhoodSize", ArgumentSemantic.Assign)]
@@ -14232,7 +14232,7 @@ namespace OpenCvSdk
 
 	// @interface UsacParams : NSObject
 	[BaseType (typeof(NSObject))]
-	interface UsacParams : INativeObject
+	interface UsacParams
 	{
 		// @property double confidence;
 		[Export ("confidence")]
@@ -14289,7 +14289,7 @@ namespace OpenCvSdk
 
 	// @interface Objdetect : NSObject
 	[BaseType (typeof(NSObject))]
-	interface Objdetect : INativeObject
+	interface Objdetect
 	{
 		// @property (readonly, class) int CASCADE_DO_CANNY_PRUNING __attribute__((swift_name("CASCADE_DO_CANNY_PRUNING")));
 		[Static]
@@ -14405,7 +14405,7 @@ namespace OpenCvSdk
 
 	// @interface CascadeClassifier : NSObject
 	[BaseType (typeof(NSObject))]
-	interface CascadeClassifier : INativeObject
+	interface CascadeClassifier
 	{
 		// -(instancetype _Nonnull)initWithFilename:(NSString * _Nonnull)filename;
 		[Export ("initWithFilename:")]
@@ -14515,7 +14515,7 @@ namespace OpenCvSdk
 
 	// @interface FaceDetectorYN : NSObject
 	[BaseType (typeof(NSObject))]
-	interface FaceDetectorYN : INativeObject
+	interface FaceDetectorYN
 	{
 		// -(void)setInputSize:(Size2i * _Nonnull)input_size __attribute__((swift_name("setInputSize(input_size:)")));
 		[Export ("setInputSize:")]
@@ -14586,7 +14586,7 @@ namespace OpenCvSdk
 
 	// @interface FaceRecognizerSF : NSObject
 	[BaseType (typeof(NSObject))]
-	interface FaceRecognizerSF : INativeObject
+	interface FaceRecognizerSF
 	{
 		// -(void)alignCrop:(Mat * _Nonnull)src_img face_box:(Mat * _Nonnull)face_box aligned_img:(Mat * _Nonnull)aligned_img __attribute__((swift_name("alignCrop(src_img:face_box:aligned_img:)")));
 		[Export ("alignCrop:face_box:aligned_img:")]
@@ -14622,7 +14622,7 @@ namespace OpenCvSdk
 
 	// @interface GraphicalCodeDetector : NSObject
 	[BaseType (typeof(NSObject))]
-	interface GraphicalCodeDetector : INativeObject
+	interface GraphicalCodeDetector
 	{
 		// -(BOOL)detect:(Mat * _Nonnull)img points:(Mat * _Nonnull)points __attribute__((swift_name("detect(img:points:)")));
 		[Export ("detect:points:")]
@@ -14675,7 +14675,7 @@ namespace OpenCvSdk
 
 	// @interface HOGDescriptor : NSObject
 	[BaseType (typeof(NSObject))]
-	interface HOGDescriptor : INativeObject
+	interface HOGDescriptor
 	{
 		// @property (readonly, class) int DEFAULT_NLEVELS __attribute__((swift_name("DEFAULT_NLEVELS")));
 		[Static]
@@ -14941,7 +14941,7 @@ namespace OpenCvSdk
 
 	// @interface QRCodeDetectorArucoParams : NSObject
 	[BaseType (typeof(NSObject))]
-	interface QRCodeDetectorArucoParams : INativeObject
+	interface QRCodeDetectorArucoParams
 	{
 		// @property float minModuleSizeInPyramid;
 		[Export ("minModuleSizeInPyramid")]
@@ -14974,7 +14974,7 @@ namespace OpenCvSdk
 
 	// @interface QRCodeEncoder : NSObject
 	[BaseType (typeof(NSObject))]
-	interface QRCodeEncoder : INativeObject
+	interface QRCodeEncoder
 	{
 		// +(QRCodeEncoder * _Nonnull)create:(QRCodeEncoderParams * _Nonnull)parameters __attribute__((swift_name("create(parameters:)")));
 		[Static]
@@ -14997,7 +14997,7 @@ namespace OpenCvSdk
 
 	// @interface QRCodeEncoderParams : NSObject
 	[BaseType (typeof(NSObject))]
-	interface QRCodeEncoderParams : INativeObject
+	interface QRCodeEncoderParams
 	{
 		// @property int version;
 		[Export ("version")]
@@ -15079,7 +15079,7 @@ namespace OpenCvSdk
 
 	// @interface Board : NSObject
 	[BaseType (typeof(NSObject))]
-	interface Board : INativeObject
+	interface Board
 	{
 		// -(instancetype _Nonnull)initWithObjPoints:(NSArray<Mat *> * _Nonnull)objPoints dictionary:(Dictionary * _Nonnull)dictionary ids:(Mat * _Nonnull)ids;
 		[Export ("initWithObjPoints:dictionary:ids:")]
@@ -15238,7 +15238,7 @@ namespace OpenCvSdk
 
 	// @interface CharucoParameters : NSObject
 	[BaseType (typeof(NSObject))]
-	interface CharucoParameters : INativeObject
+	interface CharucoParameters
 	{
 		// @property Mat * _Nonnull cameraMatrix;
 		[Export ("cameraMatrix", ArgumentSemantic.Assign)]
@@ -15259,7 +15259,7 @@ namespace OpenCvSdk
 
 	// @interface DetectorParameters : NSObject
 	[BaseType (typeof(NSObject))]
-	interface DetectorParameters : INativeObject
+	interface DetectorParameters
 	{
 		// @property int adaptiveThreshWinSizeMin;
 		[Export ("adaptiveThreshWinSizeMin")]
@@ -15392,7 +15392,7 @@ namespace OpenCvSdk
 
 	// @interface Dictionary : NSObject
 	[BaseType (typeof(NSObject))]
-	interface Dictionary : INativeObject
+	interface Dictionary
 	{
 		// -(instancetype _Nonnull)initWithBytesList:(Mat * _Nonnull)bytesList _markerSize:(int)_markerSize maxcorr:(int)maxcorr;
 		[Export ("initWithBytesList:_markerSize:maxcorr:")]
@@ -15472,7 +15472,7 @@ namespace OpenCvSdk
 
 	// @interface RefineParameters : NSObject
 	[BaseType (typeof(NSObject))]
-	interface RefineParameters : INativeObject
+	interface RefineParameters
 	{
 		// -(instancetype _Nonnull)initWithMinRepDistance:(float)minRepDistance errorCorrectionRate:(float)errorCorrectionRate checkAllOrders:(BOOL)checkAllOrders;
 		[Export ("initWithMinRepDistance:errorCorrectionRate:checkAllOrders:")]
@@ -15522,7 +15522,7 @@ namespace OpenCvSdk
 
 	// @interface Video : NSObject
 	[BaseType (typeof(NSObject))]
-	interface Video : INativeObject
+	interface Video
 	{
 		// @property (readonly, class) int OPTFLOW_USE_INITIAL_FLOW __attribute__((swift_name("OPTFLOW_USE_INITIAL_FLOW")));
 		[Static]
@@ -16141,7 +16141,7 @@ namespace OpenCvSdk
 
 	// @interface KalmanFilter : NSObject
 	[BaseType (typeof(NSObject))]
-	interface KalmanFilter : INativeObject
+	interface KalmanFilter
 	{
 		// -(instancetype _Nonnull)initWithDynamParams:(int)dynamParams measureParams:(int)measureParams controlParams:(int)controlParams type:(int)type;
 		[Export ("initWithDynamParams:measureParams:controlParams:type:")]
@@ -16298,7 +16298,7 @@ namespace OpenCvSdk
 
 	// @interface Tracker : NSObject
 	[BaseType (typeof(NSObject))]
-	interface Tracker : INativeObject
+	interface Tracker
 	{
 		// -(void)init:(Mat * _Nonnull)image boundingBox:(Rect2i * _Nonnull)boundingBox __attribute__((swift_name("init(image:boundingBox:)")));
 		[Export ("init:boundingBox:")]
@@ -16330,7 +16330,7 @@ namespace OpenCvSdk
 
 	// @interface TrackerDaSiamRPNParams : NSObject
 	[BaseType (typeof(NSObject))]
-	interface TrackerDaSiamRPNParams : INativeObject
+	interface TrackerDaSiamRPNParams
 	{
 		// @property NSString * _Nonnull model;
 		[Export ("model")]
@@ -16370,7 +16370,7 @@ namespace OpenCvSdk
 
 	// @interface TrackerGOTURNParams : NSObject
 	[BaseType (typeof(NSObject))]
-	interface TrackerGOTURNParams : INativeObject
+	interface TrackerGOTURNParams
 	{
 		// @property NSString * _Nonnull modelTxt;
 		[Export ("modelTxt")]
@@ -16398,7 +16398,7 @@ namespace OpenCvSdk
 
 	// @interface TrackerMILParams : NSObject
 	[BaseType (typeof(NSObject))]
-	interface TrackerMILParams : INativeObject
+	interface TrackerMILParams
 	{
 		// @property float samplerInitInRadius;
 		[Export ("samplerInitInRadius")]
@@ -16450,7 +16450,7 @@ namespace OpenCvSdk
 
 	// @interface TrackerNanoParams : NSObject
 	[BaseType (typeof(NSObject))]
-	interface TrackerNanoParams : INativeObject
+	interface TrackerNanoParams
 	{
 		// @property NSString * _Nonnull backbone;
 		[Export ("backbone")]
