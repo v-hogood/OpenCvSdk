@@ -105,7 +105,7 @@ namespace OpenCvSdk
 
 		// -(Mat * _Nonnull)clone;
 		[Export ("clone")]
-		Mat Clone { get; }
+		Mat Clone ();
 
 		// -(Mat * _Nonnull)col:(int)x;
 		[Export ("col:")]
@@ -374,7 +374,7 @@ namespace OpenCvSdk
 
 		// -(NSString * _Nonnull)dump;
 		[Export ("dump")]
-		string Dump { get; }
+		string Dump ();
 
 		// -(int)height;
 		[Export ("height")]
@@ -499,7 +499,7 @@ namespace OpenCvSdk
 
 		// -(NSArray<Rect2d *> * _Nonnull)toArray;
 		[Export ("toArray")]
-		Rect2d[] ToArray { get; }
+		Rect2d[] ToArray ();
 
 		// -(int)length;
 		[Export ("length")]
@@ -528,7 +528,7 @@ namespace OpenCvSdk
 
 		// -(NSArray<NSNumber *> * _Nonnull)toArray;
 		[Export ("toArray")]
-		NSNumber[] ToArray { get; }
+		NSNumber[] ToArray ();
 
 		// -(int)length;
 		[Export ("length")]
@@ -557,7 +557,7 @@ namespace OpenCvSdk
 
 		// -(NSArray<Point2i *> * _Nonnull)toArray;
 		[Export ("toArray")]
-		Point2i[] ToArray { get; }
+		Point2i[] ToArray ();
 
 		// -(int)length;
 		[Export ("length")]
@@ -594,7 +594,7 @@ namespace OpenCvSdk
 
 		// -(NSArray<NSNumber *> * _Nonnull)get;
 		[Export ("get")]
-		NSNumber[] Get { get; }
+		NSNumber[] Get ();
 
 		// -(BOOL)isEqual:(id _Nullable)other;
 		[Export ("isEqual:")]
@@ -623,7 +623,7 @@ namespace OpenCvSdk
 
 		// -(NSArray<NSNumber *> * _Nonnull)toArray;
 		[Export ("toArray")]
-		NSNumber[] ToArray { get; }
+		NSNumber[] ToArray ();
 
 		// -(int)length;
 		[Export ("length")]
@@ -677,7 +677,7 @@ namespace OpenCvSdk
 
 		// -(Range * _Nonnull)clone;
 		[Export ("clone")]
-		Range Clone { get; }
+		Range Clone ();
 
 		// -(BOOL)isEqual:(id _Nullable)object;
 		[Export ("isEqual:")]
@@ -735,7 +735,7 @@ namespace OpenCvSdk
 
 		// -(Size2f * _Nonnull)clone;
 		[Export ("clone")]
-		Size2f Clone { get; }
+		Size2f Clone ();
 
 		// -(BOOL)isEqual:(id _Nullable)object;
 		[Export ("isEqual:")]
@@ -824,7 +824,7 @@ namespace OpenCvSdk
 
 		// -(Point2i * _Nonnull)clone;
 		[Export ("clone")]
-		Point2i Clone { get; }
+		Point2i Clone ();
 
 		// -(BOOL)isEqual:(id _Nullable)other;
 		[Export ("isEqual:")]
@@ -873,7 +873,7 @@ namespace OpenCvSdk
 
 		// -(Point2f * _Nonnull)clone;
 		[Export ("clone")]
-		Point2f Clone { get; }
+		Point2f Clone ();
 
 		// -(BOOL)isEqual:(id _Nullable)other;
 		[Export ("isEqual:")]
@@ -922,7 +922,7 @@ namespace OpenCvSdk
 
 		// -(Point2d * _Nonnull)clone;
 		[Export ("clone")]
-		Point2d Clone { get; }
+		Point2d Clone ();
 
 		// -(BOOL)isEqual:(id _Nullable)other;
 		[Export ("isEqual:")]
@@ -979,7 +979,7 @@ namespace OpenCvSdk
 
 		// -(Point3i * _Nonnull)clone;
 		[Export ("clone")]
-		Point3i Clone { get; }
+		Point3i Clone ();
 
 		// -(BOOL)isEqual:(id _Nullable)other;
 		[Export ("isEqual:")]
@@ -1036,7 +1036,7 @@ namespace OpenCvSdk
 
 		// -(Point3f * _Nonnull)clone;
 		[Export ("clone")]
-		Point3f Clone { get; }
+		Point3f Clone ();
 
 		// -(BOOL)isEqual:(id _Nullable)other;
 		[Export ("isEqual:")]
@@ -1093,7 +1093,7 @@ namespace OpenCvSdk
 
 		// -(Point3d * _Nonnull)clone;
 		[Export ("clone")]
-		Point3d Clone { get; }
+		Point3d Clone ();
 
 		// -(BOOL)isEqual:(id _Nullable)other;
 		[Export ("isEqual:")]
@@ -1174,7 +1174,7 @@ namespace OpenCvSdk
 
 		// -(Rect2i * _Nonnull)clone;
 		[Export ("clone")]
-		Rect2i Clone { get; }
+		Rect2i Clone ();
 
 		// -(BOOL)isEqual:(id _Nullable)object;
 		[Export ("isEqual:")]
@@ -1255,7 +1255,7 @@ namespace OpenCvSdk
 
 		// -(Rect2d * _Nonnull)clone;
 		[Export ("clone")]
-		Rect2d Clone { get; }
+		Rect2d Clone ();
 
 		// -(BOOL)isEqual:(id _Nullable)object;
 		[Export ("isEqual:")]
@@ -1320,7 +1320,7 @@ namespace OpenCvSdk
 
 		// -(KeyPoint * _Nonnull)clone;
 		[Export ("clone")]
-		KeyPoint Clone { get; }
+		KeyPoint Clone ();
 
 		// -(BOOL)isEqual:(id _Nullable)other;
 		[Export ("isEqual:")]
@@ -1369,7 +1369,7 @@ namespace OpenCvSdk
 
 		// -(DMatch * _Nonnull)clone;
 		[Export ("clone")]
-		DMatch Clone { get; }
+		DMatch Clone ();
 
 		// -(BOOL)isEqual:(id _Nullable)other;
 		[Export ("isEqual:")]
@@ -1422,7 +1422,7 @@ namespace OpenCvSdk
 
 		// -(RotatedRect * _Nonnull)clone;
 		[Export ("clone")]
-		RotatedRect Clone { get; }
+		RotatedRect Clone ();
 
 		// -(BOOL)isEqual:(id _Nullable)object;
 		[Export ("isEqual:")]
@@ -1701,7 +1701,7 @@ namespace OpenCvSdk
 
 		// -(Rect2f * _Nonnull)clone;
 		[Export ("clone")]
-		Rect2f Clone { get; }
+		Rect2f Clone ();
 
 		// -(BOOL)isEqual:(id _Nullable)object;
 		[Export ("isEqual:")]
@@ -1758,7 +1758,7 @@ namespace OpenCvSdk
 
 		// -(NSArray<NSNumber *> * _Nonnull)get;
 		[Export ("get")]
-		NSNumber[] Get { get; }
+		NSNumber[] Get ();
 
 		// -(BOOL)isEqual:(id _Nullable)other;
 		[Export ("isEqual:")]
@@ -1787,7 +1787,7 @@ namespace OpenCvSdk
 
 		// -(NSArray<KeyPoint *> * _Nonnull)toArray;
 		[Export ("toArray")]
-		KeyPoint[] ToArray { get; }
+		KeyPoint[] ToArray ();
 
 		// -(int)length;
 		[Export ("length")]
@@ -1816,7 +1816,7 @@ namespace OpenCvSdk
 
 		// -(NSArray<Rect2i *> * _Nonnull)toArray;
 		[Export ("toArray")]
-		Rect2i[] ToArray { get; }
+		Rect2i[] ToArray ();
 
 		// -(int)length;
 		[Export ("length")]
@@ -1901,7 +1901,7 @@ namespace OpenCvSdk
 
 		// -(TermCriteria * _Nonnull)clone;
 		[Export ("clone")]
-		TermCriteria Clone { get; }
+		TermCriteria Clone ();
 
 		// -(BOOL)isEqual:(id _Nullable)object;
 		[Export ("isEqual:")]
@@ -1950,7 +1950,7 @@ namespace OpenCvSdk
 
 		// -(NSArray<NSNumber *> * _Nonnull)get;
 		[Export ("get")]
-		NSNumber[] Get { get; }
+		NSNumber[] Get ();
 
 		// -(BOOL)isEqual:(id _Nullable)other;
 		[Export ("isEqual:")]
@@ -1979,7 +1979,7 @@ namespace OpenCvSdk
 
 		// -(NSArray<DMatch *> * _Nonnull)toArray;
 		[Export ("toArray")]
-		DMatch[] ToArray { get; }
+		DMatch[] ToArray ();
 
 		// -(int)length;
 		[Export ("length")]
@@ -2037,7 +2037,7 @@ namespace OpenCvSdk
 
 		// -(Scalar * _Nonnull)clone;
 		[Export ("clone")]
-		Scalar Clone { get; }
+		Scalar Clone ();
 
 		// -(BOOL)isEqual:(id _Nullable)object;
 		[Export ("isEqual:")]
@@ -2074,7 +2074,7 @@ namespace OpenCvSdk
 
 		// -(NSArray<NSNumber *> * _Nonnull)toArray;
 		[Export ("toArray")]
-		NSNumber[] ToArray { get; }
+		NSNumber[] ToArray ();
 
 		// -(int)length;
 		[Export ("length")]
@@ -2136,7 +2136,7 @@ namespace OpenCvSdk
 
 		// -(NSArray<NSNumber *> * _Nonnull)toArray;
 		[Export ("toArray")]
-		NSNumber[] ToArray { get; }
+		NSNumber[] ToArray ();
 
 		// -(int)length;
 		[Export ("length")]
@@ -2219,7 +2219,7 @@ namespace OpenCvSdk
 
 		// -(Size2d * _Nonnull)clone;
 		[Export ("clone")]
-		Size2d Clone { get; }
+		Size2d Clone ();
 
 		// -(BOOL)isEqual:(id _Nullable)object;
 		[Export ("isEqual:")]
@@ -2281,7 +2281,7 @@ namespace OpenCvSdk
 
 		// -(NSArray<NSNumber *> * _Nonnull)toArray;
 		[Export ("toArray")]
-		NSNumber[] ToArray { get; }
+		NSNumber[] ToArray ();
 
 		// -(int)length;
 		[Export ("length")]
@@ -2310,7 +2310,7 @@ namespace OpenCvSdk
 
 		// -(NSArray<Point3i *> * _Nonnull)toArray;
 		[Export ("toArray")]
-		Point3i[] ToArray { get; }
+		Point3i[] ToArray ();
 
 		// -(int)length;
 		[Export ("length")]
@@ -2339,7 +2339,7 @@ namespace OpenCvSdk
 
 		// -(NSArray<RotatedRect *> * _Nonnull)toArray;
 		[Export ("toArray")]
-		RotatedRect[] ToArray { get; }
+		RotatedRect[] ToArray ();
 
 		// -(int)length;
 		[Export ("length")]
@@ -2389,7 +2389,7 @@ namespace OpenCvSdk
 
 		// -(Size2i * _Nonnull)clone;
 		[Export ("clone")]
-		Size2i Clone { get; }
+		Size2i Clone ();
 
 		// -(BOOL)isEqual:(id _Nullable)object;
 		[Export ("isEqual:")]
@@ -2438,7 +2438,7 @@ namespace OpenCvSdk
 
 		// -(NSArray<NSNumber *> * _Nonnull)get;
 		[Export ("get")]
-		NSNumber[] Get { get; }
+		NSNumber[] Get ();
 
 		// -(BOOL)isEqual:(id _Nullable)other;
 		[Export ("isEqual:")]
@@ -2467,7 +2467,7 @@ namespace OpenCvSdk
 
 		// -(NSArray<NSNumber *> * _Nonnull)toArray;
 		[Export ("toArray")]
-		NSNumber[] ToArray { get; }
+		NSNumber[] ToArray ();
 
 		// -(int)length;
 		[Export ("length")]
@@ -2496,7 +2496,7 @@ namespace OpenCvSdk
 
 		// -(NSArray<Point2f *> * _Nonnull)toArray;
 		[Export ("toArray")]
-		Point2f[] ToArray { get; }
+		Point2f[] ToArray ();
 
 		// -(int)length;
 		[Export ("length")]
@@ -2529,7 +2529,7 @@ namespace OpenCvSdk
 
 		// -(NSArray<NSNumber *> * _Nonnull)get;
 		[Export ("get")]
-		NSNumber[] Get { get; }
+		NSNumber[] Get ();
 
 		// -(BOOL)isEqual:(id _Nullable)other;
 		[Export ("isEqual:")]
@@ -2558,7 +2558,7 @@ namespace OpenCvSdk
 
 		// -(NSArray<NSNumber *> * _Nonnull)toArray;
 		[Export ("toArray")]
-		NSNumber[] ToArray { get; }
+		NSNumber[] ToArray ();
 
 		// -(int)length;
 		[Export ("length")]
@@ -2587,7 +2587,7 @@ namespace OpenCvSdk
 
 		// -(NSArray<Point3f *> * _Nonnull)toArray;
 		[Export ("toArray")]
-		Point3f[] ToArray { get; }
+		Point3f[] ToArray ();
 
 		// -(int)length;
 		[Export ("length")]
@@ -8672,7 +8672,7 @@ namespace OpenCvSdk
 
 		// -(NSString * _Nonnull)dump __attribute__((swift_name("dump()")));
 		[Export ("dump")]
-		string Dump { get; }
+		string Dump ();
 
 		// -(void)dumpToFile:(NSString * _Nonnull)path __attribute__((swift_name("dumpToFile(path:)")));
 		[Export ("dumpToFile:")]
