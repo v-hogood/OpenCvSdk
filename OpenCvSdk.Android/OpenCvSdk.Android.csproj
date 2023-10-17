@@ -8,7 +8,7 @@
     <PackOnBuild>true</PackOnBuild>
     <GeneratePackageOnBuild>$(PackOnBuild)</GeneratePackageOnBuild>
     <PackageId>OpenCvSdk.Android</PackageId>
-    <PackageVersion>4.8</PackageVersion>
+    <PackageVersion>4.8.1</PackageVersion>
     <Authors>Howard Good</Authors>
     <PackageLicenseUrl>https://github.com/opencv/opencv/blob/4.x/LICENSE</PackageLicenseUrl>
     <Owners>https://www.nuget.org/profiles/v-hogood</Owners>
@@ -26,20 +26,4 @@
   <ItemGroup>
     <PackageReference Include="NuGet.Build.Tasks.Pack" Version="6.7.0" />
   </ItemGroup>
-  <Target Name="AddSources" AfterTargets="CopyFilesToOutputDirectory">
-    <ItemGroup>
-      <Content Include="jni\**\*">
-        <IncludeInPackage>true</IncludeInPackage>
-        <PackagePath>jni</PackagePath>
-        <PackageCopyToOutput>true</PackageCopyToOutput>
-        <Pack>true</Pack>
-      </Content>
-      <Content Include="OpenCvSdk.Android.targets">
-        <IncludeInPackage>true</IncludeInPackage>
-        <PackagePath>build\OpenCvSdk.Android.targets</PackagePath>
-        <PackageCopyToOutput>true</PackageCopyToOutput>
-        <Pack>true</Pack>
-      </Content>
-    </ItemGroup>
-  </Target>
 </Project>
