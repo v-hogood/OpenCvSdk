@@ -23,7 +23,4 @@
   <ItemGroup>
     <JavaSourceJar Include="Jars\opencv-sources.jar" />
   </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="NuGet.Build.Tasks.Pack" Version="6.7.0" />
-  </ItemGroup>
 </Project>

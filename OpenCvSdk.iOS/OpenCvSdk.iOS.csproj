@@ -16,15 +16,12 @@
     <Summary>.iOS .NET bindings for OpenCV SDK Library.</Summary>
     <PackageTags>xamarin ios opencv</PackageTags>
     <Title>TensorFlowLite</Title>
-    <Description>iOS .NET bindings for OpenDV SDK Library.</Description>
+    <Description>iOS .NET bindings for OpenCV SDK Library.</Description>
     <NoWarn>0108;0114</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
     <ObjcBindingCoreSource Include="StructsAndEnums.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="NuGet.Build.Tasks.Pack" Version="6.7.0" />
   </ItemGroup>
   <ItemGroup>
     <NativeReference Include="opencv2.framework">
