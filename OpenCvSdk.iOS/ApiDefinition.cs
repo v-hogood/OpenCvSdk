@@ -3009,6 +3009,11 @@ namespace OpenCvSdk
 		[Export ("flipND:dst:axis:")]
 		void FlipND (Mat src, Mat dst, int axis);
 
+		// +(void)broadcast:(Mat * _Nonnull)src shape:(Mat * _Nonnull)shape dst:(Mat * _Nonnull)dst __attribute__((swift_name("broadcast(src:shape:dst:)")));
+		[Static]
+		[Export ("broadcast:shape:dst:")]
+		void Broadcast (Mat src, Mat shape, Mat dst);
+
 		// +(void)rotate:(Mat * _Nonnull)src dst:(Mat * _Nonnull)dst rotateCode:(RotateFlags)rotateCode __attribute__((swift_name("rotate(src:dst:rotateCode:)")));
 		[Static]
 		[Export ("rotate:dst:rotateCode:")]
@@ -8091,6 +8096,11 @@ namespace OpenCvSdk
 		[Export ("readNetFromModelOptimizer:bin:")]
 		Net ReadNetFromModelOptimizer (string xml, string bin);
 
+		// +(Net * _Nonnull)readNetFromModelOptimizer:(NSString * _Nonnull)xml __attribute__((swift_name("readNetFromModelOptimizer(xml:)")));
+		[Static]
+		[Export ("readNetFromModelOptimizer:")]
+		Net ReadNetFromModelOptimizer (string xml);
+
 		// +(Net * _Nonnull)readNetFromModelOptimizer:(ByteVector * _Nonnull)bufferModelConfig bufferWeights:(ByteVector * _Nonnull)bufferWeights __attribute__((swift_name("readNetFromModelOptimizer(bufferModelConfig:bufferWeights:)")));
 		[Static]
 		[Export ("readNetFromModelOptimizer:bufferWeights:")]
@@ -8412,6 +8422,10 @@ namespace OpenCvSdk
 		// -(Model * _Nonnull)setPreferableTarget:(Target)targetId __attribute__((swift_name("setPreferableTarget(targetId:)")));
 		[Export ("setPreferableTarget:")]
 		Model SetPreferableTarget (Target targetId);
+
+		// -(Model * _Nonnull)enableWinograd:(BOOL)useWinograd __attribute__((swift_name("enableWinograd(useWinograd:)")));
+		[Export ("enableWinograd:")]
+		Model EnableWinograd (bool useWinograd);
 	}
 
 	// @interface ClassificationModel : Model
@@ -8537,6 +8551,10 @@ namespace OpenCvSdk
 	[BaseType (typeof(NSObject))]
 	interface Image2BlobParams
 	{
+		// -(instancetype _Nonnull)initWithScalefactor:(Scalar * _Nonnull)scalefactor size:(Size2i * _Nonnull)size mean:(Scalar * _Nonnull)mean swapRB:(BOOL)swapRB ddepth:(int)ddepth datalayout:(DataLayout)datalayout mode:(ImagePaddingMode)mode borderValue:(Scalar * _Nonnull)borderValue;
+		[Export ("initWithScalefactor:size:mean:swapRB:ddepth:datalayout:mode:borderValue:")]
+		NativeHandle Constructor (Scalar scalefactor, Size2i size, Scalar mean, bool swapRB, int ddepth, DataLayout datalayout, ImagePaddingMode mode, Scalar borderValue);
+
 		// -(instancetype _Nonnull)initWithScalefactor:(Scalar * _Nonnull)scalefactor size:(Size2i * _Nonnull)size mean:(Scalar * _Nonnull)mean swapRB:(BOOL)swapRB ddepth:(int)ddepth datalayout:(DataLayout)datalayout mode:(ImagePaddingMode)mode;
 		[Export ("initWithScalefactor:size:mean:swapRB:ddepth:datalayout:mode:")]
 		NativeHandle Constructor (Scalar scalefactor, Size2i size, Scalar mean, bool swapRB, int ddepth, DataLayout datalayout, ImagePaddingMode mode);
@@ -8565,6 +8583,14 @@ namespace OpenCvSdk
 		[Export ("initWithScalefactor:")]
 		NativeHandle Constructor (Scalar scalefactor);
 
+		// -(Rect2i * _Nonnull)blobRectToImageRect:(Rect2i * _Nonnull)rBlob size:(Size2i * _Nonnull)size __attribute__((swift_name("blobRectToImageRect(rBlob:size:)")));
+		[Export ("blobRectToImageRect:size:")]
+		Rect2i BlobRectToImageRect (Rect2i rBlob, Size2i size);
+
+		// -(void)blobRectsToImageRects:(NSArray<Rect2i *> * _Nonnull)rBlob rImg:(NSMutableArray<Rect2i *> * _Nonnull)rImg size:(Size2i * _Nonnull)size __attribute__((swift_name("blobRectsToImageRects(rBlob:rImg:size:)")));
+		[Export ("blobRectsToImageRects:rImg:size:")]
+		void BlobRectsToImageRects (Rect2i[] rBlob, NSMutableArray<Rect2i> rImg, Size2i size);
+
 		// @property Scalar * _Nonnull scalefactor;
 		[Export ("scalefactor", ArgumentSemantic.Assign)]
 		Scalar Scalefactor { get; set; }
@@ -8592,6 +8618,10 @@ namespace OpenCvSdk
 		// @property ImagePaddingMode paddingmode;
 		[Export ("paddingmode", ArgumentSemantic.Assign)]
 		ImagePaddingMode Paddingmode { get; set; }
+
+		// @property Scalar * _Nonnull borderValue;
+		[Export ("borderValue", ArgumentSemantic.Assign)]
+		Scalar BorderValue { get; set; }
 	}
 
 	// @interface KeypointsModel : Model
@@ -9296,6 +9326,11 @@ namespace OpenCvSdk
 	[BaseType (typeof(Feature2D))]
 	interface AKAZE
 	{
+		// +(AKAZE * _Nonnull)create:(DescriptorType)descriptor_type descriptor_size:(int)descriptor_size descriptor_channels:(int)descriptor_channels threshold:(float)threshold nOctaves:(int)nOctaves nOctaveLayers:(int)nOctaveLayers diffusivity:(DiffusivityType)diffusivity max_points:(int)max_points __attribute__((swift_name("create(descriptor_type:descriptor_size:descriptor_channels:threshold:nOctaves:nOctaveLayers:diffusivity:max_points:)")));
+		[Static]
+		[Export ("create:descriptor_size:descriptor_channels:threshold:nOctaves:nOctaveLayers:diffusivity:max_points:")]
+		AKAZE Create (DescriptorType descriptor_type, int descriptor_size, int descriptor_channels, float threshold, int nOctaves, int nOctaveLayers, DiffusivityType diffusivity, int max_points);
+
 		// +(AKAZE * _Nonnull)create:(DescriptorType)descriptor_type descriptor_size:(int)descriptor_size descriptor_channels:(int)descriptor_channels threshold:(float)threshold nOctaves:(int)nOctaves nOctaveLayers:(int)nOctaveLayers diffusivity:(DiffusivityType)diffusivity __attribute__((swift_name("create(descriptor_type:descriptor_size:descriptor_channels:threshold:nOctaves:nOctaveLayers:diffusivity:)")));
 		[Static]
 		[Export ("create:descriptor_size:descriptor_channels:threshold:nOctaves:nOctaveLayers:diffusivity:")]
@@ -9395,6 +9430,14 @@ namespace OpenCvSdk
 		// -(NSString * _Nonnull)getDefaultName __attribute__((swift_name("getDefaultName()")));
 		[Export ("getDefaultName")]
 		string DefaultName { get; }
+
+		// -(void)setMaxPoints:(int)max_points __attribute__((swift_name("setMaxPoints(max_points:)")));
+		[Export ("setMaxPoints:")]
+		void SetMaxPoints (int max_points);
+
+		// -(int)getMaxPoints __attribute__((swift_name("getMaxPoints()")));
+		[Export ("getMaxPoints")]
+		int MaxPoints { get; }
 	}
 
 	// @interface AffineFeature : Feature2D
@@ -9653,6 +9696,10 @@ namespace OpenCvSdk
 	[BaseType (typeof(NSObject))]
 	interface BOWImgDescriptorExtractor
 	{
+		// -(instancetype _Nonnull)initWithDextractor:(Feature2D * _Nonnull)dextractor dmatcher:(DescriptorMatcher * _Nonnull)dmatcher;
+		[Export ("initWithDextractor:dmatcher:")]
+		NativeHandle Constructor (Feature2D dextractor, DescriptorMatcher dmatcher);
+
 		// -(void)setVocabulary:(Mat * _Nonnull)vocabulary __attribute__((swift_name("setVocabulary(vocabulary:)")));
 		[Export ("setVocabulary:")]
 		void SetVocabulary (Mat vocabulary);
@@ -10607,6 +10654,11 @@ namespace OpenCvSdk
 		[Static]
 		[Export ("imdecode:flags:")]
 		Mat Imdecode (Mat buf, int flags);
+
+		// +(BOOL)imdecodemulti:(Mat * _Nonnull)buf flags:(int)flags mats:(NSMutableArray<Mat *> * _Nonnull)mats range:(Range * _Nonnull)range __attribute__((swift_name("imdecodemulti(buf:flags:mats:range:)")));
+		[Static]
+		[Export ("imdecodemulti:flags:mats:range:")]
+		bool Imdecodemulti (Mat buf, int flags, NSMutableArray<Mat> mats, Range range);
 
 		// +(BOOL)imdecodemulti:(Mat * _Nonnull)buf flags:(int)flags mats:(NSMutableArray<Mat *> * _Nonnull)mats __attribute__((swift_name("imdecodemulti(buf:flags:mats:)")));
 		[Static]
@@ -12504,6 +12556,11 @@ namespace OpenCvSdk
 		[Static]
 		[Export ("CALIB_CB_MARKER")]
 		int CALIB_CB_MARKER { get; }
+
+		// @property (readonly, class) int CALIB_CB_PLAIN __attribute__((swift_name("CALIB_CB_PLAIN")));
+		[Static]
+		[Export ("CALIB_CB_PLAIN")]
+		int CALIB_CB_PLAIN { get; }
 
 		// @property (readonly, class) int CALIB_CB_SYMMETRIC_GRID __attribute__((swift_name("CALIB_CB_SYMMETRIC_GRID")));
 		[Static]
@@ -14582,6 +14639,36 @@ namespace OpenCvSdk
 		[Static]
 		[Export ("create:config:input_size:")]
 		FaceDetectorYN Create (string model, string config, Size2i input_size);
+
+		// +(FaceDetectorYN * _Nonnull)create:(NSString * _Nonnull)framework bufferModel:(ByteVector * _Nonnull)bufferModel bufferConfig:(ByteVector * _Nonnull)bufferConfig input_size:(Size2i * _Nonnull)input_size score_threshold:(float)score_threshold nms_threshold:(float)nms_threshold top_k:(int)top_k backend_id:(int)backend_id target_id:(int)target_id __attribute__((swift_name("create(framework:bufferModel:bufferConfig:input_size:score_threshold:nms_threshold:top_k:backend_id:target_id:)")));
+		[Static]
+		[Export ("create:bufferModel:bufferConfig:input_size:score_threshold:nms_threshold:top_k:backend_id:target_id:")]
+		FaceDetectorYN Create (string framework, ByteVector bufferModel, ByteVector bufferConfig, Size2i input_size, float score_threshold, float nms_threshold, int top_k, int backend_id, int target_id);
+
+		// +(FaceDetectorYN * _Nonnull)create:(NSString * _Nonnull)framework bufferModel:(ByteVector * _Nonnull)bufferModel bufferConfig:(ByteVector * _Nonnull)bufferConfig input_size:(Size2i * _Nonnull)input_size score_threshold:(float)score_threshold nms_threshold:(float)nms_threshold top_k:(int)top_k backend_id:(int)backend_id __attribute__((swift_name("create(framework:bufferModel:bufferConfig:input_size:score_threshold:nms_threshold:top_k:backend_id:)")));
+		[Static]
+		[Export ("create:bufferModel:bufferConfig:input_size:score_threshold:nms_threshold:top_k:backend_id:")]
+		FaceDetectorYN Create (string framework, ByteVector bufferModel, ByteVector bufferConfig, Size2i input_size, float score_threshold, float nms_threshold, int top_k, int backend_id);
+
+		// +(FaceDetectorYN * _Nonnull)create:(NSString * _Nonnull)framework bufferModel:(ByteVector * _Nonnull)bufferModel bufferConfig:(ByteVector * _Nonnull)bufferConfig input_size:(Size2i * _Nonnull)input_size score_threshold:(float)score_threshold nms_threshold:(float)nms_threshold top_k:(int)top_k __attribute__((swift_name("create(framework:bufferModel:bufferConfig:input_size:score_threshold:nms_threshold:top_k:)")));
+		[Static]
+		[Export ("create:bufferModel:bufferConfig:input_size:score_threshold:nms_threshold:top_k:")]
+		FaceDetectorYN Create (string framework, ByteVector bufferModel, ByteVector bufferConfig, Size2i input_size, float score_threshold, float nms_threshold, int top_k);
+
+		// +(FaceDetectorYN * _Nonnull)create:(NSString * _Nonnull)framework bufferModel:(ByteVector * _Nonnull)bufferModel bufferConfig:(ByteVector * _Nonnull)bufferConfig input_size:(Size2i * _Nonnull)input_size score_threshold:(float)score_threshold nms_threshold:(float)nms_threshold __attribute__((swift_name("create(framework:bufferModel:bufferConfig:input_size:score_threshold:nms_threshold:)")));
+		[Static]
+		[Export ("create:bufferModel:bufferConfig:input_size:score_threshold:nms_threshold:")]
+		FaceDetectorYN Create (string framework, ByteVector bufferModel, ByteVector bufferConfig, Size2i input_size, float score_threshold, float nms_threshold);
+
+		// +(FaceDetectorYN * _Nonnull)create:(NSString * _Nonnull)framework bufferModel:(ByteVector * _Nonnull)bufferModel bufferConfig:(ByteVector * _Nonnull)bufferConfig input_size:(Size2i * _Nonnull)input_size score_threshold:(float)score_threshold __attribute__((swift_name("create(framework:bufferModel:bufferConfig:input_size:score_threshold:)")));
+		[Static]
+		[Export ("create:bufferModel:bufferConfig:input_size:score_threshold:")]
+		FaceDetectorYN Create (string framework, ByteVector bufferModel, ByteVector bufferConfig, Size2i input_size, float score_threshold);
+
+		// +(FaceDetectorYN * _Nonnull)create:(NSString * _Nonnull)framework bufferModel:(ByteVector * _Nonnull)bufferModel bufferConfig:(ByteVector * _Nonnull)bufferConfig input_size:(Size2i * _Nonnull)input_size __attribute__((swift_name("create(framework:bufferModel:bufferConfig:input_size:)")));
+		[Static]
+		[Export ("create:bufferModel:bufferConfig:input_size:")]
+		FaceDetectorYN Create (string framework, ByteVector bufferModel, ByteVector bufferConfig, Size2i input_size);
 	}
 
 	// @interface FaceRecognizerSF : NSObject
@@ -15301,6 +15388,10 @@ namespace OpenCvSdk
 		[Export ("minMarkerDistanceRate")]
 		double MinMarkerDistanceRate { get; set; }
 
+		// @property float minGroupDistance;
+		[Export ("minGroupDistance")]
+		float MinGroupDistance { get; set; }
+
 		// @property int cornerRefinementMethod;
 		[Export ("cornerRefinementMethod")]
 		int CornerRefinementMethod { get; set; }
@@ -15308,6 +15399,10 @@ namespace OpenCvSdk
 		// @property int cornerRefinementWinSize;
 		[Export ("cornerRefinementWinSize")]
 		int CornerRefinementWinSize { get; set; }
+
+		// @property float relativeCornerRefinmentWinSize;
+		[Export ("relativeCornerRefinmentWinSize")]
+		float RelativeCornerRefinmentWinSize { get; set; }
 
 		// @property int cornerRefinementMaxIterations;
 		[Export ("cornerRefinementMaxIterations")]
@@ -16467,6 +16562,50 @@ namespace OpenCvSdk
 		// @property int target;
 		[Export ("target")]
 		int Target { get; set; }
+	}
+
+	// @interface TrackerVit : Tracker
+	[BaseType (typeof(Tracker))]
+	interface TrackerVit
+	{
+		// +(TrackerVit * _Nonnull)create:(TrackerVitParams * _Nonnull)parameters __attribute__((swift_name("create(parameters:)")));
+		[Static]
+		[Export ("create:")]
+		TrackerVit Create (TrackerVitParams parameters);
+
+		// +(TrackerVit * _Nonnull)create __attribute__((swift_name("create()")));
+		[Static]
+		[Export ("create")]
+		TrackerVit Create ();
+
+		// -(float)getTrackingScore __attribute__((swift_name("getTrackingScore()")));
+		[Export ("getTrackingScore")]
+		float TrackingScore { get; }
+	}
+
+	// @interface TrackerVitParams : NSObject
+	[BaseType (typeof(NSObject))]
+	interface TrackerVitParams
+	{
+		// @property NSString * _Nonnull net;
+		[Export ("net")]
+		string Net { get; set; }
+
+		// @property int backend;
+		[Export ("backend")]
+		int Backend { get; set; }
+
+		// @property int target;
+		[Export ("target")]
+		int Target { get; set; }
+
+		// @property Scalar * _Nonnull meanvalue;
+		[Export ("meanvalue", ArgumentSemantic.Assign)]
+		Scalar Meanvalue { get; set; }
+
+		// @property Scalar * _Nonnull stdvalue;
+		[Export ("stdvalue", ArgumentSemantic.Assign)]
+		Scalar Stdvalue { get; set; }
 	}
 
 	// @interface VariationalRefinement : DenseOpticalFlow
