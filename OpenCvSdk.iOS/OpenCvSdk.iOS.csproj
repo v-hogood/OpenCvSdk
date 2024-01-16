@@ -11,10 +11,10 @@
     <Authors>Howard Good</Authors>
     <PackageLicenseUrl>https://github.com/opencv/opencv/blob/master/LICENSE</PackageLicenseUrl>
     <Owners>https://www.nuget.org/profiles/v-hogood</Owners>
-    <RepositoryUrl>https://github.com/opencv/opencv</RepositoryUrl>
+    <RepositoryUrl>https://github.com/opencv/opencv/tree/4.x/platforms/ios</RepositoryUrl>
     <PackageProjectUrl>https://github.com/v-hogood/OpenCvSdk</PackageProjectUrl>
     <Summary>.iOS .NET bindings for OpenCV SDK Library.</Summary>
-    <PackageTags>xamarin ios opencv</PackageTags>
+    <PackageTags>maui xamarin ios opencv</PackageTags>
     <Title>TensorFlowLite</Title>
     <Description>iOS .NET bindings for OpenCV SDK Library.</Description>
     <NoWarn>0108;0114</NoWarn>

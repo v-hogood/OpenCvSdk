@@ -12,10 +12,10 @@
     <Authors>Howard Good</Authors>
     <PackageLicenseUrl>https://github.com/opencv/opencv/blob/4.x/LICENSE</PackageLicenseUrl>
     <Owners>https://www.nuget.org/profiles/v-hogood</Owners>
-    <RepositoryUrl>https://github.com/opencv/opencv/tree/4.x/modules/java</RepositoryUrl>
+    <RepositoryUrl>https://github.com/opencv/opencv/tree/4.x/platforms/android</RepositoryUrl>
     <PackageProjectUrl>https://github.com/v-hogood/OpenCVBinding</PackageProjectUrl>
     <Summary>Android .NET bindings for OpenCV SDK</Summary>
-    <PackageTags>xamarin android opencv</PackageTags>
+    <PackageTags>maui xamarin android opencv</PackageTags>
     <Title>OpenCV.Android</Title>
     <Description>Android .NET bindings for OpenCV SDK.</Description>
     <NoWarn>0108;0114;1572;BG8403</NoWarn>
