@@ -65,6 +65,7 @@
   <attr path="/api/package[@name='org.opencv.android']/class[@name='JavaCameraView']/field[@name='mCamera']" name="managedName">Camera</attr>
   <attr path="/api/package[@name='org.opencv.android']/class[@name='JavaCameraView']/field[@name='mCameraFrame']" name="managedName">CameraFrame</attr>
 
+  <attr path="/api/package[@name='org.opencv']" name="managedName">OpenCV</attr>
   <attr path="/api/package[@name='org.opencv.android']" name="managedName">OpenCV.Android</attr>
   <attr path="/api/package[@name='org.opencv.calib3d']" name="managedName">OpenCV.Calib3d</attr>
   <attr path="/api/package[@name='org.opencv.core']" name="managedName">OpenCV.Core</attr>

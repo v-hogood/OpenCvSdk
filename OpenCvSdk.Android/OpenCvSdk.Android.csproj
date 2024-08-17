@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net7.0-android</TargetFramework>
+    <TargetFramework>net8.0-android</TargetFramework>
     <SupportedOSPlatformVersion>21</SupportedOSPlatformVersion>
     <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -8,7 +8,7 @@
     <PackOnBuild>true</PackOnBuild>
     <GeneratePackageOnBuild>$(PackOnBuild)</GeneratePackageOnBuild>
     <PackageId>OpenCvSdk.Android</PackageId>
-    <PackageVersion>4.9.0</PackageVersion>
+    <PackageVersion>4.10.0</PackageVersion>
     <Authors>Howard Good</Authors>
     <PackageLicenseUrl>https://github.com/opencv/opencv/blob/4.x/LICENSE</PackageLicenseUrl>
     <Owners>https://www.nuget.org/profiles/v-hogood</Owners>
@@ -16,11 +16,14 @@
     <PackageProjectUrl>https://github.com/v-hogood/OpenCVBinding</PackageProjectUrl>
     <Summary>Android .NET bindings for OpenCV SDK</Summary>
     <PackageTags>maui xamarin android opencv</PackageTags>
-    <Title>OpenCV.Android</Title>
+    <Title>OpenCvSdk.Android</Title>
     <Description>Android .NET bindings for OpenCV SDK.</Description>
     <NoWarn>0108;0114;1572;BG8403</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <JavaSourceJar Include="Jars\opencv-sources.jar" />
+    <JavaSourceJar Include="Jars\opencv-4.10.0-sources.jar" />
+  </ItemGroup>
+  <ItemGroup>
+    <JavaDocJar Include="Jars\opencv-4.10.0-javadoc.jar" />
   </ItemGroup>
 </Project>
