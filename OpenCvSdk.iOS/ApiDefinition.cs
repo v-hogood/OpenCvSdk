@@ -2794,7 +2794,7 @@ namespace OpenCvSdk
 		[Export ("convertScaleAbs:dst:")]
 		void ConvertScaleAbs (Mat src, Mat dst);
 
-		// +(void)convertFp16:(Mat * _Nonnull)src dst:(Mat * _Nonnull)dst __attribute__((swift_name("convertFp16(src:dst:)")));
+		// +(void)convertFp16:(Mat * _Nonnull)src dst:(Mat * _Nonnull)dst __attribute__((swift_name("convertFp16(src:dst:)"))) __attribute__((deprecated("")));
 		[Static]
 		[Export ("convertFp16:dst:")]
 		void ConvertFp16 (Mat src, Mat dst);
@@ -3924,6 +3924,11 @@ namespace OpenCvSdk
 		[Static]
 		[Export ("CV_WARP_INVERSE_MAP")]
 		int CV_WARP_INVERSE_MAP { get; }
+
+		// @property (readonly, class) int CV_WARP_RELATIVE_MAP __attribute__((swift_name("CV_WARP_RELATIVE_MAP")));
+		[Static]
+		[Export ("CV_WARP_RELATIVE_MAP")]
+		int CV_WARP_RELATIVE_MAP { get; }
 
 		// @property (readonly, class) int CV_CHAIN_CODE __attribute__((swift_name("CV_CHAIN_CODE")));
 		[Static]
@@ -5069,6 +5074,16 @@ namespace OpenCvSdk
 		[Static]
 		[Export ("findContours:contours:hierarchy:mode:method:")]
 		void FindContours (Mat image, NSMutableArray<NSMutableArray<Point2i>> contours, Mat hierarchy, RetrievalModes mode, ContourApproximationModes method);
+
+		// +(void)findContoursLinkRuns:(Mat * _Nonnull)image contours:(NSMutableArray<Mat *> * _Nonnull)contours hierarchy:(Mat * _Nonnull)hierarchy __attribute__((swift_name("findContoursLinkRuns(image:contours:hierarchy:)")));
+		[Static]
+		[Export ("findContoursLinkRuns:contours:hierarchy:")]
+		void FindContoursLinkRuns (Mat image, NSMutableArray<Mat> contours, Mat hierarchy);
+
+		// +(void)findContoursLinkRuns:(Mat * _Nonnull)image contours:(NSMutableArray<Mat *> * _Nonnull)contours __attribute__((swift_name("findContoursLinkRuns(image:contours:)")));
+		[Static]
+		[Export ("findContoursLinkRuns:contours:")]
+		void FindContoursLinkRuns (Mat image, NSMutableArray<Mat> contours);
 
 		// +(void)approxPolyDP:(NSArray<Point2f *> * _Nonnull)curve approxCurve:(NSMutableArray<Point2f *> * _Nonnull)approxCurve epsilon:(double)epsilon closed:(BOOL)closed __attribute__((swift_name("approxPolyDP(curve:approxCurve:epsilon:closed:)")));
 		[Static]
@@ -8387,6 +8402,10 @@ namespace OpenCvSdk
 		[Export ("setInputSwapRB:")]
 		Model SetInputSwapRB (bool swapRB);
 
+		// -(Model * _Nonnull)setOutputNames:(NSArray<NSString *> * _Nonnull)outNames __attribute__((swift_name("setOutputNames(outNames:)")));
+		[Export ("setOutputNames:")]
+		Model SetOutputNames (string[] outNames);
+
 		// -(void)setInputParams:(double)scale size:(Size2i * _Nonnull)size mean:(Scalar * _Nonnull)mean swapRB:(BOOL)swapRB crop:(BOOL)crop __attribute__((swift_name("setInputParams(scale:size:mean:swapRB:crop:)")));
 		[Export ("setInputParams:size:mean:swapRB:crop:")]
 		void SetInputParams (double scale, Size2i size, Scalar mean, bool swapRB, bool crop);
@@ -8707,6 +8726,10 @@ namespace OpenCvSdk
 		// -(void)dumpToFile:(NSString * _Nonnull)path __attribute__((swift_name("dumpToFile(path:)")));
 		[Export ("dumpToFile:")]
 		void DumpToFile (string path);
+
+		// -(void)dumpToPbtxt:(NSString * _Nonnull)path __attribute__((swift_name("dumpToPbtxt(path:)")));
+		[Export ("dumpToPbtxt:")]
+		void DumpToPbtxt (string path);
 
 		// -(int)getLayerId:(NSString * _Nonnull)layer __attribute__((swift_name("getLayerId(layer:)")));
 		[Export ("getLayerId:")]
@@ -10599,6 +10622,16 @@ namespace OpenCvSdk
 		[Static]
 		[Export ("imread:")]
 		Mat Imread (string filename);
+
+		// +(void)imread:(NSString * _Nonnull)filename dst:(Mat * _Nonnull)dst flags:(int)flags __attribute__((swift_name("imread(filename:dst:flags:)")));
+		[Static]
+		[Export ("imread:dst:flags:")]
+		void Imread (string filename, Mat dst, int flags);
+
+		// +(void)imread:(NSString * _Nonnull)filename dst:(Mat * _Nonnull)dst __attribute__((swift_name("imread(filename:dst:)")));
+		[Static]
+		[Export ("imread:dst:")]
+		void Imread (string filename, Mat dst);
 
 		// +(BOOL)imreadmulti:(NSString * _Nonnull)filename mats:(NSMutableArray<Mat *> * _Nonnull)mats flags:(int)flags __attribute__((swift_name("imreadmulti(filename:mats:flags:)")));
 		[Static]
@@ -12717,20 +12750,65 @@ namespace OpenCvSdk
 		[Export ("FM_RANSAC")]
 		int FM_RANSAC { get; }
 
-		// @property (readonly, class) int CALIB_RECOMPUTE_EXTRINSIC __attribute__((swift_name("CALIB_RECOMPUTE_EXTRINSIC")));
+		// @property (readonly, class) int fisheye_CALIB_USE_INTRINSIC_GUESS __attribute__((swift_name("fisheye_CALIB_USE_INTRINSIC_GUESS")));
 		[Static]
-		[Export ("CALIB_RECOMPUTE_EXTRINSIC")]
-		int CALIB_RECOMPUTE_EXTRINSIC { get; }
+		[Export ("fisheye_CALIB_USE_INTRINSIC_GUESS")]
+		int Fisheye_CALIB_USE_INTRINSIC_GUESS { get; }
 
-		// @property (readonly, class) int CALIB_CHECK_COND __attribute__((swift_name("CALIB_CHECK_COND")));
+		// @property (readonly, class) int fisheye_CALIB_RECOMPUTE_EXTRINSIC __attribute__((swift_name("fisheye_CALIB_RECOMPUTE_EXTRINSIC")));
 		[Static]
-		[Export ("CALIB_CHECK_COND")]
-		int CALIB_CHECK_COND { get; }
+		[Export ("fisheye_CALIB_RECOMPUTE_EXTRINSIC")]
+		int Fisheye_CALIB_RECOMPUTE_EXTRINSIC { get; }
 
-		// @property (readonly, class) int CALIB_FIX_SKEW __attribute__((swift_name("CALIB_FIX_SKEW")));
+		// @property (readonly, class) int fisheye_CALIB_CHECK_COND __attribute__((swift_name("fisheye_CALIB_CHECK_COND")));
 		[Static]
-		[Export ("CALIB_FIX_SKEW")]
-		int CALIB_FIX_SKEW { get; }
+		[Export ("fisheye_CALIB_CHECK_COND")]
+		int Fisheye_CALIB_CHECK_COND { get; }
+
+		// @property (readonly, class) int fisheye_CALIB_FIX_SKEW __attribute__((swift_name("fisheye_CALIB_FIX_SKEW")));
+		[Static]
+		[Export ("fisheye_CALIB_FIX_SKEW")]
+		int Fisheye_CALIB_FIX_SKEW { get; }
+
+		// @property (readonly, class) int fisheye_CALIB_FIX_K1 __attribute__((swift_name("fisheye_CALIB_FIX_K1")));
+		[Static]
+		[Export ("fisheye_CALIB_FIX_K1")]
+		int Fisheye_CALIB_FIX_K1 { get; }
+
+		// @property (readonly, class) int fisheye_CALIB_FIX_K2 __attribute__((swift_name("fisheye_CALIB_FIX_K2")));
+		[Static]
+		[Export ("fisheye_CALIB_FIX_K2")]
+		int Fisheye_CALIB_FIX_K2 { get; }
+
+		// @property (readonly, class) int fisheye_CALIB_FIX_K3 __attribute__((swift_name("fisheye_CALIB_FIX_K3")));
+		[Static]
+		[Export ("fisheye_CALIB_FIX_K3")]
+		int Fisheye_CALIB_FIX_K3 { get; }
+
+		// @property (readonly, class) int fisheye_CALIB_FIX_K4 __attribute__((swift_name("fisheye_CALIB_FIX_K4")));
+		[Static]
+		[Export ("fisheye_CALIB_FIX_K4")]
+		int Fisheye_CALIB_FIX_K4 { get; }
+
+		// @property (readonly, class) int fisheye_CALIB_FIX_INTRINSIC __attribute__((swift_name("fisheye_CALIB_FIX_INTRINSIC")));
+		[Static]
+		[Export ("fisheye_CALIB_FIX_INTRINSIC")]
+		int Fisheye_CALIB_FIX_INTRINSIC { get; }
+
+		// @property (readonly, class) int fisheye_CALIB_FIX_PRINCIPAL_POINT __attribute__((swift_name("fisheye_CALIB_FIX_PRINCIPAL_POINT")));
+		[Static]
+		[Export ("fisheye_CALIB_FIX_PRINCIPAL_POINT")]
+		int Fisheye_CALIB_FIX_PRINCIPAL_POINT { get; }
+
+		// @property (readonly, class) int fisheye_CALIB_ZERO_DISPARITY __attribute__((swift_name("fisheye_CALIB_ZERO_DISPARITY")));
+		[Static]
+		[Export ("fisheye_CALIB_ZERO_DISPARITY")]
+		int Fisheye_CALIB_ZERO_DISPARITY { get; }
+
+		// @property (readonly, class) int fisheye_CALIB_FIX_FOCAL_LENGTH __attribute__((swift_name("fisheye_CALIB_FIX_FOCAL_LENGTH")));
+		[Static]
+		[Export ("fisheye_CALIB_FIX_FOCAL_LENGTH")]
+		int Fisheye_CALIB_FIX_FOCAL_LENGTH { get; }
 
 		// +(void)Rodrigues:(Mat * _Nonnull)src dst:(Mat * _Nonnull)dst jacobian:(Mat * _Nonnull)jacobian __attribute__((swift_name("Rodrigues(src:dst:jacobian:)")));
 		[Static]
@@ -13782,158 +13860,175 @@ namespace OpenCvSdk
 		[Export ("undistortImagePoints:dst:cameraMatrix:distCoeffs:")]
 		void UndistortImagePoints (Mat src, Mat dst, Mat cameraMatrix, Mat distCoeffs);
 
-		interface Fisheye
-		{
-		// +(void)projectPoints:(Mat * _Nonnull)objectPoints imagePoints:(Mat * _Nonnull)imagePoints rvec:(Mat * _Nonnull)rvec tvec:(Mat * _Nonnull)tvec K:(Mat * _Nonnull)K D:(Mat * _Nonnull)D alpha:(double)alpha jacobian:(Mat * _Nonnull)jacobian __attribute__((swift_name("projectPoints(objectPoints:imagePoints:rvec:tvec:K:D:alpha:jacobian:)")));
+		// +(void)fisheye_projectPoints:(Mat * _Nonnull)objectPoints imagePoints:(Mat * _Nonnull)imagePoints rvec:(Mat * _Nonnull)rvec tvec:(Mat * _Nonnull)tvec K:(Mat * _Nonnull)K D:(Mat * _Nonnull)D alpha:(double)alpha jacobian:(Mat * _Nonnull)jacobian __attribute__((swift_name("projectPoints(objectPoints:imagePoints:rvec:tvec:K:D:alpha:jacobian:)")));
 		[Static]
-		[Export ("projectPoints:imagePoints:rvec:tvec:K:D:alpha:jacobian:")]
-		void ProjectPoints (Mat objectPoints, Mat imagePoints, Mat rvec, Mat tvec, Mat K, Mat D, double alpha, Mat jacobian);
+		[Export ("fisheye_projectPoints:imagePoints:rvec:tvec:K:D:alpha:jacobian:")]
+		void Fisheye_projectPoints (Mat objectPoints, Mat imagePoints, Mat rvec, Mat tvec, Mat K, Mat D, double alpha, Mat jacobian);
 
-		// +(void)projectPoints:(Mat * _Nonnull)objectPoints imagePoints:(Mat * _Nonnull)imagePoints rvec:(Mat * _Nonnull)rvec tvec:(Mat * _Nonnull)tvec K:(Mat * _Nonnull)K D:(Mat * _Nonnull)D alpha:(double)alpha __attribute__((swift_name("projectPoints(objectPoints:imagePoints:rvec:tvec:K:D:alpha:)")));
+		// +(void)fisheye_projectPoints:(Mat * _Nonnull)objectPoints imagePoints:(Mat * _Nonnull)imagePoints rvec:(Mat * _Nonnull)rvec tvec:(Mat * _Nonnull)tvec K:(Mat * _Nonnull)K D:(Mat * _Nonnull)D alpha:(double)alpha __attribute__((swift_name("projectPoints(objectPoints:imagePoints:rvec:tvec:K:D:alpha:)")));
 		[Static]
-		[Export ("projectPoints:imagePoints:rvec:tvec:K:D:alpha:")]
-		void ProjectPoints (Mat objectPoints, Mat imagePoints, Mat rvec, Mat tvec, Mat K, Mat D, double alpha);
+		[Export ("fisheye_projectPoints:imagePoints:rvec:tvec:K:D:alpha:")]
+		void Fisheye_projectPoints (Mat objectPoints, Mat imagePoints, Mat rvec, Mat tvec, Mat K, Mat D, double alpha);
 
-		// +(void)projectPoints:(Mat * _Nonnull)objectPoints imagePoints:(Mat * _Nonnull)imagePoints rvec:(Mat * _Nonnull)rvec tvec:(Mat * _Nonnull)tvec K:(Mat * _Nonnull)K D:(Mat * _Nonnull)D __attribute__((swift_name("projectPoints(objectPoints:imagePoints:rvec:tvec:K:D:)")));
+		// +(void)fisheye_projectPoints:(Mat * _Nonnull)objectPoints imagePoints:(Mat * _Nonnull)imagePoints rvec:(Mat * _Nonnull)rvec tvec:(Mat * _Nonnull)tvec K:(Mat * _Nonnull)K D:(Mat * _Nonnull)D __attribute__((swift_name("projectPoints(objectPoints:imagePoints:rvec:tvec:K:D:)")));
 		[Static]
-		[Export ("projectPoints:imagePoints:rvec:tvec:K:D:")]
-		void ProjectPoints (Mat objectPoints, Mat imagePoints, Mat rvec, Mat tvec, Mat K, Mat D);
+		[Export ("fisheye_projectPoints:imagePoints:rvec:tvec:K:D:")]
+		void Fisheye_projectPoints (Mat objectPoints, Mat imagePoints, Mat rvec, Mat tvec, Mat K, Mat D);
 
-		// +(void)distortPoints:(Mat * _Nonnull)undistorted distorted:(Mat * _Nonnull)distorted K:(Mat * _Nonnull)K D:(Mat * _Nonnull)D alpha:(double)alpha __attribute__((swift_name("distortPoints(undistorted:distorted:K:D:alpha:)")));
+		// +(void)fisheye_distortPoints:(Mat * _Nonnull)undistorted distorted:(Mat * _Nonnull)distorted K:(Mat * _Nonnull)K D:(Mat * _Nonnull)D alpha:(double)alpha __attribute__((swift_name("distortPoints(undistorted:distorted:K:D:alpha:)")));
 		[Static]
-		[Export ("distortPoints:distorted:K:D:alpha:")]
-		void DistortPoints (Mat undistorted, Mat distorted, Mat K, Mat D, double alpha);
+		[Export ("fisheye_distortPoints:distorted:K:D:alpha:")]
+		void Fisheye_distortPoints (Mat undistorted, Mat distorted, Mat K, Mat D, double alpha);
 
-		// +(void)distortPoints:(Mat * _Nonnull)undistorted distorted:(Mat * _Nonnull)distorted K:(Mat * _Nonnull)K D:(Mat * _Nonnull)D __attribute__((swift_name("distortPoints(undistorted:distorted:K:D:)")));
+		// +(void)fisheye_distortPoints:(Mat * _Nonnull)undistorted distorted:(Mat * _Nonnull)distorted K:(Mat * _Nonnull)K D:(Mat * _Nonnull)D __attribute__((swift_name("distortPoints(undistorted:distorted:K:D:)")));
 		[Static]
-		[Export ("distortPoints:distorted:K:D:")]
-		void DistortPoints (Mat undistorted, Mat distorted, Mat K, Mat D);
+		[Export ("fisheye_distortPoints:distorted:K:D:")]
+		void Fisheye_distortPoints (Mat undistorted, Mat distorted, Mat K, Mat D);
 
-		// +(void)undistortPoints:(Mat * _Nonnull)distorted undistorted:(Mat * _Nonnull)undistorted K:(Mat * _Nonnull)K D:(Mat * _Nonnull)D R:(Mat * _Nonnull)R P:(Mat * _Nonnull)P criteria:(TermCriteria * _Nonnull)criteria __attribute__((swift_name("undistortPoints(distorted:undistorted:K:D:R:P:criteria:)")));
+		// +(void)fisheye_undistortPoints:(Mat * _Nonnull)distorted undistorted:(Mat * _Nonnull)undistorted K:(Mat * _Nonnull)K D:(Mat * _Nonnull)D R:(Mat * _Nonnull)R P:(Mat * _Nonnull)P criteria:(TermCriteria * _Nonnull)criteria __attribute__((swift_name("undistortPoints(distorted:undistorted:K:D:R:P:criteria:)")));
 		[Static]
-		[Export ("undistortPoints:undistorted:K:D:R:P:criteria:")]
-		void UndistortPoints (Mat distorted, Mat undistorted, Mat K, Mat D, Mat R, Mat P, TermCriteria criteria);
+		[Export ("fisheye_undistortPoints:undistorted:K:D:R:P:criteria:")]
+		void Fisheye_undistortPoints (Mat distorted, Mat undistorted, Mat K, Mat D, Mat R, Mat P, TermCriteria criteria);
 
-		// +(void)undistortPoints:(Mat * _Nonnull)distorted undistorted:(Mat * _Nonnull)undistorted K:(Mat * _Nonnull)K D:(Mat * _Nonnull)D R:(Mat * _Nonnull)R P:(Mat * _Nonnull)P __attribute__((swift_name("undistortPoints(distorted:undistorted:K:D:R:P:)")));
+		// +(void)fisheye_undistortPoints:(Mat * _Nonnull)distorted undistorted:(Mat * _Nonnull)undistorted K:(Mat * _Nonnull)K D:(Mat * _Nonnull)D R:(Mat * _Nonnull)R P:(Mat * _Nonnull)P __attribute__((swift_name("undistortPoints(distorted:undistorted:K:D:R:P:)")));
 		[Static]
-		[Export ("undistortPoints:undistorted:K:D:R:P:")]
-		void UndistortPoints (Mat distorted, Mat undistorted, Mat K, Mat D, Mat R, Mat P);
+		[Export ("fisheye_undistortPoints:undistorted:K:D:R:P:")]
+		void Fisheye_undistortPoints (Mat distorted, Mat undistorted, Mat K, Mat D, Mat R, Mat P);
 
-		// +(void)undistortPoints:(Mat * _Nonnull)distorted undistorted:(Mat * _Nonnull)undistorted K:(Mat * _Nonnull)K D:(Mat * _Nonnull)D R:(Mat * _Nonnull)R __attribute__((swift_name("undistortPoints(distorted:undistorted:K:D:R:)")));
+		// +(void)fisheye_undistortPoints:(Mat * _Nonnull)distorted undistorted:(Mat * _Nonnull)undistorted K:(Mat * _Nonnull)K D:(Mat * _Nonnull)D R:(Mat * _Nonnull)R __attribute__((swift_name("undistortPoints(distorted:undistorted:K:D:R:)")));
 		[Static]
-		[Export ("undistortPoints:undistorted:K:D:R:")]
-		void UndistortPoints (Mat distorted, Mat undistorted, Mat K, Mat D, Mat R);
+		[Export ("fisheye_undistortPoints:undistorted:K:D:R:")]
+		void Fisheye_undistortPoints (Mat distorted, Mat undistorted, Mat K, Mat D, Mat R);
 
-		// +(void)undistortPoints:(Mat * _Nonnull)distorted undistorted:(Mat * _Nonnull)undistorted K:(Mat * _Nonnull)K D:(Mat * _Nonnull)D __attribute__((swift_name("undistortPoints(distorted:undistorted:K:D:)")));
+		// +(void)fisheye_undistortPoints:(Mat * _Nonnull)distorted undistorted:(Mat * _Nonnull)undistorted K:(Mat * _Nonnull)K D:(Mat * _Nonnull)D __attribute__((swift_name("undistortPoints(distorted:undistorted:K:D:)")));
 		[Static]
-		[Export ("undistortPoints:undistorted:K:D:")]
-		void UndistortPoints (Mat distorted, Mat undistorted, Mat K, Mat D);
+		[Export ("fisheye_undistortPoints:undistorted:K:D:")]
+		void Fisheye_undistortPoints (Mat distorted, Mat undistorted, Mat K, Mat D);
 
-		// +(void)initUndistortRectifyMap:(Mat * _Nonnull)K D:(Mat * _Nonnull)D R:(Mat * _Nonnull)R P:(Mat * _Nonnull)P size:(Size2i * _Nonnull)size m1type:(int)m1type map1:(Mat * _Nonnull)map1 map2:(Mat * _Nonnull)map2 __attribute__((swift_name("initUndistortRectifyMap(K:D:R:P:size:m1type:map1:map2:)")));
+		// +(void)fisheye_initUndistortRectifyMap:(Mat * _Nonnull)K D:(Mat * _Nonnull)D R:(Mat * _Nonnull)R P:(Mat * _Nonnull)P size:(Size2i * _Nonnull)size m1type:(int)m1type map1:(Mat * _Nonnull)map1 map2:(Mat * _Nonnull)map2 __attribute__((swift_name("initUndistortRectifyMap(K:D:R:P:size:m1type:map1:map2:)")));
 		[Static]
-		[Export ("initUndistortRectifyMap:D:R:P:size:m1type:map1:map2:")]
-		void InitUndistortRectifyMap (Mat K, Mat D, Mat R, Mat P, Size2i size, int m1type, Mat map1, Mat map2);
+		[Export ("fisheye_initUndistortRectifyMap:D:R:P:size:m1type:map1:map2:")]
+		void Fisheye_initUndistortRectifyMap (Mat K, Mat D, Mat R, Mat P, Size2i size, int m1type, Mat map1, Mat map2);
 
-		// +(void)undistortImage:(Mat * _Nonnull)distorted undistorted:(Mat * _Nonnull)undistorted K:(Mat * _Nonnull)K D:(Mat * _Nonnull)D Knew:(Mat * _Nonnull)Knew new_size:(Size2i * _Nonnull)new_size __attribute__((swift_name("undistortImage(distorted:undistorted:K:D:Knew:new_size:)")));
+		// +(void)fisheye_undistortImage:(Mat * _Nonnull)distorted undistorted:(Mat * _Nonnull)undistorted K:(Mat * _Nonnull)K D:(Mat * _Nonnull)D Knew:(Mat * _Nonnull)Knew new_size:(Size2i * _Nonnull)new_size __attribute__((swift_name("undistortImage(distorted:undistorted:K:D:Knew:new_size:)")));
 		[Static]
-		[Export ("undistortImage:undistorted:K:D:Knew:new_size:")]
-		void UndistortImage (Mat distorted, Mat undistorted, Mat K, Mat D, Mat Knew, Size2i new_size);
+		[Export ("fisheye_undistortImage:undistorted:K:D:Knew:new_size:")]
+		void Fisheye_undistortImage (Mat distorted, Mat undistorted, Mat K, Mat D, Mat Knew, Size2i new_size);
 
-		// +(void)undistortImage:(Mat * _Nonnull)distorted undistorted:(Mat * _Nonnull)undistorted K:(Mat * _Nonnull)K D:(Mat * _Nonnull)D Knew:(Mat * _Nonnull)Knew __attribute__((swift_name("undistortImage(distorted:undistorted:K:D:Knew:)")));
+		// +(void)fisheye_undistortImage:(Mat * _Nonnull)distorted undistorted:(Mat * _Nonnull)undistorted K:(Mat * _Nonnull)K D:(Mat * _Nonnull)D Knew:(Mat * _Nonnull)Knew __attribute__((swift_name("undistortImage(distorted:undistorted:K:D:Knew:)")));
 		[Static]
-		[Export ("undistortImage:undistorted:K:D:Knew:")]
-		void UndistortImage (Mat distorted, Mat undistorted, Mat K, Mat D, Mat Knew);
+		[Export ("fisheye_undistortImage:undistorted:K:D:Knew:")]
+		void Fisheye_undistortImage (Mat distorted, Mat undistorted, Mat K, Mat D, Mat Knew);
 
-		// +(void)undistortImage:(Mat * _Nonnull)distorted undistorted:(Mat * _Nonnull)undistorted K:(Mat * _Nonnull)K D:(Mat * _Nonnull)D __attribute__((swift_name("undistortImage(distorted:undistorted:K:D:)")));
+		// +(void)fisheye_undistortImage:(Mat * _Nonnull)distorted undistorted:(Mat * _Nonnull)undistorted K:(Mat * _Nonnull)K D:(Mat * _Nonnull)D __attribute__((swift_name("undistortImage(distorted:undistorted:K:D:)")));
 		[Static]
-		[Export ("undistortImage:undistorted:K:D:")]
-		void UndistortImage (Mat distorted, Mat undistorted, Mat K, Mat D);
+		[Export ("fisheye_undistortImage:undistorted:K:D:")]
+		void Fisheye_undistortImage (Mat distorted, Mat undistorted, Mat K, Mat D);
 
-		// +(void)estimateNewCameraMatrixForUndistortRectify:(Mat * _Nonnull)K D:(Mat * _Nonnull)D image_size:(Size2i * _Nonnull)image_size R:(Mat * _Nonnull)R P:(Mat * _Nonnull)P balance:(double)balance new_size:(Size2i * _Nonnull)new_size fov_scale:(double)fov_scale __attribute__((swift_name("estimateNewCameraMatrixForUndistortRectify(K:D:image_size:R:P:balance:new_size:fov_scale:)")));
+		// +(void)fisheye_estimateNewCameraMatrixForUndistortRectify:(Mat * _Nonnull)K D:(Mat * _Nonnull)D image_size:(Size2i * _Nonnull)image_size R:(Mat * _Nonnull)R P:(Mat * _Nonnull)P balance:(double)balance new_size:(Size2i * _Nonnull)new_size fov_scale:(double)fov_scale __attribute__((swift_name("estimateNewCameraMatrixForUndistortRectify(K:D:image_size:R:P:balance:new_size:fov_scale:)")));
 		[Static]
-		[Export ("estimateNewCameraMatrixForUndistortRectify:D:image_size:R:P:balance:new_size:fov_scale:")]
-		void EstimateNewCameraMatrixForUndistortRectify (Mat K, Mat D, Size2i image_size, Mat R, Mat P, double balance, Size2i new_size, double fov_scale);
+		[Export ("fisheye_estimateNewCameraMatrixForUndistortRectify:D:image_size:R:P:balance:new_size:fov_scale:")]
+		void Fisheye_estimateNewCameraMatrixForUndistortRectify (Mat K, Mat D, Size2i image_size, Mat R, Mat P, double balance, Size2i new_size, double fov_scale);
 
-		// +(void)estimateNewCameraMatrixForUndistortRectify:(Mat * _Nonnull)K D:(Mat * _Nonnull)D image_size:(Size2i * _Nonnull)image_size R:(Mat * _Nonnull)R P:(Mat * _Nonnull)P balance:(double)balance new_size:(Size2i * _Nonnull)new_size __attribute__((swift_name("estimateNewCameraMatrixForUndistortRectify(K:D:image_size:R:P:balance:new_size:)")));
+		// +(void)fisheye_estimateNewCameraMatrixForUndistortRectify:(Mat * _Nonnull)K D:(Mat * _Nonnull)D image_size:(Size2i * _Nonnull)image_size R:(Mat * _Nonnull)R P:(Mat * _Nonnull)P balance:(double)balance new_size:(Size2i * _Nonnull)new_size __attribute__((swift_name("estimateNewCameraMatrixForUndistortRectify(K:D:image_size:R:P:balance:new_size:)")));
 		[Static]
-		[Export ("estimateNewCameraMatrixForUndistortRectify:D:image_size:R:P:balance:new_size:")]
-		void EstimateNewCameraMatrixForUndistortRectify (Mat K, Mat D, Size2i image_size, Mat R, Mat P, double balance, Size2i new_size);
+		[Export ("fisheye_estimateNewCameraMatrixForUndistortRectify:D:image_size:R:P:balance:new_size:")]
+		void Fisheye_estimateNewCameraMatrixForUndistortRectify (Mat K, Mat D, Size2i image_size, Mat R, Mat P, double balance, Size2i new_size);
 
-		// +(void)estimateNewCameraMatrixForUndistortRectify:(Mat * _Nonnull)K D:(Mat * _Nonnull)D image_size:(Size2i * _Nonnull)image_size R:(Mat * _Nonnull)R P:(Mat * _Nonnull)P balance:(double)balance __attribute__((swift_name("estimateNewCameraMatrixForUndistortRectify(K:D:image_size:R:P:balance:)")));
+		// +(void)fisheye_estimateNewCameraMatrixForUndistortRectify:(Mat * _Nonnull)K D:(Mat * _Nonnull)D image_size:(Size2i * _Nonnull)image_size R:(Mat * _Nonnull)R P:(Mat * _Nonnull)P balance:(double)balance __attribute__((swift_name("estimateNewCameraMatrixForUndistortRectify(K:D:image_size:R:P:balance:)")));
 		[Static]
-		[Export ("estimateNewCameraMatrixForUndistortRectify:D:image_size:R:P:balance:")]
-		void EstimateNewCameraMatrixForUndistortRectify (Mat K, Mat D, Size2i image_size, Mat R, Mat P, double balance);
+		[Export ("fisheye_estimateNewCameraMatrixForUndistortRectify:D:image_size:R:P:balance:")]
+		void Fisheye_estimateNewCameraMatrixForUndistortRectify (Mat K, Mat D, Size2i image_size, Mat R, Mat P, double balance);
 
-		// +(void)estimateNewCameraMatrixForUndistortRectify:(Mat * _Nonnull)K D:(Mat * _Nonnull)D image_size:(Size2i * _Nonnull)image_size R:(Mat * _Nonnull)R P:(Mat * _Nonnull)P __attribute__((swift_name("estimateNewCameraMatrixForUndistortRectify(K:D:image_size:R:P:)")));
+		// +(void)fisheye_estimateNewCameraMatrixForUndistortRectify:(Mat * _Nonnull)K D:(Mat * _Nonnull)D image_size:(Size2i * _Nonnull)image_size R:(Mat * _Nonnull)R P:(Mat * _Nonnull)P __attribute__((swift_name("estimateNewCameraMatrixForUndistortRectify(K:D:image_size:R:P:)")));
 		[Static]
-		[Export ("estimateNewCameraMatrixForUndistortRectify:D:image_size:R:P:")]
-		void EstimateNewCameraMatrixForUndistortRectify (Mat K, Mat D, Size2i image_size, Mat R, Mat P);
+		[Export ("fisheye_estimateNewCameraMatrixForUndistortRectify:D:image_size:R:P:")]
+		void Fisheye_estimateNewCameraMatrixForUndistortRectify (Mat K, Mat D, Size2i image_size, Mat R, Mat P);
 
-		// +(double)calibrate:(NSArray<Mat *> * _Nonnull)objectPoints imagePoints:(NSArray<Mat *> * _Nonnull)imagePoints image_size:(Size2i * _Nonnull)image_size K:(Mat * _Nonnull)K D:(Mat * _Nonnull)D rvecs:(NSMutableArray<Mat *> * _Nonnull)rvecs tvecs:(NSMutableArray<Mat *> * _Nonnull)tvecs flags:(int)flags criteria:(TermCriteria * _Nonnull)criteria __attribute__((swift_name("calibrate(objectPoints:imagePoints:image_size:K:D:rvecs:tvecs:flags:criteria:)")));
+		// +(double)fisheye_calibrate:(NSArray<Mat *> * _Nonnull)objectPoints imagePoints:(NSArray<Mat *> * _Nonnull)imagePoints image_size:(Size2i * _Nonnull)image_size K:(Mat * _Nonnull)K D:(Mat * _Nonnull)D rvecs:(NSMutableArray<Mat *> * _Nonnull)rvecs tvecs:(NSMutableArray<Mat *> * _Nonnull)tvecs flags:(int)flags criteria:(TermCriteria * _Nonnull)criteria __attribute__((swift_name("calibrate(objectPoints:imagePoints:image_size:K:D:rvecs:tvecs:flags:criteria:)")));
 		[Static]
-		[Export ("calibrate:imagePoints:image_size:K:D:rvecs:tvecs:flags:criteria:")]
-		double Calibrate (Mat[] objectPoints, Mat[] imagePoints, Size2i image_size, Mat K, Mat D, NSMutableArray<Mat> rvecs, NSMutableArray<Mat> tvecs, int flags, TermCriteria criteria);
+		[Export ("fisheye_calibrate:imagePoints:image_size:K:D:rvecs:tvecs:flags:criteria:")]
+		double Fisheye_calibrate (Mat[] objectPoints, Mat[] imagePoints, Size2i image_size, Mat K, Mat D, NSMutableArray<Mat> rvecs, NSMutableArray<Mat> tvecs, int flags, TermCriteria criteria);
 
-		// +(double)calibrate:(NSArray<Mat *> * _Nonnull)objectPoints imagePoints:(NSArray<Mat *> * _Nonnull)imagePoints image_size:(Size2i * _Nonnull)image_size K:(Mat * _Nonnull)K D:(Mat * _Nonnull)D rvecs:(NSMutableArray<Mat *> * _Nonnull)rvecs tvecs:(NSMutableArray<Mat *> * _Nonnull)tvecs flags:(int)flags __attribute__((swift_name("calibrate(objectPoints:imagePoints:image_size:K:D:rvecs:tvecs:flags:)")));
+		// +(double)fisheye_calibrate:(NSArray<Mat *> * _Nonnull)objectPoints imagePoints:(NSArray<Mat *> * _Nonnull)imagePoints image_size:(Size2i * _Nonnull)image_size K:(Mat * _Nonnull)K D:(Mat * _Nonnull)D rvecs:(NSMutableArray<Mat *> * _Nonnull)rvecs tvecs:(NSMutableArray<Mat *> * _Nonnull)tvecs flags:(int)flags __attribute__((swift_name("calibrate(objectPoints:imagePoints:image_size:K:D:rvecs:tvecs:flags:)")));
 		[Static]
-		[Export ("calibrate:imagePoints:image_size:K:D:rvecs:tvecs:flags:")]
-		double Calibrate (Mat[] objectPoints, Mat[] imagePoints, Size2i image_size, Mat K, Mat D, NSMutableArray<Mat> rvecs, NSMutableArray<Mat> tvecs, int flags);
+		[Export ("fisheye_calibrate:imagePoints:image_size:K:D:rvecs:tvecs:flags:")]
+		double Fisheye_calibrate (Mat[] objectPoints, Mat[] imagePoints, Size2i image_size, Mat K, Mat D, NSMutableArray<Mat> rvecs, NSMutableArray<Mat> tvecs, int flags);
 
-		// +(double)calibrate:(NSArray<Mat *> * _Nonnull)objectPoints imagePoints:(NSArray<Mat *> * _Nonnull)imagePoints image_size:(Size2i * _Nonnull)image_size K:(Mat * _Nonnull)K D:(Mat * _Nonnull)D rvecs:(NSMutableArray<Mat *> * _Nonnull)rvecs tvecs:(NSMutableArray<Mat *> * _Nonnull)tvecs __attribute__((swift_name("calibrate(objectPoints:imagePoints:image_size:K:D:rvecs:tvecs:)")));
+		// +(double)fisheye_calibrate:(NSArray<Mat *> * _Nonnull)objectPoints imagePoints:(NSArray<Mat *> * _Nonnull)imagePoints image_size:(Size2i * _Nonnull)image_size K:(Mat * _Nonnull)K D:(Mat * _Nonnull)D rvecs:(NSMutableArray<Mat *> * _Nonnull)rvecs tvecs:(NSMutableArray<Mat *> * _Nonnull)tvecs __attribute__((swift_name("calibrate(objectPoints:imagePoints:image_size:K:D:rvecs:tvecs:)")));
 		[Static]
-		[Export ("calibrate:imagePoints:image_size:K:D:rvecs:tvecs:")]
-		double Calibrate (Mat[] objectPoints, Mat[] imagePoints, Size2i image_size, Mat K, Mat D, NSMutableArray<Mat> rvecs, NSMutableArray<Mat> tvecs);
+		[Export ("fisheye_calibrate:imagePoints:image_size:K:D:rvecs:tvecs:")]
+		double Fisheye_calibrate (Mat[] objectPoints, Mat[] imagePoints, Size2i image_size, Mat K, Mat D, NSMutableArray<Mat> rvecs, NSMutableArray<Mat> tvecs);
 
-		// +(void)stereoRectify:(Mat * _Nonnull)K1 D1:(Mat * _Nonnull)D1 K2:(Mat * _Nonnull)K2 D2:(Mat * _Nonnull)D2 imageSize:(Size2i * _Nonnull)imageSize R:(Mat * _Nonnull)R tvec:(Mat * _Nonnull)tvec R1:(Mat * _Nonnull)R1 R2:(Mat * _Nonnull)R2 P1:(Mat * _Nonnull)P1 P2:(Mat * _Nonnull)P2 Q:(Mat * _Nonnull)Q flags:(int)flags newImageSize:(Size2i * _Nonnull)newImageSize balance:(double)balance fov_scale:(double)fov_scale __attribute__((swift_name("stereoRectify(K1:D1:K2:D2:imageSize:R:tvec:R1:R2:P1:P2:Q:flags:newImageSize:balance:fov_scale:)")));
+		// +(void)fisheye_stereoRectify:(Mat * _Nonnull)K1 D1:(Mat * _Nonnull)D1 K2:(Mat * _Nonnull)K2 D2:(Mat * _Nonnull)D2 imageSize:(Size2i * _Nonnull)imageSize R:(Mat * _Nonnull)R tvec:(Mat * _Nonnull)tvec R1:(Mat * _Nonnull)R1 R2:(Mat * _Nonnull)R2 P1:(Mat * _Nonnull)P1 P2:(Mat * _Nonnull)P2 Q:(Mat * _Nonnull)Q flags:(int)flags newImageSize:(Size2i * _Nonnull)newImageSize balance:(double)balance fov_scale:(double)fov_scale __attribute__((swift_name("stereoRectify(K1:D1:K2:D2:imageSize:R:tvec:R1:R2:P1:P2:Q:flags:newImageSize:balance:fov_scale:)")));
 		[Static]
-		[Export ("stereoRectify:D1:K2:D2:imageSize:R:tvec:R1:R2:P1:P2:Q:flags:newImageSize:balance:fov_scale:")]
-		void StereoRectify (Mat K1, Mat D1, Mat K2, Mat D2, Size2i imageSize, Mat R, Mat tvec, Mat R1, Mat R2, Mat P1, Mat P2, Mat Q, int flags, Size2i newImageSize, double balance, double fov_scale);
+		[Export ("fisheye_stereoRectify:D1:K2:D2:imageSize:R:tvec:R1:R2:P1:P2:Q:flags:newImageSize:balance:fov_scale:")]
+		void Fisheye_stereoRectify (Mat K1, Mat D1, Mat K2, Mat D2, Size2i imageSize, Mat R, Mat tvec, Mat R1, Mat R2, Mat P1, Mat P2, Mat Q, int flags, Size2i newImageSize, double balance, double fov_scale);
 
-		// +(void)stereoRectify:(Mat * _Nonnull)K1 D1:(Mat * _Nonnull)D1 K2:(Mat * _Nonnull)K2 D2:(Mat * _Nonnull)D2 imageSize:(Size2i * _Nonnull)imageSize R:(Mat * _Nonnull)R tvec:(Mat * _Nonnull)tvec R1:(Mat * _Nonnull)R1 R2:(Mat * _Nonnull)R2 P1:(Mat * _Nonnull)P1 P2:(Mat * _Nonnull)P2 Q:(Mat * _Nonnull)Q flags:(int)flags newImageSize:(Size2i * _Nonnull)newImageSize balance:(double)balance __attribute__((swift_name("stereoRectify(K1:D1:K2:D2:imageSize:R:tvec:R1:R2:P1:P2:Q:flags:newImageSize:balance:)")));
+		// +(void)fisheye_stereoRectify:(Mat * _Nonnull)K1 D1:(Mat * _Nonnull)D1 K2:(Mat * _Nonnull)K2 D2:(Mat * _Nonnull)D2 imageSize:(Size2i * _Nonnull)imageSize R:(Mat * _Nonnull)R tvec:(Mat * _Nonnull)tvec R1:(Mat * _Nonnull)R1 R2:(Mat * _Nonnull)R2 P1:(Mat * _Nonnull)P1 P2:(Mat * _Nonnull)P2 Q:(Mat * _Nonnull)Q flags:(int)flags newImageSize:(Size2i * _Nonnull)newImageSize balance:(double)balance __attribute__((swift_name("stereoRectify(K1:D1:K2:D2:imageSize:R:tvec:R1:R2:P1:P2:Q:flags:newImageSize:balance:)")));
 		[Static]
-		[Export ("stereoRectify:D1:K2:D2:imageSize:R:tvec:R1:R2:P1:P2:Q:flags:newImageSize:balance:")]
-		void StereoRectify (Mat K1, Mat D1, Mat K2, Mat D2, Size2i imageSize, Mat R, Mat tvec, Mat R1, Mat R2, Mat P1, Mat P2, Mat Q, int flags, Size2i newImageSize, double balance);
+		[Export ("fisheye_stereoRectify:D1:K2:D2:imageSize:R:tvec:R1:R2:P1:P2:Q:flags:newImageSize:balance:")]
+		void Fisheye_stereoRectify (Mat K1, Mat D1, Mat K2, Mat D2, Size2i imageSize, Mat R, Mat tvec, Mat R1, Mat R2, Mat P1, Mat P2, Mat Q, int flags, Size2i newImageSize, double balance);
 
-		// +(void)stereoRectify:(Mat * _Nonnull)K1 D1:(Mat * _Nonnull)D1 K2:(Mat * _Nonnull)K2 D2:(Mat * _Nonnull)D2 imageSize:(Size2i * _Nonnull)imageSize R:(Mat * _Nonnull)R tvec:(Mat * _Nonnull)tvec R1:(Mat * _Nonnull)R1 R2:(Mat * _Nonnull)R2 P1:(Mat * _Nonnull)P1 P2:(Mat * _Nonnull)P2 Q:(Mat * _Nonnull)Q flags:(int)flags newImageSize:(Size2i * _Nonnull)newImageSize __attribute__((swift_name("stereoRectify(K1:D1:K2:D2:imageSize:R:tvec:R1:R2:P1:P2:Q:flags:newImageSize:)")));
+		// +(void)fisheye_stereoRectify:(Mat * _Nonnull)K1 D1:(Mat * _Nonnull)D1 K2:(Mat * _Nonnull)K2 D2:(Mat * _Nonnull)D2 imageSize:(Size2i * _Nonnull)imageSize R:(Mat * _Nonnull)R tvec:(Mat * _Nonnull)tvec R1:(Mat * _Nonnull)R1 R2:(Mat * _Nonnull)R2 P1:(Mat * _Nonnull)P1 P2:(Mat * _Nonnull)P2 Q:(Mat * _Nonnull)Q flags:(int)flags newImageSize:(Size2i * _Nonnull)newImageSize __attribute__((swift_name("stereoRectify(K1:D1:K2:D2:imageSize:R:tvec:R1:R2:P1:P2:Q:flags:newImageSize:)")));
 		[Static]
-		[Export ("stereoRectify:D1:K2:D2:imageSize:R:tvec:R1:R2:P1:P2:Q:flags:newImageSize:")]
-		void StereoRectify (Mat K1, Mat D1, Mat K2, Mat D2, Size2i imageSize, Mat R, Mat tvec, Mat R1, Mat R2, Mat P1, Mat P2, Mat Q, int flags, Size2i newImageSize);
+		[Export ("fisheye_stereoRectify:D1:K2:D2:imageSize:R:tvec:R1:R2:P1:P2:Q:flags:newImageSize:")]
+		void Fisheye_stereoRectify (Mat K1, Mat D1, Mat K2, Mat D2, Size2i imageSize, Mat R, Mat tvec, Mat R1, Mat R2, Mat P1, Mat P2, Mat Q, int flags, Size2i newImageSize);
 
-		// +(void)stereoRectify:(Mat * _Nonnull)K1 D1:(Mat * _Nonnull)D1 K2:(Mat * _Nonnull)K2 D2:(Mat * _Nonnull)D2 imageSize:(Size2i * _Nonnull)imageSize R:(Mat * _Nonnull)R tvec:(Mat * _Nonnull)tvec R1:(Mat * _Nonnull)R1 R2:(Mat * _Nonnull)R2 P1:(Mat * _Nonnull)P1 P2:(Mat * _Nonnull)P2 Q:(Mat * _Nonnull)Q flags:(int)flags __attribute__((swift_name("stereoRectify(K1:D1:K2:D2:imageSize:R:tvec:R1:R2:P1:P2:Q:flags:)")));
+		// +(void)fisheye_stereoRectify:(Mat * _Nonnull)K1 D1:(Mat * _Nonnull)D1 K2:(Mat * _Nonnull)K2 D2:(Mat * _Nonnull)D2 imageSize:(Size2i * _Nonnull)imageSize R:(Mat * _Nonnull)R tvec:(Mat * _Nonnull)tvec R1:(Mat * _Nonnull)R1 R2:(Mat * _Nonnull)R2 P1:(Mat * _Nonnull)P1 P2:(Mat * _Nonnull)P2 Q:(Mat * _Nonnull)Q flags:(int)flags __attribute__((swift_name("stereoRectify(K1:D1:K2:D2:imageSize:R:tvec:R1:R2:P1:P2:Q:flags:)")));
 		[Static]
-		[Export ("stereoRectify:D1:K2:D2:imageSize:R:tvec:R1:R2:P1:P2:Q:flags:")]
-		void StereoRectify (Mat K1, Mat D1, Mat K2, Mat D2, Size2i imageSize, Mat R, Mat tvec, Mat R1, Mat R2, Mat P1, Mat P2, Mat Q, int flags);
+		[Export ("fisheye_stereoRectify:D1:K2:D2:imageSize:R:tvec:R1:R2:P1:P2:Q:flags:")]
+		void Fisheye_stereoRectify (Mat K1, Mat D1, Mat K2, Mat D2, Size2i imageSize, Mat R, Mat tvec, Mat R1, Mat R2, Mat P1, Mat P2, Mat Q, int flags);
 
-		// +(double)stereoCalibrate:(NSArray<Mat *> * _Nonnull)objectPoints imagePoints1:(NSArray<Mat *> * _Nonnull)imagePoints1 imagePoints2:(NSArray<Mat *> * _Nonnull)imagePoints2 K1:(Mat * _Nonnull)K1 D1:(Mat * _Nonnull)D1 K2:(Mat * _Nonnull)K2 D2:(Mat * _Nonnull)D2 imageSize:(Size2i * _Nonnull)imageSize R:(Mat * _Nonnull)R T:(Mat * _Nonnull)T rvecs:(NSMutableArray<Mat *> * _Nonnull)rvecs tvecs:(NSMutableArray<Mat *> * _Nonnull)tvecs flags:(int)flags criteria:(TermCriteria * _Nonnull)criteria __attribute__((swift_name("stereoCalibrate(objectPoints:imagePoints1:imagePoints2:K1:D1:K2:D2:imageSize:R:T:rvecs:tvecs:flags:criteria:)")));
+		// +(double)fisheye_stereoCalibrate:(NSArray<Mat *> * _Nonnull)objectPoints imagePoints1:(NSArray<Mat *> * _Nonnull)imagePoints1 imagePoints2:(NSArray<Mat *> * _Nonnull)imagePoints2 K1:(Mat * _Nonnull)K1 D1:(Mat * _Nonnull)D1 K2:(Mat * _Nonnull)K2 D2:(Mat * _Nonnull)D2 imageSize:(Size2i * _Nonnull)imageSize R:(Mat * _Nonnull)R T:(Mat * _Nonnull)T rvecs:(NSMutableArray<Mat *> * _Nonnull)rvecs tvecs:(NSMutableArray<Mat *> * _Nonnull)tvecs flags:(int)flags criteria:(TermCriteria * _Nonnull)criteria __attribute__((swift_name("stereoCalibrate(objectPoints:imagePoints1:imagePoints2:K1:D1:K2:D2:imageSize:R:T:rvecs:tvecs:flags:criteria:)")));
 		[Static]
-		[Export ("stereoCalibrate:imagePoints1:imagePoints2:K1:D1:K2:D2:imageSize:R:T:rvecs:tvecs:flags:criteria:")]
-		double StereoCalibrate (Mat[] objectPoints, Mat[] imagePoints1, Mat[] imagePoints2, Mat K1, Mat D1, Mat K2, Mat D2, Size2i imageSize, Mat R, Mat T, NSMutableArray<Mat> rvecs, NSMutableArray<Mat> tvecs, int flags, TermCriteria criteria);
+		[Export ("fisheye_stereoCalibrate:imagePoints1:imagePoints2:K1:D1:K2:D2:imageSize:R:T:rvecs:tvecs:flags:criteria:")]
+		double Fisheye_stereoCalibrate (Mat[] objectPoints, Mat[] imagePoints1, Mat[] imagePoints2, Mat K1, Mat D1, Mat K2, Mat D2, Size2i imageSize, Mat R, Mat T, NSMutableArray<Mat> rvecs, NSMutableArray<Mat> tvecs, int flags, TermCriteria criteria);
 
-		// +(double)stereoCalibrate:(NSArray<Mat *> * _Nonnull)objectPoints imagePoints1:(NSArray<Mat *> * _Nonnull)imagePoints1 imagePoints2:(NSArray<Mat *> * _Nonnull)imagePoints2 K1:(Mat * _Nonnull)K1 D1:(Mat * _Nonnull)D1 K2:(Mat * _Nonnull)K2 D2:(Mat * _Nonnull)D2 imageSize:(Size2i * _Nonnull)imageSize R:(Mat * _Nonnull)R T:(Mat * _Nonnull)T rvecs:(NSMutableArray<Mat *> * _Nonnull)rvecs tvecs:(NSMutableArray<Mat *> * _Nonnull)tvecs flags:(int)flags __attribute__((swift_name("stereoCalibrate(objectPoints:imagePoints1:imagePoints2:K1:D1:K2:D2:imageSize:R:T:rvecs:tvecs:flags:)")));
+		// +(double)fisheye_stereoCalibrate:(NSArray<Mat *> * _Nonnull)objectPoints imagePoints1:(NSArray<Mat *> * _Nonnull)imagePoints1 imagePoints2:(NSArray<Mat *> * _Nonnull)imagePoints2 K1:(Mat * _Nonnull)K1 D1:(Mat * _Nonnull)D1 K2:(Mat * _Nonnull)K2 D2:(Mat * _Nonnull)D2 imageSize:(Size2i * _Nonnull)imageSize R:(Mat * _Nonnull)R T:(Mat * _Nonnull)T rvecs:(NSMutableArray<Mat *> * _Nonnull)rvecs tvecs:(NSMutableArray<Mat *> * _Nonnull)tvecs flags:(int)flags __attribute__((swift_name("stereoCalibrate(objectPoints:imagePoints1:imagePoints2:K1:D1:K2:D2:imageSize:R:T:rvecs:tvecs:flags:)")));
 		[Static]
-		[Export ("stereoCalibrate:imagePoints1:imagePoints2:K1:D1:K2:D2:imageSize:R:T:rvecs:tvecs:flags:")]
-		double StereoCalibrate (Mat[] objectPoints, Mat[] imagePoints1, Mat[] imagePoints2, Mat K1, Mat D1, Mat K2, Mat D2, Size2i imageSize, Mat R, Mat T, NSMutableArray<Mat> rvecs, NSMutableArray<Mat> tvecs, int flags);
+		[Export ("fisheye_stereoCalibrate:imagePoints1:imagePoints2:K1:D1:K2:D2:imageSize:R:T:rvecs:tvecs:flags:")]
+		double Fisheye_stereoCalibrate (Mat[] objectPoints, Mat[] imagePoints1, Mat[] imagePoints2, Mat K1, Mat D1, Mat K2, Mat D2, Size2i imageSize, Mat R, Mat T, NSMutableArray<Mat> rvecs, NSMutableArray<Mat> tvecs, int flags);
 
-		// +(double)stereoCalibrate:(NSArray<Mat *> * _Nonnull)objectPoints imagePoints1:(NSArray<Mat *> * _Nonnull)imagePoints1 imagePoints2:(NSArray<Mat *> * _Nonnull)imagePoints2 K1:(Mat * _Nonnull)K1 D1:(Mat * _Nonnull)D1 K2:(Mat * _Nonnull)K2 D2:(Mat * _Nonnull)D2 imageSize:(Size2i * _Nonnull)imageSize R:(Mat * _Nonnull)R T:(Mat * _Nonnull)T rvecs:(NSMutableArray<Mat *> * _Nonnull)rvecs tvecs:(NSMutableArray<Mat *> * _Nonnull)tvecs __attribute__((swift_name("stereoCalibrate(objectPoints:imagePoints1:imagePoints2:K1:D1:K2:D2:imageSize:R:T:rvecs:tvecs:)")));
+		// +(double)fisheye_stereoCalibrate:(NSArray<Mat *> * _Nonnull)objectPoints imagePoints1:(NSArray<Mat *> * _Nonnull)imagePoints1 imagePoints2:(NSArray<Mat *> * _Nonnull)imagePoints2 K1:(Mat * _Nonnull)K1 D1:(Mat * _Nonnull)D1 K2:(Mat * _Nonnull)K2 D2:(Mat * _Nonnull)D2 imageSize:(Size2i * _Nonnull)imageSize R:(Mat * _Nonnull)R T:(Mat * _Nonnull)T rvecs:(NSMutableArray<Mat *> * _Nonnull)rvecs tvecs:(NSMutableArray<Mat *> * _Nonnull)tvecs __attribute__((swift_name("stereoCalibrate(objectPoints:imagePoints1:imagePoints2:K1:D1:K2:D2:imageSize:R:T:rvecs:tvecs:)")));
 		[Static]
-		[Export ("stereoCalibrate:imagePoints1:imagePoints2:K1:D1:K2:D2:imageSize:R:T:rvecs:tvecs:")]
-		double StereoCalibrate (Mat[] objectPoints, Mat[] imagePoints1, Mat[] imagePoints2, Mat K1, Mat D1, Mat K2, Mat D2, Size2i imageSize, Mat R, Mat T, NSMutableArray<Mat> rvecs, NSMutableArray<Mat> tvecs);
+		[Export ("fisheye_stereoCalibrate:imagePoints1:imagePoints2:K1:D1:K2:D2:imageSize:R:T:rvecs:tvecs:")]
+		double Fisheye_stereoCalibrate (Mat[] objectPoints, Mat[] imagePoints1, Mat[] imagePoints2, Mat K1, Mat D1, Mat K2, Mat D2, Size2i imageSize, Mat R, Mat T, NSMutableArray<Mat> rvecs, NSMutableArray<Mat> tvecs);
 
-		// +(double)stereoCalibrate:(NSArray<Mat *> * _Nonnull)objectPoints imagePoints1:(NSArray<Mat *> * _Nonnull)imagePoints1 imagePoints2:(NSArray<Mat *> * _Nonnull)imagePoints2 K1:(Mat * _Nonnull)K1 D1:(Mat * _Nonnull)D1 K2:(Mat * _Nonnull)K2 D2:(Mat * _Nonnull)D2 imageSize:(Size2i * _Nonnull)imageSize R:(Mat * _Nonnull)R T:(Mat * _Nonnull)T flags:(int)flags criteria:(TermCriteria * _Nonnull)criteria __attribute__((swift_name("stereoCalibrate(objectPoints:imagePoints1:imagePoints2:K1:D1:K2:D2:imageSize:R:T:flags:criteria:)")));
+		// +(double)fisheye_stereoCalibrate:(NSArray<Mat *> * _Nonnull)objectPoints imagePoints1:(NSArray<Mat *> * _Nonnull)imagePoints1 imagePoints2:(NSArray<Mat *> * _Nonnull)imagePoints2 K1:(Mat * _Nonnull)K1 D1:(Mat * _Nonnull)D1 K2:(Mat * _Nonnull)K2 D2:(Mat * _Nonnull)D2 imageSize:(Size2i * _Nonnull)imageSize R:(Mat * _Nonnull)R T:(Mat * _Nonnull)T flags:(int)flags criteria:(TermCriteria * _Nonnull)criteria __attribute__((swift_name("stereoCalibrate(objectPoints:imagePoints1:imagePoints2:K1:D1:K2:D2:imageSize:R:T:flags:criteria:)")));
 		[Static]
-		[Export ("stereoCalibrate:imagePoints1:imagePoints2:K1:D1:K2:D2:imageSize:R:T:flags:criteria:")]
-		double StereoCalibrate (Mat[] objectPoints, Mat[] imagePoints1, Mat[] imagePoints2, Mat K1, Mat D1, Mat K2, Mat D2, Size2i imageSize, Mat R, Mat T, int flags, TermCriteria criteria);
+		[Export ("fisheye_stereoCalibrate:imagePoints1:imagePoints2:K1:D1:K2:D2:imageSize:R:T:flags:criteria:")]
+		double Fisheye_stereoCalibrate (Mat[] objectPoints, Mat[] imagePoints1, Mat[] imagePoints2, Mat K1, Mat D1, Mat K2, Mat D2, Size2i imageSize, Mat R, Mat T, int flags, TermCriteria criteria);
 
-		// +(double)stereoCalibrate:(NSArray<Mat *> * _Nonnull)objectPoints imagePoints1:(NSArray<Mat *> * _Nonnull)imagePoints1 imagePoints2:(NSArray<Mat *> * _Nonnull)imagePoints2 K1:(Mat * _Nonnull)K1 D1:(Mat * _Nonnull)D1 K2:(Mat * _Nonnull)K2 D2:(Mat * _Nonnull)D2 imageSize:(Size2i * _Nonnull)imageSize R:(Mat * _Nonnull)R T:(Mat * _Nonnull)T flags:(int)flags __attribute__((swift_name("stereoCalibrate(objectPoints:imagePoints1:imagePoints2:K1:D1:K2:D2:imageSize:R:T:flags:)")));
+		// +(double)fisheye_stereoCalibrate:(NSArray<Mat *> * _Nonnull)objectPoints imagePoints1:(NSArray<Mat *> * _Nonnull)imagePoints1 imagePoints2:(NSArray<Mat *> * _Nonnull)imagePoints2 K1:(Mat * _Nonnull)K1 D1:(Mat * _Nonnull)D1 K2:(Mat * _Nonnull)K2 D2:(Mat * _Nonnull)D2 imageSize:(Size2i * _Nonnull)imageSize R:(Mat * _Nonnull)R T:(Mat * _Nonnull)T flags:(int)flags __attribute__((swift_name("stereoCalibrate(objectPoints:imagePoints1:imagePoints2:K1:D1:K2:D2:imageSize:R:T:flags:)")));
 		[Static]
-		[Export ("stereoCalibrate:imagePoints1:imagePoints2:K1:D1:K2:D2:imageSize:R:T:flags:")]
-		double StereoCalibrate (Mat[] objectPoints, Mat[] imagePoints1, Mat[] imagePoints2, Mat K1, Mat D1, Mat K2, Mat D2, Size2i imageSize, Mat R, Mat T, int flags);
+		[Export ("fisheye_stereoCalibrate:imagePoints1:imagePoints2:K1:D1:K2:D2:imageSize:R:T:flags:")]
+		double Fisheye_stereoCalibrate (Mat[] objectPoints, Mat[] imagePoints1, Mat[] imagePoints2, Mat K1, Mat D1, Mat K2, Mat D2, Size2i imageSize, Mat R, Mat T, int flags);
 
-		// +(double)stereoCalibrate:(NSArray<Mat *> * _Nonnull)objectPoints imagePoints1:(NSArray<Mat *> * _Nonnull)imagePoints1 imagePoints2:(NSArray<Mat *> * _Nonnull)imagePoints2 K1:(Mat * _Nonnull)K1 D1:(Mat * _Nonnull)D1 K2:(Mat * _Nonnull)K2 D2:(Mat * _Nonnull)D2 imageSize:(Size2i * _Nonnull)imageSize R:(Mat * _Nonnull)R T:(Mat * _Nonnull)T __attribute__((swift_name("stereoCalibrate(objectPoints:imagePoints1:imagePoints2:K1:D1:K2:D2:imageSize:R:T:)")));
+		// +(double)fisheye_stereoCalibrate:(NSArray<Mat *> * _Nonnull)objectPoints imagePoints1:(NSArray<Mat *> * _Nonnull)imagePoints1 imagePoints2:(NSArray<Mat *> * _Nonnull)imagePoints2 K1:(Mat * _Nonnull)K1 D1:(Mat * _Nonnull)D1 K2:(Mat * _Nonnull)K2 D2:(Mat * _Nonnull)D2 imageSize:(Size2i * _Nonnull)imageSize R:(Mat * _Nonnull)R T:(Mat * _Nonnull)T __attribute__((swift_name("stereoCalibrate(objectPoints:imagePoints1:imagePoints2:K1:D1:K2:D2:imageSize:R:T:)")));
 		[Static]
-		[Export ("stereoCalibrate:imagePoints1:imagePoints2:K1:D1:K2:D2:imageSize:R:T:")]
-		double StereoCalibrate (Mat[] objectPoints, Mat[] imagePoints1, Mat[] imagePoints2, Mat K1, Mat D1, Mat K2, Mat D2, Size2i imageSize, Mat R, Mat T);
-		}
+		[Export ("fisheye_stereoCalibrate:imagePoints1:imagePoints2:K1:D1:K2:D2:imageSize:R:T:")]
+		double Fisheye_stereoCalibrate (Mat[] objectPoints, Mat[] imagePoints1, Mat[] imagePoints2, Mat K1, Mat D1, Mat K2, Mat D2, Size2i imageSize, Mat R, Mat T);
+
+		// +(BOOL)fisheye_solvePnP:(Mat * _Nonnull)objectPoints imagePoints:(Mat * _Nonnull)imagePoints cameraMatrix:(Mat * _Nonnull)cameraMatrix distCoeffs:(Mat * _Nonnull)distCoeffs rvec:(Mat * _Nonnull)rvec tvec:(Mat * _Nonnull)tvec useExtrinsicGuess:(BOOL)useExtrinsicGuess flags:(int)flags criteria:(TermCriteria * _Nonnull)criteria __attribute__((swift_name("solvePnP(objectPoints:imagePoints:cameraMatrix:distCoeffs:rvec:tvec:useExtrinsicGuess:flags:criteria:)")));
+		[Static]
+		[Export ("fisheye_solvePnP:imagePoints:cameraMatrix:distCoeffs:rvec:tvec:useExtrinsicGuess:flags:criteria:")]
+		bool Fisheye_solvePnP (Mat objectPoints, Mat imagePoints, Mat cameraMatrix, Mat distCoeffs, Mat rvec, Mat tvec, bool useExtrinsicGuess, int flags, TermCriteria criteria);
+
+		// +(BOOL)fisheye_solvePnP:(Mat * _Nonnull)objectPoints imagePoints:(Mat * _Nonnull)imagePoints cameraMatrix:(Mat * _Nonnull)cameraMatrix distCoeffs:(Mat * _Nonnull)distCoeffs rvec:(Mat * _Nonnull)rvec tvec:(Mat * _Nonnull)tvec useExtrinsicGuess:(BOOL)useExtrinsicGuess flags:(int)flags __attribute__((swift_name("solvePnP(objectPoints:imagePoints:cameraMatrix:distCoeffs:rvec:tvec:useExtrinsicGuess:flags:)")));
+		[Static]
+		[Export ("fisheye_solvePnP:imagePoints:cameraMatrix:distCoeffs:rvec:tvec:useExtrinsicGuess:flags:")]
+		bool Fisheye_solvePnP (Mat objectPoints, Mat imagePoints, Mat cameraMatrix, Mat distCoeffs, Mat rvec, Mat tvec, bool useExtrinsicGuess, int flags);
+
+		// +(BOOL)fisheye_solvePnP:(Mat * _Nonnull)objectPoints imagePoints:(Mat * _Nonnull)imagePoints cameraMatrix:(Mat * _Nonnull)cameraMatrix distCoeffs:(Mat * _Nonnull)distCoeffs rvec:(Mat * _Nonnull)rvec tvec:(Mat * _Nonnull)tvec useExtrinsicGuess:(BOOL)useExtrinsicGuess __attribute__((swift_name("solvePnP(objectPoints:imagePoints:cameraMatrix:distCoeffs:rvec:tvec:useExtrinsicGuess:)")));
+		[Static]
+		[Export ("fisheye_solvePnP:imagePoints:cameraMatrix:distCoeffs:rvec:tvec:useExtrinsicGuess:")]
+		bool Fisheye_solvePnP (Mat objectPoints, Mat imagePoints, Mat cameraMatrix, Mat distCoeffs, Mat rvec, Mat tvec, bool useExtrinsicGuess);
+
+		// +(BOOL)fisheye_solvePnP:(Mat * _Nonnull)objectPoints imagePoints:(Mat * _Nonnull)imagePoints cameraMatrix:(Mat * _Nonnull)cameraMatrix distCoeffs:(Mat * _Nonnull)distCoeffs rvec:(Mat * _Nonnull)rvec tvec:(Mat * _Nonnull)tvec __attribute__((swift_name("solvePnP(objectPoints:imagePoints:cameraMatrix:distCoeffs:rvec:tvec:)")));
+		[Static]
+		[Export ("fisheye_solvePnP:imagePoints:cameraMatrix:distCoeffs:rvec:tvec:")]
+		bool Fisheye_solvePnP (Mat objectPoints, Mat imagePoints, Mat cameraMatrix, Mat distCoeffs, Mat rvec, Mat tvec);
 	}
 
 	// @interface CirclesGridFinderParameters : NSObject
@@ -15613,6 +15708,30 @@ namespace OpenCvSdk
 		// -(BOOL)detectAndDecodeWithType:(Mat * _Nonnull)img decoded_info:(NSMutableArray<NSString *> * _Nonnull)decoded_info decoded_type:(NSMutableArray<NSString *> * _Nonnull)decoded_type __attribute__((swift_name("detectAndDecodeWithType(img:decoded_info:decoded_type:)")));
 		[Export ("detectAndDecodeWithType:decoded_info:decoded_type:")]
 		bool DetectAndDecodeWithType (Mat img, NSMutableArray<NSString> decoded_info, NSMutableArray<NSString> decoded_type);
+
+		// -(double)getDownsamplingThreshold __attribute__((swift_name("getDownsamplingThreshold()")));
+		[Export ("getDownsamplingThreshold")]
+		double DownsamplingThreshold { get; }
+
+		// -(BarcodeDetector * _Nonnull)setDownsamplingThreshold:(double)thresh __attribute__((swift_name("setDownsamplingThreshold(thresh:)")));
+		[Export ("setDownsamplingThreshold:")]
+		BarcodeDetector SetDownsamplingThreshold (double thresh);
+
+		// -(void)getDetectorScales:(FloatVector * _Nonnull)sizes __attribute__((swift_name("getDetectorScales(sizes:)")));
+		[Export ("getDetectorScales:")]
+		void GetDetectorScales (FloatVector sizes);
+
+		// -(BarcodeDetector * _Nonnull)setDetectorScales:(FloatVector * _Nonnull)sizes __attribute__((swift_name("setDetectorScales(sizes:)")));
+		[Export ("setDetectorScales:")]
+		BarcodeDetector SetDetectorScales (FloatVector sizes);
+
+		// -(double)getGradientThreshold __attribute__((swift_name("getGradientThreshold()")));
+		[Export ("getGradientThreshold")]
+		double GradientThreshold { get; }
+
+		// -(BarcodeDetector * _Nonnull)setGradientThreshold:(double)thresh __attribute__((swift_name("setGradientThreshold(thresh:)")));
+		[Export ("setGradientThreshold:")]
+		BarcodeDetector SetGradientThreshold (double thresh);
 	}
 
 	// @interface Video : NSObject
@@ -16092,6 +16211,14 @@ namespace OpenCvSdk
 		// -(void)setVariationalRefinementGamma:(float)val __attribute__((swift_name("setVariationalRefinementGamma(val:)")));
 		[Export ("setVariationalRefinementGamma:")]
 		void SetVariationalRefinementGamma (float val);
+
+		// -(float)getVariationalRefinementEpsilon __attribute__((swift_name("getVariationalRefinementEpsilon()")));
+		[Export ("getVariationalRefinementEpsilon")]
+		float VariationalRefinementEpsilon { get; }
+
+		// -(void)setVariationalRefinementEpsilon:(float)val __attribute__((swift_name("setVariationalRefinementEpsilon(val:)")));
+		[Export ("setVariationalRefinementEpsilon:")]
+		void SetVariationalRefinementEpsilon (float val);
 
 		// -(BOOL)getUseMeanNormalization __attribute__((swift_name("getUseMeanNormalization()")));
 		[Export ("getUseMeanNormalization")]
@@ -16663,6 +16790,14 @@ namespace OpenCvSdk
 		// -(void)setGamma:(float)val __attribute__((swift_name("setGamma(val:)")));
 		[Export ("setGamma:")]
 		void SetGamma (float val);
+
+		// -(float)getEpsilon __attribute__((swift_name("getEpsilon()")));
+		[Export ("getEpsilon")]
+		float Epsilon { get; }
+
+		// -(void)setEpsilon:(float)val __attribute__((swift_name("setEpsilon(val:)")));
+		[Export ("setEpsilon:")]
+		void SetEpsilon (float val);
 
 		// +(VariationalRefinement * _Nonnull)create __attribute__((swift_name("create()")));
 		[Static]

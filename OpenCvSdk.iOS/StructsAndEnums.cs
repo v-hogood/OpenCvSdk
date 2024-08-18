@@ -452,7 +452,35 @@ namespace OpenCvSdk
 		BayerGB2RGBA = BayerGR2BGRA,
 		BayerRG2RGBA = BayerBG2BGRA,
 		BayerGR2RGBA = BayerGB2BGRA,
-		ColorcvtMax = 143
+		Rgb2yuvUyvy = 143,
+		Bgr2yuvUyvy = 144,
+		Rgb2yuvY422 = Rgb2yuvUyvy,
+		Bgr2yuvY422 = Bgr2yuvUyvy,
+		Rgb2yuvUynv = Rgb2yuvUyvy,
+		Bgr2yuvUynv = Bgr2yuvUyvy,
+		Rgba2yuvUyvy = 145,
+		Bgra2yuvUyvy = 146,
+		Rgba2yuvY422 = Rgba2yuvUyvy,
+		Bgra2yuvY422 = Bgra2yuvUyvy,
+		Rgba2yuvUynv = Rgba2yuvUyvy,
+		Bgra2yuvUynv = Bgra2yuvUyvy,
+		Rgb2yuvYuy2 = 147,
+		Bgr2yuvYuy2 = 148,
+		Rgb2yuvYvyu = 149,
+		Bgr2yuvYvyu = 150,
+		Rgb2yuvYuyv = Rgb2yuvYuy2,
+		Bgr2yuvYuyv = Bgr2yuvYuy2,
+		Rgb2yuvYunv = Rgb2yuvYuy2,
+		Bgr2yuvYunv = Bgr2yuvYuy2,
+		Rgba2yuvYuy2 = 151,
+		Bgra2yuvYuy2 = 152,
+		Rgba2yuvYvyu = 153,
+		Bgra2yuvYvyu = 154,
+		Rgba2yuvYuyv = Rgba2yuvYuy2,
+		Bgra2yuvYuyv = Bgra2yuvYuy2,
+		Rgba2yuvYunv = Rgba2yuvYuy2,
+		Bgra2yuvYunv = Bgra2yuvYuy2,
+		ColorcvtMax = 155
 	}
 
 	public enum ColormapTypes
@@ -601,7 +629,8 @@ namespace OpenCvSdk
 		InterNearestExact = 6,
 		InterMax = 7,
 		WarpFillOutliers = 8,
-		WarpInverseMap = 16
+		WarpInverseMap = 16,
+		WarpRelativeMap = 32
 	}
 
 	public enum InterpolationMasks
@@ -1015,6 +1044,8 @@ namespace OpenCvSdk
 		TiffXdpi = 257,
 		TiffYdpi = 258,
 		TiffCompression = 259,
+		TiffRowsperstrip = 278,
+		TiffPredictor = 317,
 		Jpeg2000CompressionX1000 = 272,
 		AvifQuality = 512,
 		AvifDepth = 513,
@@ -1053,6 +1084,50 @@ namespace OpenCvSdk
 		HuffmanOnly = 2,
 		Rle = 3,
 		Fixed = 4
+	}
+
+	public enum ImwriteTiffCompressionFlags
+	{
+		None = 1,
+		Ccittrle = 2,
+		Ccittfax3 = 3,
+		CcittT4 = 3,
+		Ccittfax4 = 4,
+		CcittT6 = 4,
+		Lzw = 5,
+		Ojpeg = 6,
+		Jpeg = 7,
+		T85 = 9,
+		T43 = 10,
+		Next = 32766,
+		Ccittrlew = 32771,
+		Packbits = 32773,
+		Thunderscan = 32809,
+		It8ctpad = 32895,
+		It8lw = 32896,
+		It8mp = 32897,
+		It8bl = 32898,
+		Pixarfilm = 32908,
+		Pixarlog = 32909,
+		Deflate = 32946,
+		AdobeDeflate = 8,
+		Dcs = 32947,
+		Jbig = 34661,
+		Sgilog = 34676,
+		Sgilog24 = 34677,
+		Jp2000 = 34712,
+		Lerc = 34887,
+		Lzma = 34925,
+		Zstd = 50000,
+		Webp = 50001,
+		Jxl = 50002
+	}
+
+	public enum ImwriteTiffPredictorFlags
+	{
+		None = 1,
+		Horizontal = 2,
+		Floatingpoint = 3
 	}
 
 	public enum VideoAccelerationType
@@ -1210,7 +1285,10 @@ namespace OpenCvSdk
 		Depth = 5,
 		HwAcceleration = 6,
 		HwDevice = 7,
-		HwAccelerationUseOpencl = 8
+		HwAccelerationUseOpencl = 8,
+		RawVideo = 9,
+		KeyInterval = 10,
+		KeyFlag = 11
 	}
 
 	public enum HandEyeCalibrationMethod
