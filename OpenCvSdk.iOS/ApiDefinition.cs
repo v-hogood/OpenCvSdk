@@ -1624,7 +1624,7 @@ namespace OpenCvSdk
 
 		// @property (readonly) char * _Nonnull nativeArray;
 		[Export ("nativeArray")]
-		unsafe sbyte* NativeArray { get; }
+		IntPtr NativeArray { get; }
 
 		// @property (readonly) NSData * _Nonnull data;
 		[Export ("data")]
@@ -1845,7 +1845,7 @@ namespace OpenCvSdk
 
 		// @property (readonly) float * _Nonnull nativeArray;
 		[Export ("nativeArray")]
-		unsafe float* NativeArray { get; }
+		IntPtr NativeArray { get; }
 
 		// @property (readonly) NSData * _Nonnull data;
 		[Export ("data")]
@@ -2103,7 +2103,7 @@ namespace OpenCvSdk
 
 		// @property (readonly) int * _Nonnull nativeArray;
 		[Export ("nativeArray")]
-		unsafe int* NativeArray { get; }
+		IntPtr NativeArray { get; }
 
 		// @property (readonly) NSData * _Nonnull data;
 		[Export ("data")]
@@ -2165,7 +2165,7 @@ namespace OpenCvSdk
 
 		// @property (readonly) double * _Nonnull nativeArray;
 		[Export ("nativeArray")]
-		unsafe double* NativeArray { get; }
+		IntPtr NativeArray { get; }
 
 		// @property (readonly) NSData * _Nonnull data;
 		[Export ("data")]
