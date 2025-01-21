@@ -10,6 +10,13 @@ namespace OpenCvSdk
 		static extern NSMutableArray CreateArrayWithSize (int size, NSObject val);
 	}
 
+	public enum AlgorithmHint
+	{
+		Default = 0,
+		Accurate = 1,
+		Approx = 2
+	}
+
 	public enum BorderTypes
 	{
 		Constant = 0,
@@ -877,6 +884,16 @@ namespace OpenCvSdk
 		Asgd = 1
 	}
 
+	public enum SeamlessCloneFlags
+	{
+		NormalClone = 1,
+		MixedClone = 2,
+		MonochromeTransfer = 3,
+		NormalCloneWide = 9,
+		MixedCloneWide = 10,
+		MonochromeTransferWide = 11
+	}
+
 	public enum Backend
 	{
 		Default = 0,
@@ -988,6 +1005,7 @@ namespace OpenCvSdk
 	{
 		Unchanged = -1,
 		Grayscale = 0,
+		ColorBgr = 1,
 		Color = 1,
 		Anydepth = 2,
 		Anycolor = 4,
@@ -998,7 +1016,8 @@ namespace OpenCvSdk
 		ReducedColor4 = 33,
 		ReducedGrayscale8 = 64,
 		ReducedColor8 = 65,
-		IgnoreOrientation = 128
+		IgnoreOrientation = 128,
+		ColorRgb = 256
 	}
 
 	public enum ImwriteEXRCompressionFlags
@@ -1049,7 +1068,29 @@ namespace OpenCvSdk
 		Jpeg2000CompressionX1000 = 272,
 		AvifQuality = 512,
 		AvifDepth = 513,
-		AvifSpeed = 514
+		AvifSpeed = 514,
+		JpegxlQuality = 640,
+		JpegxlEffort = 641,
+		JpegxlDistance = 642,
+		JpegxlDecodingSpeed = 643,
+		GifLoop = 1024,
+		GifSpeed = 1025,
+		GifQuality = 1026,
+		GifDither = 1027,
+		GifTransparency = 1028,
+		GifColortable = 1029
+	}
+
+	public enum ImwriteGIFCompressionFlags
+	{
+		FastNoDither = 1,
+		FastFloydDither = 2,
+		ColortableSize8 = 3,
+		ColortableSize16 = 4,
+		ColortableSize32 = 5,
+		ColortableSize64 = 6,
+		ColortableSize128 = 7,
+		ColortableSize256 = 8
 	}
 
 	public enum ImwriteHDRCompressionFlags
@@ -1273,7 +1314,9 @@ namespace OpenCvSdk
 		LrfHasKeyFrame = 67,
 		CodecExtradataIndex = 68,
 		FrameType = 69,
-		NThreads = 70
+		NThreads = 70,
+		Pts = 71,
+		DtsDelay = 72
 	}
 
 	public enum VideoWriterProperties
@@ -1288,7 +1331,9 @@ namespace OpenCvSdk
 		HwAccelerationUseOpencl = 8,
 		RawVideo = 9,
 		KeyInterval = 10,
-		KeyFlag = 11
+		KeyFlag = 11,
+		Pts = 12,
+		DtsDelay = 13
 	}
 
 	public enum HandEyeCalibrationMethod
