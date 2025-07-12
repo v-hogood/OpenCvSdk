@@ -678,7 +678,8 @@ namespace OpenCvSdk
 	{
 		Rect = 0,
 		Cross = 1,
-		Ellipse = 2
+		Ellipse = 2,
+		Diamond = 3
 	}
 
 	public enum MorphTypes
@@ -740,7 +741,8 @@ namespace OpenCvSdk
 		TozeroInv = 4,
 		Mask = 7,
 		Otsu = 8,
-		Triangle = 16
+		Triangle = 16,
+		Dryrun = 128
 	}
 
 	public enum WarpPolarMode
@@ -1001,6 +1003,15 @@ namespace OpenCvSdk
 		FastScore = 1
 	}
 
+	public enum ImageMetadataType
+	{
+		Unknown = -1,
+		Exif = 0,
+		Xmp = 1,
+		Iccp = 2,
+		Max = 2
+	}
+
 	public enum ImreadModes
 	{
 		Unchanged = -1,
@@ -1052,6 +1063,7 @@ namespace OpenCvSdk
 		PngCompression = 16,
 		PngStrategy = 17,
 		PngBilevel = 18,
+		PngFilter = 19,
 		PxmBinary = 32,
 		ExrType = (3 << 4) + 0,
 		ExrCompression = (3 << 4) + 1,
@@ -1116,6 +1128,17 @@ namespace OpenCvSdk
 		GrayscaleAlpha = 3,
 		Rgb = 4,
 		RgbAlpha = 5
+	}
+
+	public enum ImwritePNGFilterFlags
+	{
+		FilterNone = 8,
+		FilterSub = 16,
+		FilterUp = 32,
+		FilterAvg = 64,
+		FilterPaeth = 128,
+		FastFilters = (FilterNone | FilterSub | FilterUp),
+		AllFilters = (FastFilters | FilterAvg | FilterPaeth)
 	}
 
 	public enum ImwritePNGFlags
@@ -1486,7 +1509,8 @@ namespace OpenCvSdk
 
 	public enum ECIEncodings
 	{
-		QRCodeEncoder_ECI_UTF8 = 26
+		ShiftJis = 20,
+		Utf8 = 26
 	}
 
 	public enum EncodeMode

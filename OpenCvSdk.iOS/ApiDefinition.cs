@@ -4836,6 +4836,11 @@ namespace OpenCvSdk
 		[Export ("threshold:dst:thresh:maxval:type:")]
 		double Threshold (Mat src, Mat dst, double thresh, double maxval, ThresholdTypes type);
 
+		// +(double)thresholdWithMask:(Mat * _Nonnull)src dst:(Mat * _Nonnull)dst mask:(Mat * _Nonnull)mask thresh:(double)thresh maxval:(double)maxval type:(int)type __attribute__((swift_name("thresholdWithMask(src:dst:mask:thresh:maxval:type:)")));
+		[Static]
+		[Export ("thresholdWithMask:dst:mask:thresh:maxval:type:")]
+		double ThresholdWithMask (Mat src, Mat dst, Mat mask, double thresh, double maxval, int type);
+
 		// +(void)adaptiveThreshold:(Mat * _Nonnull)src dst:(Mat * _Nonnull)dst maxValue:(double)maxValue adaptiveMethod:(AdaptiveThresholdTypes)adaptiveMethod thresholdType:(ThresholdTypes)thresholdType blockSize:(int)blockSize C:(double)C __attribute__((swift_name("adaptiveThreshold(src:dst:maxValue:adaptiveMethod:thresholdType:blockSize:C:)")));
 		[Static]
 		[Export ("adaptiveThreshold:dst:maxValue:adaptiveMethod:thresholdType:blockSize:C:")]
@@ -5236,6 +5241,11 @@ namespace OpenCvSdk
 		[Export ("fitEllipseDirect:")]
 		RotatedRect FitEllipseDirect (Mat points);
 
+		// +(void)getClosestEllipsePoints:(RotatedRect * _Nonnull)ellipse_params points:(Mat * _Nonnull)points closest_pts:(Mat * _Nonnull)closest_pts __attribute__((swift_name("getClosestEllipsePoints(ellipse_params:points:closest_pts:)")));
+		[Static]
+		[Export ("getClosestEllipsePoints:points:closest_pts:")]
+		void GetClosestEllipsePoints (RotatedRect ellipse_params, Mat points, Mat closest_pts);
+
 		// +(void)fitLine:(Mat * _Nonnull)points line:(Mat * _Nonnull)line distType:(DistanceTypes)distType param:(double)param reps:(double)reps aeps:(double)aeps __attribute__((swift_name("fitLine(points:line:distType:param:reps:aeps:)")));
 		[Static]
 		[Export ("fitLine:line:distType:param:reps:aeps:")]
@@ -5566,6 +5576,11 @@ namespace OpenCvSdk
 		[Export ("getFontScaleFromHeight:pixelHeight:")]
 		double GetFontScaleFromHeight (int fontFace, int pixelHeight);
 
+		// +(void)HoughLinesWithAccumulator:(Mat * _Nonnull)image lines:(Mat * _Nonnull)lines rho:(double)rho theta:(double)theta threshold:(int)threshold srn:(double)srn stn:(double)stn min_theta:(double)min_theta max_theta:(double)max_theta use_edgeval:(BOOL)use_edgeval __attribute__((swift_name("HoughLinesWithAccumulator(image:lines:rho:theta:threshold:srn:stn:min_theta:max_theta:use_edgeval:)")));
+		[Static]
+		[Export ("HoughLinesWithAccumulator:lines:rho:theta:threshold:srn:stn:min_theta:max_theta:use_edgeval:")]
+		void HoughLinesWithAccumulator (Mat image, Mat lines, double rho, double theta, int threshold, double srn, double stn, double min_theta, double max_theta, bool use_edgeval);
+
 		// +(void)HoughLinesWithAccumulator:(Mat * _Nonnull)image lines:(Mat * _Nonnull)lines rho:(double)rho theta:(double)theta threshold:(int)threshold srn:(double)srn stn:(double)stn min_theta:(double)min_theta max_theta:(double)max_theta __attribute__((swift_name("HoughLinesWithAccumulator(image:lines:rho:theta:threshold:srn:stn:min_theta:max_theta:)")));
 		[Static]
 		[Export ("HoughLinesWithAccumulator:lines:rho:theta:threshold:srn:stn:min_theta:max_theta:")]
@@ -5590,6 +5605,31 @@ namespace OpenCvSdk
 		[Static]
 		[Export ("HoughLinesWithAccumulator:lines:rho:theta:threshold:")]
 		void HoughLinesWithAccumulator (Mat image, Mat lines, double rho, double theta, int threshold);
+
+		// +(void)HoughCirclesWithAccumulator:(Mat * _Nonnull)image circles:(Mat * _Nonnull)circles method:(int)method dp:(double)dp minDist:(double)minDist param1:(double)param1 param2:(double)param2 minRadius:(int)minRadius maxRadius:(int)maxRadius __attribute__((swift_name("HoughCirclesWithAccumulator(image:circles:method:dp:minDist:param1:param2:minRadius:maxRadius:)")));
+		[Static]
+		[Export ("HoughCirclesWithAccumulator:circles:method:dp:minDist:param1:param2:minRadius:maxRadius:")]
+		void HoughCirclesWithAccumulator (Mat image, Mat circles, int method, double dp, double minDist, double param1, double param2, int minRadius, int maxRadius);
+
+		// +(void)HoughCirclesWithAccumulator:(Mat * _Nonnull)image circles:(Mat * _Nonnull)circles method:(int)method dp:(double)dp minDist:(double)minDist param1:(double)param1 param2:(double)param2 minRadius:(int)minRadius __attribute__((swift_name("HoughCirclesWithAccumulator(image:circles:method:dp:minDist:param1:param2:minRadius:)")));
+		[Static]
+		[Export ("HoughCirclesWithAccumulator:circles:method:dp:minDist:param1:param2:minRadius:")]
+		void HoughCirclesWithAccumulator (Mat image, Mat circles, int method, double dp, double minDist, double param1, double param2, int minRadius);
+
+		// +(void)HoughCirclesWithAccumulator:(Mat * _Nonnull)image circles:(Mat * _Nonnull)circles method:(int)method dp:(double)dp minDist:(double)minDist param1:(double)param1 param2:(double)param2 __attribute__((swift_name("HoughCirclesWithAccumulator(image:circles:method:dp:minDist:param1:param2:)")));
+		[Static]
+		[Export ("HoughCirclesWithAccumulator:circles:method:dp:minDist:param1:param2:")]
+		void HoughCirclesWithAccumulator (Mat image, Mat circles, int method, double dp, double minDist, double param1, double param2);
+
+		// +(void)HoughCirclesWithAccumulator:(Mat * _Nonnull)image circles:(Mat * _Nonnull)circles method:(int)method dp:(double)dp minDist:(double)minDist param1:(double)param1 __attribute__((swift_name("HoughCirclesWithAccumulator(image:circles:method:dp:minDist:param1:)")));
+		[Static]
+		[Export ("HoughCirclesWithAccumulator:circles:method:dp:minDist:param1:")]
+		void HoughCirclesWithAccumulator (Mat image, Mat circles, int method, double dp, double minDist, double param1);
+
+		// +(void)HoughCirclesWithAccumulator:(Mat * _Nonnull)image circles:(Mat * _Nonnull)circles method:(int)method dp:(double)dp minDist:(double)minDist __attribute__((swift_name("HoughCirclesWithAccumulator(image:circles:method:dp:minDist:)")));
+		[Static]
+		[Export ("HoughCirclesWithAccumulator:circles:method:dp:minDist:")]
+		void HoughCirclesWithAccumulator (Mat image, Mat circles, int method, double dp, double minDist);
 	}
 
 	// @interface CLAHE : Algorithm
@@ -8796,6 +8836,10 @@ namespace OpenCvSdk
 		[Export ("connect:inpPin:")]
 		void Connect (string outPin, string inpPin);
 
+		// -(int)registerOutput:(NSString * _Nonnull)outputName layerId:(int)layerId outputPort:(int)outputPort __attribute__((swift_name("registerOutput(outputName:layerId:outputPort:)")));
+		[Export ("registerOutput:layerId:outputPort:")]
+		int RegisterOutput (string outputName, int layerId, int outputPort);
+
 		// -(void)setInputsNames:(NSArray<NSString *> * _Nonnull)inputBlobNames __attribute__((swift_name("setInputsNames(inputBlobNames:)")));
 		[Export ("setInputsNames:")]
 		void SetInputsNames (string[] inputBlobNames);
@@ -10674,6 +10718,16 @@ namespace OpenCvSdk
 		[Export ("imread:dst:")]
 		void Imread (string filename, Mat dst);
 
+		// +(Mat * _Nonnull)imreadWithMetadata:(NSString * _Nonnull)filename metadataTypes:(IntVector * _Nonnull)metadataTypes metadata:(NSMutableArray<Mat *> * _Nonnull)metadata flags:(int)flags __attribute__((swift_name("imreadWithMetadata(filename:metadataTypes:metadata:flags:)")));
+		[Static]
+		[Export ("imreadWithMetadata:metadataTypes:metadata:flags:")]
+		Mat ImreadWithMetadata (string filename, IntVector metadataTypes, NSMutableArray<Mat> metadata, int flags);
+
+		// +(Mat * _Nonnull)imreadWithMetadata:(NSString * _Nonnull)filename metadataTypes:(IntVector * _Nonnull)metadataTypes metadata:(NSMutableArray<Mat *> * _Nonnull)metadata __attribute__((swift_name("imreadWithMetadata(filename:metadataTypes:metadata:)")));
+		[Static]
+		[Export ("imreadWithMetadata:metadataTypes:metadata:")]
+		Mat ImreadWithMetadata (string filename, IntVector metadataTypes, NSMutableArray<Mat> metadata);
+
 		// +(BOOL)imreadmulti:(NSString * _Nonnull)filename mats:(NSMutableArray<Mat *> * _Nonnull)mats flags:(int)flags __attribute__((swift_name("imreadmulti(filename:mats:flags:)")));
 		[Static]
 		[Export ("imreadmulti:mats:flags:")]
@@ -10709,6 +10763,21 @@ namespace OpenCvSdk
 		[Export ("imreadanimation:animation:")]
 		bool Imreadanimation (string filename, Animation animation);
 
+		// +(BOOL)imdecodeanimation:(Mat * _Nonnull)buf animation:(Animation * _Nonnull)animation start:(int)start count:(int)count __attribute__((swift_name("imdecodeanimation(buf:animation:start:count:)")));
+		[Static]
+		[Export ("imdecodeanimation:animation:start:count:")]
+		bool Imdecodeanimation (Mat buf, Animation animation, int start, int count);
+
+		// +(BOOL)imdecodeanimation:(Mat * _Nonnull)buf animation:(Animation * _Nonnull)animation start:(int)start __attribute__((swift_name("imdecodeanimation(buf:animation:start:)")));
+		[Static]
+		[Export ("imdecodeanimation:animation:start:")]
+		bool Imdecodeanimation (Mat buf, Animation animation, int start);
+
+		// +(BOOL)imdecodeanimation:(Mat * _Nonnull)buf animation:(Animation * _Nonnull)animation __attribute__((swift_name("imdecodeanimation(buf:animation:)")));
+		[Static]
+		[Export ("imdecodeanimation:animation:")]
+		bool Imdecodeanimation (Mat buf, Animation animation);
+
 		// +(BOOL)imwriteanimation:(NSString * _Nonnull)filename animation:(Animation * _Nonnull)animation params:(IntVector * _Nonnull)params __attribute__((swift_name("imwriteanimation(filename:animation:params:)")));
 		[Static]
 		[Export ("imwriteanimation:animation:params:")]
@@ -10718,6 +10787,16 @@ namespace OpenCvSdk
 		[Static]
 		[Export ("imwriteanimation:animation:")]
 		bool Imwriteanimation (string filename, Animation animation);
+
+		// +(BOOL)imencodeanimation:(NSString * _Nonnull)ext animation:(Animation * _Nonnull)animation buf:(ByteVector * _Nonnull)buf params:(IntVector * _Nonnull)params __attribute__((swift_name("imencodeanimation(ext:animation:buf:params:)")));
+		[Static]
+		[Export ("imencodeanimation:animation:buf:params:")]
+		bool Imencodeanimation (string ext, Animation animation, ByteVector buf, IntVector @params);
+
+		// +(BOOL)imencodeanimation:(NSString * _Nonnull)ext animation:(Animation * _Nonnull)animation buf:(ByteVector * _Nonnull)buf __attribute__((swift_name("imencodeanimation(ext:animation:buf:)")));
+		[Static]
+		[Export ("imencodeanimation:animation:buf:")]
+		bool Imencodeanimation (string ext, Animation animation, ByteVector buf);
 
 		// +(size_t)imcount:(NSString * _Nonnull)filename flags:(int)flags __attribute__((swift_name("imcount(filename:flags:)")));
 		[Static]
@@ -10739,6 +10818,16 @@ namespace OpenCvSdk
 		[Export ("imwrite:img:")]
 		bool Imwrite (string filename, Mat img);
 
+		// +(BOOL)imwriteWithMetadata:(NSString * _Nonnull)filename img:(Mat * _Nonnull)img metadataTypes:(IntVector * _Nonnull)metadataTypes metadata:(NSArray<Mat *> * _Nonnull)metadata params:(IntVector * _Nonnull)params __attribute__((swift_name("imwriteWithMetadata(filename:img:metadataTypes:metadata:params:)")));
+		[Static]
+		[Export ("imwriteWithMetadata:img:metadataTypes:metadata:params:")]
+		bool ImwriteWithMetadata (string filename, Mat img, IntVector metadataTypes, Mat[] metadata, IntVector @params);
+
+		// +(BOOL)imwriteWithMetadata:(NSString * _Nonnull)filename img:(Mat * _Nonnull)img metadataTypes:(IntVector * _Nonnull)metadataTypes metadata:(NSArray<Mat *> * _Nonnull)metadata __attribute__((swift_name("imwriteWithMetadata(filename:img:metadataTypes:metadata:)")));
+		[Static]
+		[Export ("imwriteWithMetadata:img:metadataTypes:metadata:")]
+		bool ImwriteWithMetadata (string filename, Mat img, IntVector metadataTypes, Mat[] metadata);
+
 		// +(BOOL)imwritemulti:(NSString * _Nonnull)filename img:(NSArray<Mat *> * _Nonnull)img params:(IntVector * _Nonnull)params __attribute__((swift_name("imwritemulti(filename:img:params:)")));
 		[Static]
 		[Export ("imwritemulti:img:params:")]
@@ -10753,6 +10842,16 @@ namespace OpenCvSdk
 		[Static]
 		[Export ("imdecode:flags:")]
 		Mat Imdecode (Mat buf, int flags);
+
+		// +(Mat * _Nonnull)imdecodeWithMetadata:(Mat * _Nonnull)buf metadataTypes:(IntVector * _Nonnull)metadataTypes metadata:(NSMutableArray<Mat *> * _Nonnull)metadata flags:(int)flags __attribute__((swift_name("imdecodeWithMetadata(buf:metadataTypes:metadata:flags:)")));
+		[Static]
+		[Export ("imdecodeWithMetadata:metadataTypes:metadata:flags:")]
+		Mat ImdecodeWithMetadata (Mat buf, IntVector metadataTypes, NSMutableArray<Mat> metadata, int flags);
+
+		// +(Mat * _Nonnull)imdecodeWithMetadata:(Mat * _Nonnull)buf metadataTypes:(IntVector * _Nonnull)metadataTypes metadata:(NSMutableArray<Mat *> * _Nonnull)metadata __attribute__((swift_name("imdecodeWithMetadata(buf:metadataTypes:metadata:)")));
+		[Static]
+		[Export ("imdecodeWithMetadata:metadataTypes:metadata:")]
+		Mat ImdecodeWithMetadata (Mat buf, IntVector metadataTypes, NSMutableArray<Mat> metadata);
 
 		// +(BOOL)imdecodemulti:(Mat * _Nonnull)buf flags:(int)flags mats:(NSMutableArray<Mat *> * _Nonnull)mats range:(Range * _Nonnull)range __attribute__((swift_name("imdecodemulti(buf:flags:mats:range:)")));
 		[Static]
@@ -10773,6 +10872,16 @@ namespace OpenCvSdk
 		[Static]
 		[Export ("imencode:img:buf:")]
 		bool Imencode (string ext, Mat img, ByteVector buf);
+
+		// +(BOOL)imencodeWithMetadata:(NSString * _Nonnull)ext img:(Mat * _Nonnull)img metadataTypes:(IntVector * _Nonnull)metadataTypes metadata:(NSArray<Mat *> * _Nonnull)metadata buf:(ByteVector * _Nonnull)buf params:(IntVector * _Nonnull)params __attribute__((swift_name("imencodeWithMetadata(ext:img:metadataTypes:metadata:buf:params:)")));
+		[Static]
+		[Export ("imencodeWithMetadata:img:metadataTypes:metadata:buf:params:")]
+		bool ImencodeWithMetadata (string ext, Mat img, IntVector metadataTypes, Mat[] metadata, ByteVector buf, IntVector @params);
+
+		// +(BOOL)imencodeWithMetadata:(NSString * _Nonnull)ext img:(Mat * _Nonnull)img metadataTypes:(IntVector * _Nonnull)metadataTypes metadata:(NSArray<Mat *> * _Nonnull)metadata buf:(ByteVector * _Nonnull)buf __attribute__((swift_name("imencodeWithMetadata(ext:img:metadataTypes:metadata:buf:)")));
+		[Static]
+		[Export ("imencodeWithMetadata:img:metadataTypes:metadata:buf:")]
+		bool ImencodeWithMetadata (string ext, Mat img, IntVector metadataTypes, Mat[] metadata, ByteVector buf);
 
 		// +(BOOL)imencodemulti:(NSString * _Nonnull)ext imgs:(NSArray<Mat *> * _Nonnull)imgs buf:(ByteVector * _Nonnull)buf params:(IntVector * _Nonnull)params __attribute__((swift_name("imencodemulti(ext:imgs:buf:params:)")));
 		[Static]
@@ -10799,6 +10908,14 @@ namespace OpenCvSdk
 	[BaseType (typeof(NSObject))]
 	interface Animation
 	{
+		// -(instancetype _Nonnull)initWithLoopCount:(int)loopCount bgColor:(Scalar * _Nonnull)bgColor;
+		[Export ("initWithLoopCount:bgColor:")]
+		NativeHandle Constructor (int loopCount, Scalar bgColor);
+
+		// -(instancetype _Nonnull)initWithLoopCount:(int)loopCount;
+		[Export ("initWithLoopCount:")]
+		NativeHandle Constructor (int loopCount);
+
 		// @property int loop_count;
 		[Export ("loop_count")]
 		int Loop_count { get; set; }
@@ -10814,6 +10931,10 @@ namespace OpenCvSdk
 		// @property Mat * _Nonnull frames;
 		[Export ("frames", ArgumentSemantic.Assign)]
 		Mat Frames { get; set; }
+
+		// @property Mat * _Nonnull still_image;
+		[Export ("still_image", ArgumentSemantic.Assign)]
+		Mat Still_image { get; set; }
 	}
 
 	// @interface CvAbstractCamera2 : NSObject
@@ -14160,6 +14281,46 @@ namespace OpenCvSdk
 		[Static]
 		[Export ("fisheye_solvePnP:imagePoints:cameraMatrix:distCoeffs:rvec:tvec:")]
 		bool Fisheye_solvePnP (Mat objectPoints, Mat imagePoints, Mat cameraMatrix, Mat distCoeffs, Mat rvec, Mat tvec);
+
+		// +(BOOL)fisheye_solvePnPRansac:(Mat * _Nonnull)objectPoints imagePoints:(Mat * _Nonnull)imagePoints cameraMatrix:(Mat * _Nonnull)cameraMatrix distCoeffs:(Mat * _Nonnull)distCoeffs rvec:(Mat * _Nonnull)rvec tvec:(Mat * _Nonnull)tvec useExtrinsicGuess:(BOOL)useExtrinsicGuess iterationsCount:(int)iterationsCount reprojectionError:(float)reprojectionError confidence:(double)confidence inliers:(Mat * _Nonnull)inliers flags:(int)flags criteria:(TermCriteria * _Nonnull)criteria __attribute__((swift_name("fisheye_solvePnPRansac(objectPoints:imagePoints:cameraMatrix:distCoeffs:rvec:tvec:useExtrinsicGuess:iterationsCount:reprojectionError:confidence:inliers:flags:criteria:)")));
+		[Static]
+		[Export ("fisheye_solvePnPRansac:imagePoints:cameraMatrix:distCoeffs:rvec:tvec:useExtrinsicGuess:iterationsCount:reprojectionError:confidence:inliers:flags:criteria:")]
+		bool Fisheye_solvePnPRansac (Mat objectPoints, Mat imagePoints, Mat cameraMatrix, Mat distCoeffs, Mat rvec, Mat tvec, bool useExtrinsicGuess, int iterationsCount, float reprojectionError, double confidence, Mat inliers, int flags, TermCriteria criteria);
+
+		// +(BOOL)fisheye_solvePnPRansac:(Mat * _Nonnull)objectPoints imagePoints:(Mat * _Nonnull)imagePoints cameraMatrix:(Mat * _Nonnull)cameraMatrix distCoeffs:(Mat * _Nonnull)distCoeffs rvec:(Mat * _Nonnull)rvec tvec:(Mat * _Nonnull)tvec useExtrinsicGuess:(BOOL)useExtrinsicGuess iterationsCount:(int)iterationsCount reprojectionError:(float)reprojectionError confidence:(double)confidence inliers:(Mat * _Nonnull)inliers flags:(int)flags __attribute__((swift_name("fisheye_solvePnPRansac(objectPoints:imagePoints:cameraMatrix:distCoeffs:rvec:tvec:useExtrinsicGuess:iterationsCount:reprojectionError:confidence:inliers:flags:)")));
+		[Static]
+		[Export ("fisheye_solvePnPRansac:imagePoints:cameraMatrix:distCoeffs:rvec:tvec:useExtrinsicGuess:iterationsCount:reprojectionError:confidence:inliers:flags:")]
+		bool Fisheye_solvePnPRansac (Mat objectPoints, Mat imagePoints, Mat cameraMatrix, Mat distCoeffs, Mat rvec, Mat tvec, bool useExtrinsicGuess, int iterationsCount, float reprojectionError, double confidence, Mat inliers, int flags);
+
+		// +(BOOL)fisheye_solvePnPRansac:(Mat * _Nonnull)objectPoints imagePoints:(Mat * _Nonnull)imagePoints cameraMatrix:(Mat * _Nonnull)cameraMatrix distCoeffs:(Mat * _Nonnull)distCoeffs rvec:(Mat * _Nonnull)rvec tvec:(Mat * _Nonnull)tvec useExtrinsicGuess:(BOOL)useExtrinsicGuess iterationsCount:(int)iterationsCount reprojectionError:(float)reprojectionError confidence:(double)confidence inliers:(Mat * _Nonnull)inliers __attribute__((swift_name("fisheye_solvePnPRansac(objectPoints:imagePoints:cameraMatrix:distCoeffs:rvec:tvec:useExtrinsicGuess:iterationsCount:reprojectionError:confidence:inliers:)")));
+		[Static]
+		[Export ("fisheye_solvePnPRansac:imagePoints:cameraMatrix:distCoeffs:rvec:tvec:useExtrinsicGuess:iterationsCount:reprojectionError:confidence:inliers:")]
+		bool Fisheye_solvePnPRansac (Mat objectPoints, Mat imagePoints, Mat cameraMatrix, Mat distCoeffs, Mat rvec, Mat tvec, bool useExtrinsicGuess, int iterationsCount, float reprojectionError, double confidence, Mat inliers);
+
+		// +(BOOL)fisheye_solvePnPRansac:(Mat * _Nonnull)objectPoints imagePoints:(Mat * _Nonnull)imagePoints cameraMatrix:(Mat * _Nonnull)cameraMatrix distCoeffs:(Mat * _Nonnull)distCoeffs rvec:(Mat * _Nonnull)rvec tvec:(Mat * _Nonnull)tvec useExtrinsicGuess:(BOOL)useExtrinsicGuess iterationsCount:(int)iterationsCount reprojectionError:(float)reprojectionError confidence:(double)confidence __attribute__((swift_name("fisheye_solvePnPRansac(objectPoints:imagePoints:cameraMatrix:distCoeffs:rvec:tvec:useExtrinsicGuess:iterationsCount:reprojectionError:confidence:)")));
+		[Static]
+		[Export ("fisheye_solvePnPRansac:imagePoints:cameraMatrix:distCoeffs:rvec:tvec:useExtrinsicGuess:iterationsCount:reprojectionError:confidence:")]
+		bool Fisheye_solvePnPRansac (Mat objectPoints, Mat imagePoints, Mat cameraMatrix, Mat distCoeffs, Mat rvec, Mat tvec, bool useExtrinsicGuess, int iterationsCount, float reprojectionError, double confidence);
+
+		// +(BOOL)fisheye_solvePnPRansac:(Mat * _Nonnull)objectPoints imagePoints:(Mat * _Nonnull)imagePoints cameraMatrix:(Mat * _Nonnull)cameraMatrix distCoeffs:(Mat * _Nonnull)distCoeffs rvec:(Mat * _Nonnull)rvec tvec:(Mat * _Nonnull)tvec useExtrinsicGuess:(BOOL)useExtrinsicGuess iterationsCount:(int)iterationsCount reprojectionError:(float)reprojectionError __attribute__((swift_name("fisheye_solvePnPRansac(objectPoints:imagePoints:cameraMatrix:distCoeffs:rvec:tvec:useExtrinsicGuess:iterationsCount:reprojectionError:)")));
+		[Static]
+		[Export ("fisheye_solvePnPRansac:imagePoints:cameraMatrix:distCoeffs:rvec:tvec:useExtrinsicGuess:iterationsCount:reprojectionError:")]
+		bool Fisheye_solvePnPRansac (Mat objectPoints, Mat imagePoints, Mat cameraMatrix, Mat distCoeffs, Mat rvec, Mat tvec, bool useExtrinsicGuess, int iterationsCount, float reprojectionError);
+
+		// +(BOOL)fisheye_solvePnPRansac:(Mat * _Nonnull)objectPoints imagePoints:(Mat * _Nonnull)imagePoints cameraMatrix:(Mat * _Nonnull)cameraMatrix distCoeffs:(Mat * _Nonnull)distCoeffs rvec:(Mat * _Nonnull)rvec tvec:(Mat * _Nonnull)tvec useExtrinsicGuess:(BOOL)useExtrinsicGuess iterationsCount:(int)iterationsCount __attribute__((swift_name("fisheye_solvePnPRansac(objectPoints:imagePoints:cameraMatrix:distCoeffs:rvec:tvec:useExtrinsicGuess:iterationsCount:)")));
+		[Static]
+		[Export ("fisheye_solvePnPRansac:imagePoints:cameraMatrix:distCoeffs:rvec:tvec:useExtrinsicGuess:iterationsCount:")]
+		bool Fisheye_solvePnPRansac (Mat objectPoints, Mat imagePoints, Mat cameraMatrix, Mat distCoeffs, Mat rvec, Mat tvec, bool useExtrinsicGuess, int iterationsCount);
+
+		// +(BOOL)fisheye_solvePnPRansac:(Mat * _Nonnull)objectPoints imagePoints:(Mat * _Nonnull)imagePoints cameraMatrix:(Mat * _Nonnull)cameraMatrix distCoeffs:(Mat * _Nonnull)distCoeffs rvec:(Mat * _Nonnull)rvec tvec:(Mat * _Nonnull)tvec useExtrinsicGuess:(BOOL)useExtrinsicGuess __attribute__((swift_name("fisheye_solvePnPRansac(objectPoints:imagePoints:cameraMatrix:distCoeffs:rvec:tvec:useExtrinsicGuess:)")));
+		[Static]
+		[Export ("fisheye_solvePnPRansac:imagePoints:cameraMatrix:distCoeffs:rvec:tvec:useExtrinsicGuess:")]
+		bool Fisheye_solvePnPRansac (Mat objectPoints, Mat imagePoints, Mat cameraMatrix, Mat distCoeffs, Mat rvec, Mat tvec, bool useExtrinsicGuess);
+
+		// +(BOOL)fisheye_solvePnPRansac:(Mat * _Nonnull)objectPoints imagePoints:(Mat * _Nonnull)imagePoints cameraMatrix:(Mat * _Nonnull)cameraMatrix distCoeffs:(Mat * _Nonnull)distCoeffs rvec:(Mat * _Nonnull)rvec tvec:(Mat * _Nonnull)tvec __attribute__((swift_name("fisheye_solvePnPRansac(objectPoints:imagePoints:cameraMatrix:distCoeffs:rvec:tvec:)")));
+		[Static]
+		[Export ("fisheye_solvePnPRansac:imagePoints:cameraMatrix:distCoeffs:rvec:tvec:")]
+		bool Fisheye_solvePnPRansac (Mat objectPoints, Mat imagePoints, Mat cameraMatrix, Mat distCoeffs, Mat rvec, Mat tvec);
 	}
 
 	// @interface CirclesGridFinderParameters : NSObject
@@ -15217,6 +15378,29 @@ namespace OpenCvSdk
 		bool SignedGradient { get; }
 	}
 
+	// @interface QRCodeEncoder : NSObject
+	[BaseType (typeof(NSObject))]
+	interface QRCodeEncoder
+	{
+		// +(QRCodeEncoder * _Nonnull)create:(QRCodeEncoderParams * _Nonnull)parameters __attribute__((swift_name("create(parameters:)")));
+		[Static]
+		[Export ("create:")]
+		QRCodeEncoder Create (QRCodeEncoderParams parameters);
+
+		// +(QRCodeEncoder * _Nonnull)create __attribute__((swift_name("create()")));
+		[Static]
+		[Export ("create")]
+		QRCodeEncoder Create ();
+
+		// -(void)encode:(NSString * _Nonnull)encoded_info qrcode:(Mat * _Nonnull)qrcode __attribute__((swift_name("encode(encoded_info:qrcode:)")));
+		[Export ("encode:qrcode:")]
+		void Encode (string encoded_info, Mat qrcode);
+
+		// -(void)encodeStructuredAppend:(NSString * _Nonnull)encoded_info qrcodes:(NSMutableArray<Mat *> * _Nonnull)qrcodes __attribute__((swift_name("encodeStructuredAppend(encoded_info:qrcodes:)")));
+		[Export ("encodeStructuredAppend:qrcodes:")]
+		void EncodeStructuredAppend (string encoded_info, NSMutableArray<Mat> qrcodes);
+	}
+
 	// @interface QRCodeDetector : GraphicalCodeDetector
 	[BaseType (typeof(GraphicalCodeDetector))]
 	interface QRCodeDetector
@@ -15252,6 +15436,14 @@ namespace OpenCvSdk
 		// -(NSString * _Nonnull)detectAndDecodeCurved:(Mat * _Nonnull)img __attribute__((swift_name("detectAndDecodeCurved(img:)")));
 		[Export ("detectAndDecodeCurved:")]
 		string DetectAndDecodeCurved (Mat img);
+
+		// -(ECIEncodings)getEncoding:(int)codeIdx __attribute__((swift_name("getEncoding(codeIdx:)")));
+		[Export ("getEncoding:")]
+		ECIEncodings GetEncoding (int codeIdx);
+
+		// -(ECIEncodings)getEncoding __attribute__((swift_name("getEncoding()")));
+		[Export ("getEncoding")]
+		ECIEncodings Encoding { get; }
 	}
 
 	// @interface QRCodeDetectorAruco : GraphicalCodeDetector
@@ -15298,29 +15490,6 @@ namespace OpenCvSdk
 		// @property float scaleTimingPatternScore;
 		[Export ("scaleTimingPatternScore")]
 		float ScaleTimingPatternScore { get; set; }
-	}
-
-	// @interface QRCodeEncoder : NSObject
-	[BaseType (typeof(NSObject))]
-	interface QRCodeEncoder
-	{
-		// +(QRCodeEncoder * _Nonnull)create:(QRCodeEncoderParams * _Nonnull)parameters __attribute__((swift_name("create(parameters:)")));
-		[Static]
-		[Export ("create:")]
-		QRCodeEncoder Create (QRCodeEncoderParams parameters);
-
-		// +(QRCodeEncoder * _Nonnull)create __attribute__((swift_name("create()")));
-		[Static]
-		[Export ("create")]
-		QRCodeEncoder Create ();
-
-		// -(void)encode:(NSString * _Nonnull)encoded_info qrcode:(Mat * _Nonnull)qrcode __attribute__((swift_name("encode(encoded_info:qrcode:)")));
-		[Export ("encode:qrcode:")]
-		void Encode (string encoded_info, Mat qrcode);
-
-		// -(void)encodeStructuredAppend:(NSString * _Nonnull)encoded_info qrcodes:(NSMutableArray<Mat *> * _Nonnull)qrcodes __attribute__((swift_name("encodeStructuredAppend(encoded_info:qrcodes:)")));
-		[Export ("encodeStructuredAppend:qrcodes:")]
-		void EncodeStructuredAppend (string encoded_info, NSMutableArray<Mat> qrcodes);
 	}
 
 	// @interface QRCodeEncoderParams : NSObject
@@ -15379,6 +15548,18 @@ namespace OpenCvSdk
 		// -(void)refineDetectedMarkers:(Mat * _Nonnull)image board:(Board * _Nonnull)board detectedCorners:(NSMutableArray<Mat *> * _Nonnull)detectedCorners detectedIds:(Mat * _Nonnull)detectedIds rejectedCorners:(NSMutableArray<Mat *> * _Nonnull)rejectedCorners __attribute__((swift_name("refineDetectedMarkers(image:board:detectedCorners:detectedIds:rejectedCorners:)")));
 		[Export ("refineDetectedMarkers:board:detectedCorners:detectedIds:rejectedCorners:")]
 		void RefineDetectedMarkers (Mat image, Board board, NSMutableArray<Mat> detectedCorners, Mat detectedIds, NSMutableArray<Mat> rejectedCorners);
+
+		// -(void)detectMarkersMultiDict:(Mat * _Nonnull)image corners:(NSMutableArray<Mat *> * _Nonnull)corners ids:(Mat * _Nonnull)ids rejectedImgPoints:(NSMutableArray<Mat *> * _Nonnull)rejectedImgPoints dictIndices:(Mat * _Nonnull)dictIndices __attribute__((swift_name("detectMarkersMultiDict(image:corners:ids:rejectedImgPoints:dictIndices:)")));
+		[Export ("detectMarkersMultiDict:corners:ids:rejectedImgPoints:dictIndices:")]
+		void DetectMarkersMultiDict (Mat image, NSMutableArray<Mat> corners, Mat ids, NSMutableArray<Mat> rejectedImgPoints, Mat dictIndices);
+
+		// -(void)detectMarkersMultiDict:(Mat * _Nonnull)image corners:(NSMutableArray<Mat *> * _Nonnull)corners ids:(Mat * _Nonnull)ids rejectedImgPoints:(NSMutableArray<Mat *> * _Nonnull)rejectedImgPoints __attribute__((swift_name("detectMarkersMultiDict(image:corners:ids:rejectedImgPoints:)")));
+		[Export ("detectMarkersMultiDict:corners:ids:rejectedImgPoints:")]
+		void DetectMarkersMultiDict (Mat image, NSMutableArray<Mat> corners, Mat ids, NSMutableArray<Mat> rejectedImgPoints);
+
+		// -(void)detectMarkersMultiDict:(Mat * _Nonnull)image corners:(NSMutableArray<Mat *> * _Nonnull)corners ids:(Mat * _Nonnull)ids __attribute__((swift_name("detectMarkersMultiDict(image:corners:ids:)")));
+		[Export ("detectMarkersMultiDict:corners:ids:")]
+		void DetectMarkersMultiDict (Mat image, NSMutableArray<Mat> corners, Mat ids);
 
 		// -(Dictionary * _Nonnull)getDictionary __attribute__((swift_name("getDictionary()")));
 		[Export ("getDictionary")]
@@ -15583,6 +15764,10 @@ namespace OpenCvSdk
 		// @property BOOL tryRefineMarkers;
 		[Export ("tryRefineMarkers")]
 		bool TryRefineMarkers { get; set; }
+
+		// @property BOOL checkMarkers;
+		[Export ("checkMarkers")]
+		bool CheckMarkers { get; set; }
 	}
 
 	// @interface DetectorParameters : NSObject
