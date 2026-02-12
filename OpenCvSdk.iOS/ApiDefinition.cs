@@ -4816,6 +4816,21 @@ namespace OpenCvSdk
 		[Export ("phaseCorrelate:src2:")]
 		Point2d PhaseCorrelate (Mat src1, Mat src2);
 
+		// +(Point2d * _Nonnull)phaseCorrelateIterative:(Mat * _Nonnull)src1 src2:(Mat * _Nonnull)src2 L2size:(int)L2size maxIters:(int)maxIters __attribute__((swift_name("phaseCorrelateIterative(src1:src2:L2size:maxIters:)")));
+		[Static]
+		[Export ("phaseCorrelateIterative:src2:L2size:maxIters:")]
+		Point2d PhaseCorrelateIterative (Mat src1, Mat src2, int L2size, int maxIters);
+
+		// +(Point2d * _Nonnull)phaseCorrelateIterative:(Mat * _Nonnull)src1 src2:(Mat * _Nonnull)src2 L2size:(int)L2size __attribute__((swift_name("phaseCorrelateIterative(src1:src2:L2size:)")));
+		[Static]
+		[Export ("phaseCorrelateIterative:src2:L2size:")]
+		Point2d PhaseCorrelateIterative (Mat src1, Mat src2, int L2size);
+
+		// +(Point2d * _Nonnull)phaseCorrelateIterative:(Mat * _Nonnull)src1 src2:(Mat * _Nonnull)src2 __attribute__((swift_name("phaseCorrelateIterative(src1:src2:)")));
+		[Static]
+		[Export ("phaseCorrelateIterative:src2:")]
+		Point2d PhaseCorrelateIterative (Mat src1, Mat src2);
+
 		// +(void)createHanningWindow:(Mat * _Nonnull)dst winSize:(Size2i * _Nonnull)winSize type:(int)type __attribute__((swift_name("createHanningWindow(dst:winSize:type:)")));
 		[Static]
 		[Export ("createHanningWindow:winSize:type:")]
@@ -5190,6 +5205,11 @@ namespace OpenCvSdk
 		[Static]
 		[Export ("minEnclosingTriangle:triangle:")]
 		double MinEnclosingTriangle (Mat points, Mat triangle);
+
+		// +(double)minEnclosingConvexPolygon:(Mat * _Nonnull)points polygon:(Mat * _Nonnull)polygon k:(int)k __attribute__((swift_name("minEnclosingConvexPolygon(points:polygon:k:)")));
+		[Static]
+		[Export ("minEnclosingConvexPolygon:polygon:k:")]
+		double MinEnclosingConvexPolygon (Mat points, Mat polygon, int k);
 
 		// +(double)matchShapes:(Mat * _Nonnull)contour1 contour2:(Mat * _Nonnull)contour2 method:(ShapeMatchModes)method parameter:(double)parameter __attribute__((swift_name("matchShapes(contour1:contour2:method:parameter:)")));
 		[Static]
@@ -5656,6 +5676,14 @@ namespace OpenCvSdk
 		[Export ("getTilesGridSize")]
 		Size2i TilesGridSize { get; }
 
+		// -(void)setBitShift:(int)bitShift __attribute__((swift_name("setBitShift(bitShift:)")));
+		[Export ("setBitShift:")]
+		void SetBitShift (int bitShift);
+
+		// -(int)getBitShift __attribute__((swift_name("getBitShift()")));
+		[Export ("getBitShift")]
+		int BitShift { get; }
+
 		// -(void)collectGarbage __attribute__((swift_name("collectGarbage()")));
 		[Export ("collectGarbage")]
 		void CollectGarbage ();
@@ -5966,9 +5994,17 @@ namespace OpenCvSdk
 		[Export ("initWithRect:")]
 		NativeHandle Constructor (Rect2i rect);
 
+		// -(instancetype _Nonnull)initWithRect2f:(Rect2f * _Nonnull)rect2f;
+		[Export ("initWithRect2f:")]
+		NativeHandle Constructor (Rect2f rect2f);
+
 		// -(void)initDelaunay:(Rect2i * _Nonnull)rect __attribute__((swift_name("initDelaunay(rect:)")));
 		[Export ("initDelaunay:")]
 		void InitDelaunay (Rect2i rect);
+
+		// -(void)initDelaunay2f:(Rect2f * _Nonnull)rect __attribute__((swift_name("initDelaunay(rect:)")));
+		[Export ("initDelaunay2f:")]
+		void InitDelaunay2f (Rect2f rect);
 
 		// -(int)insert:(Point2f * _Nonnull)pt __attribute__((swift_name("insert(pt:)")));
 		[Export ("insert:")]
@@ -10097,20 +10133,20 @@ namespace OpenCvSdk
 		[Export ("create")]
 		GFTTDetector Create ();
 
-		// +(GFTTDetector * _Nonnull)create:(int)maxCorners qualityLevel:(double)qualityLevel minDistance:(double)minDistance blockSize:(int)blockSize gradiantSize:(int)gradiantSize useHarrisDetector:(BOOL)useHarrisDetector k:(double)k __attribute__((swift_name("create(maxCorners:qualityLevel:minDistance:blockSize:gradiantSize:useHarrisDetector:k:)")));
+		// +(GFTTDetector * _Nonnull)create:(int)maxCorners qualityLevel:(double)qualityLevel minDistance:(double)minDistance blockSize:(int)blockSize gradientSize:(int)gradientSize useHarrisDetector:(BOOL)useHarrisDetector k:(double)k __attribute__((swift_name("create(maxCorners:qualityLevel:minDistance:blockSize:gradientSize:useHarrisDetector:k:)")));
 		[Static]
-		[Export ("create:qualityLevel:minDistance:blockSize:gradiantSize:useHarrisDetector:k:")]
-		GFTTDetector Create (int maxCorners, double qualityLevel, double minDistance, int blockSize, int gradiantSize, bool useHarrisDetector, double k);
+		[Export ("create:qualityLevel:minDistance:blockSize:gradientSize:useHarrisDetector:k:")]
+		GFTTDetector Create (int maxCorners, double qualityLevel, double minDistance, int blockSize, int gradientSize, bool useHarrisDetector, double k);
 
-		// +(GFTTDetector * _Nonnull)create:(int)maxCorners qualityLevel:(double)qualityLevel minDistance:(double)minDistance blockSize:(int)blockSize gradiantSize:(int)gradiantSize useHarrisDetector:(BOOL)useHarrisDetector __attribute__((swift_name("create(maxCorners:qualityLevel:minDistance:blockSize:gradiantSize:useHarrisDetector:)")));
+		// +(GFTTDetector * _Nonnull)create:(int)maxCorners qualityLevel:(double)qualityLevel minDistance:(double)minDistance blockSize:(int)blockSize gradientSize:(int)gradientSize useHarrisDetector:(BOOL)useHarrisDetector __attribute__((swift_name("create(maxCorners:qualityLevel:minDistance:blockSize:gradientSize:useHarrisDetector:)")));
 		[Static]
-		[Export ("create:qualityLevel:minDistance:blockSize:gradiantSize:useHarrisDetector:")]
-		GFTTDetector Create (int maxCorners, double qualityLevel, double minDistance, int blockSize, int gradiantSize, bool useHarrisDetector);
+		[Export ("create:qualityLevel:minDistance:blockSize:gradientSize:useHarrisDetector:")]
+		GFTTDetector Create (int maxCorners, double qualityLevel, double minDistance, int blockSize, int gradientSize, bool useHarrisDetector);
 
-		// +(GFTTDetector * _Nonnull)create:(int)maxCorners qualityLevel:(double)qualityLevel minDistance:(double)minDistance blockSize:(int)blockSize gradiantSize:(int)gradiantSize __attribute__((swift_name("create(maxCorners:qualityLevel:minDistance:blockSize:gradiantSize:)")));
+		// +(GFTTDetector * _Nonnull)create:(int)maxCorners qualityLevel:(double)qualityLevel minDistance:(double)minDistance blockSize:(int)blockSize gradientSize:(int)gradientSize __attribute__((swift_name("create(maxCorners:qualityLevel:minDistance:blockSize:gradientSize:)")));
 		[Static]
-		[Export ("create:qualityLevel:minDistance:blockSize:gradiantSize:")]
-		GFTTDetector Create (int maxCorners, double qualityLevel, double minDistance, int blockSize, int gradiantSize);
+		[Export ("create:qualityLevel:minDistance:blockSize:gradientSize:")]
+		GFTTDetector Create (int maxCorners, double qualityLevel, double minDistance, int blockSize, int gradientSize);
 
 		// -(void)setMaxFeatures:(int)maxFeatures __attribute__((swift_name("setMaxFeatures(maxFeatures:)")));
 		[Export ("setMaxFeatures:")]
@@ -14022,6 +14058,41 @@ namespace OpenCvSdk
 		[Export ("estimateAffinePartial2D:to:")]
 		Mat EstimateAffinePartial2D (Mat from, Mat to);
 
+		// +(Double2 * _Nonnull)estimateTranslation2D:(Mat * _Nonnull)from to:(Mat * _Nonnull)to inliers:(Mat * _Nonnull)inliers method:(int)method ransacReprojThreshold:(double)ransacReprojThreshold maxIters:(size_t)maxIters confidence:(double)confidence refineIters:(size_t)refineIters __attribute__((swift_name("estimateTranslation2D(from:to:inliers:method:ransacReprojThreshold:maxIters:confidence:refineIters:)")));
+		[Static]
+		[Export ("estimateTranslation2D:to:inliers:method:ransacReprojThreshold:maxIters:confidence:refineIters:")]
+		Double2 EstimateTranslation2D (Mat from, Mat to, Mat inliers, int method, double ransacReprojThreshold, nuint maxIters, double confidence, nuint refineIters);
+
+		// +(Double2 * _Nonnull)estimateTranslation2D:(Mat * _Nonnull)from to:(Mat * _Nonnull)to inliers:(Mat * _Nonnull)inliers method:(int)method ransacReprojThreshold:(double)ransacReprojThreshold maxIters:(size_t)maxIters confidence:(double)confidence __attribute__((swift_name("estimateTranslation2D(from:to:inliers:method:ransacReprojThreshold:maxIters:confidence:)")));
+		[Static]
+		[Export ("estimateTranslation2D:to:inliers:method:ransacReprojThreshold:maxIters:confidence:")]
+		Double2 EstimateTranslation2D (Mat from, Mat to, Mat inliers, int method, double ransacReprojThreshold, nuint maxIters, double confidence);
+
+		// +(Double2 * _Nonnull)estimateTranslation2D:(Mat * _Nonnull)from to:(Mat * _Nonnull)to inliers:(Mat * _Nonnull)inliers method:(int)method ransacReprojThreshold:(double)ransacReprojThreshold maxIters:(size_t)maxIters __attribute__((swift_name("estimateTranslation2D(from:to:inliers:method:ransacReprojThreshold:maxIters:)")));
+		[Static]
+		[Export ("estimateTranslation2D:to:inliers:method:ransacReprojThreshold:maxIters:")]
+		Double2 EstimateTranslation2D (Mat from, Mat to, Mat inliers, int method, double ransacReprojThreshold, nuint maxIters);
+
+		// +(Double2 * _Nonnull)estimateTranslation2D:(Mat * _Nonnull)from to:(Mat * _Nonnull)to inliers:(Mat * _Nonnull)inliers method:(int)method ransacReprojThreshold:(double)ransacReprojThreshold __attribute__((swift_name("estimateTranslation2D(from:to:inliers:method:ransacReprojThreshold:)")));
+		[Static]
+		[Export ("estimateTranslation2D:to:inliers:method:ransacReprojThreshold:")]
+		Double2 EstimateTranslation2D (Mat from, Mat to, Mat inliers, int method, double ransacReprojThreshold);
+
+		// +(Double2 * _Nonnull)estimateTranslation2D:(Mat * _Nonnull)from to:(Mat * _Nonnull)to inliers:(Mat * _Nonnull)inliers method:(int)method __attribute__((swift_name("estimateTranslation2D(from:to:inliers:method:)")));
+		[Static]
+		[Export ("estimateTranslation2D:to:inliers:method:")]
+		Double2 EstimateTranslation2D (Mat from, Mat to, Mat inliers, int method);
+
+		// +(Double2 * _Nonnull)estimateTranslation2D:(Mat * _Nonnull)from to:(Mat * _Nonnull)to inliers:(Mat * _Nonnull)inliers __attribute__((swift_name("estimateTranslation2D(from:to:inliers:)")));
+		[Static]
+		[Export ("estimateTranslation2D:to:inliers:")]
+		Double2 EstimateTranslation2D (Mat from, Mat to, Mat inliers);
+
+		// +(Double2 * _Nonnull)estimateTranslation2D:(Mat * _Nonnull)from to:(Mat * _Nonnull)to __attribute__((swift_name("estimateTranslation2D(from:to:)")));
+		[Static]
+		[Export ("estimateTranslation2D:to:")]
+		Double2 EstimateTranslation2D (Mat from, Mat to);
+
 		// +(int)decomposeHomographyMat:(Mat * _Nonnull)H K:(Mat * _Nonnull)K rotations:(NSMutableArray<Mat *> * _Nonnull)rotations translations:(NSMutableArray<Mat *> * _Nonnull)translations normals:(NSMutableArray<Mat *> * _Nonnull)normals __attribute__((swift_name("decomposeHomographyMat(H:K:rotations:translations:normals:)")));
 		[Static]
 		[Export ("decomposeHomographyMat:K:rotations:translations:normals:")]
@@ -14378,6 +14449,10 @@ namespace OpenCvSdk
 		// @property float minRNGEdgeSwitchDist;
 		[Export ("minRNGEdgeSwitchDist")]
 		float MinRNGEdgeSwitchDist { get; set; }
+
+		// @property GridType gridType;
+		[Export ("gridType", ArgumentSemantic.Assign)]
+		GridType GridType { get; set; }
 
 		// @property float squareSize;
 		[Export ("squareSize")]
@@ -15533,6 +15608,14 @@ namespace OpenCvSdk
 		[Export ("detectMarkers:corners:ids:")]
 		void DetectMarkers (Mat image, NSMutableArray<Mat> corners, Mat ids);
 
+		// -(void)detectMarkersWithConfidence:(Mat * _Nonnull)image corners:(NSMutableArray<Mat *> * _Nonnull)corners ids:(Mat * _Nonnull)ids markersConfidence:(Mat * _Nonnull)markersConfidence rejectedImgPoints:(NSMutableArray<Mat *> * _Nonnull)rejectedImgPoints __attribute__((swift_name("detectMarkersWithConfidence(image:corners:ids:markersConfidence:rejectedImgPoints:)")));
+		[Export ("detectMarkersWithConfidence:corners:ids:markersConfidence:rejectedImgPoints:")]
+		void DetectMarkersWithConfidence (Mat image, NSMutableArray<Mat> corners, Mat ids, Mat markersConfidence, NSMutableArray<Mat> rejectedImgPoints);
+
+		// -(void)detectMarkersWithConfidence:(Mat * _Nonnull)image corners:(NSMutableArray<Mat *> * _Nonnull)corners ids:(Mat * _Nonnull)ids markersConfidence:(Mat * _Nonnull)markersConfidence __attribute__((swift_name("detectMarkersWithConfidence(image:corners:ids:markersConfidence:)")));
+		[Export ("detectMarkersWithConfidence:corners:ids:markersConfidence:")]
+		void DetectMarkersWithConfidence (Mat image, NSMutableArray<Mat> corners, Mat ids, Mat markersConfidence);
+
 		// -(void)refineDetectedMarkers:(Mat * _Nonnull)image board:(Board * _Nonnull)board detectedCorners:(NSMutableArray<Mat *> * _Nonnull)detectedCorners detectedIds:(Mat * _Nonnull)detectedIds rejectedCorners:(NSMutableArray<Mat *> * _Nonnull)rejectedCorners cameraMatrix:(Mat * _Nonnull)cameraMatrix distCoeffs:(Mat * _Nonnull)distCoeffs recoveredIdxs:(Mat * _Nonnull)recoveredIdxs __attribute__((swift_name("refineDetectedMarkers(image:board:detectedCorners:detectedIds:rejectedCorners:cameraMatrix:distCoeffs:recoveredIdxs:)")));
 		[Export ("refineDetectedMarkers:board:detectedCorners:detectedIds:rejectedCorners:cameraMatrix:distCoeffs:recoveredIdxs:")]
 		void RefineDetectedMarkers (Mat image, Board board, NSMutableArray<Mat> detectedCorners, Mat detectedIds, NSMutableArray<Mat> rejectedCorners, Mat cameraMatrix, Mat distCoeffs, Mat recoveredIdxs);
@@ -15948,6 +16031,11 @@ namespace OpenCvSdk
 		[Export ("getByteListFromBits:")]
 		Mat GetByteListFromBits (Mat bits);
 
+		// +(Mat * _Nonnull)getBitsFromByteList:(Mat * _Nonnull)byteList markerSize:(int)markerSize rotationId:(int)rotationId __attribute__((swift_name("getBitsFromByteList(byteList:markerSize:rotationId:)")));
+		[Static]
+		[Export ("getBitsFromByteList:markerSize:rotationId:")]
+		Mat GetBitsFromByteList (Mat byteList, int markerSize, int rotationId);
+
 		// +(Mat * _Nonnull)getBitsFromByteList:(Mat * _Nonnull)byteList markerSize:(int)markerSize __attribute__((swift_name("getBitsFromByteList(byteList:markerSize:)")));
 		[Static]
 		[Export ("getBitsFromByteList:markerSize:")]
@@ -16209,6 +16297,26 @@ namespace OpenCvSdk
 		[Export ("findTransformECC:inputImage:warpMatrix:")]
 		double FindTransformECC (Mat templateImage, Mat inputImage, Mat warpMatrix);
 
+		// +(double)findTransformECCWithMask:(Mat * _Nonnull)templateImage inputImage:(Mat * _Nonnull)inputImage templateMask:(Mat * _Nonnull)templateMask inputMask:(Mat * _Nonnull)inputMask warpMatrix:(Mat * _Nonnull)warpMatrix motionType:(int)motionType criteria:(TermCriteria * _Nonnull)criteria gaussFiltSize:(int)gaussFiltSize __attribute__((swift_name("findTransformECCWithMask(templateImage:inputImage:templateMask:inputMask:warpMatrix:motionType:criteria:gaussFiltSize:)")));
+		[Static]
+		[Export ("findTransformECCWithMask:inputImage:templateMask:inputMask:warpMatrix:motionType:criteria:gaussFiltSize:")]
+		double FindTransformECCWithMask (Mat templateImage, Mat inputImage, Mat templateMask, Mat inputMask, Mat warpMatrix, int motionType, TermCriteria criteria, int gaussFiltSize);
+
+		// +(double)findTransformECCWithMask:(Mat * _Nonnull)templateImage inputImage:(Mat * _Nonnull)inputImage templateMask:(Mat * _Nonnull)templateMask inputMask:(Mat * _Nonnull)inputMask warpMatrix:(Mat * _Nonnull)warpMatrix motionType:(int)motionType criteria:(TermCriteria * _Nonnull)criteria __attribute__((swift_name("findTransformECCWithMask(templateImage:inputImage:templateMask:inputMask:warpMatrix:motionType:criteria:)")));
+		[Static]
+		[Export ("findTransformECCWithMask:inputImage:templateMask:inputMask:warpMatrix:motionType:criteria:")]
+		double FindTransformECCWithMask (Mat templateImage, Mat inputImage, Mat templateMask, Mat inputMask, Mat warpMatrix, int motionType, TermCriteria criteria);
+
+		// +(double)findTransformECCWithMask:(Mat * _Nonnull)templateImage inputImage:(Mat * _Nonnull)inputImage templateMask:(Mat * _Nonnull)templateMask inputMask:(Mat * _Nonnull)inputMask warpMatrix:(Mat * _Nonnull)warpMatrix motionType:(int)motionType __attribute__((swift_name("findTransformECCWithMask(templateImage:inputImage:templateMask:inputMask:warpMatrix:motionType:)")));
+		[Static]
+		[Export ("findTransformECCWithMask:inputImage:templateMask:inputMask:warpMatrix:motionType:")]
+		double FindTransformECCWithMask (Mat templateImage, Mat inputImage, Mat templateMask, Mat inputMask, Mat warpMatrix, int motionType);
+
+		// +(double)findTransformECCWithMask:(Mat * _Nonnull)templateImage inputImage:(Mat * _Nonnull)inputImage templateMask:(Mat * _Nonnull)templateMask inputMask:(Mat * _Nonnull)inputMask warpMatrix:(Mat * _Nonnull)warpMatrix __attribute__((swift_name("findTransformECCWithMask(templateImage:inputImage:templateMask:inputMask:warpMatrix:)")));
+		[Static]
+		[Export ("findTransformECCWithMask:inputImage:templateMask:inputMask:warpMatrix:")]
+		double FindTransformECCWithMask (Mat templateImage, Mat inputImage, Mat templateMask, Mat inputMask, Mat warpMatrix);
+
 		// +(Mat * _Nonnull)readOpticalFlow:(NSString * _Nonnull)path __attribute__((swift_name("readOpticalFlow(path:)")));
 		[Static]
 		[Export ("readOpticalFlow:")]
@@ -16271,6 +16379,14 @@ namespace OpenCvSdk
 		// -(void)apply:(Mat * _Nonnull)image fgmask:(Mat * _Nonnull)fgmask __attribute__((swift_name("apply(image:fgmask:)")));
 		[Export ("apply:fgmask:")]
 		void Apply (Mat image, Mat fgmask);
+
+		// -(void)apply:(Mat * _Nonnull)image knownForegroundMask:(Mat * _Nonnull)knownForegroundMask fgmask:(Mat * _Nonnull)fgmask learningRate:(double)learningRate __attribute__((swift_name("apply(image:knownForegroundMask:fgmask:learningRate:)")));
+		[Export ("apply:knownForegroundMask:fgmask:learningRate:")]
+		void Apply (Mat image, Mat knownForegroundMask, Mat fgmask, double learningRate);
+
+		// -(void)apply:(Mat * _Nonnull)image knownForegroundMask:(Mat * _Nonnull)knownForegroundMask fgmask:(Mat * _Nonnull)fgmask __attribute__((swift_name("apply(image:knownForegroundMask:fgmask:)")));
+		[Export ("apply:knownForegroundMask:fgmask:")]
+		void Apply (Mat image, Mat knownForegroundMask, Mat fgmask);
 
 		// -(void)getBackgroundImage:(Mat * _Nonnull)backgroundImage __attribute__((swift_name("getBackgroundImage(backgroundImage:)")));
 		[Export ("getBackgroundImage:")]
@@ -16445,6 +16561,14 @@ namespace OpenCvSdk
 		// -(void)apply:(Mat * _Nonnull)image fgmask:(Mat * _Nonnull)fgmask __attribute__((swift_name("apply(image:fgmask:)")));
 		[Export ("apply:fgmask:")]
 		void Apply (Mat image, Mat fgmask);
+
+		// -(void)apply:(Mat * _Nonnull)image knownForegroundMask:(Mat * _Nonnull)knownForegroundMask fgmask:(Mat * _Nonnull)fgmask learningRate:(double)learningRate __attribute__((swift_name("apply(image:knownForegroundMask:fgmask:learningRate:)")));
+		[Export ("apply:knownForegroundMask:fgmask:learningRate:")]
+		void Apply (Mat image, Mat knownForegroundMask, Mat fgmask, double learningRate);
+
+		// -(void)apply:(Mat * _Nonnull)image knownForegroundMask:(Mat * _Nonnull)knownForegroundMask fgmask:(Mat * _Nonnull)fgmask __attribute__((swift_name("apply(image:knownForegroundMask:fgmask:)")));
+		[Export ("apply:knownForegroundMask:fgmask:")]
+		void Apply (Mat image, Mat knownForegroundMask, Mat fgmask);
 	}
 
 	// @interface DenseOpticalFlow : Algorithm
@@ -16486,6 +16610,14 @@ namespace OpenCvSdk
 		// -(void)setFinestScale:(int)val __attribute__((swift_name("setFinestScale(val:)")));
 		[Export ("setFinestScale:")]
 		void SetFinestScale (int val);
+
+		// -(void)setCoarsestScale:(int)val __attribute__((swift_name("setCoarsestScale(val:)")));
+		[Export ("setCoarsestScale:")]
+		void SetCoarsestScale (int val);
+
+		// -(int)getCoarsestScale __attribute__((swift_name("getCoarsestScale()")));
+		[Export ("getCoarsestScale")]
+		int CoarsestScale { get; }
 
 		// -(int)getPatchSize __attribute__((swift_name("getPatchSize()")));
 		[Export ("getPatchSize")]

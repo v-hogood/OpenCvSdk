@@ -1009,7 +1009,8 @@ namespace OpenCvSdk
 		Exif = 0,
 		Xmp = 1,
 		Iccp = 2,
-		Max = 2
+		Cicp = 3,
+		Max = 3
 	}
 
 	public enum ImreadModes
@@ -1029,6 +1030,12 @@ namespace OpenCvSdk
 		ReducedColor8 = 65,
 		IgnoreOrientation = 128,
 		ColorRgb = 256
+	}
+
+	public enum ImwriteBMPCompressionFlags
+	{
+		Rgb = 0,
+		Bitfields = 3
 	}
 
 	public enum ImwriteEXRCompressionFlags
@@ -1064,6 +1071,7 @@ namespace OpenCvSdk
 		PngStrategy = 17,
 		PngBilevel = 18,
 		PngFilter = 19,
+		PngZlibbufferSize = 20,
 		PxmBinary = 32,
 		ExrType = (3 << 4) + 0,
 		ExrCompression = (3 << 4) + 1,
@@ -1085,6 +1093,7 @@ namespace OpenCvSdk
 		JpegxlEffort = 641,
 		JpegxlDistance = 642,
 		JpegxlDecodingSpeed = 643,
+		BmpCompression = 768,
 		GifLoop = 1024,
 		GifSpeed = 1025,
 		GifQuality = 1026,
@@ -1194,13 +1203,21 @@ namespace OpenCvSdk
 		Floatingpoint = 3
 	}
 
+	public enum ImwriteTiffResolutionUnitFlags
+	{
+		None = 1,
+		Inch = 2,
+		Centimeter = 3
+	}
+
 	public enum VideoAccelerationType
 	{
 		None = 0,
 		Any = 1,
 		D3d11 = 2,
 		Vaapi = 3,
-		Mfx = 4
+		Mfx = 4,
+		Drm = 5
 	}
 
 	public enum VideoCaptureAPIs
@@ -1260,10 +1277,23 @@ namespace OpenCvSdk
 
 	public enum VideoCaptureOBSensorProperties
 	{
-		Fx = 26001,
-		Fy = 26002,
-		Cx = 26003,
-		Cy = 26004
+		IntrinsicFx = 26001,
+		IntrinsicFy = 26002,
+		IntrinsicCx = 26003,
+		IntrinsicCy = 26004,
+		RgbPosMsec = 26005,
+		DepthPosMsec = 26006,
+		DepthWidth = 26007,
+		DepthHeight = 26008,
+		DepthFps = 26009,
+		ColorDistortionK1 = 26010,
+		ColorDistortionK2 = 26011,
+		ColorDistortionK3 = 26012,
+		ColorDistortionK4 = 26013,
+		ColorDistortionK5 = 26014,
+		ColorDistortionK6 = 26015,
+		ColorDistortionP1 = 26016,
+		ColorDistortionP2 = 26017
 	}
 
 	public enum VideoCaptureProperties
