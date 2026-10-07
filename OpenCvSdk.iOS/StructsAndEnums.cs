@@ -1077,6 +1077,7 @@ namespace OpenCvSdk
 		ExrCompression = (3 << 4) + 1,
 		ExrDwaCompressionLevel = (3 << 4) + 2,
 		WebpQuality = 64,
+		WebpLosslessMode = 65,
 		HdrCompression = (5 << 4) + 0,
 		PamTupletype = 128,
 		TiffResunit = 256,
@@ -1208,6 +1209,13 @@ namespace OpenCvSdk
 		None = 1,
 		Inch = 2,
 		Centimeter = 3
+	}
+
+	public enum ImwriteWEBPLosslessMode
+	{
+		Off = 0,
+		On = 1,
+		PreserveColor = 2
 	}
 
 	public enum VideoAccelerationType
@@ -1369,7 +1377,8 @@ namespace OpenCvSdk
 		FrameType = 69,
 		NThreads = 70,
 		Pts = 71,
-		DtsDelay = 72
+		DtsDelay = 72,
+		ImageSeqStart = 73
 	}
 
 	public enum VideoWriterProperties
@@ -1386,7 +1395,9 @@ namespace OpenCvSdk
 		KeyInterval = 10,
 		KeyFlag = 11,
 		Pts = 12,
-		DtsDelay = 13
+		DtsDelay = 13,
+		ColorSpace = 14,
+		EnableAlpha = 15
 	}
 
 	public enum HandEyeCalibrationMethod

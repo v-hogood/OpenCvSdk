@@ -6764,7 +6764,7 @@ namespace OpenCvSdk
 
 		// -(Mat * _Nonnull)get_learnt_thetas __attribute__((swift_name("get_learnt_thetas()")));
 		[Export ("get_learnt_thetas")]
-		Mat Get_learnt_thetas { get; }
+		Mat Get_learnt_thetas ();
 
 		// +(LogisticRegression * _Nonnull)create __attribute__((swift_name("create()")));
 		[Static]
@@ -12363,6 +12363,11 @@ namespace OpenCvSdk
 		[Export ("CAP_PROP_GIGA_FRAME_WIDTH_MAX")]
 		int CAP_PROP_GIGA_FRAME_WIDTH_MAX { get; }
 
+		// @property (readonly, class) int CAP_PROP_GIGA_FRAME_HEIGHT_MAX __attribute__((swift_name("CAP_PROP_GIGA_FRAME_HEIGHT_MAX")));
+		[Static]
+		[Export ("CAP_PROP_GIGA_FRAME_HEIGHT_MAX")]
+		int CAP_PROP_GIGA_FRAME_HEIGHT_MAX { get; }
+
 		// @property (readonly, class) int CAP_PROP_GIGA_FRAME_HEIGH_MAX __attribute__((swift_name("CAP_PROP_GIGA_FRAME_HEIGH_MAX")));
 		[Static]
 		[Export ("CAP_PROP_GIGA_FRAME_HEIGH_MAX")]
@@ -12372,6 +12377,11 @@ namespace OpenCvSdk
 		[Static]
 		[Export ("CAP_PROP_GIGA_FRAME_SENS_WIDTH")]
 		int CAP_PROP_GIGA_FRAME_SENS_WIDTH { get; }
+
+		// @property (readonly, class) int CAP_PROP_GIGA_FRAME_SENS_HEIGHT __attribute__((swift_name("CAP_PROP_GIGA_FRAME_SENS_HEIGHT")));
+		[Static]
+		[Export ("CAP_PROP_GIGA_FRAME_SENS_HEIGHT")]
+		int CAP_PROP_GIGA_FRAME_SENS_HEIGHT { get; }
 
 		// @property (readonly, class) int CAP_PROP_GIGA_FRAME_SENS_HEIGH __attribute__((swift_name("CAP_PROP_GIGA_FRAME_SENS_HEIGH")));
 		[Static]
@@ -13007,6 +13017,11 @@ namespace OpenCvSdk
 		[Static]
 		[Export ("CALIB_USE_EXTRINSIC_GUESS")]
 		int CALIB_USE_EXTRINSIC_GUESS { get; }
+
+		// @property (readonly, class) int CALIB_DISABLE_SCHUR_COMPLEMENT __attribute__((swift_name("CALIB_DISABLE_SCHUR_COMPLEMENT")));
+		[Static]
+		[Export ("CALIB_DISABLE_SCHUR_COMPLEMENT")]
+		int CALIB_DISABLE_SCHUR_COMPLEMENT { get; }
 
 		// @property (readonly, class) int FM_7POINT __attribute__((swift_name("FM_7POINT")));
 		[Static]
@@ -15992,6 +16007,10 @@ namespace OpenCvSdk
 		// @property float minMarkerLengthRatioOriginalImg;
 		[Export ("minMarkerLengthRatioOriginalImg")]
 		float MinMarkerLengthRatioOriginalImg { get; set; }
+
+		// @property float validBitIdThreshold;
+		[Export ("validBitIdThreshold")]
+		float ValidBitIdThreshold { get; set; }
 	}
 
 	// @interface Dictionary : NSObject
@@ -16010,6 +16029,10 @@ namespace OpenCvSdk
 		[Export ("identify:idx:rotation:maxCorrectionRate:")]
 		unsafe bool Identify (Mat onlyBits, int* idx, int* rotation, double maxCorrectionRate);
 
+		// -(BOOL)identify:(Mat * _Nonnull)onlyCellPixelRatio idx:(int * _Nonnull)idx rotation:(int * _Nonnull)rotation maxCorrectionRate:(double)maxCorrectionRate validBitIdThreshold:(float)validBitIdThreshold __attribute__((swift_name("identify(onlyCellPixelRatio:idx:rotation:maxCorrectionRate:validBitIdThreshold:)")));
+		[Export ("identify:idx:rotation:maxCorrectionRate:validBitIdThreshold:")]
+		unsafe bool Identify (Mat onlyCellPixelRatio, int* idx, int* rotation, double maxCorrectionRate, float validBitIdThreshold);
+
 		// -(int)getDistanceToId:(Mat * _Nonnull)bits id:(int)id allRotations:(BOOL)allRotations __attribute__((swift_name("getDistanceToId(bits:id:allRotations:)")));
 		[Export ("getDistanceToId:id:allRotations:")]
 		int GetDistanceToId (Mat bits, int id, bool allRotations);
@@ -16017,6 +16040,10 @@ namespace OpenCvSdk
 		// -(int)getDistanceToId:(Mat * _Nonnull)bits id:(int)id __attribute__((swift_name("getDistanceToId(bits:id:)")));
 		[Export ("getDistanceToId:id:")]
 		int GetDistanceToId (Mat bits, int id);
+
+		// -(int)getDistanceToId:(Mat * _Nonnull)onlyCellPixelRatio id:(int)id allRotations:(BOOL)allRotations validBitIdThreshold:(float)validBitIdThreshold __attribute__((swift_name("getDistanceToId(onlyCellPixelRatio:id:allRotations:validBitIdThreshold:)")));
+		[Export ("getDistanceToId:id:allRotations:validBitIdThreshold:")]
+		int GetDistanceToId (Mat onlyCellPixelRatio, int id, bool allRotations, float validBitIdThreshold);
 
 		// -(void)generateImageMarker:(int)id sidePixels:(int)sidePixels _img:(Mat * _Nonnull)_img borderBits:(int)borderBits __attribute__((swift_name("generateImageMarker(id:sidePixels:_img:borderBits:)")));
 		[Export ("generateImageMarker:sidePixels:_img:borderBits:")]
@@ -16040,6 +16067,14 @@ namespace OpenCvSdk
 		[Static]
 		[Export ("getBitsFromByteList:markerSize:")]
 		Mat GetBitsFromByteList (Mat byteList, int markerSize);
+
+		// -(Mat * _Nonnull)getMarkerBits:(int)markerId rotationId:(int)rotationId __attribute__((swift_name("getMarkerBits(markerId:rotationId:)")));
+		[Export ("getMarkerBits:rotationId:")]
+		Mat GetMarkerBits (int markerId, int rotationId);
+
+		// -(Mat * _Nonnull)getMarkerBits:(int)markerId __attribute__((swift_name("getMarkerBits(markerId:)")));
+		[Export ("getMarkerBits:")]
+		Mat GetMarkerBits (int markerId);
 
 		// @property Mat * _Nonnull bytesList;
 		[Export ("bytesList", ArgumentSemantic.Assign)]
@@ -16317,6 +16352,26 @@ namespace OpenCvSdk
 		[Export ("findTransformECCWithMask:inputImage:templateMask:inputMask:warpMatrix:")]
 		double FindTransformECCWithMask (Mat templateImage, Mat inputImage, Mat templateMask, Mat inputMask, Mat warpMatrix);
 
+		// +(double)findTransformECCMultiScale:(Mat * _Nonnull)reference sample:(Mat * _Nonnull)sample warpMatrix:(Mat * _Nonnull)warpMatrix eccParams:(ECCParameters * _Nonnull)eccParams referenceMask:(Mat * _Nonnull)referenceMask sampleMask:(Mat * _Nonnull)sampleMask __attribute__((swift_name("findTransformECCMultiScale(reference:sample:warpMatrix:eccParams:referenceMask:sampleMask:)")));
+		[Static]
+		[Export ("findTransformECCMultiScale:sample:warpMatrix:eccParams:referenceMask:sampleMask:")]
+		double FindTransformECCMultiScale (Mat reference, Mat sample, Mat warpMatrix, ECCParameters eccParams, Mat referenceMask, Mat sampleMask);
+
+		// +(double)findTransformECCMultiScale:(Mat * _Nonnull)reference sample:(Mat * _Nonnull)sample warpMatrix:(Mat * _Nonnull)warpMatrix eccParams:(ECCParameters * _Nonnull)eccParams referenceMask:(Mat * _Nonnull)referenceMask __attribute__((swift_name("findTransformECCMultiScale(reference:sample:warpMatrix:eccParams:referenceMask:)")));
+		[Static]
+		[Export ("findTransformECCMultiScale:sample:warpMatrix:eccParams:referenceMask:")]
+		double FindTransformECCMultiScale (Mat reference, Mat sample, Mat warpMatrix, ECCParameters eccParams, Mat referenceMask);
+
+		// +(double)findTransformECCMultiScale:(Mat * _Nonnull)reference sample:(Mat * _Nonnull)sample warpMatrix:(Mat * _Nonnull)warpMatrix eccParams:(ECCParameters * _Nonnull)eccParams __attribute__((swift_name("findTransformECCMultiScale(reference:sample:warpMatrix:eccParams:)")));
+		[Static]
+		[Export ("findTransformECCMultiScale:sample:warpMatrix:eccParams:")]
+		double FindTransformECCMultiScale (Mat reference, Mat sample, Mat warpMatrix, ECCParameters eccParams);
+
+		// +(double)findTransformECCMultiScale:(Mat * _Nonnull)reference sample:(Mat * _Nonnull)sample warpMatrix:(Mat * _Nonnull)warpMatrix __attribute__((swift_name("findTransformECCMultiScale(reference:sample:warpMatrix:)")));
+		[Static]
+		[Export ("findTransformECCMultiScale:sample:warpMatrix:")]
+		double FindTransformECCMultiScale (Mat reference, Mat sample, Mat warpMatrix);
+
 		// +(Mat * _Nonnull)readOpticalFlow:(NSString * _Nonnull)path __attribute__((swift_name("readOpticalFlow(path:)")));
 		[Static]
 		[Export ("readOpticalFlow:")]
@@ -16423,7 +16478,7 @@ namespace OpenCvSdk
 
 		// -(int)getkNNSamples __attribute__((swift_name("getkNNSamples()")));
 		[Export ("getkNNSamples")]
-		int GetkNNSamples { get; }
+		int GetkNNSamples ();
 
 		// -(void)setkNNSamples:(int)_nkNN __attribute__((swift_name("setkNNSamples(_nkNN:)")));
 		[Export ("setkNNSamples:")]
@@ -16708,6 +16763,35 @@ namespace OpenCvSdk
 		[Static]
 		[Export ("create")]
 		DISOpticalFlow Create ();
+	}
+
+	// @interface ECCParameters : NSObject
+	[BaseType (typeof(NSObject))]
+	interface ECCParameters
+	{
+		// @property int motionType;
+		[Export ("motionType")]
+		int MotionType { get; set; }
+
+		// @property TermCriteria * _Nonnull criteria;
+		[Export ("criteria", ArgumentSemantic.Assign)]
+		TermCriteria Criteria { get; set; }
+
+		// @property IntVector * _Nonnull itersPerLevel;
+		[Export ("itersPerLevel", ArgumentSemantic.Assign)]
+		IntVector ItersPerLevel { get; set; }
+
+		// @property int gaussFiltSize;
+		[Export ("gaussFiltSize")]
+		int GaussFiltSize { get; set; }
+
+		// @property int nlevels;
+		[Export ("nlevels")]
+		int Nlevels { get; set; }
+
+		// @property int interpolation;
+		[Export ("interpolation")]
+		int Interpolation { get; set; }
 	}
 
 	// @interface FarnebackOpticalFlow : DenseOpticalFlow
