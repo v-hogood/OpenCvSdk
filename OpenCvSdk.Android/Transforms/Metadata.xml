@@ -12,13 +12,8 @@
   <remove-node path="/api/package[@name='org.opencv.core']/class[@name='Core']/field[@name='VERSION_MAJOR']" />
   <remove-node path="/api/package[@name='org.opencv.core']/class[@name='Core']/field[@name='VERSION_MINOR']" />
   <remove-node path="/api/package[@name='org.opencv.core']/class[@name='Core']/field[@name='VERSION_REVISION']" />
-  <remove-node path="/api/package[@name='org.opencv.features2d']/class[@name='AgastFeatureDetector']/field[@name='NONMAX_SUPPRESSION']" />
-  <remove-node path="/api/package[@name='org.opencv.features2d']/class[@name='AgastFeatureDetector']/field[@name='THRESHOLD']" />
-  <remove-node path="/api/package[@name='org.opencv.features2d']/class[@name='FastFeatureDetector']/field[@name='NONMAX_SUPPRESSION']" />
-  <remove-node path="/api/package[@name='org.opencv.features2d']/class[@name='FastFeatureDetector']/field[@name='THRESHOLD']" />
-  <remove-node path="/api/package[@name='org.opencv.ml']/class[@name='SVM']/field[@name='DEGREE']" />
-  <remove-node path="/api/package[@name='org.opencv.ml']/class[@name='SVM']/field[@name='GAMMA']" />
-  <remove-node path="/api/package[@name='org.opencv.ml']/class[@name='SVM']/field[@name='NU']" />
+  <remove-node path="/api/package[@name='org.opencv.features']/class[@name='FastFeatureDetector']/field[@name='NONMAX_SUPPRESSION']" />
+  <remove-node path="/api/package[@name='org.opencv.features']/class[@name='FastFeatureDetector']/field[@name='THRESHOLD']" />
 
   <!-- Change the visibility of a class -->
   <attr path="/api/package[@name='org.opencv.android']/class[@name='JavaCameraView.JavaCameraFrame']" name="visibility">public</attr>
@@ -67,16 +62,18 @@
 
   <attr path="/api/package[@name='org.opencv']" name="managedName">OpenCV</attr>
   <attr path="/api/package[@name='org.opencv.android']" name="managedName">OpenCV.Android</attr>
-  <attr path="/api/package[@name='org.opencv.calib3d']" name="managedName">OpenCV.Calib3d</attr>
+  <attr path="/api/package[@name='org.opencv.calib']" name="managedName">OpenCV.Calib</attr>
   <attr path="/api/package[@name='org.opencv.core']" name="managedName">OpenCV.Core</attr>
   <attr path="/api/package[@name='org.opencv.dnn']" name="managedName">OpenCV.Dnn</attr>
-  <attr path="/api/package[@name='org.opencv.features2d']" name="managedName">OpenCV.Features2d</attr>
+  <attr path="/api/package[@name='org.opencv.features']" name="managedName">OpenCV.Features</attr>
+  <attr path="/api/package[@name='org.opencv.geometry']" name="managedName">OpenCV.Geometry</attr>
   <attr path="/api/package[@name='org.opencv.imgcodecs']" name="managedName">OpenCV.ImgCodecs</attr>
   <attr path="/api/package[@name='org.opencv.imgproc']" name="managedName">OpenCV.ImgProc</attr>
-  <attr path="/api/package[@name='org.opencv.ml']" name="managedName">OpenCV.ML</attr>
   <attr path="/api/package[@name='org.opencv.objdetect']" name="managedName">OpenCV.ObjDetect</attr>
   <attr path="/api/package[@name='org.opencv.osgi']" name="managedName">OpenCV.OSGi</attr>
   <attr path="/api/package[@name='org.opencv.photo']" name="managedName">OpenCV.Photo</attr>
+  <attr path="/api/package[@name='org.opencv.ptcloud']" name="managedName">OpenCV.PtCloud</attr>
+  <attr path="/api/package[@name='org.opencv.stereo']" name="managedName">OpenCV.Stereo</attr>
   <attr path="/api/package[@name='org.opencv.utils']" name="managedName">OpenCV.Utils</attr>
   <attr path="/api/package[@name='org.opencv.video']" name="managedName">OpenCV.Video</attr>
   <attr path="/api/package[@name='org.opencv.videoio']" name="managedName">OpenCV.VideoIO</attr>
