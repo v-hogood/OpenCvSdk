@@ -1,24 +1,20 @@
 using System.Runtime.InteropServices;
 using Foundation;
 
-namespace OpenCvSdk
-{
-	static class CFunctions
-	{
+namespace OpenCvSdk {
+	static class CFunctions {
 		// extern NSMutableArray * createArrayWithSize (int size, NSObject *val);
 		[DllImport ("opencv2", EntryPoint = "createArrayWithSize")]
 		static extern NSMutableArray CreateArrayWithSize (int size, NSObject val);
 	}
 
-	public enum AlgorithmHint
-	{
+	public enum AlgorithmHint {
 		Default = 0,
 		Accurate = 1,
 		Approx = 2
 	}
 
-	public enum BorderTypes
-	{
+	public enum BorderTypes {
 		Constant = 0,
 		Replicate = 1,
 		Reflect = 2,
@@ -29,8 +25,7 @@ namespace OpenCvSdk
 		Isolated = 16
 	}
 
-	public enum CmpTypes
-	{
+	public enum CmpTypes {
 		Eq = 0,
 		Gt = 1,
 		Ge = 2,
@@ -39,8 +34,7 @@ namespace OpenCvSdk
 		Ne = 5
 	}
 
-	public enum CovarFlags
-	{
+	public enum CovarFlags {
 		Scrambled = 0,
 		Normal = 1,
 		UseAvg = 2,
@@ -49,8 +43,7 @@ namespace OpenCvSdk
 		Cols = 16
 	}
 
-	public enum DecompTypes
-	{
+	public enum DecompTypes {
 		Lu = 0,
 		Svd = 1,
 		Eig = 2,
@@ -59,8 +52,7 @@ namespace OpenCvSdk
 		Normal = 16
 	}
 
-	public enum DftFlags
-	{
+	public enum DftFlags {
 		FtInverse = 1,
 		FtScale = 2,
 		FtRows = 4,
@@ -71,67 +63,7 @@ namespace OpenCvSdk
 		CtRows = FtRows
 	}
 
-	public enum Code
-	{
-		StsOk = 0,
-		StsBackTrace = -1,
-		StsError = -2,
-		StsInternal = -3,
-		StsNoMem = -4,
-		StsBadArg = -5,
-		StsBadFunc = -6,
-		StsNoConv = -7,
-		StsAutoTrace = -8,
-		HeaderIsNull = -9,
-		BadImageSize = -10,
-		BadOffset = -11,
-		BadDataPtr = -12,
-		BadStep = -13,
-		BadModelOrChSeq = -14,
-		BadNumChannels = -15,
-		BadNumChannel1U = -16,
-		BadDepth = -17,
-		BadAlphaChannel = -18,
-		BadOrder = -19,
-		BadOrigin = -20,
-		BadAlign = -21,
-		BadCallBack = -22,
-		BadTileSize = -23,
-		BadCOI = -24,
-		BadROISize = -25,
-		MaskIsTiled = -26,
-		StsNullPtr = -27,
-		StsVecLengthErr = -28,
-		StsFilterStructContentErr = -29,
-		StsKernelStructContentErr = -30,
-		StsFilterOffsetErr = -31,
-		StsBadSize = -201,
-		StsDivByZero = -202,
-		StsInplaceNotSupported = -203,
-		StsObjectNotFound = -204,
-		StsUnmatchedFormats = -205,
-		StsBadFlag = -206,
-		StsBadPoint = -207,
-		StsBadMask = -208,
-		StsUnmatchedSizes = -209,
-		StsUnsupportedFormat = -210,
-		StsOutOfRange = -211,
-		StsParseError = -212,
-		StsNotImplemented = -213,
-		StsBadMemBlock = -214,
-		StsAssert = -215,
-		GpuNotSupported = -216,
-		GpuApiCallError = -217,
-		OpenGlNotSupported = -218,
-		OpenGlApiCallError = -219,
-		OpenCLApiCallError = -220,
-		OpenCLDoubleNotSupported = -221,
-		OpenCLInitError = -222,
-		OpenCLNoAMDBlasFft = -223
-	}
-
-	public enum FormatType
-	{
+	public enum FormatType {
 		Default = 0,
 		Matlab = 1,
 		Csv = 2,
@@ -140,22 +72,19 @@ namespace OpenCvSdk
 		C = 5
 	}
 
-	public enum GemmFlags
-	{
+	public enum GemmFlags {
 		Gemm1T = 1,
 		Gemm2T = 2,
 		Gemm3T = 4
 	}
 
-	public enum KmeansFlags
-	{
+	public enum KmeansFlags {
 		RandomCenters = 0,
 		PpCenters = 2,
 		UseInitialLabels = 1
 	}
 
-	public enum NormTypes
-	{
+	public enum NormTypes {
 		Inf = 1,
 		L1 = 2,
 		L2 = 4,
@@ -167,15 +96,13 @@ namespace OpenCvSdk
 		Minmax = 32
 	}
 
-	public enum Flags
-	{
+	public enum Flags {
 		DataAsRow = 0,
 		DataAsCol = 1,
 		UseAvg = 2
 	}
 
-	public enum Param
-	{
+	public enum Param {
 		Int = 0,
 		Boolean = 1,
 		Real = 2,
@@ -190,34 +117,118 @@ namespace OpenCvSdk
 		Scalar = 12
 	}
 
-	public enum ReduceTypes
-	{
+	public enum ReduceTypes {
 		ReduceSum2 = 4
 	}
 
-	public enum RotateFlags
-	{
+	public enum RotateFlags {
 		Rotate90Clockwise = 0,
 		Rotate180 = 1,
 		Rotate90Counterclockwise = 2
 	}
 
-	public enum SortFlags
-	{
+	public enum SortFlags {
 		EveryRow = 0,
 		EveryColumn = 1,
 		Ascending = 0,
 		Descending = 16
 	}
 
-	public enum AdaptiveThresholdTypes
-	{
+	public enum DistanceTypes {
+		User = -1,
+		L1 = 1,
+		L2 = 2,
+		C = 3,
+		L12 = 4,
+		Fair = 5,
+		Welsch = 6,
+		Huber = 7
+	}
+
+	public enum LocalOptimMethod {
+		Null = 0,
+		InnerLo = 1,
+		InnerAndIterLo = 2,
+		Gc = 3,
+		Sigma = 4
+	}
+
+	public enum MSTAlgorithm {
+		Prim = 0,
+		Kruskal = 1
+	}
+
+	public enum MatrixType {
+		Auto = 0,
+		Dense = 1,
+		Sparse = 2
+	}
+
+	public enum NeighborSearchMethod {
+		FlannKnn = 0,
+		Grid = 1,
+		FlannRadius = 2
+	}
+
+	public enum PolishingMethod {
+		NonePolisher = 0,
+		LsqPolisher = 1,
+		Magsac = 2,
+		CovPolisher = 3
+	}
+
+	public enum RectanglesIntersectTypes {
+		None = 0,
+		Partial = 1,
+		Full = 2
+	}
+
+	public enum SacMethod {
+		SacMethodRansac = 0
+	}
+
+	public enum SacModelType {
+		Plane = 0,
+		Sphere = 1
+	}
+
+	public enum SamplingMethod {
+		Uniform = 0,
+		ProgressiveNapsac = 1,
+		Napsac = 2,
+		Prosac = 3
+	}
+
+	public enum ScoreMethod {
+		Ransac = 0,
+		Msac = 1,
+		Magsac = 2,
+		Lmeds = 3
+	}
+
+	public enum SolvePnPMethod {
+		Iterative = 0,
+		Epnp = 1,
+		P3p = 2,
+		Ap3p = 3,
+		Ippe = 4,
+		IppeSquare = 5,
+		Sqpnp = 6,
+		MaxCount = 6 + 1
+	}
+
+	public enum VariableType {
+		Linear = 0,
+		So3 = 1,
+		Se3 = 2
+	}
+
+	public enum AdaptiveThresholdTypes {
 		MeanC = 0,
 		GaussianC = 1
 	}
 
-	public enum ColorConversionCodes
-	{
+	public enum ColorConversionCodes {
 		Bgr2bgra = 0,
 		Rgb2rgba = Bgr2bgra,
 		Bgra2bgr = 1,
@@ -490,8 +501,7 @@ namespace OpenCvSdk
 		ColorcvtMax = 155
 	}
 
-	public enum ColormapTypes
-	{
+	public enum ColormapTypes {
 		Autumn = 0,
 		Bone = 1,
 		Jet = 2,
@@ -516,8 +526,7 @@ namespace OpenCvSdk
 		Deepgreen = 21
 	}
 
-	public enum ConnectedComponentsAlgorithmsTypes
-	{
+	public enum ConnectedComponentsAlgorithmsTypes {
 		Default = -1,
 		Wu = 0,
 		Grana = 1,
@@ -527,8 +536,7 @@ namespace OpenCvSdk
 		Spaghetti = 5
 	}
 
-	public enum ConnectedComponentsTypes
-	{
+	public enum ConnectedComponentsTypes {
 		Left = 0,
 		Top = 1,
 		Width = 2,
@@ -537,63 +545,46 @@ namespace OpenCvSdk
 		Max = 5
 	}
 
-	public enum ContourApproximationModes
-	{
-		None = 1,
-		Simple = 2,
-		Tc89L1 = 3,
-		Tc89Kcos = 4
+	public enum ContourApproximationModes {
+		ChainCode = 0,
+		ChainApproxNone = 1,
+		ChainApproxSimple = 2,
+		ChainApproxTc89L1 = 3,
+		ChainApproxTc89Kcos = 4,
+		LinkRuns = 5
 	}
 
-	public enum DistanceTransformLabelTypes
-	{
+	public enum DistanceTransformLabelTypes {
 		Ccomp = 0,
 		Pixel = 1
 	}
 
-	public enum DistanceTransformMasks
-	{
+	public enum DistanceTransformMasks {
 		DistMask3 = 3,
 		DistMask5 = 5,
 		Precise = 0
 	}
 
-	public enum DistanceTypes
-	{
-		User = -1,
-		L1 = 1,
-		L2 = 2,
-		C = 3,
-		L12 = 4,
-		Fair = 5,
-		Welsch = 6,
-		Huber = 7
-	}
-
-	public enum FloodFillFlags
-	{
+	public enum FloodFillFlags {
 		FixedRange = 1 << 16,
 		MaskOnly = 1 << 17
 	}
 
-	public enum GrabCutClasses
-	{
+	public enum GrabCutClasses {
 		Bgd = 0,
 		Fgd = 1,
 		PrBgd = 2,
 		PrFgd = 3
 	}
 
-	public enum GrabCutModes
-	{
+	public enum GrabCutModes {
 		InitWithRect = 0,
 		InitWithMask = 1,
 		Eval = 2,
 		EvalFreezeModel = 3
 	}
 
-	public enum HersheyFonts
-	{
+	public enum HersheyFonts {
 		HersheySimplex = 0,
 		HersheyPlain = 1,
 		HersheyDuplex = 2,
@@ -605,8 +596,7 @@ namespace OpenCvSdk
 		Italic = 16
 	}
 
-	public enum HistCompMethods
-	{
+	public enum HistCompMethods {
 		Correl = 0,
 		Chisqr = 1,
 		Intersect = 2,
@@ -616,8 +606,7 @@ namespace OpenCvSdk
 		KlDiv = 5
 	}
 
-	public enum HoughModes
-	{
+	public enum HoughModes {
 		Standard = 0,
 		Probabilistic = 1,
 		MultiScale = 2,
@@ -625,8 +614,7 @@ namespace OpenCvSdk
 		GradientAlt = 4
 	}
 
-	public enum InterpolationFlags
-	{
+	public enum InterpolationFlags {
 		InterNearest = 0,
 		InterLinear = 1,
 		InterCubic = 2,
@@ -640,31 +628,27 @@ namespace OpenCvSdk
 		WarpRelativeMap = 32
 	}
 
-	public enum InterpolationMasks
-	{
+	public enum InterpolationMasks {
 		Bits = 5,
 		Bits2 = Bits * 2,
 		TabSize = 1 << Bits,
 		TabSize2 = TabSize * TabSize
 	}
 
-	public enum LineSegmentDetectorModes
-	{
+	public enum LineSegmentDetectorModes {
 		None = 0,
 		Std = 1,
 		Adv = 2
 	}
 
-	public enum LineTypes
-	{
+	public enum LineTypes {
 		Filled = -1,
 		Line4 = 4,
 		Line8 = 8,
 		LineAa = 16
 	}
 
-	public enum MarkerTypes
-	{
+	public enum MarkerTypes {
 		Cross = 0,
 		TiltedCross = 1,
 		Star = 2,
@@ -674,16 +658,14 @@ namespace OpenCvSdk
 		TriangleDown = 6
 	}
 
-	public enum MorphShapes
-	{
+	public enum MorphShapes {
 		Rect = 0,
 		Cross = 1,
 		Ellipse = 2,
 		Diamond = 3
 	}
 
-	public enum MorphTypes
-	{
+	public enum MorphTypes {
 		Erode = 0,
 		Dilate = 1,
 		Open = 2,
@@ -694,15 +676,17 @@ namespace OpenCvSdk
 		Hitmiss = 7
 	}
 
-	public enum RectanglesIntersectTypes
-	{
-		None = 0,
-		Partial = 1,
-		Full = 2
+	public enum PutTextFlags {
+		AlignLeft = 0,
+		AlignCenter = 1,
+		AlignRight = 2,
+		AlignMask = 3,
+		OriginTl = 0,
+		OriginBl = 32,
+		Wrap = 128
 	}
 
-	public enum RetrievalModes
-	{
+	public enum RetrievalModes {
 		External = 0,
 		List = 1,
 		Ccomp = 2,
@@ -710,20 +694,17 @@ namespace OpenCvSdk
 		Floodfill = 4
 	}
 
-	public enum ShapeMatchModes
-	{
+	public enum ShapeMatchModes {
 		ContoursMatchI1 = 1,
 		ContoursMatchI2 = 2,
 		ContoursMatchI3 = 3
 	}
 
-	public enum SpecialFilter
-	{
+	public enum SpecialFilter {
 		FilterScharr = -1
 	}
 
-	public enum TemplateMatchModes
-	{
+	public enum TemplateMatchModes {
 		Sqdiff = 0,
 		SqdiffNormed = 1,
 		Ccorr = 2,
@@ -732,8 +713,7 @@ namespace OpenCvSdk
 		CcoeffNormed = 5
 	}
 
-	public enum ThresholdTypes
-	{
+	public enum ThresholdTypes {
 		Binary = 0,
 		BinaryInv = 1,
 		Trunc = 2,
@@ -745,149 +725,17 @@ namespace OpenCvSdk
 		Dryrun = 128
 	}
 
-	public enum WarpPolarMode
-	{
+	public enum UndistortTypes {
+		Ortho = 0,
+		Eqrect = 1
+	}
+
+	public enum WarpPolarMode {
 		Inear = 0,
 		Og = 256
 	}
 
-	public enum ErrorTypes
-	{
-		EstError = 0,
-		RainError = 1
-	}
-
-	public enum SampleTypes
-	{
-		RowSample = 0,
-		ColSample = 1
-	}
-
-	public enum VariableTypes
-	{
-		Numerical = 0,
-		Ordered = 0,
-		Categorical = 1
-	}
-
-	public enum StatModelFlags
-	{
-		UpdateModel = 1,
-		RawOutput = 1,
-		CompressedInput = 2,
-		PreprocessedInput = 4
-	}
-
-	public enum ActivationFunctions
-	{
-		Identity = 0,
-		SigmoidSym = 1,
-		Gaussian = 2,
-		Relu = 3,
-		Leakyrelu = 4
-	}
-
-	public enum TrainFlags
-	{
-		UpdateWeights = 1,
-		NoInputScale = 2,
-		NoOutputScale = 4
-	}
-
-	public enum TrainingMethods
-	{
-		Backprop = 0,
-		Rprop = 1,
-		Anneal = 2
-	}
-
-	public enum DTreeFlags
-	{
-		Auto = 0,
-		Sum = (1 << 8),
-		MaxVote = (2 << 8),
-		Mask = (3 << 8)
-	}
-
-	public enum Types
-	{
-		Discrete = 0,
-		Real = 1,
-		Logit = 2,
-		Gentle = 3
-	}
-
-	public enum EMTypes
-	{
-		Spherical = 0,
-		Diagonal = 1,
-		Generic = 2,
-		Default = Diagonal
-	}
-
-	public enum KNearestTypes
-	{
-		BruteForce = 1,
-		Kdtree = 2
-	}
-
-	public enum Methods
-	{
-		Batch = 0,
-		MiniBatch = 1
-	}
-
-	public enum RegKinds
-	{
-		Disable = -1,
-		L1 = 0,
-		L2 = 1
-	}
-
-	public enum KernelTypes
-	{
-		Custom = -1,
-		Linear = 0,
-		Poly = 1,
-		Rbf = 2,
-		Sigmoid = 3,
-		Chi2 = 4,
-		Inter = 5
-	}
-
-	public enum ParamTypes
-	{
-		C = 0,
-		Gamma = 1,
-		P = 2,
-		Nu = 3,
-		Coef = 4,
-		Degree = 5
-	}
-
-	public enum SVMTypes
-	{
-		CSvc = 100,
-		NuSvc = 101,
-		OneClass = 102,
-		EpsSvr = 103,
-		NuSvr = 104
-	}
-
-	public enum MarginType
-	{
-		SoftMargin = 0,
-		HardMargin = 1
-	}
-
-	public enum SvmsgdType
-	{
-		Sgd = 0,
-		Asgd = 1
-	}
-
-	public enum SeamlessCloneFlags
-	{
+	public enum SeamlessCloneFlags {
 		NormalClone = 1,
 		MixedClone = 2,
 		MonochromeTransfer = 3,
@@ -896,45 +744,268 @@ namespace OpenCvSdk
 		MonochromeTransferWide = 11
 	}
 
-	public enum Backend
-	{
+	public enum CcmType {
+		Linear = 0,
+		Affine = 1
+	}
+
+	public enum ColorCheckerType {
+		Macbeth = 0,
+		Vinyl = 1,
+		DigitalSg = 2
+	}
+
+	public enum ColorSpace {
+		Srgb = 0,
+		Srgbl = 1,
+		AdobeRgb = 2,
+		AdobeRgbl = 3,
+		WideGamutRgb = 4,
+		WideGamutRgbl = 5,
+		ProPhotoRgb = 6,
+		ProPhotoRgbl = 7,
+		DciP3Rgb = 8,
+		DciP3Rgbl = 9,
+		AppleRgb = 10,
+		AppleRgbl = 11,
+		Rec709Rgb = 12,
+		Rec709Rgbl = 13,
+		Rec2020Rgb = 14,
+		Rec2020Rgbl = 15,
+		XyzD652 = 16,
+		XyzD502 = 17,
+		XyzD6510 = 18,
+		XyzD5010 = 19,
+		XyzA2 = 20,
+		XyzA10 = 21,
+		XyzD552 = 22,
+		XyzD5510 = 23,
+		XyzD752 = 24,
+		XyzD7510 = 25,
+		XyzE2 = 26,
+		XyzE10 = 27,
+		LabD652 = 28,
+		LabD502 = 29,
+		LabD6510 = 30,
+		LabD5010 = 31,
+		LabA2 = 32,
+		LabA10 = 33,
+		LabD552 = 34,
+		LabD5510 = 35,
+		LabD752 = 36,
+		LabD7510 = 37,
+		LabE2 = 38,
+		LabE10 = 39
+	}
+
+	public enum DistanceType {
+		Cie76 = 0,
+		Cie94GraphicArts = 1,
+		Cie94Textiles = 2,
+		Cie2000 = 3,
+		Cmc1to1 = 4,
+		Cmc2to1 = 5,
+		Rgb = 6,
+		Rgbl = 7
+	}
+
+	public enum InitialMethodType {
+		WhiteBalance = 0,
+		LeastSquare = 1
+	}
+
+	public enum LinearizationType {
+		Identity = 0,
+		Gamma = 1,
+		Colorpolyfit = 2,
+		Colorlogpolyfit = 3,
+		Graypolyfit = 4,
+		Graylogpolyfit = 5
+	}
+
+	public enum OdometryAlgoType {
+		Common = 0,
+		Fast = 1
+	}
+
+	public enum OdometryFramePyramidType {
+		PyrImage = 0,
+		PyrDepth = 1,
+		PyrMask = 2,
+		PyrCloud = 3,
+		PyrDix = 4,
+		PyrDiy = 5,
+		PyrTexmask = 6,
+		PyrNorm = 7,
+		PyrNormmask = 8,
+		NPyramids = 8 + 1
+	}
+
+	public enum OdometryType {
+		Depth = 0,
+		Rgb = 1,
+		RgbDepth = 2
+	}
+
+	public enum RgbdPlaneMethod {
+		RgbdPlaneMethodDefault = 0
+	}
+
+	public enum TriangleCullingMode {
+		None = 0,
+		Cw = 1,
+		Ccw = 2
+	}
+
+	public enum TriangleGlCompatibleMode {
+		Disabled = 0,
+		Invdepth = 1
+	}
+
+	public enum TriangleShadingType {
+		White = 0,
+		Flat = 1,
+		Shaded = 2
+	}
+
+	public enum VolumeType {
+		Tsdf = 0,
+		HashTSDF = 1,
+		ColorTSDF = 2
+	}
+
+	public enum RgbdNormalsMethod {
+		Fals = 0,
+		Linemod = 1,
+		Sri = 2,
+		CrossProduct = 3
+	}
+
+	public enum BoundingBoxPrecision {
+		LumeUnit = 0,
+		Xel = 1
+	}
+
+	public enum ActivationType {
+		None = 0,
+		Mish = 0 + 1,
+		Swish = 0 + 2,
+		Sigmoid = 0 + 3,
+		Tanh = 0 + 4,
+		Elu = 0 + 5,
+		Hardswish = 0 + 6,
+		Hardsigmoid = 0 + 7,
+		Gelu = 0 + 8,
+		GeluApprox = 0 + 9,
+		Relu = 0 + 10,
+		Clip = 0 + 11
+	}
+
+	public enum ArgKind {
+		Empty = 0,
+		Const = 1,
+		Input = 2,
+		Output = 3,
+		Temp = 4,
+		Pattern = 5
+	}
+
+	public enum AutoPadding {
+		None = 0,
+		SameUpper = 1,
+		SameLower = 2,
+		Valid = 3
+	}
+
+	public enum Backend {
 		Default = 0,
-		Halide = 0 + 1,
-		InferenceEngine = 0 + 2,
-		Opencv = 0 + 3,
-		Vkcom = 0 + 4,
-		Cuda = 0 + 5,
-		Webnn = 0 + 6,
-		Timvx = 0 + 7,
-		Cann = 0 + 8
+		InferenceEngine = 2,
+		Opencv = 2 + 1,
+		Vkcom = 2 + 2,
+		Cuda = 2 + 3,
+		Webnn = 2 + 4,
+		Timvx = 2 + 5,
+		Cann = 2 + 6
 	}
 
-	public enum DataLayout
-	{
-		Unknown = 0,
-		Nd = 1,
-		Nchw = 2,
-		Ncdhw = 3,
-		Nhwc = 4,
-		Ndhwc = 5,
-		Planar = 6
+	public enum EngineType {
+		Classic = 1,
+		New = 2,
+		Auto = 3,
+		Ort = 4
 	}
 
-	public enum ImagePaddingMode
-	{
+	public enum ImagePaddingMode {
 		Null = 0,
 		CropCenter = 1,
 		Letterbox = 2
 	}
 
-	public enum SoftNMSMethod
-	{
+	public enum LossReduction {
+		None = 0,
+		Mean = 1,
+		Sum = 2
+	}
+
+	public enum ModelFormat {
+		Generic = 0,
+		Onnx = 1,
+		Tf = 2,
+		Tflite = 3
+	}
+
+	public enum Operation {
+		And = 0,
+		Equal = 0 + 1,
+		Greater = 0 + 2,
+		GreaterEqual = 0 + 3,
+		Less = 0 + 4,
+		LessEqual = 0 + 5,
+		Or = 0 + 6,
+		Pow = 0 + 7,
+		Xor = 0 + 8,
+		Bitshift = 0 + 9,
+		Max = 0 + 10,
+		Mean = 0 + 11,
+		Min = 0 + 12,
+		Mod = 0 + 13,
+		Fmod = 0 + 14,
+		Prod = 0 + 15,
+		Sub = 0 + 16,
+		Sum = 0 + 17,
+		Add = 0 + 18,
+		Div = 0 + 19,
+		Where = 0 + 20,
+		BitwiseAnd = 0 + 21,
+		BitwiseOr = 0 + 22,
+		BitwiseXor = 0 + 23
+	}
+
+	public enum ProfilingMode {
+		None = 0,
+		Summary = 1,
+		Detailed = 2
+	}
+
+	public enum ReduceType {
+		Max = 0,
+		Min = 1,
+		Mean = 2,
+		Sum = 3,
+		L1 = 4,
+		L2 = 5,
+		Prod = 6,
+		SumSquare = 7,
+		LogSum = 8,
+		LogSumExp = 9
+	}
+
+	public enum SoftNMSMethod {
 		Linear = 1,
 		Gaussian = 2
 	}
 
-	public enum Target
-	{
+	public enum Target {
 		Cpu = 0,
 		Opencl = 0 + 1,
 		OpenclFp16 = 0 + 2,
@@ -948,40 +1019,28 @@ namespace OpenCvSdk
 		CpuFp16 = 0 + 10
 	}
 
-	public enum DrawMatchesFlags
-	{
+	public enum TracingMode {
+		None = 0,
+		All = 1,
+		Op = 2
+	}
+
+	public enum DrawMatchesFlags {
 		Default = 0,
 		DrawOverOutimg = 1,
 		NotDrawSinglePoints = 2,
 		DrawRichKeypoints = 4
 	}
 
-	public enum DiffusivityType
-	{
-		PmG1 = 0,
-		PmG2 = 1,
-		Weickert = 2,
-		Charbonnier = 3
+	public enum Distance {
+		Euclidean = 0,
+		Manhattan = 1,
+		Angular = 2,
+		Hamming = 3,
+		Dotproduct = 4
 	}
 
-	public enum DescriptorType
-	{
-		KazeUpright = 2,
-		Kaze = 3,
-		MldbUpright = 4,
-		Mldb = 5
-	}
-
-	public enum AgastDetectorType
-	{
-		Agast58 = 0,
-		AGAST_7_12d = 1,
-		AGAST_7_12s = 2,
-		Oast916 = 3
-	}
-
-	public enum MatcherType
-	{
+	public enum MatcherType {
 		Flannbased = 1,
 		Bruteforce = 2,
 		BruteforceL1 = 3,
@@ -990,21 +1049,18 @@ namespace OpenCvSdk
 		BruteforceSl2 = 6
 	}
 
-	public enum FastDetectorType
-	{
+	public enum FastDetectorType {
 		FastFeatureDetector_TYPE_5_8 = 0,
 		FastFeatureDetector_TYPE_7_12 = 1,
 		FastFeatureDetector_TYPE_9_16 = 2
 	}
 
-	public enum ScoreType
-	{
+	public enum ScoreType {
 		HarrisScore = 0,
 		FastScore = 1
 	}
 
-	public enum ImageMetadataType
-	{
+	public enum ImageMetadataType {
 		Unknown = -1,
 		Exif = 0,
 		Xmp = 1,
@@ -1013,8 +1069,7 @@ namespace OpenCvSdk
 		Max = 3
 	}
 
-	public enum ImreadModes
-	{
+	public enum ImreadModes {
 		Unchanged = -1,
 		Grayscale = 0,
 		ColorBgr = 1,
@@ -1032,14 +1087,12 @@ namespace OpenCvSdk
 		ColorRgb = 256
 	}
 
-	public enum ImwriteBMPCompressionFlags
-	{
+	public enum ImwriteBMPCompressionFlags {
 		Rgb = 0,
 		Bitfields = 3
 	}
 
-	public enum ImwriteEXRCompressionFlags
-	{
+	public enum ImwriteEXRCompressionFlags {
 		No = 0,
 		Rle = 1,
 		Zips = 2,
@@ -1052,14 +1105,12 @@ namespace OpenCvSdk
 		Dwab = 9
 	}
 
-	public enum ImwriteEXRTypeFlags
-	{
+	public enum ImwriteEXRTypeFlags {
 		Half = 1,
 		Float = 2
 	}
 
-	public enum ImwriteFlags
-	{
+	public enum ImwriteFlags {
 		JpegQuality = 1,
 		JpegProgressive = 2,
 		JpegOptimize = 3,
@@ -1103,8 +1154,7 @@ namespace OpenCvSdk
 		GifColortable = 1029
 	}
 
-	public enum ImwriteGIFCompressionFlags
-	{
+	public enum ImwriteGIFCompressionFlags {
 		FastNoDither = 1,
 		FastFloydDither = 2,
 		ColortableSize8 = 3,
@@ -1115,14 +1165,12 @@ namespace OpenCvSdk
 		ColortableSize256 = 8
 	}
 
-	public enum ImwriteHDRCompressionFlags
-	{
+	public enum ImwriteHDRCompressionFlags {
 		None = 0,
 		Rle = 1
 	}
 
-	public enum ImwriteJPEGSamplingFactorParams
-	{
+	public enum ImwriteJPEGSamplingFactorParams {
 		ImwriteJpegSamplingFactor411 = 4264209,
 		ImwriteJpegSamplingFactor420 = 2232593,
 		ImwriteJpegSamplingFactor422 = 2167057,
@@ -1130,8 +1178,7 @@ namespace OpenCvSdk
 		ImwriteJpegSamplingFactor444 = 1118481
 	}
 
-	public enum ImwritePAMFlags
-	{
+	public enum ImwritePAMFlags {
 		Null = 0,
 		Blackandwhite = 1,
 		Grayscale = 2,
@@ -1140,8 +1187,7 @@ namespace OpenCvSdk
 		RgbAlpha = 5
 	}
 
-	public enum ImwritePNGFilterFlags
-	{
+	public enum ImwritePNGFilterFlags {
 		FilterNone = 8,
 		FilterSub = 16,
 		FilterUp = 32,
@@ -1151,8 +1197,7 @@ namespace OpenCvSdk
 		AllFilters = (FastFilters | FilterAvg | FilterPaeth)
 	}
 
-	public enum ImwritePNGFlags
-	{
+	public enum ImwritePNGFlags {
 		Default = 0,
 		Filtered = 1,
 		HuffmanOnly = 2,
@@ -1160,8 +1205,7 @@ namespace OpenCvSdk
 		Fixed = 4
 	}
 
-	public enum ImwriteTiffCompressionFlags
-	{
+	public enum ImwriteTiffCompressionFlags {
 		None = 1,
 		Ccittrle = 2,
 		Ccittfax3 = 3,
@@ -1197,29 +1241,95 @@ namespace OpenCvSdk
 		Jxl = 50002
 	}
 
-	public enum ImwriteTiffPredictorFlags
-	{
+	public enum ImwriteTiffPredictorFlags {
 		None = 1,
 		Horizontal = 2,
 		Floatingpoint = 3
 	}
 
-	public enum ImwriteTiffResolutionUnitFlags
-	{
+	public enum ImwriteTiffResolutionUnitFlags {
 		None = 1,
 		Inch = 2,
 		Centimeter = 3
 	}
 
-	public enum ImwriteWEBPLosslessMode
-	{
+	public enum ImwriteWEBPLosslessMode {
 		Off = 0,
 		On = 1,
 		PreserveColor = 2
 	}
 
-	public enum VideoAccelerationType
-	{
+	public enum CornerRefineMethod {
+		None = 0,
+		Subpix = 1,
+		Contour = 2,
+		Apriltag = 3
+	}
+
+	public enum PredefinedDictionaryType {
+		Dict4x450 = 0,
+		Dict4x4100 = 0 + 1,
+		Dict4x4250 = 0 + 2,
+		Dict4x41000 = 0 + 3,
+		Dict5x550 = 0 + 4,
+		Dict5x5100 = 0 + 5,
+		Dict5x5250 = 0 + 6,
+		Dict5x51000 = 0 + 7,
+		Dict6x650 = 0 + 8,
+		Dict6x6100 = 0 + 9,
+		Dict6x6250 = 0 + 10,
+		Dict6x61000 = 0 + 11,
+		Dict7x750 = 0 + 12,
+		Dict7x7100 = 0 + 13,
+		Dict7x7250 = 0 + 14,
+		Dict7x71000 = 0 + 15,
+		ArucoOriginal = 0 + 16,
+		APRILTAG_16h5 = 0 + 17,
+		APRILTAG_25h9 = 0 + 18,
+		APRILTAG_36h10 = 0 + 19,
+		APRILTAG_36h11 = 0 + 20,
+		ARUCO_MIP_36h12 = 0 + 21
+	}
+
+	public enum ColorChart {
+		Mcc24 = 0,
+		Sg140 = 0 + 1,
+		Vinyl18 = 0 + 2
+	}
+
+	public enum GridType {
+		SymmetricGrid = 0,
+		AsymmetricGrid = 1
+	}
+
+	public enum DisType {
+		Cosine = 0,
+		NormL2 = 1
+	}
+
+	public enum CorrectionLevel {
+		L = 0,
+		M = 1,
+		Q = 2,
+		H = 3
+	}
+
+	public enum ECIEncodings {
+		ShiftJis = 20,
+		Utf8 = 26
+	}
+
+	public enum EncodeMode {
+		Auto = -1,
+		Numeric = 1,
+		Alphanumeric = 2,
+		Byte = 4,
+		Eci = 7,
+		Kanji = 8,
+		StructuredAppend = 3
+	}
+
+	public enum VideoAccelerationType {
 		None = 0,
 		Any = 1,
 		D3d11 = 2,
@@ -1228,10 +1338,8 @@ namespace OpenCvSdk
 		Drm = 5
 	}
 
-	public enum VideoCaptureAPIs
-	{
+	public enum VideoCaptureAPIs {
 		Any = 0,
-		Vfw = 200,
 		V4l = 200,
 		V4l2 = V4l,
 		Firewire = 300,
@@ -1239,16 +1347,11 @@ namespace OpenCvSdk
 		Ieee1394 = Firewire,
 		Dc1394 = Firewire,
 		Cmu1394 = Firewire,
-		Qt = 500,
-		Unicap = 600,
 		Dshow = 700,
 		Pvapi = 800,
-		Openni = 900,
-		OpenniAsus = 910,
 		Android = 1000,
 		Xiapi = 1100,
 		Avfoundation = 1200,
-		Giganetix = 1300,
 		Msmf = 1400,
 		Winrt = 1410,
 		Intelperc = 1500,
@@ -1268,23 +1371,20 @@ namespace OpenCvSdk
 		Obsensor = 2600
 	}
 
-	public enum VideoCaptureOBSensorDataType
-	{
+	public enum VideoCaptureOBSensorDataType {
 		DepthMap = 0,
 		BgrImage = 1,
 		IrImage = 2
 	}
 
-	public enum VideoCaptureOBSensorGenerators
-	{
+	public enum VideoCaptureOBSensorGenerators {
 		DepthGenerator = 1 << 29,
 		ImageGenerator = 1 << 28,
 		IrGenerator = 1 << 27,
 		GeneratorsMask = DepthGenerator + ImageGenerator + IrGenerator
 	}
 
-	public enum VideoCaptureOBSensorProperties
-	{
+	public enum VideoCaptureOBSensorProperties {
 		IntrinsicFx = 26001,
 		IntrinsicFy = 26002,
 		IntrinsicCx = 26003,
@@ -1304,8 +1404,8 @@ namespace OpenCvSdk
 		ColorDistortionP2 = 26017
 	}
 
-	public enum VideoCaptureProperties
-	{
+	public enum VideoCaptureProperties {
+		Unknown = -1,
 		PosMsec = 0,
 		PosFrames = 1,
 		PosAviRatio = 2,
@@ -1381,8 +1481,8 @@ namespace OpenCvSdk
 		ImageSeqStart = 73
 	}
 
-	public enum VideoWriterProperties
-	{
+	public enum VideoWriterProperties {
+		Unknown = -1,
 		Quality = 1,
 		Framebytes = 2,
 		Nstripes = 3,
@@ -1400,8 +1500,12 @@ namespace OpenCvSdk
 		EnableAlpha = 15
 	}
 
-	public enum HandEyeCalibrationMethod
-	{
+	public enum CameraModel {
+		Pinhole = 0,
+		Fisheye = 1
+	}
+
+	public enum HandEyeCalibrationMethod {
 		Tsai = 0,
 		Park = 1,
 		Horaud = 2,
@@ -1409,159 +1513,8 @@ namespace OpenCvSdk
 		Daniilidis = 4
 	}
 
-	public enum LocalOptimMethod
-	{
-		Null = 0,
-		InnerLo = 1,
-		InnerAndIterLo = 2,
-		Gc = 3,
-		Sigma = 4
-	}
-
-	public enum NeighborSearchMethod
-	{
-		FlannKnn = 0,
-		Grid = 1,
-		FlannRadius = 2
-	}
-
-	public enum PolishingMethod
-	{
-		NonePolisher = 0,
-		LsqPolisher = 1,
-		Magsac = 2,
-		CovPolisher = 3
-	}
-
-	public enum RobotWorldHandEyeCalibrationMethod
-	{
+	public enum RobotWorldHandEyeCalibrationMethod {
 		Shah = 0,
 		Li = 1
-	}
-
-	public enum SamplingMethod
-	{
-		Uniform = 0,
-		ProgressiveNapsac = 1,
-		Napsac = 2,
-		Prosac = 3
-	}
-
-	public enum ScoreMethod
-	{
-		Ransac = 0,
-		Msac = 1,
-		Magsac = 2,
-		Lmeds = 3
-	}
-
-	public enum SolvePnPMethod
-	{
-		Iterative = 0,
-		Epnp = 1,
-		P3p = 2,
-		Dls = 3,
-		Upnp = 4,
-		Ap3p = 5,
-		Ippe = 6,
-		IppeSquare = 7,
-		Sqpnp = 8,
-		MaxCount = 8 + 1
-	}
-
-	public enum UndistortTypes
-	{
-		Ortho = 0,
-		Eqrect = 1
-	}
-
-	public enum GridType
-	{
-		SymmetricGrid = 0,
-		AsymmetricGrid = 1
-	}
-
-	public enum ObjectStatus
-	{
-		DetectedNotShownYet = 0,
-		Detected = 1,
-		DetectedTemporaryLost = 2,
-		WrongObject = 3
-	}
-
-	public enum CornerRefineMethod
-	{
-		None = 0,
-		Subpix = 1,
-		Contour = 2,
-		Apriltag = 3
-	}
-
-	public enum PredefinedDictionaryType
-	{
-		Dict4x450 = 0,
-		Dict4x4100 = 0 + 1,
-		Dict4x4250 = 0 + 2,
-		Dict4x41000 = 0 + 3,
-		Dict5x550 = 0 + 4,
-		Dict5x5100 = 0 + 5,
-		Dict5x5250 = 0 + 6,
-		Dict5x51000 = 0 + 7,
-		Dict6x650 = 0 + 8,
-		Dict6x6100 = 0 + 9,
-		Dict6x6250 = 0 + 10,
-		Dict6x61000 = 0 + 11,
-		Dict7x750 = 0 + 12,
-		Dict7x7100 = 0 + 13,
-		Dict7x7250 = 0 + 14,
-		Dict7x71000 = 0 + 15,
-		ArucoOriginal = 0 + 16,
-		APRILTAG_16h5 = 0 + 17,
-		APRILTAG_25h9 = 0 + 18,
-		APRILTAG_36h10 = 0 + 19,
-		APRILTAG_36h11 = 0 + 20,
-		ARUCO_MIP_36h12 = 0 + 21
-	}
-
-	public enum DisType
-	{
-		Cosine = 0,
-		NormL2 = 1
-	}
-
-	public enum DescriptorStorageFormat
-	{
-		ColByCol = 0,
-		RowByRow = 1
-	}
-
-	public enum HistogramNormType
-	{
-		HOGDescriptor_L2Hys = 0
-	}
-
-	public enum CorrectionLevel
-	{
-		L = 0,
-		M = 1,
-		Q = 2,
-		H = 3
-	}
-
-	public enum ECIEncodings
-	{
-		ShiftJis = 20,
-		Utf8 = 26
-	}
-
-	public enum EncodeMode
-	{
-		Auto = -1,
-		Numeric = 1,
-		Alphanumeric = 2,
-		Byte = 4,
-		Eci = 7,
-		Kanji = 8,
-		StructuredAppend = 3
 	}
 }

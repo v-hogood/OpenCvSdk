@@ -12,7 +12,7 @@
     <Authors>Howard Good</Authors>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <Owners>https://www.nuget.org/profiles/v-hogood</Owners>
-    <RepositoryUrl>https://github.com/opencv/opencv/tree/4.x/platforms/android</RepositoryUrl>
+    <RepositoryUrl>https://github.com/opencv/opencv/tree/5.x/platforms/android</RepositoryUrl>
     <PackageProjectUrl>https://github.com/v-hogood/OpenCVBinding</PackageProjectUrl>
     <Summary>Android .NET bindings for OpenCV SDK</Summary>
     <PackageTags>maui xamarin android opencv</PackageTags>
