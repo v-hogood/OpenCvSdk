@@ -2919,6 +2919,11 @@ namespace OpenCvSdk {
 		[Export ("reduce:dst:dim:rtype:")]
 		void Reduce (Mat src, Mat dst, int dim, int rtype);
 
+		// +(void)reduce:(Mat * _Nonnull)src dst:(Mat * _Nonnull)dst params:(ReduceParams * _Nonnull)params __attribute__((swift_name("reduce(src:dst:params:)")));
+		[Static]
+		[Export ("reduce:dst:params:")]
+		void Reduce (Mat src, Mat dst, ReduceParams @params);
+
 		// +(void)merge:(NSArray<Mat *> * _Nonnull)mv dst:(Mat * _Nonnull)dst __attribute__((swift_name("merge(mv:dst:)")));
 		[Static]
 		[Export ("merge:dst:")]
@@ -2954,10 +2959,70 @@ namespace OpenCvSdk {
 		[Export ("flipND:dst:axis:")]
 		void FlipND (Mat src, Mat dst, int axis);
 
+		// +(void)squeeze:(Mat * _Nonnull)src dst:(Mat * _Nonnull)dst axes:(IntVector * _Nonnull)axes __attribute__((swift_name("squeeze(src:dst:axes:)")));
+		[Static]
+		[Export ("squeeze:dst:axes:")]
+		void Squeeze (Mat src, Mat dst, IntVector axes);
+
+		// +(void)squeeze:(Mat * _Nonnull)src dst:(Mat * _Nonnull)dst __attribute__((swift_name("squeeze(src:dst:)")));
+		[Static]
+		[Export ("squeeze:dst:")]
+		void Squeeze (Mat src, Mat dst);
+
+		// +(void)unsqueeze:(Mat * _Nonnull)src dst:(Mat * _Nonnull)dst axes:(IntVector * _Nonnull)axes __attribute__((swift_name("unsqueeze(src:dst:axes:)")));
+		[Static]
+		[Export ("unsqueeze:dst:axes:")]
+		void Unsqueeze (Mat src, Mat dst, IntVector axes);
+
+		// +(void)flatten:(Mat * _Nonnull)src dst:(Mat * _Nonnull)dst startAxis:(int)startAxis endAxis:(int)endAxis __attribute__((swift_name("flatten(src:dst:startAxis:endAxis:)")));
+		[Static]
+		[Export ("flatten:dst:startAxis:endAxis:")]
+		void Flatten (Mat src, Mat dst, int startAxis, int endAxis);
+
+		// +(void)flatten:(Mat * _Nonnull)src dst:(Mat * _Nonnull)dst startAxis:(int)startAxis __attribute__((swift_name("flatten(src:dst:startAxis:)")));
+		[Static]
+		[Export ("flatten:dst:startAxis:")]
+		void Flatten (Mat src, Mat dst, int startAxis);
+
+		// +(void)flatten:(Mat * _Nonnull)src dst:(Mat * _Nonnull)dst __attribute__((swift_name("flatten(src:dst:)")));
+		[Static]
+		[Export ("flatten:dst:")]
+		void Flatten (Mat src, Mat dst);
+
+		// +(void)reshape:(Mat * _Nonnull)src dst:(Mat * _Nonnull)dst newShape:(IntVector * _Nonnull)newShape allowZero:(BOOL)allowZero __attribute__((swift_name("reshape(src:dst:newShape:allowZero:)")));
+		[Static]
+		[Export ("reshape:dst:newShape:allowZero:")]
+		void Reshape (Mat src, Mat dst, IntVector newShape, bool allowZero);
+
+		// +(void)reshape:(Mat * _Nonnull)src dst:(Mat * _Nonnull)dst newShape:(IntVector * _Nonnull)newShape __attribute__((swift_name("reshape(src:dst:newShape:)")));
+		[Static]
+		[Export ("reshape:dst:newShape:")]
+		void Reshape (Mat src, Mat dst, IntVector newShape);
+
+		// +(void)concat:(NSArray<Mat *> * _Nonnull)src axis:(int)axis dst:(Mat * _Nonnull)dst __attribute__((swift_name("concat(src:axis:dst:)")));
+		[Static]
+		[Export ("concat:axis:dst:")]
+		void Concat (Mat [] src, int axis, Mat dst);
+
+		// +(void)split:(Mat * _Nonnull)src axis:(int)axis sizes:(IntVector * _Nonnull)sizes dst:(NSMutableArray<Mat *> * _Nonnull)dst __attribute__((swift_name("split(src:axis:sizes:dst:)")));
+		[Static]
+		[Export ("split:axis:sizes:dst:")]
+		void Split (Mat src, int axis, IntVector sizes, NSMutableArray<Mat> dst);
+
+		// +(void)slice:(Mat * _Nonnull)src starts:(IntVector * _Nonnull)starts ends:(IntVector * _Nonnull)ends steps:(IntVector * _Nonnull)steps dst:(Mat * _Nonnull)dst __attribute__((swift_name("slice(src:starts:ends:steps:dst:)")));
+		[Static]
+		[Export ("slice:starts:ends:steps:dst:")]
+		void Slice (Mat src, IntVector starts, IntVector ends, IntVector steps, Mat dst);
+
 		// +(void)broadcast:(Mat * _Nonnull)src shape:(Mat * _Nonnull)shape dst:(Mat * _Nonnull)dst __attribute__((swift_name("broadcast(src:shape:dst:)")));
 		[Static]
 		[Export ("broadcast:shape:dst:")]
 		void Broadcast (Mat src, Mat shape, Mat dst);
+
+		// +(void)texpr:(NSString * _Nonnull)expr inputs:(NSArray<Mat *> * _Nonnull)inputs outputs:(NSMutableArray<Mat *> * _Nonnull)outputs __attribute__((swift_name("texpr(expr:inputs:outputs:)")));
+		[Static]
+		[Export ("texpr:inputs:outputs:")]
+		void Texpr (string expr, Mat [] inputs, NSMutableArray<Mat> outputs);
 
 		// +(void)rotate:(Mat * _Nonnull)src dst:(Mat * _Nonnull)dst rotateCode:(RotateFlags)rotateCode __attribute__((swift_name("rotate(src:dst:rotateCode:)")));
 		[Static]
@@ -2968,6 +3033,11 @@ namespace OpenCvSdk {
 		[Static]
 		[Export ("repeat:ny:nx:dst:")]
 		void Repeat (Mat src, int ny, int nx, Mat dst);
+
+		// +(void)repeat:(Mat * _Nonnull)src repeats:(IntVector * _Nonnull)repeats dst:(Mat * _Nonnull)dst __attribute__((swift_name("repeat(src:repeats:dst:)")));
+		[Static]
+		[Export ("repeat:repeats:dst:")]
+		void Repeat (Mat src, IntVector repeats, Mat dst);
 
 		// +(void)hconcat:(NSArray<Mat *> * _Nonnull)src dst:(Mat * _Nonnull)dst __attribute__((swift_name("hconcat(src:dst:)")));
 		[Static]
@@ -3174,7 +3244,12 @@ namespace OpenCvSdk {
 		[Export ("transpose:dst:")]
 		void Transpose (Mat src, Mat dst);
 
-		// +(void)transposeND:(Mat * _Nonnull)src order:(IntVector * _Nonnull)order dst:(Mat * _Nonnull)dst __attribute__((swift_name("transposeND(src:order:dst:)")));
+		// +(void)transpose:(Mat * _Nonnull)src order:(IntVector * _Nonnull)order dst:(Mat * _Nonnull)dst __attribute__((swift_name("transpose(src:order:dst:)")));
+		[Static]
+		[Export ("transpose:order:dst:")]
+		void Transpose (Mat src, IntVector order, Mat dst);
+
+		// +(void)transposeND:(Mat * _Nonnull)src order:(IntVector * _Nonnull)order dst:(Mat * _Nonnull)dst __attribute__((swift_name("transposeND(src:order:dst:)"))) __attribute__((deprecated("")));
 		[Static]
 		[Export ("transposeND:order:dst:")]
 		void TransposeND (Mat src, IntVector order, Mat dst);
@@ -3680,6 +3755,42 @@ namespace OpenCvSdk {
 		string DefaultName { get; }
 	}
 
+	// @interface ReduceParams : NSObject
+	[BaseType (typeof (NSObject))]
+	interface ReduceParams {
+		// -(instancetype _Nonnull)initWithRtype:(int)rtype axes:(IntVector * _Nonnull)axes keepdims:(BOOL)keepdims dtype:(int)dtype;
+		[Export ("initWithRtype:axes:keepdims:dtype:")]
+		NativeHandle Constructor (int rtype, IntVector axes, bool keepdims, int dtype);
+
+		// -(instancetype _Nonnull)initWithRtype:(int)rtype axes:(IntVector * _Nonnull)axes keepdims:(BOOL)keepdims;
+		[Export ("initWithRtype:axes:keepdims:")]
+		NativeHandle Constructor (int rtype, IntVector axes, bool keepdims);
+
+		// -(instancetype _Nonnull)initWithRtype:(int)rtype axes:(IntVector * _Nonnull)axes;
+		[Export ("initWithRtype:axes:")]
+		NativeHandle Constructor (int rtype, IntVector axes);
+
+		// -(instancetype _Nonnull)initWithRtype:(int)rtype;
+		[Export ("initWithRtype:")]
+		NativeHandle Constructor (int rtype);
+
+		// @property int rtype;
+		[Export ("rtype")]
+		int Rtype { get; set; }
+
+		// @property IntVector * _Nonnull axes;
+		[Export ("axes", ArgumentSemantic.Assign)]
+		IntVector Axes { get; set; }
+
+		// @property BOOL keepdims;
+		[Export ("keepdims")]
+		bool Keepdims { get; set; }
+
+		// @property int dtype;
+		[Export ("dtype")]
+		int Dtype { get; set; }
+	}
+
 	// @interface TickMeter : NSObject
 	[BaseType (typeof (NSObject))]
 	interface TickMeter {
@@ -3816,6 +3927,16 @@ namespace OpenCvSdk {
 		[Static]
 		[Export ("FM_RANSAC")]
 		int FM_RANSAC { get; }
+
+		// +(void)normalEstimate:(Mat * _Nonnull)normals curvatures:(Mat * _Nonnull)curvatures input_pts:(Mat * _Nonnull)input_pts nn_idx:(NSArray<Mat *> * _Nonnull)nn_idx max_neighbor_num:(int)max_neighbor_num __attribute__((swift_name("normalEstimate(normals:curvatures:input_pts:nn_idx:max_neighbor_num:)")));
+		[Static]
+		[Export ("normalEstimate:curvatures:input_pts:nn_idx:max_neighbor_num:")]
+		void NormalEstimate (Mat normals, Mat curvatures, Mat input_pts, Mat [] nn_idx, int max_neighbor_num);
+
+		// +(void)normalEstimate:(Mat * _Nonnull)normals curvatures:(Mat * _Nonnull)curvatures input_pts:(Mat * _Nonnull)input_pts nn_idx:(NSArray<Mat *> * _Nonnull)nn_idx __attribute__((swift_name("normalEstimate(normals:curvatures:input_pts:nn_idx:)")));
+		[Static]
+		[Export ("normalEstimate:curvatures:input_pts:nn_idx:")]
+		void NormalEstimate (Mat normals, Mat curvatures, Mat input_pts, Mat [] nn_idx);
 
 		// +(void)approxPolyDP:(NSArray<Point2f *> * _Nonnull)curve approxCurve:(NSMutableArray<Point2f *> * _Nonnull)approxCurve epsilon:(double)epsilon closed:(BOOL)closed __attribute__((swift_name("approxPolyDP(curve:approxCurve:epsilon:closed:)")));
 		[Static]
@@ -4777,10 +4898,10 @@ namespace OpenCvSdk {
 		[Export ("undistortPoints:dst:cameraMatrix:distCoeffs:")]
 		void UndistortPoints (Mat src, Mat dst, Mat cameraMatrix, Mat distCoeffs);
 
-		// +(void)undistortImagePoints:(Mat * _Nonnull)src dst:(Mat * _Nonnull)dst cameraMatrix:(Mat * _Nonnull)cameraMatrix distCoeffs:(Mat * _Nonnull)distCoeffs arg1:(TermCriteria * _Nonnull)arg1 __attribute__((swift_name("undistortImagePoints(src:dst:cameraMatrix:distCoeffs:arg1:)")));
+		// +(void)undistortImagePoints:(Mat * _Nonnull)src dst:(Mat * _Nonnull)dst cameraMatrix:(Mat * _Nonnull)cameraMatrix distCoeffs:(Mat * _Nonnull)distCoeffs criteria:(TermCriteria * _Nonnull)criteria __attribute__((swift_name("undistortImagePoints(src:dst:cameraMatrix:distCoeffs:criteria:)")));
 		[Static]
-		[Export ("undistortImagePoints:dst:cameraMatrix:distCoeffs:arg1:")]
-		void UndistortImagePoints (Mat src, Mat dst, Mat cameraMatrix, Mat distCoeffs, TermCriteria arg1);
+		[Export ("undistortImagePoints:dst:cameraMatrix:distCoeffs:criteria:")]
+		void UndistortImagePoints (Mat src, Mat dst, Mat cameraMatrix, Mat distCoeffs, TermCriteria criteria);
 
 		// +(void)undistortImagePoints:(Mat * _Nonnull)src dst:(Mat * _Nonnull)dst cameraMatrix:(Mat * _Nonnull)cameraMatrix distCoeffs:(Mat * _Nonnull)distCoeffs __attribute__((swift_name("undistortImagePoints(src:dst:cameraMatrix:distCoeffs:)")));
 		[Static]
@@ -6294,6 +6415,21 @@ namespace OpenCvSdk {
 		[Static]
 		[Export ("blendLinear:src2:weights1:weights2:dst:")]
 		void BlendLinear (Mat src1, Mat src2, Mat weights1, Mat weights2, Mat dst);
+
+		// +(void)alphaComposite:(Mat * _Nonnull)overlay background:(Mat * _Nonnull)background dst:(Mat * _Nonnull)dst op:(int)op premultiplied:(BOOL)premultiplied __attribute__((swift_name("alphaComposite(overlay:background:dst:op:premultiplied:)")));
+		[Static]
+		[Export ("alphaComposite:background:dst:op:premultiplied:")]
+		void AlphaComposite (Mat overlay, Mat background, Mat dst, int op, bool premultiplied);
+
+		// +(void)alphaComposite:(Mat * _Nonnull)overlay background:(Mat * _Nonnull)background dst:(Mat * _Nonnull)dst op:(int)op __attribute__((swift_name("alphaComposite(overlay:background:dst:op:)")));
+		[Static]
+		[Export ("alphaComposite:background:dst:op:")]
+		void AlphaComposite (Mat overlay, Mat background, Mat dst, int op);
+
+		// +(void)alphaComposite:(Mat * _Nonnull)overlay background:(Mat * _Nonnull)background dst:(Mat * _Nonnull)dst __attribute__((swift_name("alphaComposite(overlay:background:dst:)")));
+		[Static]
+		[Export ("alphaComposite:background:dst:")]
+		void AlphaComposite (Mat overlay, Mat background, Mat dst);
 
 		// +(void)cvtColor:(Mat * _Nonnull)src dst:(Mat * _Nonnull)dst code:(ColorConversionCodes)code dstCn:(int)dstCn hint:(AlgorithmHint)hint __attribute__((swift_name("cvtColor(src:dst:code:dstCn:hint:)")));
 		[Static]
@@ -8034,848 +8170,6 @@ namespace OpenCvSdk {
 		void GetContour (Point2i targetPt, Mat contour);
 	}
 
-	// @interface Ptcloud : NSObject
-	[BaseType (typeof (NSObject))]
-	interface Ptcloud {
-		// +(void)loadPointCloud:(NSString * _Nonnull)filename vertices:(Mat * _Nonnull)vertices normals:(Mat * _Nonnull)normals rgb:(Mat * _Nonnull)rgb __attribute__((swift_name("loadPointCloud(filename:vertices:normals:rgb:)")));
-		[Static]
-		[Export ("loadPointCloud:vertices:normals:rgb:")]
-		void LoadPointCloud (string filename, Mat vertices, Mat normals, Mat rgb);
-
-		// +(void)loadPointCloud:(NSString * _Nonnull)filename vertices:(Mat * _Nonnull)vertices normals:(Mat * _Nonnull)normals __attribute__((swift_name("loadPointCloud(filename:vertices:normals:)")));
-		[Static]
-		[Export ("loadPointCloud:vertices:normals:")]
-		void LoadPointCloud (string filename, Mat vertices, Mat normals);
-
-		// +(void)loadPointCloud:(NSString * _Nonnull)filename vertices:(Mat * _Nonnull)vertices __attribute__((swift_name("loadPointCloud(filename:vertices:)")));
-		[Static]
-		[Export ("loadPointCloud:vertices:")]
-		void LoadPointCloud (string filename, Mat vertices);
-
-		// +(void)savePointCloud:(NSString * _Nonnull)filename vertices:(Mat * _Nonnull)vertices normals:(Mat * _Nonnull)normals rgb:(Mat * _Nonnull)rgb __attribute__((swift_name("savePointCloud(filename:vertices:normals:rgb:)")));
-		[Static]
-		[Export ("savePointCloud:vertices:normals:rgb:")]
-		void SavePointCloud (string filename, Mat vertices, Mat normals, Mat rgb);
-
-		// +(void)savePointCloud:(NSString * _Nonnull)filename vertices:(Mat * _Nonnull)vertices normals:(Mat * _Nonnull)normals __attribute__((swift_name("savePointCloud(filename:vertices:normals:)")));
-		[Static]
-		[Export ("savePointCloud:vertices:normals:")]
-		void SavePointCloud (string filename, Mat vertices, Mat normals);
-
-		// +(void)savePointCloud:(NSString * _Nonnull)filename vertices:(Mat * _Nonnull)vertices __attribute__((swift_name("savePointCloud(filename:vertices:)")));
-		[Static]
-		[Export ("savePointCloud:vertices:")]
-		void SavePointCloud (string filename, Mat vertices);
-
-		// +(void)loadMesh:(NSString * _Nonnull)filename vertices:(Mat * _Nonnull)vertices indices:(NSMutableArray<Mat *> * _Nonnull)indices normals:(Mat * _Nonnull)normals colors:(Mat * _Nonnull)colors texCoords:(Mat * _Nonnull)texCoords __attribute__((swift_name("loadMesh(filename:vertices:indices:normals:colors:texCoords:)")));
-		[Static]
-		[Export ("loadMesh:vertices:indices:normals:colors:texCoords:")]
-		void LoadMesh (string filename, Mat vertices, NSMutableArray<Mat> indices, Mat normals, Mat colors, Mat texCoords);
-
-		// +(void)loadMesh:(NSString * _Nonnull)filename vertices:(Mat * _Nonnull)vertices indices:(NSMutableArray<Mat *> * _Nonnull)indices normals:(Mat * _Nonnull)normals colors:(Mat * _Nonnull)colors __attribute__((swift_name("loadMesh(filename:vertices:indices:normals:colors:)")));
-		[Static]
-		[Export ("loadMesh:vertices:indices:normals:colors:")]
-		void LoadMesh (string filename, Mat vertices, NSMutableArray<Mat> indices, Mat normals, Mat colors);
-
-		// +(void)loadMesh:(NSString * _Nonnull)filename vertices:(Mat * _Nonnull)vertices indices:(NSMutableArray<Mat *> * _Nonnull)indices normals:(Mat * _Nonnull)normals __attribute__((swift_name("loadMesh(filename:vertices:indices:normals:)")));
-		[Static]
-		[Export ("loadMesh:vertices:indices:normals:")]
-		void LoadMesh (string filename, Mat vertices, NSMutableArray<Mat> indices, Mat normals);
-
-		// +(void)loadMesh:(NSString * _Nonnull)filename vertices:(Mat * _Nonnull)vertices indices:(NSMutableArray<Mat *> * _Nonnull)indices __attribute__((swift_name("loadMesh(filename:vertices:indices:)")));
-		[Static]
-		[Export ("loadMesh:vertices:indices:")]
-		void LoadMesh (string filename, Mat vertices, NSMutableArray<Mat> indices);
-
-		// +(void)saveMesh:(NSString * _Nonnull)filename vertices:(Mat * _Nonnull)vertices indices:(NSArray<Mat *> * _Nonnull)indices normals:(Mat * _Nonnull)normals colors:(Mat * _Nonnull)colors texCoords:(Mat * _Nonnull)texCoords __attribute__((swift_name("saveMesh(filename:vertices:indices:normals:colors:texCoords:)")));
-		[Static]
-		[Export ("saveMesh:vertices:indices:normals:colors:texCoords:")]
-		void SaveMesh (string filename, Mat vertices, Mat [] indices, Mat normals, Mat colors, Mat texCoords);
-
-		// +(void)saveMesh:(NSString * _Nonnull)filename vertices:(Mat * _Nonnull)vertices indices:(NSArray<Mat *> * _Nonnull)indices normals:(Mat * _Nonnull)normals colors:(Mat * _Nonnull)colors __attribute__((swift_name("saveMesh(filename:vertices:indices:normals:colors:)")));
-		[Static]
-		[Export ("saveMesh:vertices:indices:normals:colors:")]
-		void SaveMesh (string filename, Mat vertices, Mat [] indices, Mat normals, Mat colors);
-
-		// +(void)saveMesh:(NSString * _Nonnull)filename vertices:(Mat * _Nonnull)vertices indices:(NSArray<Mat *> * _Nonnull)indices normals:(Mat * _Nonnull)normals __attribute__((swift_name("saveMesh(filename:vertices:indices:normals:)")));
-		[Static]
-		[Export ("saveMesh:vertices:indices:normals:")]
-		void SaveMesh (string filename, Mat vertices, Mat [] indices, Mat normals);
-
-		// +(void)saveMesh:(NSString * _Nonnull)filename vertices:(Mat * _Nonnull)vertices indices:(NSArray<Mat *> * _Nonnull)indices __attribute__((swift_name("saveMesh(filename:vertices:indices:)")));
-		[Static]
-		[Export ("saveMesh:vertices:indices:")]
-		void SaveMesh (string filename, Mat vertices, Mat [] indices);
-
-		// +(void)triangleRasterize:(Mat * _Nonnull)vertices indices:(Mat * _Nonnull)indices colors:(Mat * _Nonnull)colors colorBuf:(Mat * _Nonnull)colorBuf depthBuf:(Mat * _Nonnull)depthBuf world2cam:(Mat * _Nonnull)world2cam fovY:(double)fovY zNear:(double)zNear zFar:(double)zFar settings:(TriangleRasterizeSettings * _Nonnull)settings __attribute__((swift_name("triangleRasterize(vertices:indices:colors:colorBuf:depthBuf:world2cam:fovY:zNear:zFar:settings:)")));
-		[Static]
-		[Export ("triangleRasterize:indices:colors:colorBuf:depthBuf:world2cam:fovY:zNear:zFar:settings:")]
-		void TriangleRasterize (Mat vertices, Mat indices, Mat colors, Mat colorBuf, Mat depthBuf, Mat world2cam, double fovY, double zNear, double zFar, TriangleRasterizeSettings settings);
-
-		// +(void)triangleRasterize:(Mat * _Nonnull)vertices indices:(Mat * _Nonnull)indices colors:(Mat * _Nonnull)colors colorBuf:(Mat * _Nonnull)colorBuf depthBuf:(Mat * _Nonnull)depthBuf world2cam:(Mat * _Nonnull)world2cam fovY:(double)fovY zNear:(double)zNear zFar:(double)zFar __attribute__((swift_name("triangleRasterize(vertices:indices:colors:colorBuf:depthBuf:world2cam:fovY:zNear:zFar:)")));
-		[Static]
-		[Export ("triangleRasterize:indices:colors:colorBuf:depthBuf:world2cam:fovY:zNear:zFar:")]
-		void TriangleRasterize (Mat vertices, Mat indices, Mat colors, Mat colorBuf, Mat depthBuf, Mat world2cam, double fovY, double zNear, double zFar);
-
-		// +(void)triangleRasterizeDepth:(Mat * _Nonnull)vertices indices:(Mat * _Nonnull)indices depthBuf:(Mat * _Nonnull)depthBuf world2cam:(Mat * _Nonnull)world2cam fovY:(double)fovY zNear:(double)zNear zFar:(double)zFar settings:(TriangleRasterizeSettings * _Nonnull)settings __attribute__((swift_name("triangleRasterizeDepth(vertices:indices:depthBuf:world2cam:fovY:zNear:zFar:settings:)")));
-		[Static]
-		[Export ("triangleRasterizeDepth:indices:depthBuf:world2cam:fovY:zNear:zFar:settings:")]
-		void TriangleRasterizeDepth (Mat vertices, Mat indices, Mat depthBuf, Mat world2cam, double fovY, double zNear, double zFar, TriangleRasterizeSettings settings);
-
-		// +(void)triangleRasterizeDepth:(Mat * _Nonnull)vertices indices:(Mat * _Nonnull)indices depthBuf:(Mat * _Nonnull)depthBuf world2cam:(Mat * _Nonnull)world2cam fovY:(double)fovY zNear:(double)zNear zFar:(double)zFar __attribute__((swift_name("triangleRasterizeDepth(vertices:indices:depthBuf:world2cam:fovY:zNear:zFar:)")));
-		[Static]
-		[Export ("triangleRasterizeDepth:indices:depthBuf:world2cam:fovY:zNear:zFar:")]
-		void TriangleRasterizeDepth (Mat vertices, Mat indices, Mat depthBuf, Mat world2cam, double fovY, double zNear, double zFar);
-
-		// +(void)triangleRasterizeColor:(Mat * _Nonnull)vertices indices:(Mat * _Nonnull)indices colors:(Mat * _Nonnull)colors colorBuf:(Mat * _Nonnull)colorBuf world2cam:(Mat * _Nonnull)world2cam fovY:(double)fovY zNear:(double)zNear zFar:(double)zFar settings:(TriangleRasterizeSettings * _Nonnull)settings __attribute__((swift_name("triangleRasterizeColor(vertices:indices:colors:colorBuf:world2cam:fovY:zNear:zFar:settings:)")));
-		[Static]
-		[Export ("triangleRasterizeColor:indices:colors:colorBuf:world2cam:fovY:zNear:zFar:settings:")]
-		void TriangleRasterizeColor (Mat vertices, Mat indices, Mat colors, Mat colorBuf, Mat world2cam, double fovY, double zNear, double zFar, TriangleRasterizeSettings settings);
-
-		// +(void)triangleRasterizeColor:(Mat * _Nonnull)vertices indices:(Mat * _Nonnull)indices colors:(Mat * _Nonnull)colors colorBuf:(Mat * _Nonnull)colorBuf world2cam:(Mat * _Nonnull)world2cam fovY:(double)fovY zNear:(double)zNear zFar:(double)zFar __attribute__((swift_name("triangleRasterizeColor(vertices:indices:colors:colorBuf:world2cam:fovY:zNear:zFar:)")));
-		[Static]
-		[Export ("triangleRasterizeColor:indices:colors:colorBuf:world2cam:fovY:zNear:zFar:")]
-		void TriangleRasterizeColor (Mat vertices, Mat indices, Mat colors, Mat colorBuf, Mat world2cam, double fovY, double zNear, double zFar);
-
-		// +(void)registerDepth:(Mat * _Nonnull)unregisteredCameraMatrix registeredCameraMatrix:(Mat * _Nonnull)registeredCameraMatrix registeredDistCoeffs:(Mat * _Nonnull)registeredDistCoeffs Rt:(Mat * _Nonnull)Rt unregisteredDepth:(Mat * _Nonnull)unregisteredDepth outputImagePlaneSize:(Size2i * _Nonnull)outputImagePlaneSize registeredDepth:(Mat * _Nonnull)registeredDepth depthDilation:(BOOL)depthDilation __attribute__((swift_name("registerDepth(unregisteredCameraMatrix:registeredCameraMatrix:registeredDistCoeffs:Rt:unregisteredDepth:outputImagePlaneSize:registeredDepth:depthDilation:)")));
-		[Static]
-		[Export ("registerDepth:registeredCameraMatrix:registeredDistCoeffs:Rt:unregisteredDepth:outputImagePlaneSize:registeredDepth:depthDilation:")]
-		void RegisterDepth (Mat unregisteredCameraMatrix, Mat registeredCameraMatrix, Mat registeredDistCoeffs, Mat Rt, Mat unregisteredDepth, Size2i outputImagePlaneSize, Mat registeredDepth, bool depthDilation);
-
-		// +(void)registerDepth:(Mat * _Nonnull)unregisteredCameraMatrix registeredCameraMatrix:(Mat * _Nonnull)registeredCameraMatrix registeredDistCoeffs:(Mat * _Nonnull)registeredDistCoeffs Rt:(Mat * _Nonnull)Rt unregisteredDepth:(Mat * _Nonnull)unregisteredDepth outputImagePlaneSize:(Size2i * _Nonnull)outputImagePlaneSize registeredDepth:(Mat * _Nonnull)registeredDepth __attribute__((swift_name("registerDepth(unregisteredCameraMatrix:registeredCameraMatrix:registeredDistCoeffs:Rt:unregisteredDepth:outputImagePlaneSize:registeredDepth:)")));
-		[Static]
-		[Export ("registerDepth:registeredCameraMatrix:registeredDistCoeffs:Rt:unregisteredDepth:outputImagePlaneSize:registeredDepth:")]
-		void RegisterDepth (Mat unregisteredCameraMatrix, Mat registeredCameraMatrix, Mat registeredDistCoeffs, Mat Rt, Mat unregisteredDepth, Size2i outputImagePlaneSize, Mat registeredDepth);
-
-		// +(void)depthTo3dSparse:(Mat * _Nonnull)depth in_K:(Mat * _Nonnull)in_K in_points:(Mat * _Nonnull)in_points points3d:(Mat * _Nonnull)points3d __attribute__((swift_name("depthTo3dSparse(depth:in_K:in_points:points3d:)")));
-		[Static]
-		[Export ("depthTo3dSparse:in_K:in_points:points3d:")]
-		void DepthTo3dSparse (Mat depth, Mat in_K, Mat in_points, Mat points3d);
-
-		// +(void)depthTo3d:(Mat * _Nonnull)depth K:(Mat * _Nonnull)K points3d:(Mat * _Nonnull)points3d mask:(Mat * _Nonnull)mask __attribute__((swift_name("depthTo3d(depth:K:points3d:mask:)")));
-		[Static]
-		[Export ("depthTo3d:K:points3d:mask:")]
-		void DepthTo3d (Mat depth, Mat K, Mat points3d, Mat mask);
-
-		// +(void)depthTo3d:(Mat * _Nonnull)depth K:(Mat * _Nonnull)K points3d:(Mat * _Nonnull)points3d __attribute__((swift_name("depthTo3d(depth:K:points3d:)")));
-		[Static]
-		[Export ("depthTo3d:K:points3d:")]
-		void DepthTo3d (Mat depth, Mat K, Mat points3d);
-
-		// +(void)rescaleDepth:(Mat * _Nonnull)in type:(int)type out:(Mat * _Nonnull)out depth_factor:(double)depth_factor __attribute__((swift_name("rescaleDepth(in:type:out:depth_factor:)")));
-		[Static]
-		[Export ("rescaleDepth:type:out:depth_factor:")]
-		void RescaleDepth (Mat @in, int type, Mat @out, double depth_factor);
-
-		// +(void)rescaleDepth:(Mat * _Nonnull)in type:(int)type out:(Mat * _Nonnull)out __attribute__((swift_name("rescaleDepth(in:type:out:)")));
-		[Static]
-		[Export ("rescaleDepth:type:out:")]
-		void RescaleDepth (Mat @in, int type, Mat @out);
-
-		// +(void)warpFrame:(Mat * _Nonnull)depth image:(Mat * _Nonnull)image mask:(Mat * _Nonnull)mask Rt:(Mat * _Nonnull)Rt cameraMatrix:(Mat * _Nonnull)cameraMatrix warpedDepth:(Mat * _Nonnull)warpedDepth warpedImage:(Mat * _Nonnull)warpedImage warpedMask:(Mat * _Nonnull)warpedMask __attribute__((swift_name("warpFrame(depth:image:mask:Rt:cameraMatrix:warpedDepth:warpedImage:warpedMask:)")));
-		[Static]
-		[Export ("warpFrame:image:mask:Rt:cameraMatrix:warpedDepth:warpedImage:warpedMask:")]
-		void WarpFrame (Mat depth, Mat image, Mat mask, Mat Rt, Mat cameraMatrix, Mat warpedDepth, Mat warpedImage, Mat warpedMask);
-
-		// +(void)warpFrame:(Mat * _Nonnull)depth image:(Mat * _Nonnull)image mask:(Mat * _Nonnull)mask Rt:(Mat * _Nonnull)Rt cameraMatrix:(Mat * _Nonnull)cameraMatrix warpedDepth:(Mat * _Nonnull)warpedDepth warpedImage:(Mat * _Nonnull)warpedImage __attribute__((swift_name("warpFrame(depth:image:mask:Rt:cameraMatrix:warpedDepth:warpedImage:)")));
-		[Static]
-		[Export ("warpFrame:image:mask:Rt:cameraMatrix:warpedDepth:warpedImage:")]
-		void WarpFrame (Mat depth, Mat image, Mat mask, Mat Rt, Mat cameraMatrix, Mat warpedDepth, Mat warpedImage);
-
-		// +(void)warpFrame:(Mat * _Nonnull)depth image:(Mat * _Nonnull)image mask:(Mat * _Nonnull)mask Rt:(Mat * _Nonnull)Rt cameraMatrix:(Mat * _Nonnull)cameraMatrix warpedDepth:(Mat * _Nonnull)warpedDepth __attribute__((swift_name("warpFrame(depth:image:mask:Rt:cameraMatrix:warpedDepth:)")));
-		[Static]
-		[Export ("warpFrame:image:mask:Rt:cameraMatrix:warpedDepth:")]
-		void WarpFrame (Mat depth, Mat image, Mat mask, Mat Rt, Mat cameraMatrix, Mat warpedDepth);
-
-		// +(void)warpFrame:(Mat * _Nonnull)depth image:(Mat * _Nonnull)image mask:(Mat * _Nonnull)mask Rt:(Mat * _Nonnull)Rt cameraMatrix:(Mat * _Nonnull)cameraMatrix __attribute__((swift_name("warpFrame(depth:image:mask:Rt:cameraMatrix:)")));
-		[Static]
-		[Export ("warpFrame:image:mask:Rt:cameraMatrix:")]
-		void WarpFrame (Mat depth, Mat image, Mat mask, Mat Rt, Mat cameraMatrix);
-
-		// +(void)findPlanes:(Mat * _Nonnull)points3d normals:(Mat * _Nonnull)normals mask:(Mat * _Nonnull)mask plane_coefficients:(Mat * _Nonnull)plane_coefficients block_size:(int)block_size min_size:(int)min_size threshold:(double)threshold sensor_error_a:(double)sensor_error_a sensor_error_b:(double)sensor_error_b sensor_error_c:(double)sensor_error_c method:(RgbdPlaneMethod)method __attribute__((swift_name("findPlanes(points3d:normals:mask:plane_coefficients:block_size:min_size:threshold:sensor_error_a:sensor_error_b:sensor_error_c:method:)")));
-		[Static]
-		[Export ("findPlanes:normals:mask:plane_coefficients:block_size:min_size:threshold:sensor_error_a:sensor_error_b:sensor_error_c:method:")]
-		void FindPlanes (Mat points3d, Mat normals, Mat mask, Mat plane_coefficients, int block_size, int min_size, double threshold, double sensor_error_a, double sensor_error_b, double sensor_error_c, RgbdPlaneMethod method);
-
-		// +(void)findPlanes:(Mat * _Nonnull)points3d normals:(Mat * _Nonnull)normals mask:(Mat * _Nonnull)mask plane_coefficients:(Mat * _Nonnull)plane_coefficients block_size:(int)block_size min_size:(int)min_size threshold:(double)threshold sensor_error_a:(double)sensor_error_a sensor_error_b:(double)sensor_error_b sensor_error_c:(double)sensor_error_c __attribute__((swift_name("findPlanes(points3d:normals:mask:plane_coefficients:block_size:min_size:threshold:sensor_error_a:sensor_error_b:sensor_error_c:)")));
-		[Static]
-		[Export ("findPlanes:normals:mask:plane_coefficients:block_size:min_size:threshold:sensor_error_a:sensor_error_b:sensor_error_c:")]
-		void FindPlanes (Mat points3d, Mat normals, Mat mask, Mat plane_coefficients, int block_size, int min_size, double threshold, double sensor_error_a, double sensor_error_b, double sensor_error_c);
-
-		// +(void)findPlanes:(Mat * _Nonnull)points3d normals:(Mat * _Nonnull)normals mask:(Mat * _Nonnull)mask plane_coefficients:(Mat * _Nonnull)plane_coefficients block_size:(int)block_size min_size:(int)min_size threshold:(double)threshold sensor_error_a:(double)sensor_error_a sensor_error_b:(double)sensor_error_b __attribute__((swift_name("findPlanes(points3d:normals:mask:plane_coefficients:block_size:min_size:threshold:sensor_error_a:sensor_error_b:)")));
-		[Static]
-		[Export ("findPlanes:normals:mask:plane_coefficients:block_size:min_size:threshold:sensor_error_a:sensor_error_b:")]
-		void FindPlanes (Mat points3d, Mat normals, Mat mask, Mat plane_coefficients, int block_size, int min_size, double threshold, double sensor_error_a, double sensor_error_b);
-
-		// +(void)findPlanes:(Mat * _Nonnull)points3d normals:(Mat * _Nonnull)normals mask:(Mat * _Nonnull)mask plane_coefficients:(Mat * _Nonnull)plane_coefficients block_size:(int)block_size min_size:(int)min_size threshold:(double)threshold sensor_error_a:(double)sensor_error_a __attribute__((swift_name("findPlanes(points3d:normals:mask:plane_coefficients:block_size:min_size:threshold:sensor_error_a:)")));
-		[Static]
-		[Export ("findPlanes:normals:mask:plane_coefficients:block_size:min_size:threshold:sensor_error_a:")]
-		void FindPlanes (Mat points3d, Mat normals, Mat mask, Mat plane_coefficients, int block_size, int min_size, double threshold, double sensor_error_a);
-
-		// +(void)findPlanes:(Mat * _Nonnull)points3d normals:(Mat * _Nonnull)normals mask:(Mat * _Nonnull)mask plane_coefficients:(Mat * _Nonnull)plane_coefficients block_size:(int)block_size min_size:(int)min_size threshold:(double)threshold __attribute__((swift_name("findPlanes(points3d:normals:mask:plane_coefficients:block_size:min_size:threshold:)")));
-		[Static]
-		[Export ("findPlanes:normals:mask:plane_coefficients:block_size:min_size:threshold:")]
-		void FindPlanes (Mat points3d, Mat normals, Mat mask, Mat plane_coefficients, int block_size, int min_size, double threshold);
-
-		// +(void)findPlanes:(Mat * _Nonnull)points3d normals:(Mat * _Nonnull)normals mask:(Mat * _Nonnull)mask plane_coefficients:(Mat * _Nonnull)plane_coefficients block_size:(int)block_size min_size:(int)min_size __attribute__((swift_name("findPlanes(points3d:normals:mask:plane_coefficients:block_size:min_size:)")));
-		[Static]
-		[Export ("findPlanes:normals:mask:plane_coefficients:block_size:min_size:")]
-		void FindPlanes (Mat points3d, Mat normals, Mat mask, Mat plane_coefficients, int block_size, int min_size);
-
-		// +(void)findPlanes:(Mat * _Nonnull)points3d normals:(Mat * _Nonnull)normals mask:(Mat * _Nonnull)mask plane_coefficients:(Mat * _Nonnull)plane_coefficients block_size:(int)block_size __attribute__((swift_name("findPlanes(points3d:normals:mask:plane_coefficients:block_size:)")));
-		[Static]
-		[Export ("findPlanes:normals:mask:plane_coefficients:block_size:")]
-		void FindPlanes (Mat points3d, Mat normals, Mat mask, Mat plane_coefficients, int block_size);
-
-		// +(void)findPlanes:(Mat * _Nonnull)points3d normals:(Mat * _Nonnull)normals mask:(Mat * _Nonnull)mask plane_coefficients:(Mat * _Nonnull)plane_coefficients __attribute__((swift_name("findPlanes(points3d:normals:mask:plane_coefficients:)")));
-		[Static]
-		[Export ("findPlanes:normals:mask:plane_coefficients:")]
-		void FindPlanes (Mat points3d, Mat normals, Mat mask, Mat plane_coefficients);
-	}
-
-	// @interface Octree : NSObject
-	[BaseType (typeof (NSObject))]
-	interface Octree {
-		// +(Octree * _Nonnull)createWithDepth:(int)maxDepth size:(double)size origin:(Point3f * _Nonnull)origin withColors:(BOOL)withColors __attribute__((swift_name("createWithDepth(maxDepth:size:origin:withColors:)")));
-		[Static]
-		[Export ("createWithDepth:size:origin:withColors:")]
-		Octree CreateWithDepth (int maxDepth, double size, Point3f origin, bool withColors);
-
-		// +(Octree * _Nonnull)createWithDepth:(int)maxDepth size:(double)size origin:(Point3f * _Nonnull)origin __attribute__((swift_name("createWithDepth(maxDepth:size:origin:)")));
-		[Static]
-		[Export ("createWithDepth:size:origin:")]
-		Octree CreateWithDepth (int maxDepth, double size, Point3f origin);
-
-		// +(Octree * _Nonnull)createWithDepth:(int)maxDepth size:(double)size __attribute__((swift_name("createWithDepth(maxDepth:size:)")));
-		[Static]
-		[Export ("createWithDepth:size:")]
-		Octree CreateWithDepth (int maxDepth, double size);
-
-		// +(Octree * _Nonnull)createWithDepth:(int)maxDepth pointCloud:(Mat * _Nonnull)pointCloud colors:(Mat * _Nonnull)colors __attribute__((swift_name("createWithDepth(maxDepth:pointCloud:colors:)")));
-		[Static]
-		[Export ("createWithDepth:pointCloud:colors:")]
-		Octree CreateWithDepth (int maxDepth, Mat pointCloud, Mat colors);
-
-		// +(Octree * _Nonnull)createWithDepth:(int)maxDepth pointCloud:(Mat * _Nonnull)pointCloud __attribute__((swift_name("createWithDepth(maxDepth:pointCloud:)")));
-		[Static]
-		[Export ("createWithDepth:pointCloud:")]
-		Octree CreateWithDepth (int maxDepth, Mat pointCloud);
-
-		// +(Octree * _Nonnull)createWithResolution:(double)resolution size:(double)size origin:(Point3f * _Nonnull)origin withColors:(BOOL)withColors __attribute__((swift_name("createWithResolution(resolution:size:origin:withColors:)")));
-		[Static]
-		[Export ("createWithResolution:size:origin:withColors:")]
-		Octree CreateWithResolution (double resolution, double size, Point3f origin, bool withColors);
-
-		// +(Octree * _Nonnull)createWithResolution:(double)resolution size:(double)size origin:(Point3f * _Nonnull)origin __attribute__((swift_name("createWithResolution(resolution:size:origin:)")));
-		[Static]
-		[Export ("createWithResolution:size:origin:")]
-		Octree CreateWithResolution (double resolution, double size, Point3f origin);
-
-		// +(Octree * _Nonnull)createWithResolution:(double)resolution size:(double)size __attribute__((swift_name("createWithResolution(resolution:size:)")));
-		[Static]
-		[Export ("createWithResolution:size:")]
-		Octree CreateWithResolution (double resolution, double size);
-
-		// +(Octree * _Nonnull)createWithResolution:(double)resolution pointCloud:(Mat * _Nonnull)pointCloud colors:(Mat * _Nonnull)colors __attribute__((swift_name("createWithResolution(resolution:pointCloud:colors:)")));
-		[Static]
-		[Export ("createWithResolution:pointCloud:colors:")]
-		Octree CreateWithResolution (double resolution, Mat pointCloud, Mat colors);
-
-		// +(Octree * _Nonnull)createWithResolution:(double)resolution pointCloud:(Mat * _Nonnull)pointCloud __attribute__((swift_name("createWithResolution(resolution:pointCloud:)")));
-		[Static]
-		[Export ("createWithResolution:pointCloud:")]
-		Octree CreateWithResolution (double resolution, Mat pointCloud);
-
-		// -(BOOL)insertPoint:(Point3f * _Nonnull)point color:(Point3f * _Nonnull)color __attribute__((swift_name("insertPoint(point:color:)")));
-		[Export ("insertPoint:color:")]
-		bool InsertPoint (Point3f point, Point3f color);
-
-		// -(BOOL)insertPoint:(Point3f * _Nonnull)point __attribute__((swift_name("insertPoint(point:)")));
-		[Export ("insertPoint:")]
-		bool InsertPoint (Point3f point);
-
-		// -(BOOL)isPointInBound:(Point3f * _Nonnull)point __attribute__((swift_name("isPointInBound(point:)")));
-		[Export ("isPointInBound:")]
-		bool IsPointInBound (Point3f point);
-
-		// -(BOOL)empty __attribute__((swift_name("empty()")));
-		[Export ("empty")]
-		bool Empty { get; }
-
-		// -(void)clear __attribute__((swift_name("clear()")));
-		[Export ("clear")]
-		void Clear ();
-
-		// -(BOOL)deletePoint:(Point3f * _Nonnull)point __attribute__((swift_name("deletePoint(point:)")));
-		[Export ("deletePoint:")]
-		bool DeletePoint (Point3f point);
-
-		// -(void)getPointCloudByOctree:(Mat * _Nonnull)restoredPointCloud restoredColor:(Mat * _Nonnull)restoredColor __attribute__((swift_name("getPointCloudByOctree(restoredPointCloud:restoredColor:)")));
-		[Export ("getPointCloudByOctree:restoredColor:")]
-		void GetPointCloudByOctree (Mat restoredPointCloud, Mat restoredColor);
-
-		// -(void)getPointCloudByOctree:(Mat * _Nonnull)restoredPointCloud __attribute__((swift_name("getPointCloudByOctree(restoredPointCloud:)")));
-		[Export ("getPointCloudByOctree:")]
-		void GetPointCloudByOctree (Mat restoredPointCloud);
-
-		// -(int)radiusNNSearch:(Point3f * _Nonnull)query radius:(float)radius points:(Mat * _Nonnull)points squareDists:(Mat * _Nonnull)squareDists __attribute__((swift_name("radiusNNSearch(query:radius:points:squareDists:)")));
-		[Export ("radiusNNSearch:radius:points:squareDists:")]
-		int RadiusNNSearch (Point3f query, float radius, Mat points, Mat squareDists);
-
-		// -(int)radiusNNSearch:(Point3f * _Nonnull)query radius:(float)radius points:(Mat * _Nonnull)points __attribute__((swift_name("radiusNNSearch(query:radius:points:)")));
-		[Export ("radiusNNSearch:radius:points:")]
-		int RadiusNNSearch (Point3f query, float radius, Mat points);
-
-		// -(int)radiusNNSearch:(Point3f * _Nonnull)query radius:(float)radius points:(Mat * _Nonnull)points colors:(Mat * _Nonnull)colors squareDists:(Mat * _Nonnull)squareDists __attribute__((swift_name("radiusNNSearch(query:radius:points:colors:squareDists:)")));
-		[Export ("radiusNNSearch:radius:points:colors:squareDists:")]
-		int RadiusNNSearch (Point3f query, float radius, Mat points, Mat colors, Mat squareDists);
-
-		// -(void)KNNSearch:(Point3f * _Nonnull)query K:(int)K points:(Mat * _Nonnull)points squareDists:(Mat * _Nonnull)squareDists __attribute__((swift_name("KNNSearch(query:K:points:squareDists:)")));
-		[Export ("KNNSearch:K:points:squareDists:")]
-		void KNNSearch (Point3f query, int K, Mat points, Mat squareDists);
-
-		// -(void)KNNSearch:(Point3f * _Nonnull)query K:(int)K points:(Mat * _Nonnull)points __attribute__((swift_name("KNNSearch(query:K:points:)")));
-		[Export ("KNNSearch:K:points:")]
-		void KNNSearch (Point3f query, int K, Mat points);
-
-		// -(void)KNNSearch:(Point3f * _Nonnull)query K:(int)K points:(Mat * _Nonnull)points colors:(Mat * _Nonnull)colors squareDists:(Mat * _Nonnull)squareDists __attribute__((swift_name("KNNSearch(query:K:points:colors:squareDists:)")));
-		[Export ("KNNSearch:K:points:colors:squareDists:")]
-		void KNNSearch (Point3f query, int K, Mat points, Mat colors, Mat squareDists);
-	}
-
-	// @interface Odometry : NSObject
-	[BaseType (typeof (NSObject))]
-	interface Odometry {
-		// -(instancetype _Nonnull)initWithOtype:(OdometryType)otype;
-		[Export ("initWithOtype:")]
-		NativeHandle Constructor (OdometryType otype);
-
-		// -(instancetype _Nonnull)initWithOtype:(OdometryType)otype settings:(OdometrySettings * _Nonnull)settings algtype:(OdometryAlgoType)algtype;
-		[Export ("initWithOtype:settings:algtype:")]
-		NativeHandle Constructor (OdometryType otype, OdometrySettings settings, OdometryAlgoType algtype);
-
-		// -(void)prepareFrame:(OdometryFrame * _Nonnull)frame __attribute__((swift_name("prepareFrame(frame:)")));
-		[Export ("prepareFrame:")]
-		void PrepareFrame (OdometryFrame frame);
-
-		// -(void)prepareFrames:(OdometryFrame * _Nonnull)srcFrame dstFrame:(OdometryFrame * _Nonnull)dstFrame __attribute__((swift_name("prepareFrames(srcFrame:dstFrame:)")));
-		[Export ("prepareFrames:dstFrame:")]
-		void PrepareFrames (OdometryFrame srcFrame, OdometryFrame dstFrame);
-
-		// -(BOOL)compute:(OdometryFrame * _Nonnull)srcFrame dstFrame:(OdometryFrame * _Nonnull)dstFrame Rt:(Mat * _Nonnull)Rt __attribute__((swift_name("compute(srcFrame:dstFrame:Rt:)")));
-		[Export ("compute:dstFrame:Rt:")]
-		bool Compute (OdometryFrame srcFrame, OdometryFrame dstFrame, Mat Rt);
-
-		// -(BOOL)compute:(Mat * _Nonnull)srcDepth dstDepth:(Mat * _Nonnull)dstDepth Rt:(Mat * _Nonnull)Rt __attribute__((swift_name("compute(srcDepth:dstDepth:Rt:)")));
-		[Export ("compute:dstDepth:Rt:")]
-		bool Compute (Mat srcDepth, Mat dstDepth, Mat Rt);
-
-		// -(BOOL)compute:(Mat * _Nonnull)srcDepth srcRGB:(Mat * _Nonnull)srcRGB dstDepth:(Mat * _Nonnull)dstDepth dstRGB:(Mat * _Nonnull)dstRGB Rt:(Mat * _Nonnull)Rt __attribute__((swift_name("compute(srcDepth:srcRGB:dstDepth:dstRGB:Rt:)")));
-		[Export ("compute:srcRGB:dstDepth:dstRGB:Rt:")]
-		bool Compute (Mat srcDepth, Mat srcRGB, Mat dstDepth, Mat dstRGB, Mat Rt);
-
-		// -(RgbdNormals * _Nonnull)getNormalsComputer __attribute__((swift_name("getNormalsComputer()")));
-		[Export ("getNormalsComputer")]
-		RgbdNormals NormalsComputer { get; }
-	}
-
-	// @interface OdometryFrame : NSObject
-	[BaseType (typeof (NSObject))]
-	interface OdometryFrame {
-		// -(instancetype _Nonnull)initWithDepth:(Mat * _Nonnull)depth image:(Mat * _Nonnull)image mask:(Mat * _Nonnull)mask normals:(Mat * _Nonnull)normals;
-		[Export ("initWithDepth:image:mask:normals:")]
-		NativeHandle Constructor (Mat depth, Mat image, Mat mask, Mat normals);
-
-		// -(instancetype _Nonnull)initWithDepth:(Mat * _Nonnull)depth image:(Mat * _Nonnull)image mask:(Mat * _Nonnull)mask;
-		[Export ("initWithDepth:image:mask:")]
-		NativeHandle Constructor (Mat depth, Mat image, Mat mask);
-
-		// -(instancetype _Nonnull)initWithDepth:(Mat * _Nonnull)depth image:(Mat * _Nonnull)image;
-		[Export ("initWithDepth:image:")]
-		NativeHandle Constructor (Mat depth, Mat image);
-
-		// -(instancetype _Nonnull)initWithDepth:(Mat * _Nonnull)depth;
-		[Export ("initWithDepth:")]
-		NativeHandle Constructor (Mat depth);
-
-		// -(void)getImage:(Mat * _Nonnull)image __attribute__((swift_name("getImage(image:)")));
-		[Export ("getImage:")]
-		void GetImage (Mat image);
-
-		// -(void)getGrayImage:(Mat * _Nonnull)image __attribute__((swift_name("getGrayImage(image:)")));
-		[Export ("getGrayImage:")]
-		void GetGrayImage (Mat image);
-
-		// -(void)getDepth:(Mat * _Nonnull)depth __attribute__((swift_name("getDepth(depth:)")));
-		[Export ("getDepth:")]
-		void GetDepth (Mat depth);
-
-		// -(void)getProcessedDepth:(Mat * _Nonnull)depth __attribute__((swift_name("getProcessedDepth(depth:)")));
-		[Export ("getProcessedDepth:")]
-		void GetProcessedDepth (Mat depth);
-
-		// -(void)getMask:(Mat * _Nonnull)mask __attribute__((swift_name("getMask(mask:)")));
-		[Export ("getMask:")]
-		void GetMask (Mat mask);
-
-		// -(void)getNormals:(Mat * _Nonnull)normals __attribute__((swift_name("getNormals(normals:)")));
-		[Export ("getNormals:")]
-		void GetNormals (Mat normals);
-
-		// -(int)getPyramidLevels __attribute__((swift_name("getPyramidLevels()")));
-		[Export ("getPyramidLevels")]
-		int PyramidLevels { get; }
-
-		// -(void)getPyramidAt:(Mat * _Nonnull)img pyrType:(OdometryFramePyramidType)pyrType level:(size_t)level __attribute__((swift_name("getPyramidAt(img:pyrType:level:)")));
-		[Export ("getPyramidAt:pyrType:level:")]
-		void GetPyramidAt (Mat img, OdometryFramePyramidType pyrType, nuint level);
-	}
-
-	// @interface RgbdNormals : NSObject
-	[BaseType (typeof (NSObject))]
-	interface RgbdNormals {
-		// +(RgbdNormals * _Nonnull)create:(int)rows cols:(int)cols depth:(int)depth K:(Mat * _Nonnull)K window_size:(int)window_size diff_threshold:(float)diff_threshold method:(RgbdNormalsMethod)method __attribute__((swift_name("create(rows:cols:depth:K:window_size:diff_threshold:method:)")));
-		[Static]
-		[Export ("create:cols:depth:K:window_size:diff_threshold:method:")]
-		RgbdNormals Create (int rows, int cols, int depth, Mat K, int window_size, float diff_threshold, RgbdNormalsMethod method);
-
-		// +(RgbdNormals * _Nonnull)create:(int)rows cols:(int)cols depth:(int)depth K:(Mat * _Nonnull)K window_size:(int)window_size diff_threshold:(float)diff_threshold __attribute__((swift_name("create(rows:cols:depth:K:window_size:diff_threshold:)")));
-		[Static]
-		[Export ("create:cols:depth:K:window_size:diff_threshold:")]
-		RgbdNormals Create (int rows, int cols, int depth, Mat K, int window_size, float diff_threshold);
-
-		// +(RgbdNormals * _Nonnull)create:(int)rows cols:(int)cols depth:(int)depth K:(Mat * _Nonnull)K window_size:(int)window_size __attribute__((swift_name("create(rows:cols:depth:K:window_size:)")));
-		[Static]
-		[Export ("create:cols:depth:K:window_size:")]
-		RgbdNormals Create (int rows, int cols, int depth, Mat K, int window_size);
-
-		// +(RgbdNormals * _Nonnull)create:(int)rows cols:(int)cols depth:(int)depth K:(Mat * _Nonnull)K __attribute__((swift_name("create(rows:cols:depth:K:)")));
-		[Static]
-		[Export ("create:cols:depth:K:")]
-		RgbdNormals Create (int rows, int cols, int depth, Mat K);
-
-		// +(RgbdNormals * _Nonnull)create:(int)rows cols:(int)cols depth:(int)depth __attribute__((swift_name("create(rows:cols:depth:)")));
-		[Static]
-		[Export ("create:cols:depth:")]
-		RgbdNormals Create (int rows, int cols, int depth);
-
-		// +(RgbdNormals * _Nonnull)create:(int)rows cols:(int)cols __attribute__((swift_name("create(rows:cols:)")));
-		[Static]
-		[Export ("create:cols:")]
-		RgbdNormals Create (int rows, int cols);
-
-		// +(RgbdNormals * _Nonnull)create:(int)rows __attribute__((swift_name("create(rows:)")));
-		[Static]
-		[Export ("create:")]
-		RgbdNormals Create (int rows);
-
-		// +(RgbdNormals * _Nonnull)create __attribute__((swift_name("create()")));
-		[Static]
-		[Export ("create")]
-		RgbdNormals Create ();
-
-		// -(void)apply:(Mat * _Nonnull)points normals:(Mat * _Nonnull)normals __attribute__((swift_name("apply(points:normals:)")));
-		[Export ("apply:normals:")]
-		void Apply (Mat points, Mat normals);
-
-		// -(void)cache __attribute__((swift_name("cache()")));
-		[Export ("cache")]
-		void Cache ();
-
-		// -(int)getRows __attribute__((swift_name("getRows()")));
-		[Export ("getRows")]
-		int Rows { get; }
-
-		// -(void)setRows:(int)val __attribute__((swift_name("setRows(val:)")));
-		[Export ("setRows:")]
-		void SetRows (int val);
-
-		// -(int)getCols __attribute__((swift_name("getCols()")));
-		[Export ("getCols")]
-		int Cols { get; }
-
-		// -(void)setCols:(int)val __attribute__((swift_name("setCols(val:)")));
-		[Export ("setCols:")]
-		void SetCols (int val);
-
-		// -(int)getWindowSize __attribute__((swift_name("getWindowSize()")));
-		[Export ("getWindowSize")]
-		int WindowSize { get; }
-
-		// -(void)setWindowSize:(int)val __attribute__((swift_name("setWindowSize(val:)")));
-		[Export ("setWindowSize:")]
-		void SetWindowSize (int val);
-
-		// -(int)getDepth __attribute__((swift_name("getDepth()")));
-		[Export ("getDepth")]
-		int Depth { get; }
-
-		// -(void)getK:(Mat * _Nonnull)val __attribute__((swift_name("getK(val:)")));
-		[Export ("getK:")]
-		void GetK (Mat val);
-
-		// -(void)setK:(Mat * _Nonnull)val __attribute__((swift_name("setK(val:)")));
-		[Export ("setK:")]
-		void SetK (Mat val);
-
-		// -(RgbdNormalsMethod)getMethod __attribute__((swift_name("getMethod()")));
-		[Export ("getMethod")]
-		RgbdNormalsMethod Method { get; }
-	}
-
-	// @interface OdometrySettings : NSObject
-	[BaseType (typeof (NSObject))]
-	interface OdometrySettings {
-		// -(void)setCameraMatrix:(Mat * _Nonnull)val __attribute__((swift_name("setCameraMatrix(val:)")));
-		[Export ("setCameraMatrix:")]
-		void SetCameraMatrix (Mat val);
-
-		// -(void)getCameraMatrix:(Mat * _Nonnull)val __attribute__((swift_name("getCameraMatrix(val:)")));
-		[Export ("getCameraMatrix:")]
-		void GetCameraMatrix (Mat val);
-
-		// -(void)setIterCounts:(Mat * _Nonnull)val __attribute__((swift_name("setIterCounts(val:)")));
-		[Export ("setIterCounts:")]
-		void SetIterCounts (Mat val);
-
-		// -(void)getIterCounts:(Mat * _Nonnull)val __attribute__((swift_name("getIterCounts(val:)")));
-		[Export ("getIterCounts:")]
-		void GetIterCounts (Mat val);
-
-		// -(void)setMinDepth:(float)val __attribute__((swift_name("setMinDepth(val:)")));
-		[Export ("setMinDepth:")]
-		void SetMinDepth (float val);
-
-		// -(float)getMinDepth __attribute__((swift_name("getMinDepth()")));
-		[Export ("getMinDepth")]
-		float MinDepth { get; }
-
-		// -(void)setMaxDepth:(float)val __attribute__((swift_name("setMaxDepth(val:)")));
-		[Export ("setMaxDepth:")]
-		void SetMaxDepth (float val);
-
-		// -(float)getMaxDepth __attribute__((swift_name("getMaxDepth()")));
-		[Export ("getMaxDepth")]
-		float MaxDepth { get; }
-
-		// -(void)setMaxDepthDiff:(float)val __attribute__((swift_name("setMaxDepthDiff(val:)")));
-		[Export ("setMaxDepthDiff:")]
-		void SetMaxDepthDiff (float val);
-
-		// -(float)getMaxDepthDiff __attribute__((swift_name("getMaxDepthDiff()")));
-		[Export ("getMaxDepthDiff")]
-		float MaxDepthDiff { get; }
-
-		// -(void)setMaxPointsPart:(float)val __attribute__((swift_name("setMaxPointsPart(val:)")));
-		[Export ("setMaxPointsPart:")]
-		void SetMaxPointsPart (float val);
-
-		// -(float)getMaxPointsPart __attribute__((swift_name("getMaxPointsPart()")));
-		[Export ("getMaxPointsPart")]
-		float MaxPointsPart { get; }
-
-		// -(void)setSobelSize:(int)val __attribute__((swift_name("setSobelSize(val:)")));
-		[Export ("setSobelSize:")]
-		void SetSobelSize (int val);
-
-		// -(int)getSobelSize __attribute__((swift_name("getSobelSize()")));
-		[Export ("getSobelSize")]
-		int SobelSize { get; }
-
-		// -(void)setSobelScale:(double)val __attribute__((swift_name("setSobelScale(val:)")));
-		[Export ("setSobelScale:")]
-		void SetSobelScale (double val);
-
-		// -(double)getSobelScale __attribute__((swift_name("getSobelScale()")));
-		[Export ("getSobelScale")]
-		double SobelScale { get; }
-
-		// -(void)setNormalWinSize:(int)val __attribute__((swift_name("setNormalWinSize(val:)")));
-		[Export ("setNormalWinSize:")]
-		void SetNormalWinSize (int val);
-
-		// -(int)getNormalWinSize __attribute__((swift_name("getNormalWinSize()")));
-		[Export ("getNormalWinSize")]
-		int NormalWinSize { get; }
-
-		// -(void)setNormalDiffThreshold:(float)val __attribute__((swift_name("setNormalDiffThreshold(val:)")));
-		[Export ("setNormalDiffThreshold:")]
-		void SetNormalDiffThreshold (float val);
-
-		// -(float)getNormalDiffThreshold __attribute__((swift_name("getNormalDiffThreshold()")));
-		[Export ("getNormalDiffThreshold")]
-		float NormalDiffThreshold { get; }
-
-		// -(void)setNormalMethod:(RgbdNormalsMethod)nm __attribute__((swift_name("setNormalMethod(nm:)")));
-		[Export ("setNormalMethod:")]
-		void SetNormalMethod (RgbdNormalsMethod nm);
-
-		// -(RgbdNormalsMethod)getNormalMethod __attribute__((swift_name("getNormalMethod()")));
-		[Export ("getNormalMethod")]
-		RgbdNormalsMethod NormalMethod { get; }
-
-		// -(void)setAngleThreshold:(float)val __attribute__((swift_name("setAngleThreshold(val:)")));
-		[Export ("setAngleThreshold:")]
-		void SetAngleThreshold (float val);
-
-		// -(float)getAngleThreshold __attribute__((swift_name("getAngleThreshold()")));
-		[Export ("getAngleThreshold")]
-		float AngleThreshold { get; }
-
-		// -(void)setMaxTranslation:(float)val __attribute__((swift_name("setMaxTranslation(val:)")));
-		[Export ("setMaxTranslation:")]
-		void SetMaxTranslation (float val);
-
-		// -(float)getMaxTranslation __attribute__((swift_name("getMaxTranslation()")));
-		[Export ("getMaxTranslation")]
-		float MaxTranslation { get; }
-
-		// -(void)setMaxRotation:(float)val __attribute__((swift_name("setMaxRotation(val:)")));
-		[Export ("setMaxRotation:")]
-		void SetMaxRotation (float val);
-
-		// -(float)getMaxRotation __attribute__((swift_name("getMaxRotation()")));
-		[Export ("getMaxRotation")]
-		float MaxRotation { get; }
-
-		// -(void)setMinGradientMagnitude:(float)val __attribute__((swift_name("setMinGradientMagnitude(val:)")));
-		[Export ("setMinGradientMagnitude:")]
-		void SetMinGradientMagnitude (float val);
-
-		// -(float)getMinGradientMagnitude __attribute__((swift_name("getMinGradientMagnitude()")));
-		[Export ("getMinGradientMagnitude")]
-		float MinGradientMagnitude { get; }
-
-		// -(void)setMinGradientMagnitudes:(Mat * _Nonnull)val __attribute__((swift_name("setMinGradientMagnitudes(val:)")));
-		[Export ("setMinGradientMagnitudes:")]
-		void SetMinGradientMagnitudes (Mat val);
-
-		// -(void)getMinGradientMagnitudes:(Mat * _Nonnull)val __attribute__((swift_name("getMinGradientMagnitudes(val:)")));
-		[Export ("getMinGradientMagnitudes:")]
-		void GetMinGradientMagnitudes (Mat val);
-	}
-
-	// @interface TriangleRasterizeSettings : NSObject
-	[BaseType (typeof (NSObject))]
-	interface TriangleRasterizeSettings {
-		// -(TriangleRasterizeSettings * _Nonnull)setShadingType:(TriangleShadingType)st __attribute__((swift_name("setShadingType(st:)")));
-		[Export ("setShadingType:")]
-		TriangleRasterizeSettings SetShadingType (TriangleShadingType st);
-
-		// -(TriangleRasterizeSettings * _Nonnull)setCullingMode:(TriangleCullingMode)cm __attribute__((swift_name("setCullingMode(cm:)")));
-		[Export ("setCullingMode:")]
-		TriangleRasterizeSettings SetCullingMode (TriangleCullingMode cm);
-
-		// -(TriangleRasterizeSettings * _Nonnull)setGlCompatibleMode:(TriangleGlCompatibleMode)gm __attribute__((swift_name("setGlCompatibleMode(gm:)")));
-		[Export ("setGlCompatibleMode:")]
-		TriangleRasterizeSettings SetGlCompatibleMode (TriangleGlCompatibleMode gm);
-	}
-
-	// @interface Volume : NSObject
-	[BaseType (typeof (NSObject))]
-	interface Volume {
-		// -(instancetype _Nonnull)initWithVtype:(VolumeType)vtype settings:(VolumeSettings * _Nonnull)settings;
-		[Export ("initWithVtype:settings:")]
-		NativeHandle Constructor (VolumeType vtype, VolumeSettings settings);
-
-		// -(instancetype _Nonnull)initWithVtype:(VolumeType)vtype;
-		[Export ("initWithVtype:")]
-		NativeHandle Constructor (VolumeType vtype);
-
-		// -(void)integrateFrame:(OdometryFrame * _Nonnull)frame pose:(Mat * _Nonnull)pose __attribute__((swift_name("integrate(frame:pose:)")));
-		[Export ("integrateFrame:pose:")]
-		void IntegrateFrame (OdometryFrame frame, Mat pose);
-
-		// -(void)integrate:(Mat * _Nonnull)depth pose:(Mat * _Nonnull)pose __attribute__((swift_name("integrate(depth:pose:)")));
-		[Export ("integrate:pose:")]
-		void Integrate (Mat depth, Mat pose);
-
-		// -(void)integrateColor:(Mat * _Nonnull)depth image:(Mat * _Nonnull)image pose:(Mat * _Nonnull)pose __attribute__((swift_name("integrate(depth:image:pose:)")));
-		[Export ("integrateColor:image:pose:")]
-		void IntegrateColor (Mat depth, Mat image, Mat pose);
-
-		// -(void)raycast:(Mat * _Nonnull)cameraPose points:(Mat * _Nonnull)points normals:(Mat * _Nonnull)normals __attribute__((swift_name("raycast(cameraPose:points:normals:)")));
-		[Export ("raycast:points:normals:")]
-		void Raycast (Mat cameraPose, Mat points, Mat normals);
-
-		// -(void)raycastColor:(Mat * _Nonnull)cameraPose points:(Mat * _Nonnull)points normals:(Mat * _Nonnull)normals colors:(Mat * _Nonnull)colors __attribute__((swift_name("raycast(cameraPose:points:normals:colors:)")));
-		[Export ("raycastColor:points:normals:colors:")]
-		void RaycastColor (Mat cameraPose, Mat points, Mat normals, Mat colors);
-
-		// -(void)raycastEx:(Mat * _Nonnull)cameraPose height:(int)height width:(int)width K:(Mat * _Nonnull)K points:(Mat * _Nonnull)points normals:(Mat * _Nonnull)normals __attribute__((swift_name("raycast(cameraPose:height:width:K:points:normals:)")));
-		[Export ("raycastEx:height:width:K:points:normals:")]
-		void RaycastEx (Mat cameraPose, int height, int width, Mat K, Mat points, Mat normals);
-
-		// -(void)raycastExColor:(Mat * _Nonnull)cameraPose height:(int)height width:(int)width K:(Mat * _Nonnull)K points:(Mat * _Nonnull)points normals:(Mat * _Nonnull)normals colors:(Mat * _Nonnull)colors __attribute__((swift_name("raycast(cameraPose:height:width:K:points:normals:colors:)")));
-		[Export ("raycastExColor:height:width:K:points:normals:colors:")]
-		void RaycastExColor (Mat cameraPose, int height, int width, Mat K, Mat points, Mat normals, Mat colors);
-
-		// -(void)fetchNormals:(Mat * _Nonnull)points normals:(Mat * _Nonnull)normals __attribute__((swift_name("fetchNormals(points:normals:)")));
-		[Export ("fetchNormals:normals:")]
-		void FetchNormals (Mat points, Mat normals);
-
-		// -(void)fetchPointsNormals:(Mat * _Nonnull)points normals:(Mat * _Nonnull)normals __attribute__((swift_name("fetchPointsNormals(points:normals:)")));
-		[Export ("fetchPointsNormals:normals:")]
-		void FetchPointsNormals (Mat points, Mat normals);
-
-		// -(void)fetchPointsNormalsColors:(Mat * _Nonnull)points normals:(Mat * _Nonnull)normals colors:(Mat * _Nonnull)colors __attribute__((swift_name("fetchPointsNormalsColors(points:normals:colors:)")));
-		[Export ("fetchPointsNormalsColors:normals:colors:")]
-		void FetchPointsNormalsColors (Mat points, Mat normals, Mat colors);
-
-		// -(void)reset __attribute__((swift_name("reset()")));
-		[Export ("reset")]
-		void Reset ();
-
-		// -(int)getVisibleBlocks __attribute__((swift_name("getVisibleBlocks()")));
-		[Export ("getVisibleBlocks")]
-		int VisibleBlocks { get; }
-
-		// -(size_t)getTotalVolumeUnits __attribute__((swift_name("getTotalVolumeUnits()")));
-		[Export ("getTotalVolumeUnits")]
-		nuint TotalVolumeUnits { get; }
-
-		// -(void)getBoundingBox:(Mat * _Nonnull)bb precision:(int)precision __attribute__((swift_name("getBoundingBox(bb:precision:)")));
-		[Export ("getBoundingBox:precision:")]
-		void GetBoundingBox (Mat bb, int precision);
-
-		// -(void)setEnableGrowth:(BOOL)v __attribute__((swift_name("setEnableGrowth(v:)")));
-		[Export ("setEnableGrowth:")]
-		void SetEnableGrowth (bool v);
-
-		// -(BOOL)getEnableGrowth __attribute__((swift_name("getEnableGrowth()")));
-		[Export ("getEnableGrowth")]
-		bool EnableGrowth { get; }
-	}
-
-	// @interface VolumeSettings : NSObject
-	[BaseType (typeof (NSObject))]
-	interface VolumeSettings {
-		// -(instancetype _Nonnull)initWithVolumeType:(VolumeType)volumeType;
-		[Export ("initWithVolumeType:")]
-		NativeHandle Constructor (VolumeType volumeType);
-
-		// -(void)setIntegrateWidth:(int)val __attribute__((swift_name("setIntegrateWidth(val:)")));
-		[Export ("setIntegrateWidth:")]
-		void SetIntegrateWidth (int val);
-
-		// -(int)getIntegrateWidth __attribute__((swift_name("getIntegrateWidth()")));
-		[Export ("getIntegrateWidth")]
-		int IntegrateWidth { get; }
-
-		// -(void)setIntegrateHeight:(int)val __attribute__((swift_name("setIntegrateHeight(val:)")));
-		[Export ("setIntegrateHeight:")]
-		void SetIntegrateHeight (int val);
-
-		// -(int)getIntegrateHeight __attribute__((swift_name("getIntegrateHeight()")));
-		[Export ("getIntegrateHeight")]
-		int IntegrateHeight { get; }
-
-		// -(void)setRaycastWidth:(int)val __attribute__((swift_name("setRaycastWidth(val:)")));
-		[Export ("setRaycastWidth:")]
-		void SetRaycastWidth (int val);
-
-		// -(int)getRaycastWidth __attribute__((swift_name("getRaycastWidth()")));
-		[Export ("getRaycastWidth")]
-		int RaycastWidth { get; }
-
-		// -(void)setRaycastHeight:(int)val __attribute__((swift_name("setRaycastHeight(val:)")));
-		[Export ("setRaycastHeight:")]
-		void SetRaycastHeight (int val);
-
-		// -(int)getRaycastHeight __attribute__((swift_name("getRaycastHeight()")));
-		[Export ("getRaycastHeight")]
-		int RaycastHeight { get; }
-
-		// -(void)setDepthFactor:(float)val __attribute__((swift_name("setDepthFactor(val:)")));
-		[Export ("setDepthFactor:")]
-		void SetDepthFactor (float val);
-
-		// -(float)getDepthFactor __attribute__((swift_name("getDepthFactor()")));
-		[Export ("getDepthFactor")]
-		float DepthFactor { get; }
-
-		// -(void)setVoxelSize:(float)val __attribute__((swift_name("setVoxelSize(val:)")));
-		[Export ("setVoxelSize:")]
-		void SetVoxelSize (float val);
-
-		// -(float)getVoxelSize __attribute__((swift_name("getVoxelSize()")));
-		[Export ("getVoxelSize")]
-		float VoxelSize { get; }
-
-		// -(void)setTsdfTruncateDistance:(float)val __attribute__((swift_name("setTsdfTruncateDistance(val:)")));
-		[Export ("setTsdfTruncateDistance:")]
-		void SetTsdfTruncateDistance (float val);
-
-		// -(float)getTsdfTruncateDistance __attribute__((swift_name("getTsdfTruncateDistance()")));
-		[Export ("getTsdfTruncateDistance")]
-		float TsdfTruncateDistance { get; }
-
-		// -(void)setMaxDepth:(float)val __attribute__((swift_name("setMaxDepth(val:)")));
-		[Export ("setMaxDepth:")]
-		void SetMaxDepth (float val);
-
-		// -(float)getMaxDepth __attribute__((swift_name("getMaxDepth()")));
-		[Export ("getMaxDepth")]
-		float MaxDepth { get; }
-
-		// -(void)setMaxWeight:(int)val __attribute__((swift_name("setMaxWeight(val:)")));
-		[Export ("setMaxWeight:")]
-		void SetMaxWeight (int val);
-
-		// -(int)getMaxWeight __attribute__((swift_name("getMaxWeight()")));
-		[Export ("getMaxWeight")]
-		int MaxWeight { get; }
-
-		// -(void)setRaycastStepFactor:(float)val __attribute__((swift_name("setRaycastStepFactor(val:)")));
-		[Export ("setRaycastStepFactor:")]
-		void SetRaycastStepFactor (float val);
-
-		// -(float)getRaycastStepFactor __attribute__((swift_name("getRaycastStepFactor()")));
-		[Export ("getRaycastStepFactor")]
-		float RaycastStepFactor { get; }
-
-		// -(void)setVolumePose:(Mat * _Nonnull)val __attribute__((swift_name("setVolumePose(val:)")));
-		[Export ("setVolumePose:")]
-		void SetVolumePose (Mat val);
-
-		// -(void)getVolumePose:(Mat * _Nonnull)val __attribute__((swift_name("getVolumePose(val:)")));
-		[Export ("getVolumePose:")]
-		void GetVolumePose (Mat val);
-
-		// -(void)setVolumeResolution:(Mat * _Nonnull)val __attribute__((swift_name("setVolumeResolution(val:)")));
-		[Export ("setVolumeResolution:")]
-		void SetVolumeResolution (Mat val);
-
-		// -(void)getVolumeResolution:(Mat * _Nonnull)val __attribute__((swift_name("getVolumeResolution(val:)")));
-		[Export ("getVolumeResolution:")]
-		void GetVolumeResolution (Mat val);
-
-		// -(void)getVolumeStrides:(Mat * _Nonnull)val __attribute__((swift_name("getVolumeStrides(val:)")));
-		[Export ("getVolumeStrides:")]
-		void GetVolumeStrides (Mat val);
-
-		// -(void)setCameraIntegrateIntrinsics:(Mat * _Nonnull)val __attribute__((swift_name("setCameraIntegrateIntrinsics(val:)")));
-		[Export ("setCameraIntegrateIntrinsics:")]
-		void SetCameraIntegrateIntrinsics (Mat val);
-
-		// -(void)getCameraIntegrateIntrinsics:(Mat * _Nonnull)val __attribute__((swift_name("getCameraIntegrateIntrinsics(val:)")));
-		[Export ("getCameraIntegrateIntrinsics:")]
-		void GetCameraIntegrateIntrinsics (Mat val);
-
-		// -(void)setCameraRaycastIntrinsics:(Mat * _Nonnull)val __attribute__((swift_name("setCameraRaycastIntrinsics(val:)")));
-		[Export ("setCameraRaycastIntrinsics:")]
-		void SetCameraRaycastIntrinsics (Mat val);
-
-		// -(void)getCameraRaycastIntrinsics:(Mat * _Nonnull)val __attribute__((swift_name("getCameraRaycastIntrinsics(val:)")));
-		[Export ("getCameraRaycastIntrinsics:")]
-		void GetCameraRaycastIntrinsics (Mat val);
-	}
-
-	// @interface PoseGraph : NSObject
-	[BaseType (typeof (NSObject))]
-	interface PoseGraph {
-	}
-
 	// @interface Stereo : NSObject
 	[BaseType (typeof (NSObject))]
 	interface Stereo {
@@ -9268,2425 +8562,6 @@ namespace OpenCvSdk {
 		StereoSGBM Create ();
 	}
 
-	// @interface Dnn : NSObject
-	[BaseType (typeof (NSObject))]
-	interface Dnn {
-		// +(Net * _Nonnull)readNetFromTensorflowFile:(NSString * _Nonnull)model config:(NSString * _Nonnull)config engine:(int)engine extraOutputs:(NSArray<NSString *> * _Nonnull)extraOutputs __attribute__((swift_name("readNetFromTensorflow(model:config:engine:extraOutputs:)")));
-		[Static]
-		[Export ("readNetFromTensorflowFile:config:engine:extraOutputs:")]
-		Net ReadNetFromTensorflowFile (string model, string config, int engine, string [] extraOutputs);
-
-		// +(Net * _Nonnull)readNetFromTensorflowFile:(NSString * _Nonnull)model config:(NSString * _Nonnull)config engine:(int)engine __attribute__((swift_name("readNetFromTensorflow(model:config:engine:)")));
-		[Static]
-		[Export ("readNetFromTensorflowFile:config:engine:")]
-		Net ReadNetFromTensorflowFile (string model, string config, int engine);
-
-		// +(Net * _Nonnull)readNetFromTensorflowFile:(NSString * _Nonnull)model config:(NSString * _Nonnull)config __attribute__((swift_name("readNetFromTensorflow(model:config:)")));
-		[Static]
-		[Export ("readNetFromTensorflowFile:config:")]
-		Net ReadNetFromTensorflowFile (string model, string config);
-
-		// +(Net * _Nonnull)readNetFromTensorflowFile:(NSString * _Nonnull)model __attribute__((swift_name("readNetFromTensorflow(model:)")));
-		[Static]
-		[Export ("readNetFromTensorflowFile:")]
-		Net ReadNetFromTensorflowFile (string model);
-
-		// +(Net * _Nonnull)readNetFromTensorflowBuffer:(ByteVector * _Nonnull)bufferModel bufferConfig:(ByteVector * _Nonnull)bufferConfig engine:(int)engine extraOutputs:(NSArray<NSString *> * _Nonnull)extraOutputs __attribute__((swift_name("readNetFromTensorflow(bufferModel:bufferConfig:engine:extraOutputs:)")));
-		[Static]
-		[Export ("readNetFromTensorflowBuffer:bufferConfig:engine:extraOutputs:")]
-		Net ReadNetFromTensorflowBuffer (ByteVector bufferModel, ByteVector bufferConfig, int engine, string [] extraOutputs);
-
-		// +(Net * _Nonnull)readNetFromTensorflowBuffer:(ByteVector * _Nonnull)bufferModel bufferConfig:(ByteVector * _Nonnull)bufferConfig engine:(int)engine __attribute__((swift_name("readNetFromTensorflow(bufferModel:bufferConfig:engine:)")));
-		[Static]
-		[Export ("readNetFromTensorflowBuffer:bufferConfig:engine:")]
-		Net ReadNetFromTensorflowBuffer (ByteVector bufferModel, ByteVector bufferConfig, int engine);
-
-		// +(Net * _Nonnull)readNetFromTensorflowBuffer:(ByteVector * _Nonnull)bufferModel bufferConfig:(ByteVector * _Nonnull)bufferConfig __attribute__((swift_name("readNetFromTensorflow(bufferModel:bufferConfig:)")));
-		[Static]
-		[Export ("readNetFromTensorflowBuffer:bufferConfig:")]
-		Net ReadNetFromTensorflowBuffer (ByteVector bufferModel, ByteVector bufferConfig);
-
-		// +(Net * _Nonnull)readNetFromTensorflowBuffer:(ByteVector * _Nonnull)bufferModel __attribute__((swift_name("readNetFromTensorflow(bufferModel:)")));
-		[Static]
-		[Export ("readNetFromTensorflowBuffer:")]
-		Net ReadNetFromTensorflowBuffer (ByteVector bufferModel);
-
-		// +(Net * _Nonnull)readNetFromTFLiteFile:(NSString * _Nonnull)model engine:(int)engine __attribute__((swift_name("readNetFromTFLite(model:engine:)")));
-		[Static]
-		[Export ("readNetFromTFLiteFile:engine:")]
-		Net ReadNetFromTFLiteFile (string model, int engine);
-
-		// +(Net * _Nonnull)readNetFromTFLiteFile:(NSString * _Nonnull)model __attribute__((swift_name("readNetFromTFLite(model:)")));
-		[Static]
-		[Export ("readNetFromTFLiteFile:")]
-		Net ReadNetFromTFLiteFile (string model);
-
-		// +(Net * _Nonnull)readNetFromTFLite:(ByteVector * _Nonnull)bufferModel engine:(int)engine __attribute__((swift_name("readNetFromTFLite(bufferModel:engine:)")));
-		[Static]
-		[Export ("readNetFromTFLite:engine:")]
-		Net ReadNetFromTFLite (ByteVector bufferModel, int engine);
-
-		// +(Net * _Nonnull)readNetFromTFLite:(ByteVector * _Nonnull)bufferModel __attribute__((swift_name("readNetFromTFLite(bufferModel:)")));
-		[Static]
-		[Export ("readNetFromTFLite:")]
-		Net ReadNetFromTFLite (ByteVector bufferModel);
-
-		// +(Net * _Nonnull)readNet:(NSString * _Nonnull)model config:(NSString * _Nonnull)config framework:(NSString * _Nonnull)framework engine:(int)engine __attribute__((swift_name("readNet(model:config:framework:engine:)")));
-		[Static]
-		[Export ("readNet:config:framework:engine:")]
-		Net ReadNet (string model, string config, string framework, int engine);
-
-		// +(Net * _Nonnull)readNet:(NSString * _Nonnull)model config:(NSString * _Nonnull)config framework:(NSString * _Nonnull)framework __attribute__((swift_name("readNet(model:config:framework:)")));
-		[Static]
-		[Export ("readNet:config:framework:")]
-		Net ReadNet (string model, string config, string framework);
-
-		// +(Net * _Nonnull)readNet:(NSString * _Nonnull)model config:(NSString * _Nonnull)config __attribute__((swift_name("readNet(model:config:)")));
-		[Static]
-		[Export ("readNet:config:")]
-		Net ReadNet (string model, string config);
-
-		// +(Net * _Nonnull)readNet:(NSString * _Nonnull)model __attribute__((swift_name("readNet(model:)")));
-		[Static]
-		[Export ("readNet:")]
-		Net ReadNet (string model);
-
-		// +(Net * _Nonnull)readNet:(NSString * _Nonnull)framework bufferModel:(ByteVector * _Nonnull)bufferModel bufferConfig:(ByteVector * _Nonnull)bufferConfig engine:(int)engine __attribute__((swift_name("readNet(framework:bufferModel:bufferConfig:engine:)")));
-		[Static]
-		[Export ("readNet:bufferModel:bufferConfig:engine:")]
-		Net ReadNet (string framework, ByteVector bufferModel, ByteVector bufferConfig, int engine);
-
-		// +(Net * _Nonnull)readNet:(NSString * _Nonnull)framework bufferModel:(ByteVector * _Nonnull)bufferModel bufferConfig:(ByteVector * _Nonnull)bufferConfig __attribute__((swift_name("readNet(framework:bufferModel:bufferConfig:)")));
-		[Static]
-		[Export ("readNet:bufferModel:bufferConfig:")]
-		Net ReadNet (string framework, ByteVector bufferModel, ByteVector bufferConfig);
-
-		// +(Net * _Nonnull)readNet:(NSString * _Nonnull)framework bufferModel:(ByteVector * _Nonnull)bufferModel __attribute__((swift_name("readNet(framework:bufferModel:)")));
-		[Static]
-		[Export ("readNet:bufferModel:")]
-		Net ReadNet (string framework, ByteVector bufferModel);
-
-		// +(Net * _Nonnull)readNetFromModelOptimizer:(NSString * _Nonnull)xml bin:(NSString * _Nonnull)bin __attribute__((swift_name("readNetFromModelOptimizer(xml:bin:)")));
-		[Static]
-		[Export ("readNetFromModelOptimizer:bin:")]
-		Net ReadNetFromModelOptimizer (string xml, string bin);
-
-		// +(Net * _Nonnull)readNetFromModelOptimizer:(NSString * _Nonnull)xml __attribute__((swift_name("readNetFromModelOptimizer(xml:)")));
-		[Static]
-		[Export ("readNetFromModelOptimizer:")]
-		Net ReadNetFromModelOptimizer (string xml);
-
-		// +(Net * _Nonnull)readNetFromModelOptimizer:(ByteVector * _Nonnull)bufferModelConfig bufferWeights:(ByteVector * _Nonnull)bufferWeights __attribute__((swift_name("readNetFromModelOptimizer(bufferModelConfig:bufferWeights:)")));
-		[Static]
-		[Export ("readNetFromModelOptimizer:bufferWeights:")]
-		Net ReadNetFromModelOptimizer (ByteVector bufferModelConfig, ByteVector bufferWeights);
-
-		// +(Net * _Nonnull)readNetFromONNXFile:(NSString * _Nonnull)onnxFile engine:(int)engine __attribute__((swift_name("readNetFromONNX(onnxFile:engine:)")));
-		[Static]
-		[Export ("readNetFromONNXFile:engine:")]
-		Net ReadNetFromONNXFile (string onnxFile, int engine);
-
-		// +(Net * _Nonnull)readNetFromONNXFile:(NSString * _Nonnull)onnxFile __attribute__((swift_name("readNetFromONNX(onnxFile:)")));
-		[Static]
-		[Export ("readNetFromONNXFile:")]
-		Net ReadNetFromONNXFile (string onnxFile);
-
-		// +(Net * _Nonnull)readNetFromONNXBuffer:(ByteVector * _Nonnull)buffer engine:(int)engine __attribute__((swift_name("readNetFromONNX(buffer:engine:)")));
-		[Static]
-		[Export ("readNetFromONNXBuffer:engine:")]
-		Net ReadNetFromONNXBuffer (ByteVector buffer, int engine);
-
-		// +(Net * _Nonnull)readNetFromONNXBuffer:(ByteVector * _Nonnull)buffer __attribute__((swift_name("readNetFromONNX(buffer:)")));
-		[Static]
-		[Export ("readNetFromONNXBuffer:")]
-		Net ReadNetFromONNXBuffer (ByteVector buffer);
-
-		// +(Mat * _Nonnull)readTensorFromONNX:(NSString * _Nonnull)path __attribute__((swift_name("readTensorFromONNX(path:)")));
-		[Static]
-		[Export ("readTensorFromONNX:")]
-		Mat ReadTensorFromONNX (string path);
-
-		// +(Mat * _Nonnull)blobFromImage:(Mat * _Nonnull)image scalefactor:(double)scalefactor size:(Size2i * _Nonnull)size mean:(Scalar * _Nonnull)mean swapRB:(BOOL)swapRB crop:(BOOL)crop ddepth:(int)ddepth __attribute__((swift_name("blobFromImage(image:scalefactor:size:mean:swapRB:crop:ddepth:)")));
-		[Static]
-		[Export ("blobFromImage:scalefactor:size:mean:swapRB:crop:ddepth:")]
-		Mat BlobFromImage (Mat image, double scalefactor, Size2i size, Scalar mean, bool swapRB, bool crop, int ddepth);
-
-		// +(Mat * _Nonnull)blobFromImage:(Mat * _Nonnull)image scalefactor:(double)scalefactor size:(Size2i * _Nonnull)size mean:(Scalar * _Nonnull)mean swapRB:(BOOL)swapRB crop:(BOOL)crop __attribute__((swift_name("blobFromImage(image:scalefactor:size:mean:swapRB:crop:)")));
-		[Static]
-		[Export ("blobFromImage:scalefactor:size:mean:swapRB:crop:")]
-		Mat BlobFromImage (Mat image, double scalefactor, Size2i size, Scalar mean, bool swapRB, bool crop);
-
-		// +(Mat * _Nonnull)blobFromImage:(Mat * _Nonnull)image scalefactor:(double)scalefactor size:(Size2i * _Nonnull)size mean:(Scalar * _Nonnull)mean swapRB:(BOOL)swapRB __attribute__((swift_name("blobFromImage(image:scalefactor:size:mean:swapRB:)")));
-		[Static]
-		[Export ("blobFromImage:scalefactor:size:mean:swapRB:")]
-		Mat BlobFromImage (Mat image, double scalefactor, Size2i size, Scalar mean, bool swapRB);
-
-		// +(Mat * _Nonnull)blobFromImage:(Mat * _Nonnull)image scalefactor:(double)scalefactor size:(Size2i * _Nonnull)size mean:(Scalar * _Nonnull)mean __attribute__((swift_name("blobFromImage(image:scalefactor:size:mean:)")));
-		[Static]
-		[Export ("blobFromImage:scalefactor:size:mean:")]
-		Mat BlobFromImage (Mat image, double scalefactor, Size2i size, Scalar mean);
-
-		// +(Mat * _Nonnull)blobFromImage:(Mat * _Nonnull)image scalefactor:(double)scalefactor size:(Size2i * _Nonnull)size __attribute__((swift_name("blobFromImage(image:scalefactor:size:)")));
-		[Static]
-		[Export ("blobFromImage:scalefactor:size:")]
-		Mat BlobFromImage (Mat image, double scalefactor, Size2i size);
-
-		// +(Mat * _Nonnull)blobFromImage:(Mat * _Nonnull)image scalefactor:(double)scalefactor __attribute__((swift_name("blobFromImage(image:scalefactor:)")));
-		[Static]
-		[Export ("blobFromImage:scalefactor:")]
-		Mat BlobFromImage (Mat image, double scalefactor);
-
-		// +(Mat * _Nonnull)blobFromImage:(Mat * _Nonnull)image __attribute__((swift_name("blobFromImage(image:)")));
-		[Static]
-		[Export ("blobFromImage:")]
-		Mat BlobFromImage (Mat image);
-
-		// +(Mat * _Nonnull)blobFromImages:(NSArray<Mat *> * _Nonnull)images scalefactor:(double)scalefactor size:(Size2i * _Nonnull)size mean:(Scalar * _Nonnull)mean swapRB:(BOOL)swapRB crop:(BOOL)crop ddepth:(int)ddepth __attribute__((swift_name("blobFromImages(images:scalefactor:size:mean:swapRB:crop:ddepth:)")));
-		[Static]
-		[Export ("blobFromImages:scalefactor:size:mean:swapRB:crop:ddepth:")]
-		Mat BlobFromImages (Mat [] images, double scalefactor, Size2i size, Scalar mean, bool swapRB, bool crop, int ddepth);
-
-		// +(Mat * _Nonnull)blobFromImages:(NSArray<Mat *> * _Nonnull)images scalefactor:(double)scalefactor size:(Size2i * _Nonnull)size mean:(Scalar * _Nonnull)mean swapRB:(BOOL)swapRB crop:(BOOL)crop __attribute__((swift_name("blobFromImages(images:scalefactor:size:mean:swapRB:crop:)")));
-		[Static]
-		[Export ("blobFromImages:scalefactor:size:mean:swapRB:crop:")]
-		Mat BlobFromImages (Mat [] images, double scalefactor, Size2i size, Scalar mean, bool swapRB, bool crop);
-
-		// +(Mat * _Nonnull)blobFromImages:(NSArray<Mat *> * _Nonnull)images scalefactor:(double)scalefactor size:(Size2i * _Nonnull)size mean:(Scalar * _Nonnull)mean swapRB:(BOOL)swapRB __attribute__((swift_name("blobFromImages(images:scalefactor:size:mean:swapRB:)")));
-		[Static]
-		[Export ("blobFromImages:scalefactor:size:mean:swapRB:")]
-		Mat BlobFromImages (Mat [] images, double scalefactor, Size2i size, Scalar mean, bool swapRB);
-
-		// +(Mat * _Nonnull)blobFromImages:(NSArray<Mat *> * _Nonnull)images scalefactor:(double)scalefactor size:(Size2i * _Nonnull)size mean:(Scalar * _Nonnull)mean __attribute__((swift_name("blobFromImages(images:scalefactor:size:mean:)")));
-		[Static]
-		[Export ("blobFromImages:scalefactor:size:mean:")]
-		Mat BlobFromImages (Mat [] images, double scalefactor, Size2i size, Scalar mean);
-
-		// +(Mat * _Nonnull)blobFromImages:(NSArray<Mat *> * _Nonnull)images scalefactor:(double)scalefactor size:(Size2i * _Nonnull)size __attribute__((swift_name("blobFromImages(images:scalefactor:size:)")));
-		[Static]
-		[Export ("blobFromImages:scalefactor:size:")]
-		Mat BlobFromImages (Mat [] images, double scalefactor, Size2i size);
-
-		// +(Mat * _Nonnull)blobFromImages:(NSArray<Mat *> * _Nonnull)images scalefactor:(double)scalefactor __attribute__((swift_name("blobFromImages(images:scalefactor:)")));
-		[Static]
-		[Export ("blobFromImages:scalefactor:")]
-		Mat BlobFromImages (Mat [] images, double scalefactor);
-
-		// +(Mat * _Nonnull)blobFromImages:(NSArray<Mat *> * _Nonnull)images __attribute__((swift_name("blobFromImages(images:)")));
-		[Static]
-		[Export ("blobFromImages:")]
-		Mat BlobFromImages (Mat [] images);
-
-		// +(Mat * _Nonnull)blobFromImageWithParams:(Mat * _Nonnull)image param:(Image2BlobParams * _Nonnull)param __attribute__((swift_name("blobFromImageWithParams(image:param:)")));
-		[Static]
-		[Export ("blobFromImageWithParams:param:")]
-		Mat BlobFromImageWithParams (Mat image, Image2BlobParams param);
-
-		// +(Mat * _Nonnull)blobFromImageWithParams:(Mat * _Nonnull)image __attribute__((swift_name("blobFromImageWithParams(image:)")));
-		[Static]
-		[Export ("blobFromImageWithParams:")]
-		Mat BlobFromImageWithParams (Mat image);
-
-		// +(void)blobFromImageWithParams:(Mat * _Nonnull)image blob:(Mat * _Nonnull)blob param:(Image2BlobParams * _Nonnull)param __attribute__((swift_name("blobFromImageWithParams(image:blob:param:)")));
-		[Static]
-		[Export ("blobFromImageWithParams:blob:param:")]
-		void BlobFromImageWithParams (Mat image, Mat blob, Image2BlobParams param);
-
-		// +(void)blobFromImageWithParams:(Mat * _Nonnull)image blob:(Mat * _Nonnull)blob __attribute__((swift_name("blobFromImageWithParams(image:blob:)")));
-		[Static]
-		[Export ("blobFromImageWithParams:blob:")]
-		void BlobFromImageWithParams (Mat image, Mat blob);
-
-		// +(Mat * _Nonnull)blobFromImagesWithParams:(NSArray<Mat *> * _Nonnull)images param:(Image2BlobParams * _Nonnull)param __attribute__((swift_name("blobFromImagesWithParams(images:param:)")));
-		[Static]
-		[Export ("blobFromImagesWithParams:param:")]
-		Mat BlobFromImagesWithParams (Mat [] images, Image2BlobParams param);
-
-		// +(Mat * _Nonnull)blobFromImagesWithParams:(NSArray<Mat *> * _Nonnull)images __attribute__((swift_name("blobFromImagesWithParams(images:)")));
-		[Static]
-		[Export ("blobFromImagesWithParams:")]
-		Mat BlobFromImagesWithParams (Mat [] images);
-
-		// +(void)blobFromImagesWithParams:(NSArray<Mat *> * _Nonnull)images blob:(Mat * _Nonnull)blob param:(Image2BlobParams * _Nonnull)param __attribute__((swift_name("blobFromImagesWithParams(images:blob:param:)")));
-		[Static]
-		[Export ("blobFromImagesWithParams:blob:param:")]
-		void BlobFromImagesWithParams (Mat [] images, Mat blob, Image2BlobParams param);
-
-		// +(void)blobFromImagesWithParams:(NSArray<Mat *> * _Nonnull)images blob:(Mat * _Nonnull)blob __attribute__((swift_name("blobFromImagesWithParams(images:blob:)")));
-		[Static]
-		[Export ("blobFromImagesWithParams:blob:")]
-		void BlobFromImagesWithParams (Mat [] images, Mat blob);
-
-		// +(void)imagesFromBlob:(Mat * _Nonnull)blob_ images_:(NSMutableArray<Mat *> * _Nonnull)images_ __attribute__((swift_name("imagesFromBlob(blob_:images_:)")));
-		[Static]
-		[Export ("imagesFromBlob:images_:")]
-		void ImagesFromBlob (Mat blob_, NSMutableArray<Mat> images_);
-
-		// +(void)writeTextGraph:(NSString * _Nonnull)model output:(NSString * _Nonnull)output __attribute__((swift_name("writeTextGraph(model:output:)")));
-		[Static]
-		[Export ("writeTextGraph:output:")]
-		void WriteTextGraph (string model, string output);
-
-		// +(void)NMSBoxes:(NSArray<Rect2d *> * _Nonnull)bboxes scores:(FloatVector * _Nonnull)scores score_threshold:(float)score_threshold nms_threshold:(float)nms_threshold indices:(IntVector * _Nonnull)indices eta:(float)eta top_k:(int)top_k __attribute__((swift_name("NMSBoxes(bboxes:scores:score_threshold:nms_threshold:indices:eta:top_k:)")));
-		[Static]
-		[Export ("NMSBoxes:scores:score_threshold:nms_threshold:indices:eta:top_k:")]
-		void NMSBoxes (Rect2d [] bboxes, FloatVector scores, float score_threshold, float nms_threshold, IntVector indices, float eta, int top_k);
-
-		// +(void)NMSBoxes:(NSArray<Rect2d *> * _Nonnull)bboxes scores:(FloatVector * _Nonnull)scores score_threshold:(float)score_threshold nms_threshold:(float)nms_threshold indices:(IntVector * _Nonnull)indices eta:(float)eta __attribute__((swift_name("NMSBoxes(bboxes:scores:score_threshold:nms_threshold:indices:eta:)")));
-		[Static]
-		[Export ("NMSBoxes:scores:score_threshold:nms_threshold:indices:eta:")]
-		void NMSBoxes (Rect2d [] bboxes, FloatVector scores, float score_threshold, float nms_threshold, IntVector indices, float eta);
-
-		// +(void)NMSBoxes:(NSArray<Rect2d *> * _Nonnull)bboxes scores:(FloatVector * _Nonnull)scores score_threshold:(float)score_threshold nms_threshold:(float)nms_threshold indices:(IntVector * _Nonnull)indices __attribute__((swift_name("NMSBoxes(bboxes:scores:score_threshold:nms_threshold:indices:)")));
-		[Static]
-		[Export ("NMSBoxes:scores:score_threshold:nms_threshold:indices:")]
-		void NMSBoxes (Rect2d [] bboxes, FloatVector scores, float score_threshold, float nms_threshold, IntVector indices);
-
-		// +(void)NMSBoxesRotated:(NSArray<RotatedRect *> * _Nonnull)bboxes scores:(FloatVector * _Nonnull)scores score_threshold:(float)score_threshold nms_threshold:(float)nms_threshold indices:(IntVector * _Nonnull)indices eta:(float)eta top_k:(int)top_k __attribute__((swift_name("NMSBoxes(bboxes:scores:score_threshold:nms_threshold:indices:eta:top_k:)")));
-		[Static]
-		[Export ("NMSBoxesRotated:scores:score_threshold:nms_threshold:indices:eta:top_k:")]
-		void NMSBoxesRotated (RotatedRect [] bboxes, FloatVector scores, float score_threshold, float nms_threshold, IntVector indices, float eta, int top_k);
-
-		// +(void)NMSBoxesRotated:(NSArray<RotatedRect *> * _Nonnull)bboxes scores:(FloatVector * _Nonnull)scores score_threshold:(float)score_threshold nms_threshold:(float)nms_threshold indices:(IntVector * _Nonnull)indices eta:(float)eta __attribute__((swift_name("NMSBoxes(bboxes:scores:score_threshold:nms_threshold:indices:eta:)")));
-		[Static]
-		[Export ("NMSBoxesRotated:scores:score_threshold:nms_threshold:indices:eta:")]
-		void NMSBoxesRotated (RotatedRect [] bboxes, FloatVector scores, float score_threshold, float nms_threshold, IntVector indices, float eta);
-
-		// +(void)NMSBoxesRotated:(NSArray<RotatedRect *> * _Nonnull)bboxes scores:(FloatVector * _Nonnull)scores score_threshold:(float)score_threshold nms_threshold:(float)nms_threshold indices:(IntVector * _Nonnull)indices __attribute__((swift_name("NMSBoxes(bboxes:scores:score_threshold:nms_threshold:indices:)")));
-		[Static]
-		[Export ("NMSBoxesRotated:scores:score_threshold:nms_threshold:indices:")]
-		void NMSBoxesRotated (RotatedRect [] bboxes, FloatVector scores, float score_threshold, float nms_threshold, IntVector indices);
-
-		// +(void)NMSBoxesBatched:(NSArray<Rect2d *> * _Nonnull)bboxes scores:(FloatVector * _Nonnull)scores class_ids:(IntVector * _Nonnull)class_ids score_threshold:(float)score_threshold nms_threshold:(float)nms_threshold indices:(IntVector * _Nonnull)indices eta:(float)eta top_k:(int)top_k __attribute__((swift_name("NMSBoxesBatched(bboxes:scores:class_ids:score_threshold:nms_threshold:indices:eta:top_k:)")));
-		[Static]
-		[Export ("NMSBoxesBatched:scores:class_ids:score_threshold:nms_threshold:indices:eta:top_k:")]
-		void NMSBoxesBatched (Rect2d [] bboxes, FloatVector scores, IntVector class_ids, float score_threshold, float nms_threshold, IntVector indices, float eta, int top_k);
-
-		// +(void)NMSBoxesBatched:(NSArray<Rect2d *> * _Nonnull)bboxes scores:(FloatVector * _Nonnull)scores class_ids:(IntVector * _Nonnull)class_ids score_threshold:(float)score_threshold nms_threshold:(float)nms_threshold indices:(IntVector * _Nonnull)indices eta:(float)eta __attribute__((swift_name("NMSBoxesBatched(bboxes:scores:class_ids:score_threshold:nms_threshold:indices:eta:)")));
-		[Static]
-		[Export ("NMSBoxesBatched:scores:class_ids:score_threshold:nms_threshold:indices:eta:")]
-		void NMSBoxesBatched (Rect2d [] bboxes, FloatVector scores, IntVector class_ids, float score_threshold, float nms_threshold, IntVector indices, float eta);
-
-		// +(void)NMSBoxesBatched:(NSArray<Rect2d *> * _Nonnull)bboxes scores:(FloatVector * _Nonnull)scores class_ids:(IntVector * _Nonnull)class_ids score_threshold:(float)score_threshold nms_threshold:(float)nms_threshold indices:(IntVector * _Nonnull)indices __attribute__((swift_name("NMSBoxesBatched(bboxes:scores:class_ids:score_threshold:nms_threshold:indices:)")));
-		[Static]
-		[Export ("NMSBoxesBatched:scores:class_ids:score_threshold:nms_threshold:indices:")]
-		void NMSBoxesBatched (Rect2d [] bboxes, FloatVector scores, IntVector class_ids, float score_threshold, float nms_threshold, IntVector indices);
-
-		// +(void)softNMSBoxes:(NSArray<Rect2i *> * _Nonnull)bboxes scores:(FloatVector * _Nonnull)scores updated_scores:(FloatVector * _Nonnull)updated_scores score_threshold:(float)score_threshold nms_threshold:(float)nms_threshold indices:(IntVector * _Nonnull)indices top_k:(size_t)top_k sigma:(float)sigma method:(SoftNMSMethod)method __attribute__((swift_name("softNMSBoxes(bboxes:scores:updated_scores:score_threshold:nms_threshold:indices:top_k:sigma:method:)")));
-		[Static]
-		[Export ("softNMSBoxes:scores:updated_scores:score_threshold:nms_threshold:indices:top_k:sigma:method:")]
-		void SoftNMSBoxes (Rect2i [] bboxes, FloatVector scores, FloatVector updated_scores, float score_threshold, float nms_threshold, IntVector indices, nuint top_k, float sigma, SoftNMSMethod method);
-
-		// +(void)softNMSBoxes:(NSArray<Rect2i *> * _Nonnull)bboxes scores:(FloatVector * _Nonnull)scores updated_scores:(FloatVector * _Nonnull)updated_scores score_threshold:(float)score_threshold nms_threshold:(float)nms_threshold indices:(IntVector * _Nonnull)indices top_k:(size_t)top_k sigma:(float)sigma __attribute__((swift_name("softNMSBoxes(bboxes:scores:updated_scores:score_threshold:nms_threshold:indices:top_k:sigma:)")));
-		[Static]
-		[Export ("softNMSBoxes:scores:updated_scores:score_threshold:nms_threshold:indices:top_k:sigma:")]
-		void SoftNMSBoxes (Rect2i [] bboxes, FloatVector scores, FloatVector updated_scores, float score_threshold, float nms_threshold, IntVector indices, nuint top_k, float sigma);
-
-		// +(void)softNMSBoxes:(NSArray<Rect2i *> * _Nonnull)bboxes scores:(FloatVector * _Nonnull)scores updated_scores:(FloatVector * _Nonnull)updated_scores score_threshold:(float)score_threshold nms_threshold:(float)nms_threshold indices:(IntVector * _Nonnull)indices top_k:(size_t)top_k __attribute__((swift_name("softNMSBoxes(bboxes:scores:updated_scores:score_threshold:nms_threshold:indices:top_k:)")));
-		[Static]
-		[Export ("softNMSBoxes:scores:updated_scores:score_threshold:nms_threshold:indices:top_k:")]
-		void SoftNMSBoxes (Rect2i [] bboxes, FloatVector scores, FloatVector updated_scores, float score_threshold, float nms_threshold, IntVector indices, nuint top_k);
-
-		// +(void)softNMSBoxes:(NSArray<Rect2i *> * _Nonnull)bboxes scores:(FloatVector * _Nonnull)scores updated_scores:(FloatVector * _Nonnull)updated_scores score_threshold:(float)score_threshold nms_threshold:(float)nms_threshold indices:(IntVector * _Nonnull)indices __attribute__((swift_name("softNMSBoxes(bboxes:scores:updated_scores:score_threshold:nms_threshold:indices:)")));
-		[Static]
-		[Export ("softNMSBoxes:scores:updated_scores:score_threshold:nms_threshold:indices:")]
-		void SoftNMSBoxes (Rect2i [] bboxes, FloatVector scores, FloatVector updated_scores, float score_threshold, float nms_threshold, IntVector indices);
-
-		// +(NSString * _Nonnull)getInferenceEngineBackendType __attribute__((swift_name("getInferenceEngineBackendType()"))) __attribute__((deprecated("")));
-		[Static]
-		[Export ("getInferenceEngineBackendType")]
-		string InferenceEngineBackendType { get; }
-
-		// +(NSString * _Nonnull)setInferenceEngineBackendType:(NSString * _Nonnull)newBackendType __attribute__((swift_name("setInferenceEngineBackendType(newBackendType:)"))) __attribute__((deprecated("")));
-		[Static]
-		[Export ("setInferenceEngineBackendType:")]
-		string SetInferenceEngineBackendType (string newBackendType);
-
-		// +(void)resetMyriadDevice __attribute__((swift_name("resetMyriadDevice()")));
-		[Static]
-		[Export ("resetMyriadDevice")]
-		void ResetMyriadDevice ();
-
-		// +(NSString * _Nonnull)getInferenceEngineVPUType __attribute__((swift_name("getInferenceEngineVPUType()")));
-		[Static]
-		[Export ("getInferenceEngineVPUType")]
-		string InferenceEngineVPUType { get; }
-
-		// +(NSString * _Nonnull)getInferenceEngineCPUType __attribute__((swift_name("getInferenceEngineCPUType()")));
-		[Static]
-		[Export ("getInferenceEngineCPUType")]
-		string InferenceEngineCPUType { get; }
-
-		// +(void)releaseHDDLPlugin __attribute__((swift_name("releaseHDDLPlugin()")));
-		[Static]
-		[Export ("releaseHDDLPlugin")]
-		void ReleaseHDDLPlugin ();
-	}
-
-	// @interface Model : NSObject
-	[BaseType (typeof (NSObject))]
-	interface Model {
-		// -(instancetype _Nonnull)initWithModel:(NSString * _Nonnull)model config:(NSString * _Nonnull)config;
-		[Export ("initWithModel:config:")]
-		NativeHandle Constructor (string model, string config);
-
-		// -(instancetype _Nonnull)initWithModel:(NSString * _Nonnull)model;
-		[Export ("initWithModel:")]
-		NativeHandle Constructor (string model);
-
-		// -(instancetype _Nonnull)initWithNetwork:(Net * _Nonnull)network;
-		[Export ("initWithNetwork:")]
-		NativeHandle Constructor (Net network);
-
-		// -(Model * _Nonnull)setInputSize:(Size2i * _Nonnull)size __attribute__((swift_name("setInputSize(size:)")));
-		[Export ("setInputSize:")]
-		Model SetInputSize (Size2i size);
-
-		// -(Model * _Nonnull)setInputSize:(int)width height:(int)height __attribute__((swift_name("setInputSize(width:height:)")));
-		[Export ("setInputSize:height:")]
-		Model SetInputSize (int width, int height);
-
-		// -(Model * _Nonnull)setInputMean:(Scalar * _Nonnull)mean __attribute__((swift_name("setInputMean(mean:)")));
-		[Export ("setInputMean:")]
-		Model SetInputMean (Scalar mean);
-
-		// -(Model * _Nonnull)setInputScale:(Scalar * _Nonnull)scale __attribute__((swift_name("setInputScale(scale:)")));
-		[Export ("setInputScale:")]
-		Model SetInputScale (Scalar scale);
-
-		// -(Model * _Nonnull)setInputCrop:(BOOL)crop __attribute__((swift_name("setInputCrop(crop:)")));
-		[Export ("setInputCrop:")]
-		Model SetInputCrop (bool crop);
-
-		// -(Model * _Nonnull)setInputSwapRB:(BOOL)swapRB __attribute__((swift_name("setInputSwapRB(swapRB:)")));
-		[Export ("setInputSwapRB:")]
-		Model SetInputSwapRB (bool swapRB);
-
-		// -(Model * _Nonnull)setOutputNames:(NSArray<NSString *> * _Nonnull)outNames __attribute__((swift_name("setOutputNames(outNames:)")));
-		[Export ("setOutputNames:")]
-		Model SetOutputNames (string [] outNames);
-
-		// -(void)setInputParams:(double)scale size:(Size2i * _Nonnull)size mean:(Scalar * _Nonnull)mean swapRB:(BOOL)swapRB crop:(BOOL)crop __attribute__((swift_name("setInputParams(scale:size:mean:swapRB:crop:)")));
-		[Export ("setInputParams:size:mean:swapRB:crop:")]
-		void SetInputParams (double scale, Size2i size, Scalar mean, bool swapRB, bool crop);
-
-		// -(void)setInputParams:(double)scale size:(Size2i * _Nonnull)size mean:(Scalar * _Nonnull)mean swapRB:(BOOL)swapRB __attribute__((swift_name("setInputParams(scale:size:mean:swapRB:)")));
-		[Export ("setInputParams:size:mean:swapRB:")]
-		void SetInputParams (double scale, Size2i size, Scalar mean, bool swapRB);
-
-		// -(void)setInputParams:(double)scale size:(Size2i * _Nonnull)size mean:(Scalar * _Nonnull)mean __attribute__((swift_name("setInputParams(scale:size:mean:)")));
-		[Export ("setInputParams:size:mean:")]
-		void SetInputParams (double scale, Size2i size, Scalar mean);
-
-		// -(void)setInputParams:(double)scale size:(Size2i * _Nonnull)size __attribute__((swift_name("setInputParams(scale:size:)")));
-		[Export ("setInputParams:size:")]
-		void SetInputParams (double scale, Size2i size);
-
-		// -(void)setInputParams:(double)scale __attribute__((swift_name("setInputParams(scale:)")));
-		[Export ("setInputParams:")]
-		void SetInputParams (double scale);
-
-		// -(void)setInputParams __attribute__((swift_name("setInputParams()")));
-		[Export ("setInputParams")]
-		void SetInputParams ();
-
-		// -(void)predict:(Mat * _Nonnull)frame outs:(NSMutableArray<Mat *> * _Nonnull)outs __attribute__((swift_name("predict(frame:outs:)")));
-		[Export ("predict:outs:")]
-		void Predict (Mat frame, NSMutableArray<Mat> outs);
-
-		// -(Model * _Nonnull)setPreferableBackend:(Backend)backendId __attribute__((swift_name("setPreferableBackend(backendId:)")));
-		[Export ("setPreferableBackend:")]
-		Model SetPreferableBackend (Backend backendId);
-
-		// -(Model * _Nonnull)setPreferableTarget:(Target)targetId __attribute__((swift_name("setPreferableTarget(targetId:)")));
-		[Export ("setPreferableTarget:")]
-		Model SetPreferableTarget (Target targetId);
-
-		// -(Model * _Nonnull)enableWinograd:(BOOL)useWinograd __attribute__((swift_name("enableWinograd(useWinograd:)")));
-		[Export ("enableWinograd:")]
-		Model EnableWinograd (bool useWinograd);
-	}
-
-	// @interface ClassificationModel : Model
-	[BaseType (typeof (Model))]
-	interface ClassificationModel {
-		// -(instancetype _Nonnull)initWithModel:(NSString * _Nonnull)model config:(NSString * _Nonnull)config;
-		[Export ("initWithModel:config:")]
-		NativeHandle Constructor (string model, string config);
-
-		// -(instancetype _Nonnull)initWithModel:(NSString * _Nonnull)model;
-		[Export ("initWithModel:")]
-		NativeHandle Constructor (string model);
-
-		// -(instancetype _Nonnull)initWithNetwork:(Net * _Nonnull)network;
-		[Export ("initWithNetwork:")]
-		NativeHandle Constructor (Net network);
-
-		// -(ClassificationModel * _Nonnull)setEnableSoftmaxPostProcessing:(BOOL)enable __attribute__((swift_name("setEnableSoftmaxPostProcessing(enable:)")));
-		[Export ("setEnableSoftmaxPostProcessing:")]
-		ClassificationModel SetEnableSoftmaxPostProcessing (bool enable);
-
-		// -(BOOL)getEnableSoftmaxPostProcessing __attribute__((swift_name("getEnableSoftmaxPostProcessing()")));
-		[Export ("getEnableSoftmaxPostProcessing")]
-		bool EnableSoftmaxPostProcessing { get; }
-
-		// -(void)classify:(Mat * _Nonnull)frame classId:(int * _Nonnull)classId conf:(float * _Nonnull)conf __attribute__((swift_name("classify(frame:classId:conf:)")));
-		[Export ("classify:classId:conf:")]
-		unsafe void Classify (Mat frame, int* classId, float* conf);
-	}
-
-	// @interface DetectionModel : Model
-	[BaseType (typeof (Model))]
-	interface DetectionModel {
-		// -(instancetype _Nonnull)initWithModel:(NSString * _Nonnull)model config:(NSString * _Nonnull)config;
-		[Export ("initWithModel:config:")]
-		NativeHandle Constructor (string model, string config);
-
-		// -(instancetype _Nonnull)initWithModel:(NSString * _Nonnull)model;
-		[Export ("initWithModel:")]
-		NativeHandle Constructor (string model);
-
-		// -(instancetype _Nonnull)initWithNetwork:(Net * _Nonnull)network;
-		[Export ("initWithNetwork:")]
-		NativeHandle Constructor (Net network);
-
-		// -(DetectionModel * _Nonnull)setNmsAcrossClasses:(BOOL)value __attribute__((swift_name("setNmsAcrossClasses(value:)")));
-		[Export ("setNmsAcrossClasses:")]
-		DetectionModel SetNmsAcrossClasses (bool value);
-
-		// -(BOOL)getNmsAcrossClasses __attribute__((swift_name("getNmsAcrossClasses()")));
-		[Export ("getNmsAcrossClasses")]
-		bool NmsAcrossClasses { get; }
-
-		// -(void)detect:(Mat * _Nonnull)frame classIds:(IntVector * _Nonnull)classIds confidences:(FloatVector * _Nonnull)confidences boxes:(NSMutableArray<Rect2i *> * _Nonnull)boxes confThreshold:(float)confThreshold nmsThreshold:(float)nmsThreshold __attribute__((swift_name("detect(frame:classIds:confidences:boxes:confThreshold:nmsThreshold:)")));
-		[Export ("detect:classIds:confidences:boxes:confThreshold:nmsThreshold:")]
-		void Detect (Mat frame, IntVector classIds, FloatVector confidences, NSMutableArray<Rect2i> boxes, float confThreshold, float nmsThreshold);
-
-		// -(void)detect:(Mat * _Nonnull)frame classIds:(IntVector * _Nonnull)classIds confidences:(FloatVector * _Nonnull)confidences boxes:(NSMutableArray<Rect2i *> * _Nonnull)boxes confThreshold:(float)confThreshold __attribute__((swift_name("detect(frame:classIds:confidences:boxes:confThreshold:)")));
-		[Export ("detect:classIds:confidences:boxes:confThreshold:")]
-		void Detect (Mat frame, IntVector classIds, FloatVector confidences, NSMutableArray<Rect2i> boxes, float confThreshold);
-
-		// -(void)detect:(Mat * _Nonnull)frame classIds:(IntVector * _Nonnull)classIds confidences:(FloatVector * _Nonnull)confidences boxes:(NSMutableArray<Rect2i *> * _Nonnull)boxes __attribute__((swift_name("detect(frame:classIds:confidences:boxes:)")));
-		[Export ("detect:classIds:confidences:boxes:")]
-		void Detect (Mat frame, IntVector classIds, FloatVector confidences, NSMutableArray<Rect2i> boxes);
-	}
-
-	// @interface DictValue : NSObject
-	[BaseType (typeof (NSObject))]
-	interface DictValue {
-		// -(instancetype _Nonnull)initWithI:(int)i;
-		[Export ("initWithI:")]
-		NativeHandle Constructor (int i);
-
-		// -(instancetype _Nonnull)initWithP:(double)p;
-		[Export ("initWithP:")]
-		NativeHandle Constructor (double p);
-
-		// -(instancetype _Nonnull)initWithS:(NSString * _Nonnull)s;
-		[Export ("initWithS:")]
-		NativeHandle Constructor (string s);
-
-		// -(BOOL)isInt __attribute__((swift_name("isInt()")));
-		[Export ("isInt")]
-		bool IsInt { get; }
-
-		// -(BOOL)isString __attribute__((swift_name("isString()")));
-		[Export ("isString")]
-		bool IsString { get; }
-
-		// -(BOOL)isReal __attribute__((swift_name("isReal()")));
-		[Export ("isReal")]
-		bool IsReal { get; }
-
-		// -(int)getIntValue:(int)idx __attribute__((swift_name("getIntValue(idx:)")));
-		[Export ("getIntValue:")]
-		int GetIntValue (int idx);
-
-		// -(int)getIntValue __attribute__((swift_name("getIntValue()")));
-		[Export ("getIntValue")]
-		int IntValue { get; }
-
-		// -(double)getRealValue:(int)idx __attribute__((swift_name("getRealValue(idx:)")));
-		[Export ("getRealValue:")]
-		double GetRealValue (int idx);
-
-		// -(double)getRealValue __attribute__((swift_name("getRealValue()")));
-		[Export ("getRealValue")]
-		double RealValue { get; }
-
-		// -(NSString * _Nonnull)getStringValue:(int)idx __attribute__((swift_name("getStringValue(idx:)")));
-		[Export ("getStringValue:")]
-		string GetStringValue (int idx);
-
-		// -(NSString * _Nonnull)getStringValue __attribute__((swift_name("getStringValue()")));
-		[Export ("getStringValue")]
-		string StringValue { get; }
-	}
-
-	// @interface Image2BlobParams : NSObject
-	[BaseType (typeof (NSObject))]
-	interface Image2BlobParams {
-		// -(instancetype _Nonnull)initWithScalefactor:(Scalar * _Nonnull)scalefactor size:(Size2i * _Nonnull)size mean:(Scalar * _Nonnull)mean swapRB:(BOOL)swapRB ddepth:(int)ddepth datalayout:(int)datalayout mode:(ImagePaddingMode)mode borderValue:(Scalar * _Nonnull)borderValue;
-		[Export ("initWithScalefactor:size:mean:swapRB:ddepth:datalayout:mode:borderValue:")]
-		NativeHandle Constructor (Scalar scalefactor, Size2i size, Scalar mean, bool swapRB, int ddepth, int datalayout, ImagePaddingMode mode, Scalar borderValue);
-
-		// -(instancetype _Nonnull)initWithScalefactor:(Scalar * _Nonnull)scalefactor size:(Size2i * _Nonnull)size mean:(Scalar * _Nonnull)mean swapRB:(BOOL)swapRB ddepth:(int)ddepth datalayout:(int)datalayout mode:(ImagePaddingMode)mode;
-		[Export ("initWithScalefactor:size:mean:swapRB:ddepth:datalayout:mode:")]
-		NativeHandle Constructor (Scalar scalefactor, Size2i size, Scalar mean, bool swapRB, int ddepth, int datalayout, ImagePaddingMode mode);
-
-		// -(instancetype _Nonnull)initWithScalefactor:(Scalar * _Nonnull)scalefactor size:(Size2i * _Nonnull)size mean:(Scalar * _Nonnull)mean swapRB:(BOOL)swapRB ddepth:(int)ddepth datalayout:(int)datalayout;
-		[Export ("initWithScalefactor:size:mean:swapRB:ddepth:datalayout:")]
-		NativeHandle Constructor (Scalar scalefactor, Size2i size, Scalar mean, bool swapRB, int ddepth, int datalayout);
-
-		// -(instancetype _Nonnull)initWithScalefactor:(Scalar * _Nonnull)scalefactor size:(Size2i * _Nonnull)size mean:(Scalar * _Nonnull)mean swapRB:(BOOL)swapRB ddepth:(int)ddepth;
-		[Export ("initWithScalefactor:size:mean:swapRB:ddepth:")]
-		NativeHandle Constructor (Scalar scalefactor, Size2i size, Scalar mean, bool swapRB, int ddepth);
-
-		// -(instancetype _Nonnull)initWithScalefactor:(Scalar * _Nonnull)scalefactor size:(Size2i * _Nonnull)size mean:(Scalar * _Nonnull)mean swapRB:(BOOL)swapRB;
-		[Export ("initWithScalefactor:size:mean:swapRB:")]
-		NativeHandle Constructor (Scalar scalefactor, Size2i size, Scalar mean, bool swapRB);
-
-		// -(instancetype _Nonnull)initWithScalefactor:(Scalar * _Nonnull)scalefactor size:(Size2i * _Nonnull)size mean:(Scalar * _Nonnull)mean;
-		[Export ("initWithScalefactor:size:mean:")]
-		NativeHandle Constructor (Scalar scalefactor, Size2i size, Scalar mean);
-
-		// -(instancetype _Nonnull)initWithScalefactor:(Scalar * _Nonnull)scalefactor size:(Size2i * _Nonnull)size;
-		[Export ("initWithScalefactor:size:")]
-		NativeHandle Constructor (Scalar scalefactor, Size2i size);
-
-		// -(instancetype _Nonnull)initWithScalefactor:(Scalar * _Nonnull)scalefactor;
-		[Export ("initWithScalefactor:")]
-		NativeHandle Constructor (Scalar scalefactor);
-
-		// -(Rect2i * _Nonnull)blobRectToImageRect:(Rect2i * _Nonnull)rBlob size:(Size2i * _Nonnull)size __attribute__((swift_name("blobRectToImageRect(rBlob:size:)")));
-		[Export ("blobRectToImageRect:size:")]
-		Rect2i BlobRectToImageRect (Rect2i rBlob, Size2i size);
-
-		// -(void)blobRectsToImageRects:(NSArray<Rect2i *> * _Nonnull)rBlob rImg:(NSMutableArray<Rect2i *> * _Nonnull)rImg size:(Size2i * _Nonnull)size __attribute__((swift_name("blobRectsToImageRects(rBlob:rImg:size:)")));
-		[Export ("blobRectsToImageRects:rImg:size:")]
-		void BlobRectsToImageRects (Rect2i [] rBlob, NSMutableArray<Rect2i> rImg, Size2i size);
-
-		// @property Scalar * _Nonnull scalefactor;
-		[Export ("scalefactor", ArgumentSemantic.Assign)]
-		Scalar Scalefactor { get; set; }
-
-		// @property Size2i * _Nonnull size;
-		[Export ("size", ArgumentSemantic.Assign)]
-		Size2i Size { get; set; }
-
-		// @property Scalar * _Nonnull mean;
-		[Export ("mean", ArgumentSemantic.Assign)]
-		Scalar Mean { get; set; }
-
-		// @property BOOL swapRB;
-		[Export ("swapRB")]
-		bool SwapRB { get; set; }
-
-		// @property int ddepth;
-		[Export ("ddepth")]
-		int Ddepth { get; set; }
-
-		// @property int datalayout;
-		[Export ("datalayout")]
-		int Datalayout { get; set; }
-
-		// @property ImagePaddingMode paddingmode;
-		[Export ("paddingmode", ArgumentSemantic.Assign)]
-		ImagePaddingMode Paddingmode { get; set; }
-
-		// @property Scalar * _Nonnull borderValue;
-		[Export ("borderValue", ArgumentSemantic.Assign)]
-		Scalar BorderValue { get; set; }
-	}
-
-	// @interface KeypointsModel : Model
-	[BaseType (typeof (Model))]
-	interface KeypointsModel {
-		// -(instancetype _Nonnull)initWithModel:(NSString * _Nonnull)model config:(NSString * _Nonnull)config;
-		[Export ("initWithModel:config:")]
-		NativeHandle Constructor (string model, string config);
-
-		// -(instancetype _Nonnull)initWithModel:(NSString * _Nonnull)model;
-		[Export ("initWithModel:")]
-		NativeHandle Constructor (string model);
-
-		// -(instancetype _Nonnull)initWithNetwork:(Net * _Nonnull)network;
-		[Export ("initWithNetwork:")]
-		NativeHandle Constructor (Net network);
-
-		// -(NSArray<Point2f *> * _Nonnull)estimate:(Mat * _Nonnull)frame thresh:(float)thresh __attribute__((swift_name("estimate(frame:thresh:)")));
-		[Export ("estimate:thresh:")]
-		Point2f [] Estimate (Mat frame, float thresh);
-
-		// -(NSArray<Point2f *> * _Nonnull)estimate:(Mat * _Nonnull)frame __attribute__((swift_name("estimate(frame:)")));
-		[Export ("estimate:")]
-		Point2f [] Estimate (Mat frame);
-	}
-
-	// @interface Layer : Algorithm
-	[BaseType (typeof (Algorithm))]
-	interface Layer {
-		// -(void)finalize:(NSArray<Mat *> * _Nonnull)inputs outputs:(NSMutableArray<Mat *> * _Nonnull)outputs __attribute__((swift_name("finalize(inputs:outputs:)")));
-		[Export ("finalize:outputs:")]
-		void Finalize (Mat [] inputs, NSMutableArray<Mat> outputs);
-
-		// -(void)run:(NSArray<Mat *> * _Nonnull)inputs outputs:(NSMutableArray<Mat *> * _Nonnull)outputs internals:(NSMutableArray<Mat *> * _Nonnull)internals __attribute__((swift_name("run(inputs:outputs:internals:)"))) __attribute__((deprecated("")));
-		[Export ("run:outputs:internals:")]
-		void Run (Mat [] inputs, NSMutableArray<Mat> outputs, NSMutableArray<Mat> internals);
-
-		// -(int)outputNameToIndex:(NSString * _Nonnull)outputName __attribute__((swift_name("outputNameToIndex(outputName:)")));
-		[Export ("outputNameToIndex:")]
-		int OutputNameToIndex (string outputName);
-
-		// @property Mat * _Nonnull blobs;
-		[Export ("blobs", ArgumentSemantic.Assign)]
-		Mat Blobs { get; set; }
-
-		// @property (readonly) NSString * _Nonnull name;
-		[Export ("name")]
-		string Name { get; }
-
-		// @property (readonly) NSString * _Nonnull type;
-		[Export ("type")]
-		string Type { get; }
-
-		// @property (readonly) int preferableTarget;
-		[Export ("preferableTarget")]
-		int PreferableTarget { get; }
-	}
-
-	// @interface Net : NSObject
-	[BaseType (typeof (NSObject))]
-	interface Net {
-		// +(Net * _Nonnull)readFromModelOptimizer:(NSString * _Nonnull)xml bin:(NSString * _Nonnull)bin __attribute__((swift_name("readFromModelOptimizer(xml:bin:)")));
-		[Static]
-		[Export ("readFromModelOptimizer:bin:")]
-		Net ReadFromModelOptimizer (string xml, string bin);
-
-		// +(Net * _Nonnull)readFromModelOptimizer:(ByteVector * _Nonnull)bufferModelConfig bufferWeights:(ByteVector * _Nonnull)bufferWeights __attribute__((swift_name("readFromModelOptimizer(bufferModelConfig:bufferWeights:)")));
-		[Static]
-		[Export ("readFromModelOptimizer:bufferWeights:")]
-		Net ReadFromModelOptimizer (ByteVector bufferModelConfig, ByteVector bufferWeights);
-
-		// -(BOOL)empty __attribute__((swift_name("empty()")));
-		[Export ("empty")]
-		bool Empty { get; }
-
-		// -(NSString * _Nonnull)dump __attribute__((swift_name("dump()")));
-		[Export ("dump")]
-		string Dump ();
-
-		// -(void)dumpToFile:(NSString * _Nonnull)path __attribute__((swift_name("dumpToFile(path:)")));
-		[Export ("dumpToFile:")]
-		void DumpToFile (string path);
-
-		// -(void)dumpToPbtxt:(NSString * _Nonnull)path __attribute__((swift_name("dumpToPbtxt(path:)")));
-		[Export ("dumpToPbtxt:")]
-		void DumpToPbtxt (string path);
-
-		// -(int)getLayerId:(NSString * _Nonnull)layer __attribute__((swift_name("getLayerId(layer:)")));
-		[Export ("getLayerId:")]
-		int GetLayerId (string layer);
-
-		// -(NSArray<NSString *> * _Nonnull)getLayerNames __attribute__((swift_name("getLayerNames()")));
-		[Export ("getLayerNames")]
-		string [] LayerNames { get; }
-
-		// -(Layer * _Nonnull)getLayer:(int)layerId __attribute__((swift_name("getLayer(layerId:)")));
-		[Export ("getLayer:")]
-		Layer GetLayer (int layerId);
-
-		// -(Layer * _Nonnull)getLayerByName:(NSString * _Nonnull)layerName __attribute__((swift_name("getLayer(layerName:)"))) __attribute__((deprecated("")));
-		[Export ("getLayerByName:")]
-		Layer GetLayerByName (string layerName);
-
-		// -(Layer * _Nonnull)getLayerByDictValue:(DictValue * _Nonnull)layerId __attribute__((swift_name("getLayer(layerId:)"))) __attribute__((deprecated("")));
-		[Export ("getLayerByDictValue:")]
-		Layer GetLayerByDictValue (DictValue layerId);
-
-		// -(void)connect:(NSString * _Nonnull)outPin inpPin:(NSString * _Nonnull)inpPin __attribute__((swift_name("connect(outPin:inpPin:)")));
-		[Export ("connect:inpPin:")]
-		void Connect (string outPin, string inpPin);
-
-		// -(int)registerOutput:(NSString * _Nonnull)outputName layerId:(int)layerId outputPort:(int)outputPort __attribute__((swift_name("registerOutput(outputName:layerId:outputPort:)")));
-		[Export ("registerOutput:layerId:outputPort:")]
-		int RegisterOutput (string outputName, int layerId, int outputPort);
-
-		// -(void)setInputsNames:(NSArray<NSString *> * _Nonnull)inputBlobNames __attribute__((swift_name("setInputsNames(inputBlobNames:)")));
-		[Export ("setInputsNames:")]
-		void SetInputsNames (string [] inputBlobNames);
-
-		// -(void)setInputShape:(NSString * _Nonnull)inputName shape:(IntVector * _Nonnull)shape __attribute__((swift_name("setInputShape(inputName:shape:)")));
-		[Export ("setInputShape:shape:")]
-		void SetInputShape (string inputName, IntVector shape);
-
-		// -(Mat * _Nonnull)forward:(NSString * _Nonnull)outputName __attribute__((swift_name("forward(outputName:)")));
-		[Export ("forward:")]
-		Mat Forward (string outputName);
-
-		// -(Mat * _Nonnull)forward __attribute__((swift_name("forward()")));
-		[Export ("forward")]
-		Mat Forward ();
-
-		// -(void)forwardOutputBlobs:(NSMutableArray<Mat *> * _Nonnull)outputBlobs outputName:(NSString * _Nonnull)outputName __attribute__((swift_name("forward(outputBlobs:outputName:)")));
-		[Export ("forwardOutputBlobs:outputName:")]
-		void ForwardOutputBlobs (NSMutableArray<Mat> outputBlobs, string outputName);
-
-		// -(void)forwardOutputBlobs:(NSMutableArray<Mat *> * _Nonnull)outputBlobs __attribute__((swift_name("forward(outputBlobs:)")));
-		[Export ("forwardOutputBlobs:")]
-		void ForwardOutputBlobs (NSMutableArray<Mat> outputBlobs);
-
-		// -(void)forwardOutputBlobs:(NSMutableArray<Mat *> * _Nonnull)outputBlobs outBlobNames:(NSArray<NSString *> * _Nonnull)outBlobNames __attribute__((swift_name("forward(outputBlobs:outBlobNames:)")));
-		[Export ("forwardOutputBlobs:outBlobNames:")]
-		void ForwardOutputBlobs (NSMutableArray<Mat> outputBlobs, string [] outBlobNames);
-
-		// -(void)forwardAndRetrieve:(NSMutableArray<NSMutableArray<Mat *> *> * _Nonnull)outputBlobs outBlobNames:(NSArray<NSString *> * _Nonnull)outBlobNames __attribute__((swift_name("forwardAndRetrieve(outputBlobs:outBlobNames:)")));
-		[Export ("forwardAndRetrieve:outBlobNames:")]
-		void ForwardAndRetrieve (NSMutableArray<NSMutableArray<Mat>> outputBlobs, string [] outBlobNames);
-
-		// -(void)setPreferableBackend:(int)backendId __attribute__((swift_name("setPreferableBackend(backendId:)")));
-		[Export ("setPreferableBackend:")]
-		void SetPreferableBackend (int backendId);
-
-		// -(void)setPreferableTarget:(int)targetId __attribute__((swift_name("setPreferableTarget(targetId:)")));
-		[Export ("setPreferableTarget:")]
-		void SetPreferableTarget (int targetId);
-
-		// -(void)finalizeNet __attribute__((swift_name("finalizeNet()")));
-		[Export ("finalizeNet")]
-		void FinalizeNet ();
-
-		// -(void)setTracingMode:(TracingMode)tracingMode __attribute__((swift_name("setTracingMode(tracingMode:)")));
-		[Export ("setTracingMode:")]
-		void SetTracingMode (TracingMode tracingMode);
-
-		// -(TracingMode)getTracingMode __attribute__((swift_name("getTracingMode()")));
-		[Export ("getTracingMode")]
-		TracingMode TracingMode { get; }
-
-		// -(void)setProfilingMode:(ProfilingMode)profilingMode __attribute__((swift_name("setProfilingMode(profilingMode:)")));
-		[Export ("setProfilingMode:")]
-		void SetProfilingMode (ProfilingMode profilingMode);
-
-		// -(ProfilingMode)getProfilingMode __attribute__((swift_name("getProfilingMode()")));
-		[Export ("getProfilingMode")]
-		ProfilingMode ProfilingMode { get; }
-
-		// -(ModelFormat)getModelFormat __attribute__((swift_name("getModelFormat()")));
-		[Export ("getModelFormat")]
-		ModelFormat ModelFormat { get; }
-
-		// -(void)setInput:(Mat * _Nonnull)blob name:(NSString * _Nonnull)name scalefactor:(double)scalefactor mean:(Scalar * _Nonnull)mean __attribute__((swift_name("setInput(blob:name:scalefactor:mean:)")));
-		[Export ("setInput:name:scalefactor:mean:")]
-		void SetInput (Mat blob, string name, double scalefactor, Scalar mean);
-
-		// -(void)setInput:(Mat * _Nonnull)blob name:(NSString * _Nonnull)name scalefactor:(double)scalefactor __attribute__((swift_name("setInput(blob:name:scalefactor:)")));
-		[Export ("setInput:name:scalefactor:")]
-		void SetInput (Mat blob, string name, double scalefactor);
-
-		// -(void)setInput:(Mat * _Nonnull)blob name:(NSString * _Nonnull)name __attribute__((swift_name("setInput(blob:name:)")));
-		[Export ("setInput:name:")]
-		void SetInput (Mat blob, string name);
-
-		// -(void)setInput:(Mat * _Nonnull)blob __attribute__((swift_name("setInput(blob:)")));
-		[Export ("setInput:")]
-		void SetInput (Mat blob);
-
-		// -(void)setParam:(int)layer numParam:(int)numParam blob:(Mat * _Nonnull)blob __attribute__((swift_name("setParam(layer:numParam:blob:)")));
-		[Export ("setParam:numParam:blob:")]
-		void SetParam (int layer, int numParam, Mat blob);
-
-		// -(void)setParamByName:(NSString * _Nonnull)layerName numParam:(int)numParam blob:(Mat * _Nonnull)blob __attribute__((swift_name("setParam(layerName:numParam:blob:)")));
-		[Export ("setParamByName:numParam:blob:")]
-		void SetParamByName (string layerName, int numParam, Mat blob);
-
-		// -(Mat * _Nonnull)getParam:(int)layer numParam:(int)numParam __attribute__((swift_name("getParam(layer:numParam:)")));
-		[Export ("getParam:numParam:")]
-		Mat GetParam (int layer, int numParam);
-
-		// -(Mat * _Nonnull)getParam:(int)layer __attribute__((swift_name("getParam(layer:)")));
-		[Export ("getParam:")]
-		Mat GetParam (int layer);
-
-		// -(Mat * _Nonnull)getParamByName:(NSString * _Nonnull)layerName numParam:(int)numParam __attribute__((swift_name("getParam(layerName:numParam:)")));
-		[Export ("getParamByName:numParam:")]
-		Mat GetParamByName (string layerName, int numParam);
-
-		// -(Mat * _Nonnull)getParamByName:(NSString * _Nonnull)layerName __attribute__((swift_name("getParam(layerName:)")));
-		[Export ("getParamByName:")]
-		Mat GetParamByName (string layerName);
-
-		// -(IntVector * _Nonnull)getUnconnectedOutLayers __attribute__((swift_name("getUnconnectedOutLayers()")));
-		[Export ("getUnconnectedOutLayers")]
-		IntVector UnconnectedOutLayers { get; }
-
-		// -(NSArray<NSString *> * _Nonnull)getUnconnectedOutLayersNames __attribute__((swift_name("getUnconnectedOutLayersNames()")));
-		[Export ("getUnconnectedOutLayersNames")]
-		string [] UnconnectedOutLayersNames { get; }
-
-		// -(void)getLayerShapes:(NSArray<IntVector *> * _Nonnull)netInputShapes netInputTypes:(IntVector * _Nonnull)netInputTypes layerId:(int)layerId inLayerShapes:(NSMutableArray<IntVector *> * _Nonnull)inLayerShapes outLayerShapes:(NSMutableArray<IntVector *> * _Nonnull)outLayerShapes __attribute__((swift_name("getLayerShapes(netInputShapes:netInputTypes:layerId:inLayerShapes:outLayerShapes:)")));
-		[Export ("getLayerShapes:netInputTypes:layerId:inLayerShapes:outLayerShapes:")]
-		void GetLayerShapes (IntVector [] netInputShapes, IntVector netInputTypes, int layerId, NSMutableArray<IntVector> inLayerShapes, NSMutableArray<IntVector> outLayerShapes);
-
-		// -(long)getFLOPS:(NSArray<IntVector *> * _Nonnull)netInputShapes netInputTypes:(IntVector * _Nonnull)netInputTypes __attribute__((swift_name("getFLOPS(netInputShapes:netInputTypes:)")));
-		[Export ("getFLOPS:netInputTypes:")]
-		nint GetFLOPS (IntVector [] netInputShapes, IntVector netInputTypes);
-
-		// -(void)getLayerTypes:(NSMutableArray<NSString *> * _Nonnull)layersTypes __attribute__((swift_name("getLayerTypes(layersTypes:)")));
-		[Export ("getLayerTypes:")]
-		void GetLayerTypes (NSMutableArray<NSString> layersTypes);
-
-		// -(int)getLayersCount:(NSString * _Nonnull)layerType __attribute__((swift_name("getLayersCount(layerType:)")));
-		[Export ("getLayersCount:")]
-		int GetLayersCount (string layerType);
-
-		// -(void)getMemoryConsumption:(NSArray<IntVector *> * _Nonnull)netInputShapes netInputTypes:(IntVector * _Nonnull)netInputTypes weights:(size_t)weights blobs:(size_t)blobs __attribute__((swift_name("getMemoryConsumption(netInputShapes:netInputTypes:weights:blobs:)")));
-		[Export ("getMemoryConsumption:netInputTypes:weights:blobs:")]
-		void GetMemoryConsumption (IntVector [] netInputShapes, IntVector netInputTypes, nuint weights, nuint blobs);
-
-		// -(void)enableFusion:(BOOL)fusion __attribute__((swift_name("enableFusion(fusion:)")));
-		[Export ("enableFusion:")]
-		void EnableFusion (bool fusion);
-
-		// -(void)enableWinograd:(BOOL)useWinograd __attribute__((swift_name("enableWinograd(useWinograd:)")));
-		[Export ("enableWinograd:")]
-		void EnableWinograd (bool useWinograd);
-
-		// -(long)getPerfProfile:(DoubleVector * _Nonnull)timings __attribute__((swift_name("getPerfProfile(timings:)")));
-		[Export ("getPerfProfile:")]
-		nint GetPerfProfile (DoubleVector timings);
-
-		// -(void)enableKVCache __attribute__((swift_name("enableKVCache()")));
-		[Export ("enableKVCache")]
-		void EnableKVCache ();
-
-		// -(void)disableKVCache __attribute__((swift_name("disableKVCache()")));
-		[Export ("disableKVCache")]
-		void DisableKVCache ();
-
-		// -(void)resetKVCache __attribute__((swift_name("resetKVCache()")));
-		[Export ("resetKVCache")]
-		void ResetKVCache ();
-
-		// -(void)getPerfProfile:(NSMutableArray<NSString *> * _Nonnull)names timems:(NSMutableArray<NSString *> * _Nonnull)timems counts:(NSMutableArray<NSString *> * _Nonnull)counts __attribute__((swift_name("getPerfProfile(names:timems:counts:)")));
-		[Export ("getPerfProfile:timems:counts:")]
-		void GetPerfProfile (NSMutableArray<NSString> names, NSMutableArray<NSString> timems, NSMutableArray<NSString> counts);
-
-		// -(void)printPerfProfile __attribute__((swift_name("printPerfProfile()")));
-		[Export ("printPerfProfile")]
-		void PrintPerfProfile ();
-	}
-
-	// @interface SegmentationModel : Model
-	[BaseType (typeof (Model))]
-	interface SegmentationModel {
-		// -(instancetype _Nonnull)initWithModel:(NSString * _Nonnull)model config:(NSString * _Nonnull)config;
-		[Export ("initWithModel:config:")]
-		NativeHandle Constructor (string model, string config);
-
-		// -(instancetype _Nonnull)initWithModel:(NSString * _Nonnull)model;
-		[Export ("initWithModel:")]
-		NativeHandle Constructor (string model);
-
-		// -(instancetype _Nonnull)initWithNetwork:(Net * _Nonnull)network;
-		[Export ("initWithNetwork:")]
-		NativeHandle Constructor (Net network);
-
-		// -(void)segment:(Mat * _Nonnull)frame mask:(Mat * _Nonnull)mask __attribute__((swift_name("segment(frame:mask:)")));
-		[Export ("segment:mask:")]
-		void Segment (Mat frame, Mat mask);
-	}
-
-	// @interface TextDetectionModel : Model
-	[BaseType (typeof (Model))]
-	interface TextDetectionModel {
-		// -(void)detect:(Mat * _Nonnull)frame detections:(NSMutableArray<NSMutableArray<Point2i *> *> * _Nonnull)detections confidences:(FloatVector * _Nonnull)confidences __attribute__((swift_name("detect(frame:detections:confidences:)")));
-		[Export ("detect:detections:confidences:")]
-		void Detect (Mat frame, NSMutableArray<NSMutableArray<Point2i>> detections, FloatVector confidences);
-
-		// -(void)detect:(Mat * _Nonnull)frame detections:(NSMutableArray<NSMutableArray<Point2i *> *> * _Nonnull)detections __attribute__((swift_name("detect(frame:detections:)")));
-		[Export ("detect:detections:")]
-		void Detect (Mat frame, NSMutableArray<NSMutableArray<Point2i>> detections);
-
-		// -(void)detectTextRectangles:(Mat * _Nonnull)frame detections:(NSMutableArray<RotatedRect *> * _Nonnull)detections confidences:(FloatVector * _Nonnull)confidences __attribute__((swift_name("detectTextRectangles(frame:detections:confidences:)")));
-		[Export ("detectTextRectangles:detections:confidences:")]
-		void DetectTextRectangles (Mat frame, NSMutableArray<RotatedRect> detections, FloatVector confidences);
-
-		// -(void)detectTextRectangles:(Mat * _Nonnull)frame detections:(NSMutableArray<RotatedRect *> * _Nonnull)detections __attribute__((swift_name("detectTextRectangles(frame:detections:)")));
-		[Export ("detectTextRectangles:detections:")]
-		void DetectTextRectangles (Mat frame, NSMutableArray<RotatedRect> detections);
-	}
-
-	// @interface TextDetectionModel_DB : TextDetectionModel
-	[BaseType (typeof (TextDetectionModel))]
-	interface TextDetectionModel_DB {
-		// -(instancetype _Nonnull)initWithNetwork:(Net * _Nonnull)network;
-		[Export ("initWithNetwork:")]
-		NativeHandle Constructor (Net network);
-
-		// -(instancetype _Nonnull)initWithModel:(NSString * _Nonnull)model config:(NSString * _Nonnull)config;
-		[Export ("initWithModel:config:")]
-		NativeHandle Constructor (string model, string config);
-
-		// -(instancetype _Nonnull)initWithModel:(NSString * _Nonnull)model;
-		[Export ("initWithModel:")]
-		NativeHandle Constructor (string model);
-
-		// -(TextDetectionModel_DB * _Nonnull)setBinaryThreshold:(float)binaryThreshold __attribute__((swift_name("setBinaryThreshold(binaryThreshold:)")));
-		[Export ("setBinaryThreshold:")]
-		TextDetectionModel_DB SetBinaryThreshold (float binaryThreshold);
-
-		// -(float)getBinaryThreshold __attribute__((swift_name("getBinaryThreshold()")));
-		[Export ("getBinaryThreshold")]
-		float BinaryThreshold { get; }
-
-		// -(TextDetectionModel_DB * _Nonnull)setPolygonThreshold:(float)polygonThreshold __attribute__((swift_name("setPolygonThreshold(polygonThreshold:)")));
-		[Export ("setPolygonThreshold:")]
-		TextDetectionModel_DB SetPolygonThreshold (float polygonThreshold);
-
-		// -(float)getPolygonThreshold __attribute__((swift_name("getPolygonThreshold()")));
-		[Export ("getPolygonThreshold")]
-		float PolygonThreshold { get; }
-
-		// -(TextDetectionModel_DB * _Nonnull)setUnclipRatio:(double)unclipRatio __attribute__((swift_name("setUnclipRatio(unclipRatio:)")));
-		[Export ("setUnclipRatio:")]
-		TextDetectionModel_DB SetUnclipRatio (double unclipRatio);
-
-		// -(double)getUnclipRatio __attribute__((swift_name("getUnclipRatio()")));
-		[Export ("getUnclipRatio")]
-		double UnclipRatio { get; }
-
-		// -(TextDetectionModel_DB * _Nonnull)setMaxCandidates:(int)maxCandidates __attribute__((swift_name("setMaxCandidates(maxCandidates:)")));
-		[Export ("setMaxCandidates:")]
-		TextDetectionModel_DB SetMaxCandidates (int maxCandidates);
-
-		// -(int)getMaxCandidates __attribute__((swift_name("getMaxCandidates()")));
-		[Export ("getMaxCandidates")]
-		int MaxCandidates { get; }
-	}
-
-	// @interface TextDetectionModel_EAST : TextDetectionModel
-	[BaseType (typeof (TextDetectionModel))]
-	interface TextDetectionModel_EAST {
-		// -(instancetype _Nonnull)initWithNetwork:(Net * _Nonnull)network;
-		[Export ("initWithNetwork:")]
-		NativeHandle Constructor (Net network);
-
-		// -(instancetype _Nonnull)initWithModel:(NSString * _Nonnull)model config:(NSString * _Nonnull)config;
-		[Export ("initWithModel:config:")]
-		NativeHandle Constructor (string model, string config);
-
-		// -(instancetype _Nonnull)initWithModel:(NSString * _Nonnull)model;
-		[Export ("initWithModel:")]
-		NativeHandle Constructor (string model);
-
-		// -(TextDetectionModel_EAST * _Nonnull)setConfidenceThreshold:(float)confThreshold __attribute__((swift_name("setConfidenceThreshold(confThreshold:)")));
-		[Export ("setConfidenceThreshold:")]
-		TextDetectionModel_EAST SetConfidenceThreshold (float confThreshold);
-
-		// -(float)getConfidenceThreshold __attribute__((swift_name("getConfidenceThreshold()")));
-		[Export ("getConfidenceThreshold")]
-		float ConfidenceThreshold { get; }
-
-		// -(TextDetectionModel_EAST * _Nonnull)setNMSThreshold:(float)nmsThreshold __attribute__((swift_name("setNMSThreshold(nmsThreshold:)")));
-		[Export ("setNMSThreshold:")]
-		TextDetectionModel_EAST SetNMSThreshold (float nmsThreshold);
-
-		// -(float)getNMSThreshold __attribute__((swift_name("getNMSThreshold()")));
-		[Export ("getNMSThreshold")]
-		float NMSThreshold { get; }
-	}
-
-	// @interface TextRecognitionModel : Model
-	[BaseType (typeof (Model))]
-	interface TextRecognitionModel {
-		// -(instancetype _Nonnull)initWithNetwork:(Net * _Nonnull)network;
-		[Export ("initWithNetwork:")]
-		NativeHandle Constructor (Net network);
-
-		// -(instancetype _Nonnull)initWithModel:(NSString * _Nonnull)model config:(NSString * _Nonnull)config;
-		[Export ("initWithModel:config:")]
-		NativeHandle Constructor (string model, string config);
-
-		// -(instancetype _Nonnull)initWithModel:(NSString * _Nonnull)model;
-		[Export ("initWithModel:")]
-		NativeHandle Constructor (string model);
-
-		// -(TextRecognitionModel * _Nonnull)setDecodeType:(NSString * _Nonnull)decodeType __attribute__((swift_name("setDecodeType(decodeType:)")));
-		[Export ("setDecodeType:")]
-		TextRecognitionModel SetDecodeType (string decodeType);
-
-		// -(NSString * _Nonnull)getDecodeType __attribute__((swift_name("getDecodeType()")));
-		[Export ("getDecodeType")]
-		string DecodeType { get; }
-
-		// -(TextRecognitionModel * _Nonnull)setDecodeOptsCTCPrefixBeamSearch:(int)beamSize vocPruneSize:(int)vocPruneSize __attribute__((swift_name("setDecodeOptsCTCPrefixBeamSearch(beamSize:vocPruneSize:)")));
-		[Export ("setDecodeOptsCTCPrefixBeamSearch:vocPruneSize:")]
-		TextRecognitionModel SetDecodeOptsCTCPrefixBeamSearch (int beamSize, int vocPruneSize);
-
-		// -(TextRecognitionModel * _Nonnull)setDecodeOptsCTCPrefixBeamSearch:(int)beamSize __attribute__((swift_name("setDecodeOptsCTCPrefixBeamSearch(beamSize:)")));
-		[Export ("setDecodeOptsCTCPrefixBeamSearch:")]
-		TextRecognitionModel SetDecodeOptsCTCPrefixBeamSearch (int beamSize);
-
-		// -(TextRecognitionModel * _Nonnull)setVocabulary:(NSArray<NSString *> * _Nonnull)vocabulary __attribute__((swift_name("setVocabulary(vocabulary:)")));
-		[Export ("setVocabulary:")]
-		TextRecognitionModel SetVocabulary (string [] vocabulary);
-
-		// -(NSArray<NSString *> * _Nonnull)getVocabulary __attribute__((swift_name("getVocabulary()")));
-		[Export ("getVocabulary")]
-		string [] Vocabulary { get; }
-
-		// -(NSString * _Nonnull)recognize:(Mat * _Nonnull)frame __attribute__((swift_name("recognize(frame:)")));
-		[Export ("recognize:")]
-		string Recognize (Mat frame);
-
-		// -(void)recognize:(Mat * _Nonnull)frame roiRects:(NSArray<Mat *> * _Nonnull)roiRects results:(NSMutableArray<NSString *> * _Nonnull)results __attribute__((swift_name("recognize(frame:roiRects:results:)")));
-		[Export ("recognize:roiRects:results:")]
-		void Recognize (Mat frame, Mat [] roiRects, NSMutableArray<NSString> results);
-	}
-
-	// @interface Tokenizer : NSObject
-	[BaseType (typeof (NSObject))]
-	interface Tokenizer {
-		// +(Tokenizer * _Nonnull)load:(NSString * _Nonnull)model_config __attribute__((swift_name("load(model_config:)")));
-		[Static]
-		[Export ("load:")]
-		Tokenizer Load (string model_config);
-
-		// -(IntVector * _Nonnull)encode:(NSString * _Nonnull)text __attribute__((swift_name("encode(text:)")));
-		[Export ("encode:")]
-		IntVector Encode (string text);
-
-		// -(NSString * _Nonnull)decode:(IntVector * _Nonnull)tokens __attribute__((swift_name("decode(tokens:)")));
-		[Export ("decode:")]
-		string Decode (IntVector tokens);
-	}
-
-	// @interface Features : NSObject
-	[BaseType (typeof (NSObject))]
-	interface Features {
-		// +(void)goodFeaturesToTrack:(Mat * _Nonnull)image corners:(Mat * _Nonnull)corners maxCorners:(int)maxCorners qualityLevel:(double)qualityLevel minDistance:(double)minDistance mask:(Mat * _Nonnull)mask blockSize:(int)blockSize useHarrisDetector:(BOOL)useHarrisDetector k:(double)k __attribute__((swift_name("goodFeaturesToTrack(image:corners:maxCorners:qualityLevel:minDistance:mask:blockSize:useHarrisDetector:k:)")));
-		[Static]
-		[Export ("goodFeaturesToTrack:corners:maxCorners:qualityLevel:minDistance:mask:blockSize:useHarrisDetector:k:")]
-		void GoodFeaturesToTrack (Mat image, Mat corners, int maxCorners, double qualityLevel, double minDistance, Mat mask, int blockSize, bool useHarrisDetector, double k);
-
-		// +(void)goodFeaturesToTrack:(Mat * _Nonnull)image corners:(Mat * _Nonnull)corners maxCorners:(int)maxCorners qualityLevel:(double)qualityLevel minDistance:(double)minDistance mask:(Mat * _Nonnull)mask blockSize:(int)blockSize useHarrisDetector:(BOOL)useHarrisDetector __attribute__((swift_name("goodFeaturesToTrack(image:corners:maxCorners:qualityLevel:minDistance:mask:blockSize:useHarrisDetector:)")));
-		[Static]
-		[Export ("goodFeaturesToTrack:corners:maxCorners:qualityLevel:minDistance:mask:blockSize:useHarrisDetector:")]
-		void GoodFeaturesToTrack (Mat image, Mat corners, int maxCorners, double qualityLevel, double minDistance, Mat mask, int blockSize, bool useHarrisDetector);
-
-		// +(void)goodFeaturesToTrack:(Mat * _Nonnull)image corners:(Mat * _Nonnull)corners maxCorners:(int)maxCorners qualityLevel:(double)qualityLevel minDistance:(double)minDistance mask:(Mat * _Nonnull)mask blockSize:(int)blockSize __attribute__((swift_name("goodFeaturesToTrack(image:corners:maxCorners:qualityLevel:minDistance:mask:blockSize:)")));
-		[Static]
-		[Export ("goodFeaturesToTrack:corners:maxCorners:qualityLevel:minDistance:mask:blockSize:")]
-		void GoodFeaturesToTrack (Mat image, Mat corners, int maxCorners, double qualityLevel, double minDistance, Mat mask, int blockSize);
-
-		// +(void)goodFeaturesToTrack:(Mat * _Nonnull)image corners:(Mat * _Nonnull)corners maxCorners:(int)maxCorners qualityLevel:(double)qualityLevel minDistance:(double)minDistance mask:(Mat * _Nonnull)mask __attribute__((swift_name("goodFeaturesToTrack(image:corners:maxCorners:qualityLevel:minDistance:mask:)")));
-		[Static]
-		[Export ("goodFeaturesToTrack:corners:maxCorners:qualityLevel:minDistance:mask:")]
-		void GoodFeaturesToTrack (Mat image, Mat corners, int maxCorners, double qualityLevel, double minDistance, Mat mask);
-
-		// +(void)goodFeaturesToTrack:(Mat * _Nonnull)image corners:(Mat * _Nonnull)corners maxCorners:(int)maxCorners qualityLevel:(double)qualityLevel minDistance:(double)minDistance __attribute__((swift_name("goodFeaturesToTrack(image:corners:maxCorners:qualityLevel:minDistance:)")));
-		[Static]
-		[Export ("goodFeaturesToTrack:corners:maxCorners:qualityLevel:minDistance:")]
-		void GoodFeaturesToTrack (Mat image, Mat corners, int maxCorners, double qualityLevel, double minDistance);
-
-		// +(void)goodFeaturesToTrack:(Mat * _Nonnull)image corners:(Mat * _Nonnull)corners maxCorners:(int)maxCorners qualityLevel:(double)qualityLevel minDistance:(double)minDistance mask:(Mat * _Nonnull)mask blockSize:(int)blockSize gradientSize:(int)gradientSize useHarrisDetector:(BOOL)useHarrisDetector k:(double)k __attribute__((swift_name("goodFeaturesToTrack(image:corners:maxCorners:qualityLevel:minDistance:mask:blockSize:gradientSize:useHarrisDetector:k:)")));
-		[Static]
-		[Export ("goodFeaturesToTrack:corners:maxCorners:qualityLevel:minDistance:mask:blockSize:gradientSize:useHarrisDetector:k:")]
-		void GoodFeaturesToTrack (Mat image, Mat corners, int maxCorners, double qualityLevel, double minDistance, Mat mask, int blockSize, int gradientSize, bool useHarrisDetector, double k);
-
-		// +(void)goodFeaturesToTrack:(Mat * _Nonnull)image corners:(Mat * _Nonnull)corners maxCorners:(int)maxCorners qualityLevel:(double)qualityLevel minDistance:(double)minDistance mask:(Mat * _Nonnull)mask blockSize:(int)blockSize gradientSize:(int)gradientSize useHarrisDetector:(BOOL)useHarrisDetector __attribute__((swift_name("goodFeaturesToTrack(image:corners:maxCorners:qualityLevel:minDistance:mask:blockSize:gradientSize:useHarrisDetector:)")));
-		[Static]
-		[Export ("goodFeaturesToTrack:corners:maxCorners:qualityLevel:minDistance:mask:blockSize:gradientSize:useHarrisDetector:")]
-		void GoodFeaturesToTrack (Mat image, Mat corners, int maxCorners, double qualityLevel, double minDistance, Mat mask, int blockSize, int gradientSize, bool useHarrisDetector);
-
-		// +(void)goodFeaturesToTrack:(Mat * _Nonnull)image corners:(Mat * _Nonnull)corners maxCorners:(int)maxCorners qualityLevel:(double)qualityLevel minDistance:(double)minDistance mask:(Mat * _Nonnull)mask blockSize:(int)blockSize gradientSize:(int)gradientSize __attribute__((swift_name("goodFeaturesToTrack(image:corners:maxCorners:qualityLevel:minDistance:mask:blockSize:gradientSize:)")));
-		[Static]
-		[Export ("goodFeaturesToTrack:corners:maxCorners:qualityLevel:minDistance:mask:blockSize:gradientSize:")]
-		void GoodFeaturesToTrack (Mat image, Mat corners, int maxCorners, double qualityLevel, double minDistance, Mat mask, int blockSize, int gradientSize);
-
-		// +(void)goodFeaturesToTrackWithQuality:(Mat * _Nonnull)image corners:(Mat * _Nonnull)corners maxCorners:(int)maxCorners qualityLevel:(double)qualityLevel minDistance:(double)minDistance mask:(Mat * _Nonnull)mask cornersQuality:(Mat * _Nonnull)cornersQuality blockSize:(int)blockSize gradientSize:(int)gradientSize useHarrisDetector:(BOOL)useHarrisDetector k:(double)k __attribute__((swift_name("goodFeaturesToTrack(image:corners:maxCorners:qualityLevel:minDistance:mask:cornersQuality:blockSize:gradientSize:useHarrisDetector:k:)")));
-		[Static]
-		[Export ("goodFeaturesToTrackWithQuality:corners:maxCorners:qualityLevel:minDistance:mask:cornersQuality:blockSize:gradientSize:useHarrisDetector:k:")]
-		void GoodFeaturesToTrackWithQuality (Mat image, Mat corners, int maxCorners, double qualityLevel, double minDistance, Mat mask, Mat cornersQuality, int blockSize, int gradientSize, bool useHarrisDetector, double k);
-
-		// +(void)goodFeaturesToTrackWithQuality:(Mat * _Nonnull)image corners:(Mat * _Nonnull)corners maxCorners:(int)maxCorners qualityLevel:(double)qualityLevel minDistance:(double)minDistance mask:(Mat * _Nonnull)mask cornersQuality:(Mat * _Nonnull)cornersQuality blockSize:(int)blockSize gradientSize:(int)gradientSize useHarrisDetector:(BOOL)useHarrisDetector __attribute__((swift_name("goodFeaturesToTrack(image:corners:maxCorners:qualityLevel:minDistance:mask:cornersQuality:blockSize:gradientSize:useHarrisDetector:)")));
-		[Static]
-		[Export ("goodFeaturesToTrackWithQuality:corners:maxCorners:qualityLevel:minDistance:mask:cornersQuality:blockSize:gradientSize:useHarrisDetector:")]
-		void GoodFeaturesToTrackWithQuality (Mat image, Mat corners, int maxCorners, double qualityLevel, double minDistance, Mat mask, Mat cornersQuality, int blockSize, int gradientSize, bool useHarrisDetector);
-
-		// +(void)goodFeaturesToTrackWithQuality:(Mat * _Nonnull)image corners:(Mat * _Nonnull)corners maxCorners:(int)maxCorners qualityLevel:(double)qualityLevel minDistance:(double)minDistance mask:(Mat * _Nonnull)mask cornersQuality:(Mat * _Nonnull)cornersQuality blockSize:(int)blockSize gradientSize:(int)gradientSize __attribute__((swift_name("goodFeaturesToTrack(image:corners:maxCorners:qualityLevel:minDistance:mask:cornersQuality:blockSize:gradientSize:)")));
-		[Static]
-		[Export ("goodFeaturesToTrackWithQuality:corners:maxCorners:qualityLevel:minDistance:mask:cornersQuality:blockSize:gradientSize:")]
-		void GoodFeaturesToTrackWithQuality (Mat image, Mat corners, int maxCorners, double qualityLevel, double minDistance, Mat mask, Mat cornersQuality, int blockSize, int gradientSize);
-
-		// +(void)goodFeaturesToTrackWithQuality:(Mat * _Nonnull)image corners:(Mat * _Nonnull)corners maxCorners:(int)maxCorners qualityLevel:(double)qualityLevel minDistance:(double)minDistance mask:(Mat * _Nonnull)mask cornersQuality:(Mat * _Nonnull)cornersQuality blockSize:(int)blockSize __attribute__((swift_name("goodFeaturesToTrack(image:corners:maxCorners:qualityLevel:minDistance:mask:cornersQuality:blockSize:)")));
-		[Static]
-		[Export ("goodFeaturesToTrackWithQuality:corners:maxCorners:qualityLevel:minDistance:mask:cornersQuality:blockSize:")]
-		void GoodFeaturesToTrackWithQuality (Mat image, Mat corners, int maxCorners, double qualityLevel, double minDistance, Mat mask, Mat cornersQuality, int blockSize);
-
-		// +(void)goodFeaturesToTrackWithQuality:(Mat * _Nonnull)image corners:(Mat * _Nonnull)corners maxCorners:(int)maxCorners qualityLevel:(double)qualityLevel minDistance:(double)minDistance mask:(Mat * _Nonnull)mask cornersQuality:(Mat * _Nonnull)cornersQuality __attribute__((swift_name("goodFeaturesToTrack(image:corners:maxCorners:qualityLevel:minDistance:mask:cornersQuality:)")));
-		[Static]
-		[Export ("goodFeaturesToTrackWithQuality:corners:maxCorners:qualityLevel:minDistance:mask:cornersQuality:")]
-		void GoodFeaturesToTrackWithQuality (Mat image, Mat corners, int maxCorners, double qualityLevel, double minDistance, Mat mask, Mat cornersQuality);
-
-		// +(void)drawKeypoints:(Mat * _Nonnull)image keypoints:(NSArray<KeyPoint *> * _Nonnull)keypoints outImage:(Mat * _Nonnull)outImage color:(Scalar * _Nonnull)color flags:(DrawMatchesFlags)flags __attribute__((swift_name("drawKeypoints(image:keypoints:outImage:color:flags:)")));
-		[Static]
-		[Export ("drawKeypoints:keypoints:outImage:color:flags:")]
-		void DrawKeypoints (Mat image, KeyPoint [] keypoints, Mat outImage, Scalar color, DrawMatchesFlags flags);
-
-		// +(void)drawKeypoints:(Mat * _Nonnull)image keypoints:(NSArray<KeyPoint *> * _Nonnull)keypoints outImage:(Mat * _Nonnull)outImage color:(Scalar * _Nonnull)color __attribute__((swift_name("drawKeypoints(image:keypoints:outImage:color:)")));
-		[Static]
-		[Export ("drawKeypoints:keypoints:outImage:color:")]
-		void DrawKeypoints (Mat image, KeyPoint [] keypoints, Mat outImage, Scalar color);
-
-		// +(void)drawKeypoints:(Mat * _Nonnull)image keypoints:(NSArray<KeyPoint *> * _Nonnull)keypoints outImage:(Mat * _Nonnull)outImage __attribute__((swift_name("drawKeypoints(image:keypoints:outImage:)")));
-		[Static]
-		[Export ("drawKeypoints:keypoints:outImage:")]
-		void DrawKeypoints (Mat image, KeyPoint [] keypoints, Mat outImage);
-
-		// +(void)drawMatches:(Mat * _Nonnull)img1 keypoints1:(NSArray<KeyPoint *> * _Nonnull)keypoints1 img2:(Mat * _Nonnull)img2 keypoints2:(NSArray<KeyPoint *> * _Nonnull)keypoints2 matches1to2:(NSArray<DMatch *> * _Nonnull)matches1to2 outImg:(Mat * _Nonnull)outImg matchColor:(Scalar * _Nonnull)matchColor singlePointColor:(Scalar * _Nonnull)singlePointColor matchesMask:(ByteVector * _Nonnull)matchesMask flags:(DrawMatchesFlags)flags __attribute__((swift_name("drawMatches(img1:keypoints1:img2:keypoints2:matches1to2:outImg:matchColor:singlePointColor:matchesMask:flags:)")));
-		[Static]
-		[Export ("drawMatches:keypoints1:img2:keypoints2:matches1to2:outImg:matchColor:singlePointColor:matchesMask:flags:")]
-		void DrawMatches (Mat img1, KeyPoint [] keypoints1, Mat img2, KeyPoint [] keypoints2, DMatch [] matches1to2, Mat outImg, Scalar matchColor, Scalar singlePointColor, ByteVector matchesMask, DrawMatchesFlags flags);
-
-		// +(void)drawMatches:(Mat * _Nonnull)img1 keypoints1:(NSArray<KeyPoint *> * _Nonnull)keypoints1 img2:(Mat * _Nonnull)img2 keypoints2:(NSArray<KeyPoint *> * _Nonnull)keypoints2 matches1to2:(NSArray<DMatch *> * _Nonnull)matches1to2 outImg:(Mat * _Nonnull)outImg matchColor:(Scalar * _Nonnull)matchColor singlePointColor:(Scalar * _Nonnull)singlePointColor matchesMask:(ByteVector * _Nonnull)matchesMask __attribute__((swift_name("drawMatches(img1:keypoints1:img2:keypoints2:matches1to2:outImg:matchColor:singlePointColor:matchesMask:)")));
-		[Static]
-		[Export ("drawMatches:keypoints1:img2:keypoints2:matches1to2:outImg:matchColor:singlePointColor:matchesMask:")]
-		void DrawMatches (Mat img1, KeyPoint [] keypoints1, Mat img2, KeyPoint [] keypoints2, DMatch [] matches1to2, Mat outImg, Scalar matchColor, Scalar singlePointColor, ByteVector matchesMask);
-
-		// +(void)drawMatches:(Mat * _Nonnull)img1 keypoints1:(NSArray<KeyPoint *> * _Nonnull)keypoints1 img2:(Mat * _Nonnull)img2 keypoints2:(NSArray<KeyPoint *> * _Nonnull)keypoints2 matches1to2:(NSArray<DMatch *> * _Nonnull)matches1to2 outImg:(Mat * _Nonnull)outImg matchColor:(Scalar * _Nonnull)matchColor singlePointColor:(Scalar * _Nonnull)singlePointColor __attribute__((swift_name("drawMatches(img1:keypoints1:img2:keypoints2:matches1to2:outImg:matchColor:singlePointColor:)")));
-		[Static]
-		[Export ("drawMatches:keypoints1:img2:keypoints2:matches1to2:outImg:matchColor:singlePointColor:")]
-		void DrawMatches (Mat img1, KeyPoint [] keypoints1, Mat img2, KeyPoint [] keypoints2, DMatch [] matches1to2, Mat outImg, Scalar matchColor, Scalar singlePointColor);
-
-		// +(void)drawMatches:(Mat * _Nonnull)img1 keypoints1:(NSArray<KeyPoint *> * _Nonnull)keypoints1 img2:(Mat * _Nonnull)img2 keypoints2:(NSArray<KeyPoint *> * _Nonnull)keypoints2 matches1to2:(NSArray<DMatch *> * _Nonnull)matches1to2 outImg:(Mat * _Nonnull)outImg matchColor:(Scalar * _Nonnull)matchColor __attribute__((swift_name("drawMatches(img1:keypoints1:img2:keypoints2:matches1to2:outImg:matchColor:)")));
-		[Static]
-		[Export ("drawMatches:keypoints1:img2:keypoints2:matches1to2:outImg:matchColor:")]
-		void DrawMatches (Mat img1, KeyPoint [] keypoints1, Mat img2, KeyPoint [] keypoints2, DMatch [] matches1to2, Mat outImg, Scalar matchColor);
-
-		// +(void)drawMatches:(Mat * _Nonnull)img1 keypoints1:(NSArray<KeyPoint *> * _Nonnull)keypoints1 img2:(Mat * _Nonnull)img2 keypoints2:(NSArray<KeyPoint *> * _Nonnull)keypoints2 matches1to2:(NSArray<DMatch *> * _Nonnull)matches1to2 outImg:(Mat * _Nonnull)outImg __attribute__((swift_name("drawMatches(img1:keypoints1:img2:keypoints2:matches1to2:outImg:)")));
-		[Static]
-		[Export ("drawMatches:keypoints1:img2:keypoints2:matches1to2:outImg:")]
-		void DrawMatches (Mat img1, KeyPoint [] keypoints1, Mat img2, KeyPoint [] keypoints2, DMatch [] matches1to2, Mat outImg);
-
-		// +(void)drawMatches:(Mat * _Nonnull)img1 keypoints1:(NSArray<KeyPoint *> * _Nonnull)keypoints1 img2:(Mat * _Nonnull)img2 keypoints2:(NSArray<KeyPoint *> * _Nonnull)keypoints2 matches1to2:(NSArray<DMatch *> * _Nonnull)matches1to2 outImg:(Mat * _Nonnull)outImg matchesThickness:(int)matchesThickness matchColor:(Scalar * _Nonnull)matchColor singlePointColor:(Scalar * _Nonnull)singlePointColor matchesMask:(ByteVector * _Nonnull)matchesMask flags:(DrawMatchesFlags)flags __attribute__((swift_name("drawMatches(img1:keypoints1:img2:keypoints2:matches1to2:outImg:matchesThickness:matchColor:singlePointColor:matchesMask:flags:)")));
-		[Static]
-		[Export ("drawMatches:keypoints1:img2:keypoints2:matches1to2:outImg:matchesThickness:matchColor:singlePointColor:matchesMask:flags:")]
-		void DrawMatches (Mat img1, KeyPoint [] keypoints1, Mat img2, KeyPoint [] keypoints2, DMatch [] matches1to2, Mat outImg, int matchesThickness, Scalar matchColor, Scalar singlePointColor, ByteVector matchesMask, DrawMatchesFlags flags);
-
-		// +(void)drawMatches:(Mat * _Nonnull)img1 keypoints1:(NSArray<KeyPoint *> * _Nonnull)keypoints1 img2:(Mat * _Nonnull)img2 keypoints2:(NSArray<KeyPoint *> * _Nonnull)keypoints2 matches1to2:(NSArray<DMatch *> * _Nonnull)matches1to2 outImg:(Mat * _Nonnull)outImg matchesThickness:(int)matchesThickness matchColor:(Scalar * _Nonnull)matchColor singlePointColor:(Scalar * _Nonnull)singlePointColor matchesMask:(ByteVector * _Nonnull)matchesMask __attribute__((swift_name("drawMatches(img1:keypoints1:img2:keypoints2:matches1to2:outImg:matchesThickness:matchColor:singlePointColor:matchesMask:)")));
-		[Static]
-		[Export ("drawMatches:keypoints1:img2:keypoints2:matches1to2:outImg:matchesThickness:matchColor:singlePointColor:matchesMask:")]
-		void DrawMatches (Mat img1, KeyPoint [] keypoints1, Mat img2, KeyPoint [] keypoints2, DMatch [] matches1to2, Mat outImg, int matchesThickness, Scalar matchColor, Scalar singlePointColor, ByteVector matchesMask);
-
-		// +(void)drawMatches:(Mat * _Nonnull)img1 keypoints1:(NSArray<KeyPoint *> * _Nonnull)keypoints1 img2:(Mat * _Nonnull)img2 keypoints2:(NSArray<KeyPoint *> * _Nonnull)keypoints2 matches1to2:(NSArray<DMatch *> * _Nonnull)matches1to2 outImg:(Mat * _Nonnull)outImg matchesThickness:(int)matchesThickness matchColor:(Scalar * _Nonnull)matchColor singlePointColor:(Scalar * _Nonnull)singlePointColor __attribute__((swift_name("drawMatches(img1:keypoints1:img2:keypoints2:matches1to2:outImg:matchesThickness:matchColor:singlePointColor:)")));
-		[Static]
-		[Export ("drawMatches:keypoints1:img2:keypoints2:matches1to2:outImg:matchesThickness:matchColor:singlePointColor:")]
-		void DrawMatches (Mat img1, KeyPoint [] keypoints1, Mat img2, KeyPoint [] keypoints2, DMatch [] matches1to2, Mat outImg, int matchesThickness, Scalar matchColor, Scalar singlePointColor);
-
-		// +(void)drawMatches:(Mat * _Nonnull)img1 keypoints1:(NSArray<KeyPoint *> * _Nonnull)keypoints1 img2:(Mat * _Nonnull)img2 keypoints2:(NSArray<KeyPoint *> * _Nonnull)keypoints2 matches1to2:(NSArray<DMatch *> * _Nonnull)matches1to2 outImg:(Mat * _Nonnull)outImg matchesThickness:(int)matchesThickness matchColor:(Scalar * _Nonnull)matchColor __attribute__((swift_name("drawMatches(img1:keypoints1:img2:keypoints2:matches1to2:outImg:matchesThickness:matchColor:)")));
-		[Static]
-		[Export ("drawMatches:keypoints1:img2:keypoints2:matches1to2:outImg:matchesThickness:matchColor:")]
-		void DrawMatches (Mat img1, KeyPoint [] keypoints1, Mat img2, KeyPoint [] keypoints2, DMatch [] matches1to2, Mat outImg, int matchesThickness, Scalar matchColor);
-
-		// +(void)drawMatches:(Mat * _Nonnull)img1 keypoints1:(NSArray<KeyPoint *> * _Nonnull)keypoints1 img2:(Mat * _Nonnull)img2 keypoints2:(NSArray<KeyPoint *> * _Nonnull)keypoints2 matches1to2:(NSArray<DMatch *> * _Nonnull)matches1to2 outImg:(Mat * _Nonnull)outImg matchesThickness:(int)matchesThickness __attribute__((swift_name("drawMatches(img1:keypoints1:img2:keypoints2:matches1to2:outImg:matchesThickness:)")));
-		[Static]
-		[Export ("drawMatches:keypoints1:img2:keypoints2:matches1to2:outImg:matchesThickness:")]
-		void DrawMatches (Mat img1, KeyPoint [] keypoints1, Mat img2, KeyPoint [] keypoints2, DMatch [] matches1to2, Mat outImg, int matchesThickness);
-
-		// +(void)drawMatchesKnn:(Mat * _Nonnull)img1 keypoints1:(NSArray<KeyPoint *> * _Nonnull)keypoints1 img2:(Mat * _Nonnull)img2 keypoints2:(NSArray<KeyPoint *> * _Nonnull)keypoints2 matches1to2:(NSArray<NSArray<DMatch *> *> * _Nonnull)matches1to2 outImg:(Mat * _Nonnull)outImg matchColor:(Scalar * _Nonnull)matchColor singlePointColor:(Scalar * _Nonnull)singlePointColor matchesMask:(NSArray<ByteVector *> * _Nonnull)matchesMask flags:(DrawMatchesFlags)flags __attribute__((swift_name("drawMatches(img1:keypoints1:img2:keypoints2:matches1to2:outImg:matchColor:singlePointColor:matchesMask:flags:)")));
-		[Static]
-		[Export ("drawMatchesKnn:keypoints1:img2:keypoints2:matches1to2:outImg:matchColor:singlePointColor:matchesMask:flags:")]
-		void DrawMatchesKnn (Mat img1, KeyPoint [] keypoints1, Mat img2, KeyPoint [] keypoints2, NSArray<DMatch> [] matches1to2, Mat outImg, Scalar matchColor, Scalar singlePointColor, ByteVector [] matchesMask, DrawMatchesFlags flags);
-
-		// +(void)drawMatchesKnn:(Mat * _Nonnull)img1 keypoints1:(NSArray<KeyPoint *> * _Nonnull)keypoints1 img2:(Mat * _Nonnull)img2 keypoints2:(NSArray<KeyPoint *> * _Nonnull)keypoints2 matches1to2:(NSArray<NSArray<DMatch *> *> * _Nonnull)matches1to2 outImg:(Mat * _Nonnull)outImg matchColor:(Scalar * _Nonnull)matchColor singlePointColor:(Scalar * _Nonnull)singlePointColor matchesMask:(NSArray<ByteVector *> * _Nonnull)matchesMask __attribute__((swift_name("drawMatches(img1:keypoints1:img2:keypoints2:matches1to2:outImg:matchColor:singlePointColor:matchesMask:)")));
-		[Static]
-		[Export ("drawMatchesKnn:keypoints1:img2:keypoints2:matches1to2:outImg:matchColor:singlePointColor:matchesMask:")]
-		void DrawMatchesKnn (Mat img1, KeyPoint [] keypoints1, Mat img2, KeyPoint [] keypoints2, NSArray<DMatch> [] matches1to2, Mat outImg, Scalar matchColor, Scalar singlePointColor, ByteVector [] matchesMask);
-
-		// +(void)drawMatchesKnn:(Mat * _Nonnull)img1 keypoints1:(NSArray<KeyPoint *> * _Nonnull)keypoints1 img2:(Mat * _Nonnull)img2 keypoints2:(NSArray<KeyPoint *> * _Nonnull)keypoints2 matches1to2:(NSArray<NSArray<DMatch *> *> * _Nonnull)matches1to2 outImg:(Mat * _Nonnull)outImg matchColor:(Scalar * _Nonnull)matchColor singlePointColor:(Scalar * _Nonnull)singlePointColor __attribute__((swift_name("drawMatches(img1:keypoints1:img2:keypoints2:matches1to2:outImg:matchColor:singlePointColor:)")));
-		[Static]
-		[Export ("drawMatchesKnn:keypoints1:img2:keypoints2:matches1to2:outImg:matchColor:singlePointColor:")]
-		void DrawMatchesKnn (Mat img1, KeyPoint [] keypoints1, Mat img2, KeyPoint [] keypoints2, NSArray<DMatch> [] matches1to2, Mat outImg, Scalar matchColor, Scalar singlePointColor);
-
-		// +(void)drawMatchesKnn:(Mat * _Nonnull)img1 keypoints1:(NSArray<KeyPoint *> * _Nonnull)keypoints1 img2:(Mat * _Nonnull)img2 keypoints2:(NSArray<KeyPoint *> * _Nonnull)keypoints2 matches1to2:(NSArray<NSArray<DMatch *> *> * _Nonnull)matches1to2 outImg:(Mat * _Nonnull)outImg matchColor:(Scalar * _Nonnull)matchColor __attribute__((swift_name("drawMatches(img1:keypoints1:img2:keypoints2:matches1to2:outImg:matchColor:)")));
-		[Static]
-		[Export ("drawMatchesKnn:keypoints1:img2:keypoints2:matches1to2:outImg:matchColor:")]
-		void DrawMatchesKnn (Mat img1, KeyPoint [] keypoints1, Mat img2, KeyPoint [] keypoints2, NSArray<DMatch> [] matches1to2, Mat outImg, Scalar matchColor);
-
-		// +(void)drawMatchesKnn:(Mat * _Nonnull)img1 keypoints1:(NSArray<KeyPoint *> * _Nonnull)keypoints1 img2:(Mat * _Nonnull)img2 keypoints2:(NSArray<KeyPoint *> * _Nonnull)keypoints2 matches1to2:(NSArray<NSArray<DMatch *> *> * _Nonnull)matches1to2 outImg:(Mat * _Nonnull)outImg __attribute__((swift_name("drawMatches(img1:keypoints1:img2:keypoints2:matches1to2:outImg:)")));
-		[Static]
-		[Export ("drawMatchesKnn:keypoints1:img2:keypoints2:matches1to2:outImg:")]
-		void DrawMatchesKnn (Mat img1, KeyPoint [] keypoints1, Mat img2, KeyPoint [] keypoints2, NSArray<DMatch> [] matches1to2, Mat outImg);
-	}
-
-	// @interface Feature2D : Algorithm
-	[BaseType (typeof (Algorithm))]
-	interface Feature2D {
-		// -(void)detect:(Mat * _Nonnull)image keypoints:(NSMutableArray<KeyPoint *> * _Nonnull)keypoints mask:(Mat * _Nonnull)mask __attribute__((swift_name("detect(image:keypoints:mask:)")));
-		[Export ("detect:keypoints:mask:")]
-		void Detect (Mat image, NSMutableArray<KeyPoint> keypoints, Mat mask);
-
-		// -(void)detect:(Mat * _Nonnull)image keypoints:(NSMutableArray<KeyPoint *> * _Nonnull)keypoints __attribute__((swift_name("detect(image:keypoints:)")));
-		[Export ("detect:keypoints:")]
-		void Detect (Mat image, NSMutableArray<KeyPoint> keypoints);
-
-		// -(void)detect2:(NSArray<Mat *> * _Nonnull)images keypoints:(NSMutableArray<NSMutableArray<KeyPoint *> *> * _Nonnull)keypoints masks:(NSArray<Mat *> * _Nonnull)masks __attribute__((swift_name("detect(images:keypoints:masks:)")));
-		[Export ("detect2:keypoints:masks:")]
-		void Detect2 (Mat [] images, NSMutableArray<NSMutableArray<KeyPoint>> keypoints, Mat [] masks);
-
-		// -(void)detect2:(NSArray<Mat *> * _Nonnull)images keypoints:(NSMutableArray<NSMutableArray<KeyPoint *> *> * _Nonnull)keypoints __attribute__((swift_name("detect(images:keypoints:)")));
-		[Export ("detect2:keypoints:")]
-		void Detect2 (Mat [] images, NSMutableArray<NSMutableArray<KeyPoint>> keypoints);
-
-		// -(void)compute:(Mat * _Nonnull)image keypoints:(NSMutableArray<KeyPoint *> * _Nonnull)keypoints descriptors:(Mat * _Nonnull)descriptors __attribute__((swift_name("compute(image:keypoints:descriptors:)")));
-		[Export ("compute:keypoints:descriptors:")]
-		void Compute (Mat image, NSMutableArray<KeyPoint> keypoints, Mat descriptors);
-
-		// -(void)compute2:(NSArray<Mat *> * _Nonnull)images keypoints:(NSMutableArray<NSMutableArray<KeyPoint *> *> * _Nonnull)keypoints descriptors:(NSMutableArray<Mat *> * _Nonnull)descriptors __attribute__((swift_name("compute(images:keypoints:descriptors:)")));
-		[Export ("compute2:keypoints:descriptors:")]
-		void Compute2 (Mat [] images, NSMutableArray<NSMutableArray<KeyPoint>> keypoints, NSMutableArray<Mat> descriptors);
-
-		// -(void)detectAndCompute:(Mat * _Nonnull)image mask:(Mat * _Nonnull)mask keypoints:(NSMutableArray<KeyPoint *> * _Nonnull)keypoints descriptors:(Mat * _Nonnull)descriptors useProvidedKeypoints:(BOOL)useProvidedKeypoints __attribute__((swift_name("detectAndCompute(image:mask:keypoints:descriptors:useProvidedKeypoints:)")));
-		[Export ("detectAndCompute:mask:keypoints:descriptors:useProvidedKeypoints:")]
-		void DetectAndCompute (Mat image, Mat mask, NSMutableArray<KeyPoint> keypoints, Mat descriptors, bool useProvidedKeypoints);
-
-		// -(void)detectAndCompute:(Mat * _Nonnull)image mask:(Mat * _Nonnull)mask keypoints:(NSMutableArray<KeyPoint *> * _Nonnull)keypoints descriptors:(Mat * _Nonnull)descriptors __attribute__((swift_name("detectAndCompute(image:mask:keypoints:descriptors:)")));
-		[Export ("detectAndCompute:mask:keypoints:descriptors:")]
-		void DetectAndCompute (Mat image, Mat mask, NSMutableArray<KeyPoint> keypoints, Mat descriptors);
-
-		// -(int)descriptorSize __attribute__((swift_name("descriptorSize()")));
-		[Export ("descriptorSize")]
-		int DescriptorSize { get; }
-
-		// -(int)descriptorType __attribute__((swift_name("descriptorType()")));
-		[Export ("descriptorType")]
-		int DescriptorType { get; }
-
-		// -(int)defaultNorm __attribute__((swift_name("defaultNorm()")));
-		[Export ("defaultNorm")]
-		int DefaultNorm { get; }
-
-		// -(void)write:(NSString * _Nonnull)fileName __attribute__((swift_name("write(fileName:)")));
-		[Export ("write:")]
-		void Write (string fileName);
-
-		// -(void)read:(NSString * _Nonnull)fileName __attribute__((swift_name("read(fileName:)")));
-		[Export ("read:")]
-		void Read (string fileName);
-
-		// -(BOOL)empty __attribute__((swift_name("empty()")));
-		[Export ("empty")]
-		bool Empty { get; }
-
-		// -(NSString * _Nonnull)getDefaultName __attribute__((swift_name("getDefaultName()")));
-		[Export ("getDefaultName")]
-		string DefaultName { get; }
-	}
-
-	// @interface ALIKED : Feature2D
-	[BaseType (typeof (Feature2D))]
-	interface ALIKED {
-		// +(ALIKED * _Nonnull)create:(NSString * _Nonnull)modelPath params:(ALIKEDParams * _Nonnull)params __attribute__((swift_name("create(modelPath:params:)")));
-		[Static]
-		[Export ("create:params:")]
-		ALIKED Create (string modelPath, ALIKEDParams @params);
-
-		// +(ALIKED * _Nonnull)create:(NSString * _Nonnull)modelPath __attribute__((swift_name("create(modelPath:)")));
-		[Static]
-		[Export ("create:")]
-		ALIKED Create (string modelPath);
-	}
-
-	// @interface ALIKEDParams : NSObject
-	[BaseType (typeof (NSObject))]
-	interface ALIKEDParams {
-		// @property Size2i * _Nonnull inputSize;
-		[Export ("inputSize", ArgumentSemantic.Assign)]
-		Size2i InputSize { get; set; }
-
-		// @property BOOL normalizeDescriptors;
-		[Export ("normalizeDescriptors")]
-		bool NormalizeDescriptors { get; set; }
-
-		// @property int engine;
-		[Export ("engine")]
-		int Engine { get; set; }
-
-		// @property int backend;
-		[Export ("backend")]
-		int Backend { get; set; }
-
-		// @property int target;
-		[Export ("target")]
-		int Target { get; set; }
-	}
-
-	// @interface ANNIndex : NSObject
-	[BaseType (typeof (NSObject))]
-	interface ANNIndex {
-		// -(void)addItems:(Mat * _Nonnull)features __attribute__((swift_name("addItems(features:)")));
-		[Export ("addItems:")]
-		void AddItems (Mat features);
-
-		// -(void)build:(int)trees __attribute__((swift_name("build(trees:)")));
-		[Export ("build:")]
-		void Build (int trees);
-
-		// -(void)build __attribute__((swift_name("build()")));
-		[Export ("build")]
-		void Build ();
-
-		// -(void)knnSearch:(Mat * _Nonnull)query indices:(Mat * _Nonnull)indices dists:(Mat * _Nonnull)dists knn:(int)knn search_k:(int)search_k __attribute__((swift_name("knnSearch(query:indices:dists:knn:search_k:)")));
-		[Export ("knnSearch:indices:dists:knn:search_k:")]
-		void KnnSearch (Mat query, Mat indices, Mat dists, int knn, int search_k);
-
-		// -(void)knnSearch:(Mat * _Nonnull)query indices:(Mat * _Nonnull)indices dists:(Mat * _Nonnull)dists knn:(int)knn __attribute__((swift_name("knnSearch(query:indices:dists:knn:)")));
-		[Export ("knnSearch:indices:dists:knn:")]
-		void KnnSearch (Mat query, Mat indices, Mat dists, int knn);
-
-		// -(void)save:(NSString * _Nonnull)filename prefault:(BOOL)prefault __attribute__((swift_name("save(filename:prefault:)")));
-		[Export ("save:prefault:")]
-		void Save (string filename, bool prefault);
-
-		// -(void)save:(NSString * _Nonnull)filename __attribute__((swift_name("save(filename:)")));
-		[Export ("save:")]
-		void Save (string filename);
-
-		// -(void)load:(NSString * _Nonnull)filename prefault:(BOOL)prefault __attribute__((swift_name("load(filename:prefault:)")));
-		[Export ("load:prefault:")]
-		void Load (string filename, bool prefault);
-
-		// -(void)load:(NSString * _Nonnull)filename __attribute__((swift_name("load(filename:)")));
-		[Export ("load:")]
-		void Load (string filename);
-
-		// -(int)getTreeNumber __attribute__((swift_name("getTreeNumber()")));
-		[Export ("getTreeNumber")]
-		int TreeNumber { get; }
-
-		// -(int)getItemNumber __attribute__((swift_name("getItemNumber()")));
-		[Export ("getItemNumber")]
-		int ItemNumber { get; }
-
-		// -(BOOL)setOnDiskBuild:(NSString * _Nonnull)filename __attribute__((swift_name("setOnDiskBuild(filename:)")));
-		[Export ("setOnDiskBuild:")]
-		bool SetOnDiskBuild (string filename);
-
-		// -(void)setSeed:(int)seed __attribute__((swift_name("setSeed(seed:)")));
-		[Export ("setSeed:")]
-		void SetSeed (int seed);
-
-		// +(ANNIndex * _Nonnull)create:(int)dim distType:(Distance)distType __attribute__((swift_name("create(dim:distType:)")));
-		[Static]
-		[Export ("create:distType:")]
-		ANNIndex Create (int dim, Distance distType);
-
-		// +(ANNIndex * _Nonnull)create:(int)dim __attribute__((swift_name("create(dim:)")));
-		[Static]
-		[Export ("create:")]
-		ANNIndex Create (int dim);
-	}
-
-	// @interface AffineFeature : Feature2D
-	[BaseType (typeof (Feature2D))]
-	interface AffineFeature {
-		// +(AffineFeature * _Nonnull)create:(Feature2D * _Nonnull)backend maxTilt:(int)maxTilt minTilt:(int)minTilt tiltStep:(float)tiltStep rotateStepBase:(float)rotateStepBase __attribute__((swift_name("create(backend:maxTilt:minTilt:tiltStep:rotateStepBase:)")));
-		[Static]
-		[Export ("create:maxTilt:minTilt:tiltStep:rotateStepBase:")]
-		AffineFeature Create (Feature2D backend, int maxTilt, int minTilt, float tiltStep, float rotateStepBase);
-
-		// +(AffineFeature * _Nonnull)create:(Feature2D * _Nonnull)backend maxTilt:(int)maxTilt minTilt:(int)minTilt tiltStep:(float)tiltStep __attribute__((swift_name("create(backend:maxTilt:minTilt:tiltStep:)")));
-		[Static]
-		[Export ("create:maxTilt:minTilt:tiltStep:")]
-		AffineFeature Create (Feature2D backend, int maxTilt, int minTilt, float tiltStep);
-
-		// +(AffineFeature * _Nonnull)create:(Feature2D * _Nonnull)backend maxTilt:(int)maxTilt minTilt:(int)minTilt __attribute__((swift_name("create(backend:maxTilt:minTilt:)")));
-		[Static]
-		[Export ("create:maxTilt:minTilt:")]
-		AffineFeature Create (Feature2D backend, int maxTilt, int minTilt);
-
-		// +(AffineFeature * _Nonnull)create:(Feature2D * _Nonnull)backend maxTilt:(int)maxTilt __attribute__((swift_name("create(backend:maxTilt:)")));
-		[Static]
-		[Export ("create:maxTilt:")]
-		AffineFeature Create (Feature2D backend, int maxTilt);
-
-		// +(AffineFeature * _Nonnull)create:(Feature2D * _Nonnull)backend __attribute__((swift_name("create(backend:)")));
-		[Static]
-		[Export ("create:")]
-		AffineFeature Create (Feature2D backend);
-
-		// -(void)setViewParams:(FloatVector * _Nonnull)tilts rolls:(FloatVector * _Nonnull)rolls __attribute__((swift_name("setViewParams(tilts:rolls:)")));
-		[Export ("setViewParams:rolls:")]
-		void SetViewParams (FloatVector tilts, FloatVector rolls);
-
-		// -(void)getViewParams:(FloatVector * _Nonnull)tilts rolls:(FloatVector * _Nonnull)rolls __attribute__((swift_name("getViewParams(tilts:rolls:)")));
-		[Export ("getViewParams:rolls:")]
-		void GetViewParams (FloatVector tilts, FloatVector rolls);
-
-		// -(NSString * _Nonnull)getDefaultName __attribute__((swift_name("getDefaultName()")));
-		[Export ("getDefaultName")]
-		string DefaultName { get; }
-	}
-
-	// @interface DescriptorMatcher : Algorithm
-	[BaseType (typeof (Algorithm))]
-	interface DescriptorMatcher {
-		// -(void)add:(NSArray<Mat *> * _Nonnull)descriptors __attribute__((swift_name("add(descriptors:)")));
-		[Export ("add:")]
-		void Add (Mat [] descriptors);
-
-		// -(NSArray<Mat *> * _Nonnull)getTrainDescriptors __attribute__((swift_name("getTrainDescriptors()")));
-		[Export ("getTrainDescriptors")]
-		Mat [] TrainDescriptors { get; }
-
-		// -(void)clear __attribute__((swift_name("clear()")));
-		[Export ("clear")]
-		void Clear ();
-
-		// -(BOOL)empty __attribute__((swift_name("empty()")));
-		[Export ("empty")]
-		bool Empty { get; }
-
-		// -(BOOL)isMaskSupported __attribute__((swift_name("isMaskSupported()")));
-		[Export ("isMaskSupported")]
-		bool IsMaskSupported { get; }
-
-		// -(void)train __attribute__((swift_name("train()")));
-		[Export ("train")]
-		void Train ();
-
-		// -(void)match:(Mat * _Nonnull)queryDescriptors trainDescriptors:(Mat * _Nonnull)trainDescriptors matches:(NSMutableArray<DMatch *> * _Nonnull)matches mask:(Mat * _Nonnull)mask __attribute__((swift_name("match(queryDescriptors:trainDescriptors:matches:mask:)")));
-		[Export ("match:trainDescriptors:matches:mask:")]
-		void Match (Mat queryDescriptors, Mat trainDescriptors, NSMutableArray<DMatch> matches, Mat mask);
-
-		// -(void)match:(Mat * _Nonnull)queryDescriptors trainDescriptors:(Mat * _Nonnull)trainDescriptors matches:(NSMutableArray<DMatch *> * _Nonnull)matches __attribute__((swift_name("match(queryDescriptors:trainDescriptors:matches:)")));
-		[Export ("match:trainDescriptors:matches:")]
-		void Match (Mat queryDescriptors, Mat trainDescriptors, NSMutableArray<DMatch> matches);
-
-		// -(void)knnMatch:(Mat * _Nonnull)queryDescriptors trainDescriptors:(Mat * _Nonnull)trainDescriptors matches:(NSMutableArray<NSMutableArray<DMatch *> *> * _Nonnull)matches k:(int)k mask:(Mat * _Nonnull)mask compactResult:(BOOL)compactResult __attribute__((swift_name("knnMatch(queryDescriptors:trainDescriptors:matches:k:mask:compactResult:)")));
-		[Export ("knnMatch:trainDescriptors:matches:k:mask:compactResult:")]
-		void KnnMatch (Mat queryDescriptors, Mat trainDescriptors, NSMutableArray<NSMutableArray<DMatch>> matches, int k, Mat mask, bool compactResult);
-
-		// -(void)knnMatch:(Mat * _Nonnull)queryDescriptors trainDescriptors:(Mat * _Nonnull)trainDescriptors matches:(NSMutableArray<NSMutableArray<DMatch *> *> * _Nonnull)matches k:(int)k mask:(Mat * _Nonnull)mask __attribute__((swift_name("knnMatch(queryDescriptors:trainDescriptors:matches:k:mask:)")));
-		[Export ("knnMatch:trainDescriptors:matches:k:mask:")]
-		void KnnMatch (Mat queryDescriptors, Mat trainDescriptors, NSMutableArray<NSMutableArray<DMatch>> matches, int k, Mat mask);
-
-		// -(void)knnMatch:(Mat * _Nonnull)queryDescriptors trainDescriptors:(Mat * _Nonnull)trainDescriptors matches:(NSMutableArray<NSMutableArray<DMatch *> *> * _Nonnull)matches k:(int)k __attribute__((swift_name("knnMatch(queryDescriptors:trainDescriptors:matches:k:)")));
-		[Export ("knnMatch:trainDescriptors:matches:k:")]
-		void KnnMatch (Mat queryDescriptors, Mat trainDescriptors, NSMutableArray<NSMutableArray<DMatch>> matches, int k);
-
-		// -(void)radiusMatch:(Mat * _Nonnull)queryDescriptors trainDescriptors:(Mat * _Nonnull)trainDescriptors matches:(NSMutableArray<NSMutableArray<DMatch *> *> * _Nonnull)matches maxDistance:(float)maxDistance mask:(Mat * _Nonnull)mask compactResult:(BOOL)compactResult __attribute__((swift_name("radiusMatch(queryDescriptors:trainDescriptors:matches:maxDistance:mask:compactResult:)")));
-		[Export ("radiusMatch:trainDescriptors:matches:maxDistance:mask:compactResult:")]
-		void RadiusMatch (Mat queryDescriptors, Mat trainDescriptors, NSMutableArray<NSMutableArray<DMatch>> matches, float maxDistance, Mat mask, bool compactResult);
-
-		// -(void)radiusMatch:(Mat * _Nonnull)queryDescriptors trainDescriptors:(Mat * _Nonnull)trainDescriptors matches:(NSMutableArray<NSMutableArray<DMatch *> *> * _Nonnull)matches maxDistance:(float)maxDistance mask:(Mat * _Nonnull)mask __attribute__((swift_name("radiusMatch(queryDescriptors:trainDescriptors:matches:maxDistance:mask:)")));
-		[Export ("radiusMatch:trainDescriptors:matches:maxDistance:mask:")]
-		void RadiusMatch (Mat queryDescriptors, Mat trainDescriptors, NSMutableArray<NSMutableArray<DMatch>> matches, float maxDistance, Mat mask);
-
-		// -(void)radiusMatch:(Mat * _Nonnull)queryDescriptors trainDescriptors:(Mat * _Nonnull)trainDescriptors matches:(NSMutableArray<NSMutableArray<DMatch *> *> * _Nonnull)matches maxDistance:(float)maxDistance __attribute__((swift_name("radiusMatch(queryDescriptors:trainDescriptors:matches:maxDistance:)")));
-		[Export ("radiusMatch:trainDescriptors:matches:maxDistance:")]
-		void RadiusMatch (Mat queryDescriptors, Mat trainDescriptors, NSMutableArray<NSMutableArray<DMatch>> matches, float maxDistance);
-
-		// -(void)match:(Mat * _Nonnull)queryDescriptors matches:(NSMutableArray<DMatch *> * _Nonnull)matches masks:(NSArray<Mat *> * _Nonnull)masks __attribute__((swift_name("match(queryDescriptors:matches:masks:)")));
-		[Export ("match:matches:masks:")]
-		void Match (Mat queryDescriptors, NSMutableArray<DMatch> matches, Mat [] masks);
-
-		// -(void)match:(Mat * _Nonnull)queryDescriptors matches:(NSMutableArray<DMatch *> * _Nonnull)matches __attribute__((swift_name("match(queryDescriptors:matches:)")));
-		[Export ("match:matches:")]
-		void Match (Mat queryDescriptors, NSMutableArray<DMatch> matches);
-
-		// -(void)knnMatch:(Mat * _Nonnull)queryDescriptors matches:(NSMutableArray<NSMutableArray<DMatch *> *> * _Nonnull)matches k:(int)k masks:(NSArray<Mat *> * _Nonnull)masks compactResult:(BOOL)compactResult __attribute__((swift_name("knnMatch(queryDescriptors:matches:k:masks:compactResult:)")));
-		[Export ("knnMatch:matches:k:masks:compactResult:")]
-		void KnnMatch (Mat queryDescriptors, NSMutableArray<NSMutableArray<DMatch>> matches, int k, Mat [] masks, bool compactResult);
-
-		// -(void)knnMatch:(Mat * _Nonnull)queryDescriptors matches:(NSMutableArray<NSMutableArray<DMatch *> *> * _Nonnull)matches k:(int)k masks:(NSArray<Mat *> * _Nonnull)masks __attribute__((swift_name("knnMatch(queryDescriptors:matches:k:masks:)")));
-		[Export ("knnMatch:matches:k:masks:")]
-		void KnnMatch (Mat queryDescriptors, NSMutableArray<NSMutableArray<DMatch>> matches, int k, Mat [] masks);
-
-		// -(void)knnMatch:(Mat * _Nonnull)queryDescriptors matches:(NSMutableArray<NSMutableArray<DMatch *> *> * _Nonnull)matches k:(int)k __attribute__((swift_name("knnMatch(queryDescriptors:matches:k:)")));
-		[Export ("knnMatch:matches:k:")]
-		void KnnMatch (Mat queryDescriptors, NSMutableArray<NSMutableArray<DMatch>> matches, int k);
-
-		// -(void)radiusMatch:(Mat * _Nonnull)queryDescriptors matches:(NSMutableArray<NSMutableArray<DMatch *> *> * _Nonnull)matches maxDistance:(float)maxDistance masks:(NSArray<Mat *> * _Nonnull)masks compactResult:(BOOL)compactResult __attribute__((swift_name("radiusMatch(queryDescriptors:matches:maxDistance:masks:compactResult:)")));
-		[Export ("radiusMatch:matches:maxDistance:masks:compactResult:")]
-		void RadiusMatch (Mat queryDescriptors, NSMutableArray<NSMutableArray<DMatch>> matches, float maxDistance, Mat [] masks, bool compactResult);
-
-		// -(void)radiusMatch:(Mat * _Nonnull)queryDescriptors matches:(NSMutableArray<NSMutableArray<DMatch *> *> * _Nonnull)matches maxDistance:(float)maxDistance masks:(NSArray<Mat *> * _Nonnull)masks __attribute__((swift_name("radiusMatch(queryDescriptors:matches:maxDistance:masks:)")));
-		[Export ("radiusMatch:matches:maxDistance:masks:")]
-		void RadiusMatch (Mat queryDescriptors, NSMutableArray<NSMutableArray<DMatch>> matches, float maxDistance, Mat [] masks);
-
-		// -(void)radiusMatch:(Mat * _Nonnull)queryDescriptors matches:(NSMutableArray<NSMutableArray<DMatch *> *> * _Nonnull)matches maxDistance:(float)maxDistance __attribute__((swift_name("radiusMatch(queryDescriptors:matches:maxDistance:)")));
-		[Export ("radiusMatch:matches:maxDistance:")]
-		void RadiusMatch (Mat queryDescriptors, NSMutableArray<NSMutableArray<DMatch>> matches, float maxDistance);
-
-		// -(void)write:(NSString * _Nonnull)fileName __attribute__((swift_name("write(fileName:)")));
-		[Export ("write:")]
-		void Write (string fileName);
-
-		// -(void)read:(NSString * _Nonnull)fileName __attribute__((swift_name("read(fileName:)")));
-		[Export ("read:")]
-		void Read (string fileName);
-
-		// -(DescriptorMatcher * _Nonnull)clone:(BOOL)emptyTrainData __attribute__((swift_name("clone(emptyTrainData:)")));
-		[Export ("clone:")]
-		DescriptorMatcher Clone (bool emptyTrainData);
-
-		// -(DescriptorMatcher * _Nonnull)clone __attribute__((swift_name("clone()")));
-		[Export ("clone")]
-		DescriptorMatcher Clone ();
-
-		// +(DescriptorMatcher * _Nonnull)create2:(NSString * _Nonnull)descriptorMatcherType __attribute__((swift_name("create(descriptorMatcherType:)")));
-		[Static]
-		[Export ("create2:")]
-		DescriptorMatcher Create2 (string descriptorMatcherType);
-
-		// +(DescriptorMatcher * _Nonnull)create:(MatcherType)matcherType __attribute__((swift_name("create(matcherType:)")));
-		[Static]
-		[Export ("create:")]
-		DescriptorMatcher Create (MatcherType matcherType);
-	}
-
-	// @interface BFMatcher : DescriptorMatcher
-	[BaseType (typeof (DescriptorMatcher))]
-	interface BFMatcher {
-		// -(instancetype _Nonnull)initWithNormType:(NormTypes)normType crossCheck:(BOOL)crossCheck;
-		[Export ("initWithNormType:crossCheck:")]
-		NativeHandle Constructor (NormTypes normType, bool crossCheck);
-
-		// -(instancetype _Nonnull)initWithNormType:(NormTypes)normType;
-		[Export ("initWithNormType:")]
-		NativeHandle Constructor (NormTypes normType);
-
-		// +(BFMatcher * _Nonnull)createBFMatcher:(NormTypes)normType crossCheck:(BOOL)crossCheck __attribute__((swift_name("create(normType:crossCheck:)")));
-		[Static]
-		[Export ("createBFMatcher:crossCheck:")]
-		BFMatcher CreateBFMatcher (NormTypes normType, bool crossCheck);
-
-		// +(BFMatcher * _Nonnull)createBFMatcher:(NormTypes)normType __attribute__((swift_name("create(normType:)")));
-		[Static]
-		[Export ("createBFMatcher:")]
-		BFMatcher CreateBFMatcher (NormTypes normType);
-
-		// +(BFMatcher * _Nonnull)createBFMatcher __attribute__((swift_name("create()")));
-		[Static]
-		[Export ("createBFMatcher")]
-		BFMatcher CreateBFMatcher ();
-	}
-
-	// @interface DISK : Feature2D
-	[BaseType (typeof (Feature2D))]
-	interface DISK {
-		// +(DISK * _Nonnull)create:(NSString * _Nonnull)modelPath maxKeypoints:(int)maxKeypoints scoreThreshold:(float)scoreThreshold imageSize:(Size2i * _Nonnull)imageSize backendId:(int)backendId targetId:(int)targetId __attribute__((swift_name("create(modelPath:maxKeypoints:scoreThreshold:imageSize:backendId:targetId:)")));
-		[Static]
-		[Export ("create:maxKeypoints:scoreThreshold:imageSize:backendId:targetId:")]
-		DISK Create (string modelPath, int maxKeypoints, float scoreThreshold, Size2i imageSize, int backendId, int targetId);
-
-		// +(DISK * _Nonnull)create:(NSString * _Nonnull)modelPath maxKeypoints:(int)maxKeypoints scoreThreshold:(float)scoreThreshold imageSize:(Size2i * _Nonnull)imageSize backendId:(int)backendId __attribute__((swift_name("create(modelPath:maxKeypoints:scoreThreshold:imageSize:backendId:)")));
-		[Static]
-		[Export ("create:maxKeypoints:scoreThreshold:imageSize:backendId:")]
-		DISK Create (string modelPath, int maxKeypoints, float scoreThreshold, Size2i imageSize, int backendId);
-
-		// +(DISK * _Nonnull)create:(NSString * _Nonnull)modelPath maxKeypoints:(int)maxKeypoints scoreThreshold:(float)scoreThreshold imageSize:(Size2i * _Nonnull)imageSize __attribute__((swift_name("create(modelPath:maxKeypoints:scoreThreshold:imageSize:)")));
-		[Static]
-		[Export ("create:maxKeypoints:scoreThreshold:imageSize:")]
-		DISK Create (string modelPath, int maxKeypoints, float scoreThreshold, Size2i imageSize);
-
-		// +(DISK * _Nonnull)create:(NSString * _Nonnull)modelPath maxKeypoints:(int)maxKeypoints scoreThreshold:(float)scoreThreshold __attribute__((swift_name("create(modelPath:maxKeypoints:scoreThreshold:)")));
-		[Static]
-		[Export ("create:maxKeypoints:scoreThreshold:")]
-		DISK Create (string modelPath, int maxKeypoints, float scoreThreshold);
-
-		// +(DISK * _Nonnull)create:(NSString * _Nonnull)modelPath maxKeypoints:(int)maxKeypoints __attribute__((swift_name("create(modelPath:maxKeypoints:)")));
-		[Static]
-		[Export ("create:maxKeypoints:")]
-		DISK Create (string modelPath, int maxKeypoints);
-
-		// +(DISK * _Nonnull)create:(NSString * _Nonnull)modelPath __attribute__((swift_name("create(modelPath:)")));
-		[Static]
-		[Export ("create:")]
-		DISK Create (string modelPath);
-
-		// +(DISK * _Nonnull)createFromMemory:(ByteVector * _Nonnull)bufferModel maxKeypoints:(int)maxKeypoints scoreThreshold:(float)scoreThreshold imageSize:(Size2i * _Nonnull)imageSize backendId:(int)backendId targetId:(int)targetId __attribute__((swift_name("create(bufferModel:maxKeypoints:scoreThreshold:imageSize:backendId:targetId:)")));
-		[Static]
-		[Export ("createFromMemory:maxKeypoints:scoreThreshold:imageSize:backendId:targetId:")]
-		DISK CreateFromMemory (ByteVector bufferModel, int maxKeypoints, float scoreThreshold, Size2i imageSize, int backendId, int targetId);
-
-		// +(DISK * _Nonnull)createFromMemory:(ByteVector * _Nonnull)bufferModel maxKeypoints:(int)maxKeypoints scoreThreshold:(float)scoreThreshold imageSize:(Size2i * _Nonnull)imageSize backendId:(int)backendId __attribute__((swift_name("create(bufferModel:maxKeypoints:scoreThreshold:imageSize:backendId:)")));
-		[Static]
-		[Export ("createFromMemory:maxKeypoints:scoreThreshold:imageSize:backendId:")]
-		DISK CreateFromMemory (ByteVector bufferModel, int maxKeypoints, float scoreThreshold, Size2i imageSize, int backendId);
-
-		// +(DISK * _Nonnull)createFromMemory:(ByteVector * _Nonnull)bufferModel maxKeypoints:(int)maxKeypoints scoreThreshold:(float)scoreThreshold imageSize:(Size2i * _Nonnull)imageSize __attribute__((swift_name("create(bufferModel:maxKeypoints:scoreThreshold:imageSize:)")));
-		[Static]
-		[Export ("createFromMemory:maxKeypoints:scoreThreshold:imageSize:")]
-		DISK CreateFromMemory (ByteVector bufferModel, int maxKeypoints, float scoreThreshold, Size2i imageSize);
-
-		// +(DISK * _Nonnull)createFromMemory:(ByteVector * _Nonnull)bufferModel maxKeypoints:(int)maxKeypoints scoreThreshold:(float)scoreThreshold __attribute__((swift_name("create(bufferModel:maxKeypoints:scoreThreshold:)")));
-		[Static]
-		[Export ("createFromMemory:maxKeypoints:scoreThreshold:")]
-		DISK CreateFromMemory (ByteVector bufferModel, int maxKeypoints, float scoreThreshold);
-
-		// +(DISK * _Nonnull)createFromMemory:(ByteVector * _Nonnull)bufferModel maxKeypoints:(int)maxKeypoints __attribute__((swift_name("create(bufferModel:maxKeypoints:)")));
-		[Static]
-		[Export ("createFromMemory:maxKeypoints:")]
-		DISK CreateFromMemory (ByteVector bufferModel, int maxKeypoints);
-
-		// +(DISK * _Nonnull)createFromMemory:(ByteVector * _Nonnull)bufferModel __attribute__((swift_name("create(bufferModel:)")));
-		[Static]
-		[Export ("createFromMemory:")]
-		DISK CreateFromMemory (ByteVector bufferModel);
-
-		// -(void)setMaxKeypoints:(int)maxKeypoints __attribute__((swift_name("setMaxKeypoints(maxKeypoints:)")));
-		[Export ("setMaxKeypoints:")]
-		void SetMaxKeypoints (int maxKeypoints);
-
-		// -(int)getMaxKeypoints __attribute__((swift_name("getMaxKeypoints()")));
-		[Export ("getMaxKeypoints")]
-		int MaxKeypoints { get; }
-
-		// -(void)setScoreThreshold:(float)threshold __attribute__((swift_name("setScoreThreshold(threshold:)")));
-		[Export ("setScoreThreshold:")]
-		void SetScoreThreshold (float threshold);
-
-		// -(float)getScoreThreshold __attribute__((swift_name("getScoreThreshold()")));
-		[Export ("getScoreThreshold")]
-		float ScoreThreshold { get; }
-
-		// -(void)setImageSize:(Size2i * _Nonnull)size __attribute__((swift_name("setImageSize(size:)")));
-		[Export ("setImageSize:")]
-		void SetImageSize (Size2i size);
-
-		// -(Size2i * _Nonnull)getImageSize __attribute__((swift_name("getImageSize()")));
-		[Export ("getImageSize")]
-		Size2i ImageSize { get; }
-
-		// -(NSString * _Nonnull)getDefaultName __attribute__((swift_name("getDefaultName()")));
-		[Export ("getDefaultName")]
-		string DefaultName { get; }
-	}
-
-	// @interface FastFeatureDetector : Feature2D
-	[BaseType (typeof (Feature2D))]
-	interface FastFeatureDetector {
-		// @property (readonly, class) int THRESHOLD __attribute__((swift_name("THRESHOLD")));
-		[Static]
-		[Export ("THRESHOLD")]
-		int THRESHOLD { get; }
-
-		// @property (readonly, class) int NONMAX_SUPPRESSION __attribute__((swift_name("NONMAX_SUPPRESSION")));
-		[Static]
-		[Export ("NONMAX_SUPPRESSION")]
-		int NONMAX_SUPPRESSION { get; }
-
-		// @property (readonly, class) int FAST_N __attribute__((swift_name("FAST_N")));
-		[Static]
-		[Export ("FAST_N")]
-		int FAST_N { get; }
-
-		// +(FastFeatureDetector * _Nonnull)create:(int)threshold nonmaxSuppression:(BOOL)nonmaxSuppression type:(FastDetectorType)type __attribute__((swift_name("create(threshold:nonmaxSuppression:type:)")));
-		[Static]
-		[Export ("create:nonmaxSuppression:type:")]
-		FastFeatureDetector Create (int threshold, bool nonmaxSuppression, FastDetectorType type);
-
-		// +(FastFeatureDetector * _Nonnull)create:(int)threshold nonmaxSuppression:(BOOL)nonmaxSuppression __attribute__((swift_name("create(threshold:nonmaxSuppression:)")));
-		[Static]
-		[Export ("create:nonmaxSuppression:")]
-		FastFeatureDetector Create (int threshold, bool nonmaxSuppression);
-
-		// +(FastFeatureDetector * _Nonnull)create:(int)threshold __attribute__((swift_name("create(threshold:)")));
-		[Static]
-		[Export ("create:")]
-		FastFeatureDetector Create (int threshold);
-
-		// +(FastFeatureDetector * _Nonnull)create __attribute__((swift_name("create()")));
-		[Static]
-		[Export ("create")]
-		FastFeatureDetector Create ();
-
-		// -(void)setThreshold:(int)threshold __attribute__((swift_name("setThreshold(threshold:)")));
-		[Export ("setThreshold:")]
-		void SetThreshold (int threshold);
-
-		// -(int)getThreshold __attribute__((swift_name("getThreshold()")));
-		[Export ("getThreshold")]
-		int Threshold { get; }
-
-		// -(void)setNonmaxSuppression:(BOOL)f __attribute__((swift_name("setNonmaxSuppression(f:)")));
-		[Export ("setNonmaxSuppression:")]
-		void SetNonmaxSuppression (bool f);
-
-		// -(BOOL)getNonmaxSuppression __attribute__((swift_name("getNonmaxSuppression()")));
-		[Export ("getNonmaxSuppression")]
-		bool NonmaxSuppression { get; }
-
-		// -(void)setType:(FastDetectorType)type __attribute__((swift_name("setType(type:)")));
-		[Export ("setType:")]
-		void SetType (FastDetectorType type);
-
-		// -(FastDetectorType)getType __attribute__((swift_name("getType()")));
-		[Export ("getType")]
-		FastDetectorType Type { get; }
-
-		// -(NSString * _Nonnull)getDefaultName __attribute__((swift_name("getDefaultName()")));
-		[Export ("getDefaultName")]
-		string DefaultName { get; }
-	}
-
-	// @interface FlannBasedMatcher : DescriptorMatcher
-	[BaseType (typeof (DescriptorMatcher))]
-	interface FlannBasedMatcher {
-		// +(FlannBasedMatcher * _Nonnull)create __attribute__((swift_name("create()")));
-		[Static]
-		[Export ("create")]
-		FlannBasedMatcher Create ();
-	}
-
-	// @interface GFTTDetector : Feature2D
-	[BaseType (typeof (Feature2D))]
-	interface GFTTDetector {
-		// +(GFTTDetector * _Nonnull)create:(int)maxCorners qualityLevel:(double)qualityLevel minDistance:(double)minDistance blockSize:(int)blockSize useHarrisDetector:(BOOL)useHarrisDetector k:(double)k __attribute__((swift_name("create(maxCorners:qualityLevel:minDistance:blockSize:useHarrisDetector:k:)")));
-		[Static]
-		[Export ("create:qualityLevel:minDistance:blockSize:useHarrisDetector:k:")]
-		GFTTDetector Create (int maxCorners, double qualityLevel, double minDistance, int blockSize, bool useHarrisDetector, double k);
-
-		// +(GFTTDetector * _Nonnull)create:(int)maxCorners qualityLevel:(double)qualityLevel minDistance:(double)minDistance blockSize:(int)blockSize useHarrisDetector:(BOOL)useHarrisDetector __attribute__((swift_name("create(maxCorners:qualityLevel:minDistance:blockSize:useHarrisDetector:)")));
-		[Static]
-		[Export ("create:qualityLevel:minDistance:blockSize:useHarrisDetector:")]
-		GFTTDetector Create (int maxCorners, double qualityLevel, double minDistance, int blockSize, bool useHarrisDetector);
-
-		// +(GFTTDetector * _Nonnull)create:(int)maxCorners qualityLevel:(double)qualityLevel minDistance:(double)minDistance blockSize:(int)blockSize __attribute__((swift_name("create(maxCorners:qualityLevel:minDistance:blockSize:)")));
-		[Static]
-		[Export ("create:qualityLevel:minDistance:blockSize:")]
-		GFTTDetector Create (int maxCorners, double qualityLevel, double minDistance, int blockSize);
-
-		// +(GFTTDetector * _Nonnull)create:(int)maxCorners qualityLevel:(double)qualityLevel minDistance:(double)minDistance __attribute__((swift_name("create(maxCorners:qualityLevel:minDistance:)")));
-		[Static]
-		[Export ("create:qualityLevel:minDistance:")]
-		GFTTDetector Create (int maxCorners, double qualityLevel, double minDistance);
-
-		// +(GFTTDetector * _Nonnull)create:(int)maxCorners qualityLevel:(double)qualityLevel __attribute__((swift_name("create(maxCorners:qualityLevel:)")));
-		[Static]
-		[Export ("create:qualityLevel:")]
-		GFTTDetector Create (int maxCorners, double qualityLevel);
-
-		// +(GFTTDetector * _Nonnull)create:(int)maxCorners __attribute__((swift_name("create(maxCorners:)")));
-		[Static]
-		[Export ("create:")]
-		GFTTDetector Create (int maxCorners);
-
-		// +(GFTTDetector * _Nonnull)create __attribute__((swift_name("create()")));
-		[Static]
-		[Export ("create")]
-		GFTTDetector Create ();
-
-		// +(GFTTDetector * _Nonnull)create:(int)maxCorners qualityLevel:(double)qualityLevel minDistance:(double)minDistance blockSize:(int)blockSize gradientSize:(int)gradientSize useHarrisDetector:(BOOL)useHarrisDetector k:(double)k __attribute__((swift_name("create(maxCorners:qualityLevel:minDistance:blockSize:gradientSize:useHarrisDetector:k:)")));
-		[Static]
-		[Export ("create:qualityLevel:minDistance:blockSize:gradientSize:useHarrisDetector:k:")]
-		GFTTDetector Create (int maxCorners, double qualityLevel, double minDistance, int blockSize, int gradientSize, bool useHarrisDetector, double k);
-
-		// +(GFTTDetector * _Nonnull)create:(int)maxCorners qualityLevel:(double)qualityLevel minDistance:(double)minDistance blockSize:(int)blockSize gradientSize:(int)gradientSize useHarrisDetector:(BOOL)useHarrisDetector __attribute__((swift_name("create(maxCorners:qualityLevel:minDistance:blockSize:gradientSize:useHarrisDetector:)")));
-		[Static]
-		[Export ("create:qualityLevel:minDistance:blockSize:gradientSize:useHarrisDetector:")]
-		GFTTDetector Create (int maxCorners, double qualityLevel, double minDistance, int blockSize, int gradientSize, bool useHarrisDetector);
-
-		// +(GFTTDetector * _Nonnull)create:(int)maxCorners qualityLevel:(double)qualityLevel minDistance:(double)minDistance blockSize:(int)blockSize gradientSize:(int)gradientSize __attribute__((swift_name("create(maxCorners:qualityLevel:minDistance:blockSize:gradientSize:)")));
-		[Static]
-		[Export ("create:qualityLevel:minDistance:blockSize:gradientSize:")]
-		GFTTDetector Create (int maxCorners, double qualityLevel, double minDistance, int blockSize, int gradientSize);
-
-		// -(void)setMaxFeatures:(int)maxFeatures __attribute__((swift_name("setMaxFeatures(maxFeatures:)")));
-		[Export ("setMaxFeatures:")]
-		void SetMaxFeatures (int maxFeatures);
-
-		// -(int)getMaxFeatures __attribute__((swift_name("getMaxFeatures()")));
-		[Export ("getMaxFeatures")]
-		int MaxFeatures { get; }
-
-		// -(void)setQualityLevel:(double)qlevel __attribute__((swift_name("setQualityLevel(qlevel:)")));
-		[Export ("setQualityLevel:")]
-		void SetQualityLevel (double qlevel);
-
-		// -(double)getQualityLevel __attribute__((swift_name("getQualityLevel()")));
-		[Export ("getQualityLevel")]
-		double QualityLevel { get; }
-
-		// -(void)setMinDistance:(double)minDistance __attribute__((swift_name("setMinDistance(minDistance:)")));
-		[Export ("setMinDistance:")]
-		void SetMinDistance (double minDistance);
-
-		// -(double)getMinDistance __attribute__((swift_name("getMinDistance()")));
-		[Export ("getMinDistance")]
-		double MinDistance { get; }
-
-		// -(void)setBlockSize:(int)blockSize __attribute__((swift_name("setBlockSize(blockSize:)")));
-		[Export ("setBlockSize:")]
-		void SetBlockSize (int blockSize);
-
-		// -(int)getBlockSize __attribute__((swift_name("getBlockSize()")));
-		[Export ("getBlockSize")]
-		int BlockSize { get; }
-
-		// -(void)setGradientSize:(int)gradientSize_ __attribute__((swift_name("setGradientSize(gradientSize_:)")));
-		[Export ("setGradientSize:")]
-		void SetGradientSize (int gradientSize_);
-
-		// -(int)getGradientSize __attribute__((swift_name("getGradientSize()")));
-		[Export ("getGradientSize")]
-		int GradientSize { get; }
-
-		// -(void)setHarrisDetector:(BOOL)val __attribute__((swift_name("setHarrisDetector(val:)")));
-		[Export ("setHarrisDetector:")]
-		void SetHarrisDetector (bool val);
-
-		// -(BOOL)getHarrisDetector __attribute__((swift_name("getHarrisDetector()")));
-		[Export ("getHarrisDetector")]
-		bool HarrisDetector { get; }
-
-		// -(void)setK:(double)k __attribute__((swift_name("setK(k:)")));
-		[Export ("setK:")]
-		void SetK (double k);
-
-		// -(double)getK __attribute__((swift_name("getK()")));
-		[Export ("getK")]
-		double K { get; }
-
-		// -(NSString * _Nonnull)getDefaultName __attribute__((swift_name("getDefaultName()")));
-		[Export ("getDefaultName")]
-		string DefaultName { get; }
-	}
-
-	// @interface LightGlueMatcher : DescriptorMatcher
-	[BaseType (typeof (DescriptorMatcher))]
-	interface LightGlueMatcher {
-		// +(LightGlueMatcher * _Nonnull)createFromFile:(NSString * _Nonnull)modelPath scoreThreshold:(float)scoreThreshold backend:(int)backend target:(int)target __attribute__((swift_name("create(modelPath:scoreThreshold:backend:target:)")));
-		[Static]
-		[Export ("createFromFile:scoreThreshold:backend:target:")]
-		LightGlueMatcher CreateFromFile (string modelPath, float scoreThreshold, int backend, int target);
-
-		// +(LightGlueMatcher * _Nonnull)createFromFile:(NSString * _Nonnull)modelPath scoreThreshold:(float)scoreThreshold backend:(int)backend __attribute__((swift_name("create(modelPath:scoreThreshold:backend:)")));
-		[Static]
-		[Export ("createFromFile:scoreThreshold:backend:")]
-		LightGlueMatcher CreateFromFile (string modelPath, float scoreThreshold, int backend);
-
-		// +(LightGlueMatcher * _Nonnull)createFromFile:(NSString * _Nonnull)modelPath scoreThreshold:(float)scoreThreshold __attribute__((swift_name("create(modelPath:scoreThreshold:)")));
-		[Static]
-		[Export ("createFromFile:scoreThreshold:")]
-		LightGlueMatcher CreateFromFile (string modelPath, float scoreThreshold);
-
-		// +(LightGlueMatcher * _Nonnull)createFromFile:(NSString * _Nonnull)modelPath __attribute__((swift_name("create(modelPath:)")));
-		[Static]
-		[Export ("createFromFile:")]
-		LightGlueMatcher CreateFromFile (string modelPath);
-
-		// +(LightGlueMatcher * _Nonnull)createFromMemory:(ByteVector * _Nonnull)modelData scoreThreshold:(float)scoreThreshold backend:(int)backend target:(int)target __attribute__((swift_name("create(modelData:scoreThreshold:backend:target:)")));
-		[Static]
-		[Export ("createFromMemory:scoreThreshold:backend:target:")]
-		LightGlueMatcher CreateFromMemory (ByteVector modelData, float scoreThreshold, int backend, int target);
-
-		// +(LightGlueMatcher * _Nonnull)createFromMemory:(ByteVector * _Nonnull)modelData scoreThreshold:(float)scoreThreshold backend:(int)backend __attribute__((swift_name("create(modelData:scoreThreshold:backend:)")));
-		[Static]
-		[Export ("createFromMemory:scoreThreshold:backend:")]
-		LightGlueMatcher CreateFromMemory (ByteVector modelData, float scoreThreshold, int backend);
-
-		// +(LightGlueMatcher * _Nonnull)createFromMemory:(ByteVector * _Nonnull)modelData scoreThreshold:(float)scoreThreshold __attribute__((swift_name("create(modelData:scoreThreshold:)")));
-		[Static]
-		[Export ("createFromMemory:scoreThreshold:")]
-		LightGlueMatcher CreateFromMemory (ByteVector modelData, float scoreThreshold);
-
-		// +(LightGlueMatcher * _Nonnull)createFromMemory:(ByteVector * _Nonnull)modelData __attribute__((swift_name("create(modelData:)")));
-		[Static]
-		[Export ("createFromMemory:")]
-		LightGlueMatcher CreateFromMemory (ByteVector modelData);
-
-		// -(void)setPairInfo:(Mat * _Nonnull)queryKpts trainKpts:(Mat * _Nonnull)trainKpts queryImageSize:(Size2i * _Nonnull)queryImageSize trainImageSize:(Size2i * _Nonnull)trainImageSize __attribute__((swift_name("setPairInfo(queryKpts:trainKpts:queryImageSize:trainImageSize:)")));
-		[Export ("setPairInfo:trainKpts:queryImageSize:trainImageSize:")]
-		void SetPairInfo (Mat queryKpts, Mat trainKpts, Size2i queryImageSize, Size2i trainImageSize);
-
-		// -(void)setPairInfo:(Mat * _Nonnull)queryKpts trainKpts:(Mat * _Nonnull)trainKpts queryImageSize:(Size2i * _Nonnull)queryImageSize __attribute__((swift_name("setPairInfo(queryKpts:trainKpts:queryImageSize:)")));
-		[Export ("setPairInfo:trainKpts:queryImageSize:")]
-		void SetPairInfo (Mat queryKpts, Mat trainKpts, Size2i queryImageSize);
-
-		// -(void)setPairInfo:(Mat * _Nonnull)queryKpts trainKpts:(Mat * _Nonnull)trainKpts __attribute__((swift_name("setPairInfo(queryKpts:trainKpts:)")));
-		[Export ("setPairInfo:trainKpts:")]
-		void SetPairInfo (Mat queryKpts, Mat trainKpts);
-
-		// -(void)clearPairInfo __attribute__((swift_name("clearPairInfo()")));
-		[Export ("clearPairInfo")]
-		void ClearPairInfo ();
-	}
-
-	// @interface MSER : Feature2D
-	[BaseType (typeof (Feature2D))]
-	interface MSER {
-		// +(MSER * _Nonnull)create:(int)delta min_area:(int)min_area max_area:(int)max_area max_variation:(double)max_variation min_diversity:(double)min_diversity max_evolution:(int)max_evolution area_threshold:(double)area_threshold min_margin:(double)min_margin edge_blur_size:(int)edge_blur_size __attribute__((swift_name("create(delta:min_area:max_area:max_variation:min_diversity:max_evolution:area_threshold:min_margin:edge_blur_size:)")));
-		[Static]
-		[Export ("create:min_area:max_area:max_variation:min_diversity:max_evolution:area_threshold:min_margin:edge_blur_size:")]
-		MSER Create (int delta, int min_area, int max_area, double max_variation, double min_diversity, int max_evolution, double area_threshold, double min_margin, int edge_blur_size);
-
-		// +(MSER * _Nonnull)create:(int)delta min_area:(int)min_area max_area:(int)max_area max_variation:(double)max_variation min_diversity:(double)min_diversity max_evolution:(int)max_evolution area_threshold:(double)area_threshold min_margin:(double)min_margin __attribute__((swift_name("create(delta:min_area:max_area:max_variation:min_diversity:max_evolution:area_threshold:min_margin:)")));
-		[Static]
-		[Export ("create:min_area:max_area:max_variation:min_diversity:max_evolution:area_threshold:min_margin:")]
-		MSER Create (int delta, int min_area, int max_area, double max_variation, double min_diversity, int max_evolution, double area_threshold, double min_margin);
-
-		// +(MSER * _Nonnull)create:(int)delta min_area:(int)min_area max_area:(int)max_area max_variation:(double)max_variation min_diversity:(double)min_diversity max_evolution:(int)max_evolution area_threshold:(double)area_threshold __attribute__((swift_name("create(delta:min_area:max_area:max_variation:min_diversity:max_evolution:area_threshold:)")));
-		[Static]
-		[Export ("create:min_area:max_area:max_variation:min_diversity:max_evolution:area_threshold:")]
-		MSER Create (int delta, int min_area, int max_area, double max_variation, double min_diversity, int max_evolution, double area_threshold);
-
-		// +(MSER * _Nonnull)create:(int)delta min_area:(int)min_area max_area:(int)max_area max_variation:(double)max_variation min_diversity:(double)min_diversity max_evolution:(int)max_evolution __attribute__((swift_name("create(delta:min_area:max_area:max_variation:min_diversity:max_evolution:)")));
-		[Static]
-		[Export ("create:min_area:max_area:max_variation:min_diversity:max_evolution:")]
-		MSER Create (int delta, int min_area, int max_area, double max_variation, double min_diversity, int max_evolution);
-
-		// +(MSER * _Nonnull)create:(int)delta min_area:(int)min_area max_area:(int)max_area max_variation:(double)max_variation min_diversity:(double)min_diversity __attribute__((swift_name("create(delta:min_area:max_area:max_variation:min_diversity:)")));
-		[Static]
-		[Export ("create:min_area:max_area:max_variation:min_diversity:")]
-		MSER Create (int delta, int min_area, int max_area, double max_variation, double min_diversity);
-
-		// +(MSER * _Nonnull)create:(int)delta min_area:(int)min_area max_area:(int)max_area max_variation:(double)max_variation __attribute__((swift_name("create(delta:min_area:max_area:max_variation:)")));
-		[Static]
-		[Export ("create:min_area:max_area:max_variation:")]
-		MSER Create (int delta, int min_area, int max_area, double max_variation);
-
-		// +(MSER * _Nonnull)create:(int)delta min_area:(int)min_area max_area:(int)max_area __attribute__((swift_name("create(delta:min_area:max_area:)")));
-		[Static]
-		[Export ("create:min_area:max_area:")]
-		MSER Create (int delta, int min_area, int max_area);
-
-		// +(MSER * _Nonnull)create:(int)delta min_area:(int)min_area __attribute__((swift_name("create(delta:min_area:)")));
-		[Static]
-		[Export ("create:min_area:")]
-		MSER Create (int delta, int min_area);
-
-		// +(MSER * _Nonnull)create:(int)delta __attribute__((swift_name("create(delta:)")));
-		[Static]
-		[Export ("create:")]
-		MSER Create (int delta);
-
-		// +(MSER * _Nonnull)create __attribute__((swift_name("create()")));
-		[Static]
-		[Export ("create")]
-		MSER Create ();
-
-		// -(void)detectRegions:(Mat * _Nonnull)image msers:(NSMutableArray<NSMutableArray<Point2i *> *> * _Nonnull)msers bboxes:(NSMutableArray<Rect2i *> * _Nonnull)bboxes __attribute__((swift_name("detectRegions(image:msers:bboxes:)")));
-		[Export ("detectRegions:msers:bboxes:")]
-		void DetectRegions (Mat image, NSMutableArray<NSMutableArray<Point2i>> msers, NSMutableArray<Rect2i> bboxes);
-
-		// -(void)setDelta:(int)delta __attribute__((swift_name("setDelta(delta:)")));
-		[Export ("setDelta:")]
-		void SetDelta (int delta);
-
-		// -(int)getDelta __attribute__((swift_name("getDelta()")));
-		[Export ("getDelta")]
-		int Delta { get; }
-
-		// -(void)setMinArea:(int)minArea __attribute__((swift_name("setMinArea(minArea:)")));
-		[Export ("setMinArea:")]
-		void SetMinArea (int minArea);
-
-		// -(int)getMinArea __attribute__((swift_name("getMinArea()")));
-		[Export ("getMinArea")]
-		int MinArea { get; }
-
-		// -(void)setMaxArea:(int)maxArea __attribute__((swift_name("setMaxArea(maxArea:)")));
-		[Export ("setMaxArea:")]
-		void SetMaxArea (int maxArea);
-
-		// -(int)getMaxArea __attribute__((swift_name("getMaxArea()")));
-		[Export ("getMaxArea")]
-		int MaxArea { get; }
-
-		// -(void)setMaxVariation:(double)maxVariation __attribute__((swift_name("setMaxVariation(maxVariation:)")));
-		[Export ("setMaxVariation:")]
-		void SetMaxVariation (double maxVariation);
-
-		// -(double)getMaxVariation __attribute__((swift_name("getMaxVariation()")));
-		[Export ("getMaxVariation")]
-		double MaxVariation { get; }
-
-		// -(void)setMinDiversity:(double)minDiversity __attribute__((swift_name("setMinDiversity(minDiversity:)")));
-		[Export ("setMinDiversity:")]
-		void SetMinDiversity (double minDiversity);
-
-		// -(double)getMinDiversity __attribute__((swift_name("getMinDiversity()")));
-		[Export ("getMinDiversity")]
-		double MinDiversity { get; }
-
-		// -(void)setMaxEvolution:(int)maxEvolution __attribute__((swift_name("setMaxEvolution(maxEvolution:)")));
-		[Export ("setMaxEvolution:")]
-		void SetMaxEvolution (int maxEvolution);
-
-		// -(int)getMaxEvolution __attribute__((swift_name("getMaxEvolution()")));
-		[Export ("getMaxEvolution")]
-		int MaxEvolution { get; }
-
-		// -(void)setAreaThreshold:(double)areaThreshold __attribute__((swift_name("setAreaThreshold(areaThreshold:)")));
-		[Export ("setAreaThreshold:")]
-		void SetAreaThreshold (double areaThreshold);
-
-		// -(double)getAreaThreshold __attribute__((swift_name("getAreaThreshold()")));
-		[Export ("getAreaThreshold")]
-		double AreaThreshold { get; }
-
-		// -(void)setMinMargin:(double)min_margin __attribute__((swift_name("setMinMargin(min_margin:)")));
-		[Export ("setMinMargin:")]
-		void SetMinMargin (double min_margin);
-
-		// -(double)getMinMargin __attribute__((swift_name("getMinMargin()")));
-		[Export ("getMinMargin")]
-		double MinMargin { get; }
-
-		// -(void)setEdgeBlurSize:(int)edge_blur_size __attribute__((swift_name("setEdgeBlurSize(edge_blur_size:)")));
-		[Export ("setEdgeBlurSize:")]
-		void SetEdgeBlurSize (int edge_blur_size);
-
-		// -(int)getEdgeBlurSize __attribute__((swift_name("getEdgeBlurSize()")));
-		[Export ("getEdgeBlurSize")]
-		int EdgeBlurSize { get; }
-
-		// -(void)setPass2Only:(BOOL)f __attribute__((swift_name("setPass2Only(f:)")));
-		[Export ("setPass2Only:")]
-		void SetPass2Only (bool f);
-
-		// -(BOOL)getPass2Only __attribute__((swift_name("getPass2Only()")));
-		[Export ("getPass2Only")]
-		bool Pass2Only { get; }
-
-		// -(NSString * _Nonnull)getDefaultName __attribute__((swift_name("getDefaultName()")));
-		[Export ("getDefaultName")]
-		string DefaultName { get; }
-	}
-
-	// @interface ORB : Feature2D
-	[BaseType (typeof (Feature2D))]
-	interface ORB {
-		// +(ORB * _Nonnull)create:(int)nfeatures scaleFactor:(float)scaleFactor nlevels:(int)nlevels edgeThreshold:(int)edgeThreshold firstLevel:(int)firstLevel WTA_K:(int)WTA_K scoreType:(ScoreType)scoreType patchSize:(int)patchSize fastThreshold:(int)fastThreshold __attribute__((swift_name("create(nfeatures:scaleFactor:nlevels:edgeThreshold:firstLevel:WTA_K:scoreType:patchSize:fastThreshold:)")));
-		[Static]
-		[Export ("create:scaleFactor:nlevels:edgeThreshold:firstLevel:WTA_K:scoreType:patchSize:fastThreshold:")]
-		ORB Create (int nfeatures, float scaleFactor, int nlevels, int edgeThreshold, int firstLevel, int WTA_K, ScoreType scoreType, int patchSize, int fastThreshold);
-
-		// +(ORB * _Nonnull)create:(int)nfeatures scaleFactor:(float)scaleFactor nlevels:(int)nlevels edgeThreshold:(int)edgeThreshold firstLevel:(int)firstLevel WTA_K:(int)WTA_K scoreType:(ScoreType)scoreType patchSize:(int)patchSize __attribute__((swift_name("create(nfeatures:scaleFactor:nlevels:edgeThreshold:firstLevel:WTA_K:scoreType:patchSize:)")));
-		[Static]
-		[Export ("create:scaleFactor:nlevels:edgeThreshold:firstLevel:WTA_K:scoreType:patchSize:")]
-		ORB Create (int nfeatures, float scaleFactor, int nlevels, int edgeThreshold, int firstLevel, int WTA_K, ScoreType scoreType, int patchSize);
-
-		// +(ORB * _Nonnull)create:(int)nfeatures scaleFactor:(float)scaleFactor nlevels:(int)nlevels edgeThreshold:(int)edgeThreshold firstLevel:(int)firstLevel WTA_K:(int)WTA_K scoreType:(ScoreType)scoreType __attribute__((swift_name("create(nfeatures:scaleFactor:nlevels:edgeThreshold:firstLevel:WTA_K:scoreType:)")));
-		[Static]
-		[Export ("create:scaleFactor:nlevels:edgeThreshold:firstLevel:WTA_K:scoreType:")]
-		ORB Create (int nfeatures, float scaleFactor, int nlevels, int edgeThreshold, int firstLevel, int WTA_K, ScoreType scoreType);
-
-		// +(ORB * _Nonnull)create:(int)nfeatures scaleFactor:(float)scaleFactor nlevels:(int)nlevels edgeThreshold:(int)edgeThreshold firstLevel:(int)firstLevel WTA_K:(int)WTA_K __attribute__((swift_name("create(nfeatures:scaleFactor:nlevels:edgeThreshold:firstLevel:WTA_K:)")));
-		[Static]
-		[Export ("create:scaleFactor:nlevels:edgeThreshold:firstLevel:WTA_K:")]
-		ORB Create (int nfeatures, float scaleFactor, int nlevels, int edgeThreshold, int firstLevel, int WTA_K);
-
-		// +(ORB * _Nonnull)create:(int)nfeatures scaleFactor:(float)scaleFactor nlevels:(int)nlevels edgeThreshold:(int)edgeThreshold firstLevel:(int)firstLevel __attribute__((swift_name("create(nfeatures:scaleFactor:nlevels:edgeThreshold:firstLevel:)")));
-		[Static]
-		[Export ("create:scaleFactor:nlevels:edgeThreshold:firstLevel:")]
-		ORB Create (int nfeatures, float scaleFactor, int nlevels, int edgeThreshold, int firstLevel);
-
-		// +(ORB * _Nonnull)create:(int)nfeatures scaleFactor:(float)scaleFactor nlevels:(int)nlevels edgeThreshold:(int)edgeThreshold __attribute__((swift_name("create(nfeatures:scaleFactor:nlevels:edgeThreshold:)")));
-		[Static]
-		[Export ("create:scaleFactor:nlevels:edgeThreshold:")]
-		ORB Create (int nfeatures, float scaleFactor, int nlevels, int edgeThreshold);
-
-		// +(ORB * _Nonnull)create:(int)nfeatures scaleFactor:(float)scaleFactor nlevels:(int)nlevels __attribute__((swift_name("create(nfeatures:scaleFactor:nlevels:)")));
-		[Static]
-		[Export ("create:scaleFactor:nlevels:")]
-		ORB Create (int nfeatures, float scaleFactor, int nlevels);
-
-		// +(ORB * _Nonnull)create:(int)nfeatures scaleFactor:(float)scaleFactor __attribute__((swift_name("create(nfeatures:scaleFactor:)")));
-		[Static]
-		[Export ("create:scaleFactor:")]
-		ORB Create (int nfeatures, float scaleFactor);
-
-		// +(ORB * _Nonnull)create:(int)nfeatures __attribute__((swift_name("create(nfeatures:)")));
-		[Static]
-		[Export ("create:")]
-		ORB Create (int nfeatures);
-
-		// +(ORB * _Nonnull)create __attribute__((swift_name("create()")));
-		[Static]
-		[Export ("create")]
-		ORB Create ();
-
-		// -(void)setMaxFeatures:(int)maxFeatures __attribute__((swift_name("setMaxFeatures(maxFeatures:)")));
-		[Export ("setMaxFeatures:")]
-		void SetMaxFeatures (int maxFeatures);
-
-		// -(int)getMaxFeatures __attribute__((swift_name("getMaxFeatures()")));
-		[Export ("getMaxFeatures")]
-		int MaxFeatures { get; }
-
-		// -(void)setScaleFactor:(double)scaleFactor __attribute__((swift_name("setScaleFactor(scaleFactor:)")));
-		[Export ("setScaleFactor:")]
-		void SetScaleFactor (double scaleFactor);
-
-		// -(double)getScaleFactor __attribute__((swift_name("getScaleFactor()")));
-		[Export ("getScaleFactor")]
-		double ScaleFactor { get; }
-
-		// -(void)setNLevels:(int)nlevels __attribute__((swift_name("setNLevels(nlevels:)")));
-		[Export ("setNLevels:")]
-		void SetNLevels (int nlevels);
-
-		// -(int)getNLevels __attribute__((swift_name("getNLevels()")));
-		[Export ("getNLevels")]
-		int NLevels { get; }
-
-		// -(void)setEdgeThreshold:(int)edgeThreshold __attribute__((swift_name("setEdgeThreshold(edgeThreshold:)")));
-		[Export ("setEdgeThreshold:")]
-		void SetEdgeThreshold (int edgeThreshold);
-
-		// -(int)getEdgeThreshold __attribute__((swift_name("getEdgeThreshold()")));
-		[Export ("getEdgeThreshold")]
-		int EdgeThreshold { get; }
-
-		// -(void)setFirstLevel:(int)firstLevel __attribute__((swift_name("setFirstLevel(firstLevel:)")));
-		[Export ("setFirstLevel:")]
-		void SetFirstLevel (int firstLevel);
-
-		// -(int)getFirstLevel __attribute__((swift_name("getFirstLevel()")));
-		[Export ("getFirstLevel")]
-		int FirstLevel { get; }
-
-		// -(void)setWTA_K:(int)wta_k __attribute__((swift_name("setWTA_K(wta_k:)")));
-		[Export ("setWTA_K:")]
-		void SetWTA_K (int wta_k);
-
-		// -(int)getWTA_K __attribute__((swift_name("getWTA_K()")));
-		[Export ("getWTA_K")]
-		int WTA_K { get; }
-
-		// -(void)setScoreType:(ScoreType)scoreType __attribute__((swift_name("setScoreType(scoreType:)")));
-		[Export ("setScoreType:")]
-		void SetScoreType (ScoreType scoreType);
-
-		// -(ScoreType)getScoreType __attribute__((swift_name("getScoreType()")));
-		[Export ("getScoreType")]
-		ScoreType ScoreType { get; }
-
-		// -(void)setPatchSize:(int)patchSize __attribute__((swift_name("setPatchSize(patchSize:)")));
-		[Export ("setPatchSize:")]
-		void SetPatchSize (int patchSize);
-
-		// -(int)getPatchSize __attribute__((swift_name("getPatchSize()")));
-		[Export ("getPatchSize")]
-		int PatchSize { get; }
-
-		// -(void)setFastThreshold:(int)fastThreshold __attribute__((swift_name("setFastThreshold(fastThreshold:)")));
-		[Export ("setFastThreshold:")]
-		void SetFastThreshold (int fastThreshold);
-
-		// -(int)getFastThreshold __attribute__((swift_name("getFastThreshold()")));
-		[Export ("getFastThreshold")]
-		int FastThreshold { get; }
-
-		// -(NSString * _Nonnull)getDefaultName __attribute__((swift_name("getDefaultName()")));
-		[Export ("getDefaultName")]
-		string DefaultName { get; }
-	}
-
-	// @interface SIFT : Feature2D
-	[BaseType (typeof (Feature2D))]
-	interface SIFT {
-		// +(SIFT * _Nonnull)create:(int)nfeatures nOctaveLayers:(int)nOctaveLayers contrastThreshold:(double)contrastThreshold edgeThreshold:(double)edgeThreshold sigma:(double)sigma enable_precise_upscale:(BOOL)enable_precise_upscale __attribute__((swift_name("create(nfeatures:nOctaveLayers:contrastThreshold:edgeThreshold:sigma:enable_precise_upscale:)")));
-		[Static]
-		[Export ("create:nOctaveLayers:contrastThreshold:edgeThreshold:sigma:enable_precise_upscale:")]
-		SIFT Create (int nfeatures, int nOctaveLayers, double contrastThreshold, double edgeThreshold, double sigma, bool enable_precise_upscale);
-
-		// +(SIFT * _Nonnull)create:(int)nfeatures nOctaveLayers:(int)nOctaveLayers contrastThreshold:(double)contrastThreshold edgeThreshold:(double)edgeThreshold sigma:(double)sigma __attribute__((swift_name("create(nfeatures:nOctaveLayers:contrastThreshold:edgeThreshold:sigma:)")));
-		[Static]
-		[Export ("create:nOctaveLayers:contrastThreshold:edgeThreshold:sigma:")]
-		SIFT Create (int nfeatures, int nOctaveLayers, double contrastThreshold, double edgeThreshold, double sigma);
-
-		// +(SIFT * _Nonnull)create:(int)nfeatures nOctaveLayers:(int)nOctaveLayers contrastThreshold:(double)contrastThreshold edgeThreshold:(double)edgeThreshold __attribute__((swift_name("create(nfeatures:nOctaveLayers:contrastThreshold:edgeThreshold:)")));
-		[Static]
-		[Export ("create:nOctaveLayers:contrastThreshold:edgeThreshold:")]
-		SIFT Create (int nfeatures, int nOctaveLayers, double contrastThreshold, double edgeThreshold);
-
-		// +(SIFT * _Nonnull)create:(int)nfeatures nOctaveLayers:(int)nOctaveLayers contrastThreshold:(double)contrastThreshold __attribute__((swift_name("create(nfeatures:nOctaveLayers:contrastThreshold:)")));
-		[Static]
-		[Export ("create:nOctaveLayers:contrastThreshold:")]
-		SIFT Create (int nfeatures, int nOctaveLayers, double contrastThreshold);
-
-		// +(SIFT * _Nonnull)create:(int)nfeatures nOctaveLayers:(int)nOctaveLayers __attribute__((swift_name("create(nfeatures:nOctaveLayers:)")));
-		[Static]
-		[Export ("create:nOctaveLayers:")]
-		SIFT Create (int nfeatures, int nOctaveLayers);
-
-		// +(SIFT * _Nonnull)create:(int)nfeatures __attribute__((swift_name("create(nfeatures:)")));
-		[Static]
-		[Export ("create:")]
-		SIFT Create (int nfeatures);
-
-		// +(SIFT * _Nonnull)create __attribute__((swift_name("create()")));
-		[Static]
-		[Export ("create")]
-		SIFT Create ();
-
-		// +(SIFT * _Nonnull)create:(int)nfeatures nOctaveLayers:(int)nOctaveLayers contrastThreshold:(double)contrastThreshold edgeThreshold:(double)edgeThreshold sigma:(double)sigma descriptorType:(int)descriptorType enable_precise_upscale:(BOOL)enable_precise_upscale __attribute__((swift_name("create(nfeatures:nOctaveLayers:contrastThreshold:edgeThreshold:sigma:descriptorType:enable_precise_upscale:)")));
-		[Static]
-		[Export ("create:nOctaveLayers:contrastThreshold:edgeThreshold:sigma:descriptorType:enable_precise_upscale:")]
-		SIFT Create (int nfeatures, int nOctaveLayers, double contrastThreshold, double edgeThreshold, double sigma, int descriptorType, bool enable_precise_upscale);
-
-		// +(SIFT * _Nonnull)create:(int)nfeatures nOctaveLayers:(int)nOctaveLayers contrastThreshold:(double)contrastThreshold edgeThreshold:(double)edgeThreshold sigma:(double)sigma descriptorType:(int)descriptorType __attribute__((swift_name("create(nfeatures:nOctaveLayers:contrastThreshold:edgeThreshold:sigma:descriptorType:)")));
-		[Static]
-		[Export ("create:nOctaveLayers:contrastThreshold:edgeThreshold:sigma:descriptorType:")]
-		SIFT Create (int nfeatures, int nOctaveLayers, double contrastThreshold, double edgeThreshold, double sigma, int descriptorType);
-
-		// -(NSString * _Nonnull)getDefaultName __attribute__((swift_name("getDefaultName()")));
-		[Export ("getDefaultName")]
-		string DefaultName { get; }
-
-		// -(void)setNFeatures:(int)maxFeatures __attribute__((swift_name("setNFeatures(maxFeatures:)")));
-		[Export ("setNFeatures:")]
-		void SetNFeatures (int maxFeatures);
-
-		// -(int)getNFeatures __attribute__((swift_name("getNFeatures()")));
-		[Export ("getNFeatures")]
-		int NFeatures { get; }
-
-		// -(void)setNOctaveLayers:(int)nOctaveLayers __attribute__((swift_name("setNOctaveLayers(nOctaveLayers:)")));
-		[Export ("setNOctaveLayers:")]
-		void SetNOctaveLayers (int nOctaveLayers);
-
-		// -(int)getNOctaveLayers __attribute__((swift_name("getNOctaveLayers()")));
-		[Export ("getNOctaveLayers")]
-		int NOctaveLayers { get; }
-
-		// -(void)setContrastThreshold:(double)contrastThreshold __attribute__((swift_name("setContrastThreshold(contrastThreshold:)")));
-		[Export ("setContrastThreshold:")]
-		void SetContrastThreshold (double contrastThreshold);
-
-		// -(double)getContrastThreshold __attribute__((swift_name("getContrastThreshold()")));
-		[Export ("getContrastThreshold")]
-		double ContrastThreshold { get; }
-
-		// -(void)setEdgeThreshold:(double)edgeThreshold __attribute__((swift_name("setEdgeThreshold(edgeThreshold:)")));
-		[Export ("setEdgeThreshold:")]
-		void SetEdgeThreshold (double edgeThreshold);
-
-		// -(double)getEdgeThreshold __attribute__((swift_name("getEdgeThreshold()")));
-		[Export ("getEdgeThreshold")]
-		double EdgeThreshold { get; }
-
-		// -(void)setSigma:(double)sigma __attribute__((swift_name("setSigma(sigma:)")));
-		[Export ("setSigma:")]
-		void SetSigma (double sigma);
-
-		// -(double)getSigma __attribute__((swift_name("getSigma()")));
-		[Export ("getSigma")]
-		double Sigma { get; }
-	}
-
-	// @interface SimpleBlobDetector : Feature2D
-	[BaseType (typeof (Feature2D))]
-	interface SimpleBlobDetector {
-		// +(SimpleBlobDetector * _Nonnull)create:(SimpleBlobDetectorParams * _Nonnull)parameters __attribute__((swift_name("create(parameters:)")));
-		[Static]
-		[Export ("create:")]
-		SimpleBlobDetector Create (SimpleBlobDetectorParams parameters);
-
-		// +(SimpleBlobDetector * _Nonnull)create __attribute__((swift_name("create()")));
-		[Static]
-		[Export ("create")]
-		SimpleBlobDetector Create ();
-
-		// -(NSString * _Nonnull)getDefaultName __attribute__((swift_name("getDefaultName()")));
-		[Export ("getDefaultName")]
-		string DefaultName { get; }
-
-		// -(NSArray<NSArray<Point2i *> *> * _Nonnull)getBlobContours __attribute__((swift_name("getBlobContours()")));
-		[Export ("getBlobContours")]
-		NSArray<Point2i> [] BlobContours { get; }
-	}
-
-	// @interface SimpleBlobDetectorParams : NSObject
-	[BaseType (typeof (NSObject))]
-	interface SimpleBlobDetectorParams {
-		// @property float thresholdStep;
-		[Export ("thresholdStep")]
-		float ThresholdStep { get; set; }
-
-		// @property float minThreshold;
-		[Export ("minThreshold")]
-		float MinThreshold { get; set; }
-
-		// @property float maxThreshold;
-		[Export ("maxThreshold")]
-		float MaxThreshold { get; set; }
-
-		// @property size_t minRepeatability;
-		[Export ("minRepeatability")]
-		nuint MinRepeatability { get; set; }
-
-		// @property float minDistBetweenBlobs;
-		[Export ("minDistBetweenBlobs")]
-		float MinDistBetweenBlobs { get; set; }
-
-		// @property BOOL filterByColor;
-		[Export ("filterByColor")]
-		bool FilterByColor { get; set; }
-
-		// @property unsigned char blobColor;
-		[Export ("blobColor")]
-		byte BlobColor { get; set; }
-
-		// @property BOOL filterByArea;
-		[Export ("filterByArea")]
-		bool FilterByArea { get; set; }
-
-		// @property float minArea;
-		[Export ("minArea")]
-		float MinArea { get; set; }
-
-		// @property float maxArea;
-		[Export ("maxArea")]
-		float MaxArea { get; set; }
-
-		// @property BOOL filterByCircularity;
-		[Export ("filterByCircularity")]
-		bool FilterByCircularity { get; set; }
-
-		// @property float minCircularity;
-		[Export ("minCircularity")]
-		float MinCircularity { get; set; }
-
-		// @property float maxCircularity;
-		[Export ("maxCircularity")]
-		float MaxCircularity { get; set; }
-
-		// @property BOOL filterByInertia;
-		[Export ("filterByInertia")]
-		bool FilterByInertia { get; set; }
-
-		// @property float minInertiaRatio;
-		[Export ("minInertiaRatio")]
-		float MinInertiaRatio { get; set; }
-
-		// @property float maxInertiaRatio;
-		[Export ("maxInertiaRatio")]
-		float MaxInertiaRatio { get; set; }
-
-		// @property BOOL filterByConvexity;
-		[Export ("filterByConvexity")]
-		bool FilterByConvexity { get; set; }
-
-		// @property float minConvexity;
-		[Export ("minConvexity")]
-		float MinConvexity { get; set; }
-
-		// @property float maxConvexity;
-		[Export ("maxConvexity")]
-		float MaxConvexity { get; set; }
-
-		// @property BOOL collectContours;
-		[Export ("collectContours")]
-		bool CollectContours { get; set; }
-	}
-
 	// @interface MatConverters : NSObject
 	[BaseType (typeof (NSObject))]
 	interface MatConverters {
@@ -11959,2491 +8834,6 @@ namespace OpenCvSdk {
 		// @property Mat * _Nonnull still_image;
 		[Export ("still_image", ArgumentSemantic.Assign)]
 		Mat Still_image { get; set; }
-	}
-
-	// @interface Objdetect : NSObject
-	[BaseType (typeof (NSObject))]
-	interface Objdetect {
-		// @property (readonly, class) int CALIB_CB_ADAPTIVE_THRESH __attribute__((swift_name("CALIB_CB_ADAPTIVE_THRESH")));
-		[Static]
-		[Export ("CALIB_CB_ADAPTIVE_THRESH")]
-		int CALIB_CB_ADAPTIVE_THRESH { get; }
-
-		// @property (readonly, class) int CALIB_CB_NORMALIZE_IMAGE __attribute__((swift_name("CALIB_CB_NORMALIZE_IMAGE")));
-		[Static]
-		[Export ("CALIB_CB_NORMALIZE_IMAGE")]
-		int CALIB_CB_NORMALIZE_IMAGE { get; }
-
-		// @property (readonly, class) int CALIB_CB_FILTER_QUADS __attribute__((swift_name("CALIB_CB_FILTER_QUADS")));
-		[Static]
-		[Export ("CALIB_CB_FILTER_QUADS")]
-		int CALIB_CB_FILTER_QUADS { get; }
-
-		// @property (readonly, class) int CALIB_CB_FAST_CHECK __attribute__((swift_name("CALIB_CB_FAST_CHECK")));
-		[Static]
-		[Export ("CALIB_CB_FAST_CHECK")]
-		int CALIB_CB_FAST_CHECK { get; }
-
-		// @property (readonly, class) int CALIB_CB_EXHAUSTIVE __attribute__((swift_name("CALIB_CB_EXHAUSTIVE")));
-		[Static]
-		[Export ("CALIB_CB_EXHAUSTIVE")]
-		int CALIB_CB_EXHAUSTIVE { get; }
-
-		// @property (readonly, class) int CALIB_CB_ACCURACY __attribute__((swift_name("CALIB_CB_ACCURACY")));
-		[Static]
-		[Export ("CALIB_CB_ACCURACY")]
-		int CALIB_CB_ACCURACY { get; }
-
-		// @property (readonly, class) int CALIB_CB_LARGER __attribute__((swift_name("CALIB_CB_LARGER")));
-		[Static]
-		[Export ("CALIB_CB_LARGER")]
-		int CALIB_CB_LARGER { get; }
-
-		// @property (readonly, class) int CALIB_CB_MARKER __attribute__((swift_name("CALIB_CB_MARKER")));
-		[Static]
-		[Export ("CALIB_CB_MARKER")]
-		int CALIB_CB_MARKER { get; }
-
-		// @property (readonly, class) int CALIB_CB_PLAIN __attribute__((swift_name("CALIB_CB_PLAIN")));
-		[Static]
-		[Export ("CALIB_CB_PLAIN")]
-		int CALIB_CB_PLAIN { get; }
-
-		// @property (readonly, class) int CALIB_CB_SYMMETRIC_GRID __attribute__((swift_name("CALIB_CB_SYMMETRIC_GRID")));
-		[Static]
-		[Export ("CALIB_CB_SYMMETRIC_GRID")]
-		int CALIB_CB_SYMMETRIC_GRID { get; }
-
-		// @property (readonly, class) int CALIB_CB_ASYMMETRIC_GRID __attribute__((swift_name("CALIB_CB_ASYMMETRIC_GRID")));
-		[Static]
-		[Export ("CALIB_CB_ASYMMETRIC_GRID")]
-		int CALIB_CB_ASYMMETRIC_GRID { get; }
-
-		// @property (readonly, class) int CALIB_CB_CLUSTERING __attribute__((swift_name("CALIB_CB_CLUSTERING")));
-		[Static]
-		[Export ("CALIB_CB_CLUSTERING")]
-		int CALIB_CB_CLUSTERING { get; }
-
-		// +(BOOL)findChessboardCorners:(Mat * _Nonnull)image patternSize:(Size2i * _Nonnull)patternSize corners:(Mat * _Nonnull)corners flags:(int)flags __attribute__((swift_name("findChessboardCorners(image:patternSize:corners:flags:)")));
-		[Static]
-		[Export ("findChessboardCorners:patternSize:corners:flags:")]
-		bool FindChessboardCorners (Mat image, Size2i patternSize, Mat corners, int flags);
-
-		// +(BOOL)findChessboardCorners:(Mat * _Nonnull)image patternSize:(Size2i * _Nonnull)patternSize corners:(Mat * _Nonnull)corners __attribute__((swift_name("findChessboardCorners(image:patternSize:corners:)")));
-		[Static]
-		[Export ("findChessboardCorners:patternSize:corners:")]
-		bool FindChessboardCorners (Mat image, Size2i patternSize, Mat corners);
-
-		// +(BOOL)checkChessboard:(Mat * _Nonnull)img size:(Size2i * _Nonnull)size __attribute__((swift_name("checkChessboard(img:size:)")));
-		[Static]
-		[Export ("checkChessboard:size:")]
-		bool CheckChessboard (Mat img, Size2i size);
-
-		// +(BOOL)findChessboardCornersSBWithMeta:(Mat * _Nonnull)image patternSize:(Size2i * _Nonnull)patternSize corners:(Mat * _Nonnull)corners flags:(int)flags meta:(Mat * _Nonnull)meta __attribute__((swift_name("findChessboardCornersSB(image:patternSize:corners:flags:meta:)")));
-		[Static]
-		[Export ("findChessboardCornersSBWithMeta:patternSize:corners:flags:meta:")]
-		bool FindChessboardCornersSBWithMeta (Mat image, Size2i patternSize, Mat corners, int flags, Mat meta);
-
-		// +(BOOL)findChessboardCornersSB:(Mat * _Nonnull)image patternSize:(Size2i * _Nonnull)patternSize corners:(Mat * _Nonnull)corners flags:(int)flags __attribute__((swift_name("findChessboardCornersSB(image:patternSize:corners:flags:)")));
-		[Static]
-		[Export ("findChessboardCornersSB:patternSize:corners:flags:")]
-		bool FindChessboardCornersSB (Mat image, Size2i patternSize, Mat corners, int flags);
-
-		// +(BOOL)findChessboardCornersSB:(Mat * _Nonnull)image patternSize:(Size2i * _Nonnull)patternSize corners:(Mat * _Nonnull)corners __attribute__((swift_name("findChessboardCornersSB(image:patternSize:corners:)")));
-		[Static]
-		[Export ("findChessboardCornersSB:patternSize:corners:")]
-		bool FindChessboardCornersSB (Mat image, Size2i patternSize, Mat corners);
-
-		// +(Scalar * _Nonnull)estimateChessboardSharpness:(Mat * _Nonnull)image patternSize:(Size2i * _Nonnull)patternSize corners:(Mat * _Nonnull)corners rise_distance:(float)rise_distance vertical:(BOOL)vertical sharpness:(Mat * _Nonnull)sharpness __attribute__((swift_name("estimateChessboardSharpness(image:patternSize:corners:rise_distance:vertical:sharpness:)")));
-		[Static]
-		[Export ("estimateChessboardSharpness:patternSize:corners:rise_distance:vertical:sharpness:")]
-		Scalar EstimateChessboardSharpness (Mat image, Size2i patternSize, Mat corners, float rise_distance, bool vertical, Mat sharpness);
-
-		// +(Scalar * _Nonnull)estimateChessboardSharpness:(Mat * _Nonnull)image patternSize:(Size2i * _Nonnull)patternSize corners:(Mat * _Nonnull)corners rise_distance:(float)rise_distance vertical:(BOOL)vertical __attribute__((swift_name("estimateChessboardSharpness(image:patternSize:corners:rise_distance:vertical:)")));
-		[Static]
-		[Export ("estimateChessboardSharpness:patternSize:corners:rise_distance:vertical:")]
-		Scalar EstimateChessboardSharpness (Mat image, Size2i patternSize, Mat corners, float rise_distance, bool vertical);
-
-		// +(Scalar * _Nonnull)estimateChessboardSharpness:(Mat * _Nonnull)image patternSize:(Size2i * _Nonnull)patternSize corners:(Mat * _Nonnull)corners rise_distance:(float)rise_distance __attribute__((swift_name("estimateChessboardSharpness(image:patternSize:corners:rise_distance:)")));
-		[Static]
-		[Export ("estimateChessboardSharpness:patternSize:corners:rise_distance:")]
-		Scalar EstimateChessboardSharpness (Mat image, Size2i patternSize, Mat corners, float rise_distance);
-
-		// +(Scalar * _Nonnull)estimateChessboardSharpness:(Mat * _Nonnull)image patternSize:(Size2i * _Nonnull)patternSize corners:(Mat * _Nonnull)corners __attribute__((swift_name("estimateChessboardSharpness(image:patternSize:corners:)")));
-		[Static]
-		[Export ("estimateChessboardSharpness:patternSize:corners:")]
-		Scalar EstimateChessboardSharpness (Mat image, Size2i patternSize, Mat corners);
-
-		// +(BOOL)find4QuadCornerSubpix:(Mat * _Nonnull)img corners:(Mat * _Nonnull)corners region_size:(Size2i * _Nonnull)region_size __attribute__((swift_name("find4QuadCornerSubpix(img:corners:region_size:)")));
-		[Static]
-		[Export ("find4QuadCornerSubpix:corners:region_size:")]
-		bool Find4QuadCornerSubpix (Mat img, Mat corners, Size2i region_size);
-
-		// +(void)drawChessboardCorners:(Mat * _Nonnull)image patternSize:(Size2i * _Nonnull)patternSize corners:(Mat * _Nonnull)corners patternWasFound:(BOOL)patternWasFound __attribute__((swift_name("drawChessboardCorners(image:patternSize:corners:patternWasFound:)")));
-		[Static]
-		[Export ("drawChessboardCorners:patternSize:corners:patternWasFound:")]
-		void DrawChessboardCorners (Mat image, Size2i patternSize, Mat corners, bool patternWasFound);
-
-		// +(BOOL)findCirclesGrid:(Mat * _Nonnull)image patternSize:(Size2i * _Nonnull)patternSize centers:(Mat * _Nonnull)centers flags:(int)flags __attribute__((swift_name("findCirclesGrid(image:patternSize:centers:flags:)")));
-		[Static]
-		[Export ("findCirclesGrid:patternSize:centers:flags:")]
-		bool FindCirclesGrid (Mat image, Size2i patternSize, Mat centers, int flags);
-
-		// +(BOOL)findCirclesGrid:(Mat * _Nonnull)image patternSize:(Size2i * _Nonnull)patternSize centers:(Mat * _Nonnull)centers __attribute__((swift_name("findCirclesGrid(image:patternSize:centers:)")));
-		[Static]
-		[Export ("findCirclesGrid:patternSize:centers:")]
-		bool FindCirclesGrid (Mat image, Size2i patternSize, Mat centers);
-
-		// +(void)drawDetectedMarkers:(Mat * _Nonnull)image corners:(NSArray<Mat *> * _Nonnull)corners ids:(Mat * _Nonnull)ids borderColor:(Scalar * _Nonnull)borderColor __attribute__((swift_name("drawDetectedMarkers(image:corners:ids:borderColor:)")));
-		[Static]
-		[Export ("drawDetectedMarkers:corners:ids:borderColor:")]
-		void DrawDetectedMarkers (Mat image, Mat [] corners, Mat ids, Scalar borderColor);
-
-		// +(void)drawDetectedMarkers:(Mat * _Nonnull)image corners:(NSArray<Mat *> * _Nonnull)corners ids:(Mat * _Nonnull)ids __attribute__((swift_name("drawDetectedMarkers(image:corners:ids:)")));
-		[Static]
-		[Export ("drawDetectedMarkers:corners:ids:")]
-		void DrawDetectedMarkers (Mat image, Mat [] corners, Mat ids);
-
-		// +(void)drawDetectedMarkers:(Mat * _Nonnull)image corners:(NSArray<Mat *> * _Nonnull)corners __attribute__((swift_name("drawDetectedMarkers(image:corners:)")));
-		[Static]
-		[Export ("drawDetectedMarkers:corners:")]
-		void DrawDetectedMarkers (Mat image, Mat [] corners);
-
-		// +(void)generateImageMarker:(Dictionary * _Nonnull)dictionary id:(int)id sidePixels:(int)sidePixels img:(Mat * _Nonnull)img borderBits:(int)borderBits __attribute__((swift_name("generateImageMarker(dictionary:id:sidePixels:img:borderBits:)")));
-		[Static]
-		[Export ("generateImageMarker:id:sidePixels:img:borderBits:")]
-		void GenerateImageMarker (Dictionary dictionary, int id, int sidePixels, Mat img, int borderBits);
-
-		// +(void)generateImageMarker:(Dictionary * _Nonnull)dictionary id:(int)id sidePixels:(int)sidePixels img:(Mat * _Nonnull)img __attribute__((swift_name("generateImageMarker(dictionary:id:sidePixels:img:)")));
-		[Static]
-		[Export ("generateImageMarker:id:sidePixels:img:")]
-		void GenerateImageMarker (Dictionary dictionary, int id, int sidePixels, Mat img);
-
-		// +(Dictionary * _Nonnull)getPredefinedDictionary:(int)dict __attribute__((swift_name("getPredefinedDictionary(dict:)")));
-		[Static]
-		[Export ("getPredefinedDictionary:")]
-		Dictionary GetPredefinedDictionary (int dict);
-
-		// +(Dictionary * _Nonnull)extendDictionary:(int)nMarkers markerSize:(int)markerSize baseDictionary:(Dictionary * _Nonnull)baseDictionary randomSeed:(int)randomSeed __attribute__((swift_name("extendDictionary(nMarkers:markerSize:baseDictionary:randomSeed:)")));
-		[Static]
-		[Export ("extendDictionary:markerSize:baseDictionary:randomSeed:")]
-		Dictionary ExtendDictionary (int nMarkers, int markerSize, Dictionary baseDictionary, int randomSeed);
-
-		// +(Dictionary * _Nonnull)extendDictionary:(int)nMarkers markerSize:(int)markerSize baseDictionary:(Dictionary * _Nonnull)baseDictionary __attribute__((swift_name("extendDictionary(nMarkers:markerSize:baseDictionary:)")));
-		[Static]
-		[Export ("extendDictionary:markerSize:baseDictionary:")]
-		Dictionary ExtendDictionary (int nMarkers, int markerSize, Dictionary baseDictionary);
-
-		// +(Dictionary * _Nonnull)extendDictionary:(int)nMarkers markerSize:(int)markerSize __attribute__((swift_name("extendDictionary(nMarkers:markerSize:)")));
-		[Static]
-		[Export ("extendDictionary:markerSize:")]
-		Dictionary ExtendDictionary (int nMarkers, int markerSize);
-
-		// +(void)drawDetectedCornersCharuco:(Mat * _Nonnull)image charucoCorners:(Mat * _Nonnull)charucoCorners charucoIds:(Mat * _Nonnull)charucoIds cornerColor:(Scalar * _Nonnull)cornerColor __attribute__((swift_name("drawDetectedCornersCharuco(image:charucoCorners:charucoIds:cornerColor:)")));
-		[Static]
-		[Export ("drawDetectedCornersCharuco:charucoCorners:charucoIds:cornerColor:")]
-		void DrawDetectedCornersCharuco (Mat image, Mat charucoCorners, Mat charucoIds, Scalar cornerColor);
-
-		// +(void)drawDetectedCornersCharuco:(Mat * _Nonnull)image charucoCorners:(Mat * _Nonnull)charucoCorners charucoIds:(Mat * _Nonnull)charucoIds __attribute__((swift_name("drawDetectedCornersCharuco(image:charucoCorners:charucoIds:)")));
-		[Static]
-		[Export ("drawDetectedCornersCharuco:charucoCorners:charucoIds:")]
-		void DrawDetectedCornersCharuco (Mat image, Mat charucoCorners, Mat charucoIds);
-
-		// +(void)drawDetectedCornersCharuco:(Mat * _Nonnull)image charucoCorners:(Mat * _Nonnull)charucoCorners __attribute__((swift_name("drawDetectedCornersCharuco(image:charucoCorners:)")));
-		[Static]
-		[Export ("drawDetectedCornersCharuco:charucoCorners:")]
-		void DrawDetectedCornersCharuco (Mat image, Mat charucoCorners);
-
-		// +(void)drawDetectedDiamonds:(Mat * _Nonnull)image diamondCorners:(NSArray<Mat *> * _Nonnull)diamondCorners diamondIds:(Mat * _Nonnull)diamondIds borderColor:(Scalar * _Nonnull)borderColor __attribute__((swift_name("drawDetectedDiamonds(image:diamondCorners:diamondIds:borderColor:)")));
-		[Static]
-		[Export ("drawDetectedDiamonds:diamondCorners:diamondIds:borderColor:")]
-		void DrawDetectedDiamonds (Mat image, Mat [] diamondCorners, Mat diamondIds, Scalar borderColor);
-
-		// +(void)drawDetectedDiamonds:(Mat * _Nonnull)image diamondCorners:(NSArray<Mat *> * _Nonnull)diamondCorners diamondIds:(Mat * _Nonnull)diamondIds __attribute__((swift_name("drawDetectedDiamonds(image:diamondCorners:diamondIds:)")));
-		[Static]
-		[Export ("drawDetectedDiamonds:diamondCorners:diamondIds:")]
-		void DrawDetectedDiamonds (Mat image, Mat [] diamondCorners, Mat diamondIds);
-
-		// +(void)drawDetectedDiamonds:(Mat * _Nonnull)image diamondCorners:(NSArray<Mat *> * _Nonnull)diamondCorners __attribute__((swift_name("drawDetectedDiamonds(image:diamondCorners:)")));
-		[Static]
-		[Export ("drawDetectedDiamonds:diamondCorners:")]
-		void DrawDetectedDiamonds (Mat image, Mat [] diamondCorners);
-	}
-
-	// @interface CirclesGridFinderParameters : NSObject
-	[BaseType (typeof (NSObject))]
-	interface CirclesGridFinderParameters {
-		// @property Size2f * _Nonnull densityNeighborhoodSize;
-		[Export ("densityNeighborhoodSize", ArgumentSemantic.Assign)]
-		Size2f DensityNeighborhoodSize { get; set; }
-
-		// @property float minDensity;
-		[Export ("minDensity")]
-		float MinDensity { get; set; }
-
-		// @property int kmeansAttempts;
-		[Export ("kmeansAttempts")]
-		int KmeansAttempts { get; set; }
-
-		// @property int minDistanceToAddKeypoint;
-		[Export ("minDistanceToAddKeypoint")]
-		int MinDistanceToAddKeypoint { get; set; }
-
-		// @property int keypointScale;
-		[Export ("keypointScale")]
-		int KeypointScale { get; set; }
-
-		// @property float minGraphConfidence;
-		[Export ("minGraphConfidence")]
-		float MinGraphConfidence { get; set; }
-
-		// @property float vertexGain;
-		[Export ("vertexGain")]
-		float VertexGain { get; set; }
-
-		// @property float vertexPenalty;
-		[Export ("vertexPenalty")]
-		float VertexPenalty { get; set; }
-
-		// @property float existingVertexGain;
-		[Export ("existingVertexGain")]
-		float ExistingVertexGain { get; set; }
-
-		// @property float edgeGain;
-		[Export ("edgeGain")]
-		float EdgeGain { get; set; }
-
-		// @property float edgePenalty;
-		[Export ("edgePenalty")]
-		float EdgePenalty { get; set; }
-
-		// @property float convexHullFactor;
-		[Export ("convexHullFactor")]
-		float ConvexHullFactor { get; set; }
-
-		// @property float minRNGEdgeSwitchDist;
-		[Export ("minRNGEdgeSwitchDist")]
-		float MinRNGEdgeSwitchDist { get; set; }
-
-		// @property GridType gridType;
-		[Export ("gridType", ArgumentSemantic.Assign)]
-		GridType GridType { get; set; }
-
-		// @property float squareSize;
-		[Export ("squareSize")]
-		float SquareSize { get; set; }
-
-		// @property float maxRectifiedDistance;
-		[Export ("maxRectifiedDistance")]
-		float MaxRectifiedDistance { get; set; }
-	}
-
-	// @interface FaceDetectorYN : NSObject
-	[BaseType (typeof (NSObject))]
-	interface FaceDetectorYN {
-		// -(void)setInputSize:(Size2i * _Nonnull)input_size __attribute__((swift_name("setInputSize(input_size:)")));
-		[Export ("setInputSize:")]
-		void SetInputSize (Size2i input_size);
-
-		// -(Size2i * _Nonnull)getInputSize __attribute__((swift_name("getInputSize()")));
-		[Export ("getInputSize")]
-		Size2i InputSize { get; }
-
-		// -(void)setScoreThreshold:(float)score_threshold __attribute__((swift_name("setScoreThreshold(score_threshold:)")));
-		[Export ("setScoreThreshold:")]
-		void SetScoreThreshold (float score_threshold);
-
-		// -(float)getScoreThreshold __attribute__((swift_name("getScoreThreshold()")));
-		[Export ("getScoreThreshold")]
-		float ScoreThreshold { get; }
-
-		// -(void)setNMSThreshold:(float)nms_threshold __attribute__((swift_name("setNMSThreshold(nms_threshold:)")));
-		[Export ("setNMSThreshold:")]
-		void SetNMSThreshold (float nms_threshold);
-
-		// -(float)getNMSThreshold __attribute__((swift_name("getNMSThreshold()")));
-		[Export ("getNMSThreshold")]
-		float NMSThreshold { get; }
-
-		// -(void)setTopK:(int)top_k __attribute__((swift_name("setTopK(top_k:)")));
-		[Export ("setTopK:")]
-		void SetTopK (int top_k);
-
-		// -(int)getTopK __attribute__((swift_name("getTopK()")));
-		[Export ("getTopK")]
-		int TopK { get; }
-
-		// -(int)detect:(Mat * _Nonnull)image faces:(Mat * _Nonnull)faces __attribute__((swift_name("detect(image:faces:)")));
-		[Export ("detect:faces:")]
-		int Detect (Mat image, Mat faces);
-
-		// +(FaceDetectorYN * _Nonnull)create:(NSString * _Nonnull)model config:(NSString * _Nonnull)config input_size:(Size2i * _Nonnull)input_size score_threshold:(float)score_threshold nms_threshold:(float)nms_threshold top_k:(int)top_k backend_id:(int)backend_id target_id:(int)target_id __attribute__((swift_name("create(model:config:input_size:score_threshold:nms_threshold:top_k:backend_id:target_id:)")));
-		[Static]
-		[Export ("create:config:input_size:score_threshold:nms_threshold:top_k:backend_id:target_id:")]
-		FaceDetectorYN Create (string model, string config, Size2i input_size, float score_threshold, float nms_threshold, int top_k, int backend_id, int target_id);
-
-		// +(FaceDetectorYN * _Nonnull)create:(NSString * _Nonnull)model config:(NSString * _Nonnull)config input_size:(Size2i * _Nonnull)input_size score_threshold:(float)score_threshold nms_threshold:(float)nms_threshold top_k:(int)top_k backend_id:(int)backend_id __attribute__((swift_name("create(model:config:input_size:score_threshold:nms_threshold:top_k:backend_id:)")));
-		[Static]
-		[Export ("create:config:input_size:score_threshold:nms_threshold:top_k:backend_id:")]
-		FaceDetectorYN Create (string model, string config, Size2i input_size, float score_threshold, float nms_threshold, int top_k, int backend_id);
-
-		// +(FaceDetectorYN * _Nonnull)create:(NSString * _Nonnull)model config:(NSString * _Nonnull)config input_size:(Size2i * _Nonnull)input_size score_threshold:(float)score_threshold nms_threshold:(float)nms_threshold top_k:(int)top_k __attribute__((swift_name("create(model:config:input_size:score_threshold:nms_threshold:top_k:)")));
-		[Static]
-		[Export ("create:config:input_size:score_threshold:nms_threshold:top_k:")]
-		FaceDetectorYN Create (string model, string config, Size2i input_size, float score_threshold, float nms_threshold, int top_k);
-
-		// +(FaceDetectorYN * _Nonnull)create:(NSString * _Nonnull)model config:(NSString * _Nonnull)config input_size:(Size2i * _Nonnull)input_size score_threshold:(float)score_threshold nms_threshold:(float)nms_threshold __attribute__((swift_name("create(model:config:input_size:score_threshold:nms_threshold:)")));
-		[Static]
-		[Export ("create:config:input_size:score_threshold:nms_threshold:")]
-		FaceDetectorYN Create (string model, string config, Size2i input_size, float score_threshold, float nms_threshold);
-
-		// +(FaceDetectorYN * _Nonnull)create:(NSString * _Nonnull)model config:(NSString * _Nonnull)config input_size:(Size2i * _Nonnull)input_size score_threshold:(float)score_threshold __attribute__((swift_name("create(model:config:input_size:score_threshold:)")));
-		[Static]
-		[Export ("create:config:input_size:score_threshold:")]
-		FaceDetectorYN Create (string model, string config, Size2i input_size, float score_threshold);
-
-		// +(FaceDetectorYN * _Nonnull)create:(NSString * _Nonnull)model config:(NSString * _Nonnull)config input_size:(Size2i * _Nonnull)input_size __attribute__((swift_name("create(model:config:input_size:)")));
-		[Static]
-		[Export ("create:config:input_size:")]
-		FaceDetectorYN Create (string model, string config, Size2i input_size);
-
-		// +(FaceDetectorYN * _Nonnull)create:(NSString * _Nonnull)framework bufferModel:(ByteVector * _Nonnull)bufferModel bufferConfig:(ByteVector * _Nonnull)bufferConfig input_size:(Size2i * _Nonnull)input_size score_threshold:(float)score_threshold nms_threshold:(float)nms_threshold top_k:(int)top_k backend_id:(int)backend_id target_id:(int)target_id __attribute__((swift_name("create(framework:bufferModel:bufferConfig:input_size:score_threshold:nms_threshold:top_k:backend_id:target_id:)")));
-		[Static]
-		[Export ("create:bufferModel:bufferConfig:input_size:score_threshold:nms_threshold:top_k:backend_id:target_id:")]
-		FaceDetectorYN Create (string framework, ByteVector bufferModel, ByteVector bufferConfig, Size2i input_size, float score_threshold, float nms_threshold, int top_k, int backend_id, int target_id);
-
-		// +(FaceDetectorYN * _Nonnull)create:(NSString * _Nonnull)framework bufferModel:(ByteVector * _Nonnull)bufferModel bufferConfig:(ByteVector * _Nonnull)bufferConfig input_size:(Size2i * _Nonnull)input_size score_threshold:(float)score_threshold nms_threshold:(float)nms_threshold top_k:(int)top_k backend_id:(int)backend_id __attribute__((swift_name("create(framework:bufferModel:bufferConfig:input_size:score_threshold:nms_threshold:top_k:backend_id:)")));
-		[Static]
-		[Export ("create:bufferModel:bufferConfig:input_size:score_threshold:nms_threshold:top_k:backend_id:")]
-		FaceDetectorYN Create (string framework, ByteVector bufferModel, ByteVector bufferConfig, Size2i input_size, float score_threshold, float nms_threshold, int top_k, int backend_id);
-
-		// +(FaceDetectorYN * _Nonnull)create:(NSString * _Nonnull)framework bufferModel:(ByteVector * _Nonnull)bufferModel bufferConfig:(ByteVector * _Nonnull)bufferConfig input_size:(Size2i * _Nonnull)input_size score_threshold:(float)score_threshold nms_threshold:(float)nms_threshold top_k:(int)top_k __attribute__((swift_name("create(framework:bufferModel:bufferConfig:input_size:score_threshold:nms_threshold:top_k:)")));
-		[Static]
-		[Export ("create:bufferModel:bufferConfig:input_size:score_threshold:nms_threshold:top_k:")]
-		FaceDetectorYN Create (string framework, ByteVector bufferModel, ByteVector bufferConfig, Size2i input_size, float score_threshold, float nms_threshold, int top_k);
-
-		// +(FaceDetectorYN * _Nonnull)create:(NSString * _Nonnull)framework bufferModel:(ByteVector * _Nonnull)bufferModel bufferConfig:(ByteVector * _Nonnull)bufferConfig input_size:(Size2i * _Nonnull)input_size score_threshold:(float)score_threshold nms_threshold:(float)nms_threshold __attribute__((swift_name("create(framework:bufferModel:bufferConfig:input_size:score_threshold:nms_threshold:)")));
-		[Static]
-		[Export ("create:bufferModel:bufferConfig:input_size:score_threshold:nms_threshold:")]
-		FaceDetectorYN Create (string framework, ByteVector bufferModel, ByteVector bufferConfig, Size2i input_size, float score_threshold, float nms_threshold);
-
-		// +(FaceDetectorYN * _Nonnull)create:(NSString * _Nonnull)framework bufferModel:(ByteVector * _Nonnull)bufferModel bufferConfig:(ByteVector * _Nonnull)bufferConfig input_size:(Size2i * _Nonnull)input_size score_threshold:(float)score_threshold __attribute__((swift_name("create(framework:bufferModel:bufferConfig:input_size:score_threshold:)")));
-		[Static]
-		[Export ("create:bufferModel:bufferConfig:input_size:score_threshold:")]
-		FaceDetectorYN Create (string framework, ByteVector bufferModel, ByteVector bufferConfig, Size2i input_size, float score_threshold);
-
-		// +(FaceDetectorYN * _Nonnull)create:(NSString * _Nonnull)framework bufferModel:(ByteVector * _Nonnull)bufferModel bufferConfig:(ByteVector * _Nonnull)bufferConfig input_size:(Size2i * _Nonnull)input_size __attribute__((swift_name("create(framework:bufferModel:bufferConfig:input_size:)")));
-		[Static]
-		[Export ("create:bufferModel:bufferConfig:input_size:")]
-		FaceDetectorYN Create (string framework, ByteVector bufferModel, ByteVector bufferConfig, Size2i input_size);
-	}
-
-	// @interface FaceRecognizerSF : NSObject
-	[BaseType (typeof (NSObject))]
-	interface FaceRecognizerSF {
-		// -(void)alignCrop:(Mat * _Nonnull)src_img face_box:(Mat * _Nonnull)face_box aligned_img:(Mat * _Nonnull)aligned_img __attribute__((swift_name("alignCrop(src_img:face_box:aligned_img:)")));
-		[Export ("alignCrop:face_box:aligned_img:")]
-		void AlignCrop (Mat src_img, Mat face_box, Mat aligned_img);
-
-		// -(void)feature:(Mat * _Nonnull)aligned_img face_feature:(Mat * _Nonnull)face_feature __attribute__((swift_name("feature(aligned_img:face_feature:)")));
-		[Export ("feature:face_feature:")]
-		void Feature (Mat aligned_img, Mat face_feature);
-
-		// -(double)match:(Mat * _Nonnull)face_feature1 face_feature2:(Mat * _Nonnull)face_feature2 dis_type:(int)dis_type __attribute__((swift_name("match(face_feature1:face_feature2:dis_type:)")));
-		[Export ("match:face_feature2:dis_type:")]
-		double Match (Mat face_feature1, Mat face_feature2, int dis_type);
-
-		// -(double)match:(Mat * _Nonnull)face_feature1 face_feature2:(Mat * _Nonnull)face_feature2 __attribute__((swift_name("match(face_feature1:face_feature2:)")));
-		[Export ("match:face_feature2:")]
-		double Match (Mat face_feature1, Mat face_feature2);
-
-		// +(FaceRecognizerSF * _Nonnull)create:(NSString * _Nonnull)model config:(NSString * _Nonnull)config backend_id:(int)backend_id target_id:(int)target_id __attribute__((swift_name("create(model:config:backend_id:target_id:)")));
-		[Static]
-		[Export ("create:config:backend_id:target_id:")]
-		FaceRecognizerSF Create (string model, string config, int backend_id, int target_id);
-
-		// +(FaceRecognizerSF * _Nonnull)create:(NSString * _Nonnull)model config:(NSString * _Nonnull)config backend_id:(int)backend_id __attribute__((swift_name("create(model:config:backend_id:)")));
-		[Static]
-		[Export ("create:config:backend_id:")]
-		FaceRecognizerSF Create (string model, string config, int backend_id);
-
-		// +(FaceRecognizerSF * _Nonnull)create:(NSString * _Nonnull)model config:(NSString * _Nonnull)config __attribute__((swift_name("create(model:config:)")));
-		[Static]
-		[Export ("create:config:")]
-		FaceRecognizerSF Create (string model, string config);
-
-		// +(FaceRecognizerSF * _Nonnull)create:(NSString * _Nonnull)framework bufferModel:(ByteVector * _Nonnull)bufferModel bufferConfig:(ByteVector * _Nonnull)bufferConfig backend_id:(int)backend_id target_id:(int)target_id __attribute__((swift_name("create(framework:bufferModel:bufferConfig:backend_id:target_id:)")));
-		[Static]
-		[Export ("create:bufferModel:bufferConfig:backend_id:target_id:")]
-		FaceRecognizerSF Create (string framework, ByteVector bufferModel, ByteVector bufferConfig, int backend_id, int target_id);
-
-		// +(FaceRecognizerSF * _Nonnull)create:(NSString * _Nonnull)framework bufferModel:(ByteVector * _Nonnull)bufferModel bufferConfig:(ByteVector * _Nonnull)bufferConfig backend_id:(int)backend_id __attribute__((swift_name("create(framework:bufferModel:bufferConfig:backend_id:)")));
-		[Static]
-		[Export ("create:bufferModel:bufferConfig:backend_id:")]
-		FaceRecognizerSF Create (string framework, ByteVector bufferModel, ByteVector bufferConfig, int backend_id);
-
-		// +(FaceRecognizerSF * _Nonnull)create:(NSString * _Nonnull)framework bufferModel:(ByteVector * _Nonnull)bufferModel bufferConfig:(ByteVector * _Nonnull)bufferConfig __attribute__((swift_name("create(framework:bufferModel:bufferConfig:)")));
-		[Static]
-		[Export ("create:bufferModel:bufferConfig:")]
-		FaceRecognizerSF Create (string framework, ByteVector bufferModel, ByteVector bufferConfig);
-	}
-
-	// @interface GraphicalCodeDetector : NSObject
-	[BaseType (typeof (NSObject))]
-	interface GraphicalCodeDetector {
-		// -(BOOL)detect:(Mat * _Nonnull)img points:(Mat * _Nonnull)points __attribute__((swift_name("detect(img:points:)")));
-		[Export ("detect:points:")]
-		bool Detect (Mat img, Mat points);
-
-		// -(NSString * _Nonnull)decode:(Mat * _Nonnull)img points:(Mat * _Nonnull)points straight_code:(Mat * _Nonnull)straight_code __attribute__((swift_name("decode(img:points:straight_code:)")));
-		[Export ("decode:points:straight_code:")]
-		string Decode (Mat img, Mat points, Mat straight_code);
-
-		// -(NSString * _Nonnull)decode:(Mat * _Nonnull)img points:(Mat * _Nonnull)points __attribute__((swift_name("decode(img:points:)")));
-		[Export ("decode:points:")]
-		string Decode (Mat img, Mat points);
-
-		// -(NSString * _Nonnull)detectAndDecode:(Mat * _Nonnull)img points:(Mat * _Nonnull)points straight_code:(Mat * _Nonnull)straight_code __attribute__((swift_name("detectAndDecode(img:points:straight_code:)")));
-		[Export ("detectAndDecode:points:straight_code:")]
-		string DetectAndDecode (Mat img, Mat points, Mat straight_code);
-
-		// -(NSString * _Nonnull)detectAndDecode:(Mat * _Nonnull)img points:(Mat * _Nonnull)points __attribute__((swift_name("detectAndDecode(img:points:)")));
-		[Export ("detectAndDecode:points:")]
-		string DetectAndDecode (Mat img, Mat points);
-
-		// -(NSString * _Nonnull)detectAndDecode:(Mat * _Nonnull)img __attribute__((swift_name("detectAndDecode(img:)")));
-		[Export ("detectAndDecode:")]
-		string DetectAndDecode (Mat img);
-
-		// -(BOOL)detectMulti:(Mat * _Nonnull)img points:(Mat * _Nonnull)points __attribute__((swift_name("detectMulti(img:points:)")));
-		[Export ("detectMulti:points:")]
-		bool DetectMulti (Mat img, Mat points);
-
-		// -(BOOL)decodeMulti:(Mat * _Nonnull)img points:(Mat * _Nonnull)points decoded_info:(NSMutableArray<NSString *> * _Nonnull)decoded_info straight_code:(NSMutableArray<Mat *> * _Nonnull)straight_code __attribute__((swift_name("decodeMulti(img:points:decoded_info:straight_code:)")));
-		[Export ("decodeMulti:points:decoded_info:straight_code:")]
-		bool DecodeMulti (Mat img, Mat points, NSMutableArray<NSString> decoded_info, NSMutableArray<Mat> straight_code);
-
-		// -(BOOL)decodeMulti:(Mat * _Nonnull)img points:(Mat * _Nonnull)points decoded_info:(NSMutableArray<NSString *> * _Nonnull)decoded_info __attribute__((swift_name("decodeMulti(img:points:decoded_info:)")));
-		[Export ("decodeMulti:points:decoded_info:")]
-		bool DecodeMulti (Mat img, Mat points, NSMutableArray<NSString> decoded_info);
-
-		// -(BOOL)detectAndDecodeMulti:(Mat * _Nonnull)img decoded_info:(NSMutableArray<NSString *> * _Nonnull)decoded_info points:(Mat * _Nonnull)points straight_code:(NSMutableArray<Mat *> * _Nonnull)straight_code __attribute__((swift_name("detectAndDecodeMulti(img:decoded_info:points:straight_code:)")));
-		[Export ("detectAndDecodeMulti:decoded_info:points:straight_code:")]
-		bool DetectAndDecodeMulti (Mat img, NSMutableArray<NSString> decoded_info, Mat points, NSMutableArray<Mat> straight_code);
-
-		// -(BOOL)detectAndDecodeMulti:(Mat * _Nonnull)img decoded_info:(NSMutableArray<NSString *> * _Nonnull)decoded_info points:(Mat * _Nonnull)points __attribute__((swift_name("detectAndDecodeMulti(img:decoded_info:points:)")));
-		[Export ("detectAndDecodeMulti:decoded_info:points:")]
-		bool DetectAndDecodeMulti (Mat img, NSMutableArray<NSString> decoded_info, Mat points);
-
-		// -(BOOL)detectAndDecodeMulti:(Mat * _Nonnull)img decoded_info:(NSMutableArray<NSString *> * _Nonnull)decoded_info __attribute__((swift_name("detectAndDecodeMulti(img:decoded_info:)")));
-		[Export ("detectAndDecodeMulti:decoded_info:")]
-		bool DetectAndDecodeMulti (Mat img, NSMutableArray<NSString> decoded_info);
-	}
-
-	// @interface QRCodeEncoder : NSObject
-	[BaseType (typeof (NSObject))]
-	interface QRCodeEncoder {
-		// +(QRCodeEncoder * _Nonnull)create:(QRCodeEncoderParams * _Nonnull)parameters __attribute__((swift_name("create(parameters:)")));
-		[Static]
-		[Export ("create:")]
-		QRCodeEncoder Create (QRCodeEncoderParams parameters);
-
-		// +(QRCodeEncoder * _Nonnull)create __attribute__((swift_name("create()")));
-		[Static]
-		[Export ("create")]
-		QRCodeEncoder Create ();
-
-		// -(void)encode:(NSString * _Nonnull)encoded_info qrcode:(Mat * _Nonnull)qrcode __attribute__((swift_name("encode(encoded_info:qrcode:)")));
-		[Export ("encode:qrcode:")]
-		void Encode (string encoded_info, Mat qrcode);
-
-		// -(void)encodeStructuredAppend:(NSString * _Nonnull)encoded_info qrcodes:(NSMutableArray<Mat *> * _Nonnull)qrcodes __attribute__((swift_name("encodeStructuredAppend(encoded_info:qrcodes:)")));
-		[Export ("encodeStructuredAppend:qrcodes:")]
-		void EncodeStructuredAppend (string encoded_info, NSMutableArray<Mat> qrcodes);
-	}
-
-	// @interface QRCodeDetector : GraphicalCodeDetector
-	[BaseType (typeof (GraphicalCodeDetector))]
-	interface QRCodeDetector {
-		// -(QRCodeDetector * _Nonnull)setEpsX:(double)epsX __attribute__((swift_name("setEpsX(epsX:)")));
-		[Export ("setEpsX:")]
-		QRCodeDetector SetEpsX (double epsX);
-
-		// -(QRCodeDetector * _Nonnull)setEpsY:(double)epsY __attribute__((swift_name("setEpsY(epsY:)")));
-		[Export ("setEpsY:")]
-		QRCodeDetector SetEpsY (double epsY);
-
-		// -(QRCodeDetector * _Nonnull)setUseAlignmentMarkers:(BOOL)useAlignmentMarkers __attribute__((swift_name("setUseAlignmentMarkers(useAlignmentMarkers:)")));
-		[Export ("setUseAlignmentMarkers:")]
-		QRCodeDetector SetUseAlignmentMarkers (bool useAlignmentMarkers);
-
-		// -(NSString * _Nonnull)decodeCurved:(Mat * _Nonnull)img points:(Mat * _Nonnull)points straight_qrcode:(Mat * _Nonnull)straight_qrcode __attribute__((swift_name("decodeCurved(img:points:straight_qrcode:)")));
-		[Export ("decodeCurved:points:straight_qrcode:")]
-		string DecodeCurved (Mat img, Mat points, Mat straight_qrcode);
-
-		// -(NSString * _Nonnull)decodeCurved:(Mat * _Nonnull)img points:(Mat * _Nonnull)points __attribute__((swift_name("decodeCurved(img:points:)")));
-		[Export ("decodeCurved:points:")]
-		string DecodeCurved (Mat img, Mat points);
-
-		// -(NSString * _Nonnull)detectAndDecodeCurved:(Mat * _Nonnull)img points:(Mat * _Nonnull)points straight_qrcode:(Mat * _Nonnull)straight_qrcode __attribute__((swift_name("detectAndDecodeCurved(img:points:straight_qrcode:)")));
-		[Export ("detectAndDecodeCurved:points:straight_qrcode:")]
-		string DetectAndDecodeCurved (Mat img, Mat points, Mat straight_qrcode);
-
-		// -(NSString * _Nonnull)detectAndDecodeCurved:(Mat * _Nonnull)img points:(Mat * _Nonnull)points __attribute__((swift_name("detectAndDecodeCurved(img:points:)")));
-		[Export ("detectAndDecodeCurved:points:")]
-		string DetectAndDecodeCurved (Mat img, Mat points);
-
-		// -(NSString * _Nonnull)detectAndDecodeCurved:(Mat * _Nonnull)img __attribute__((swift_name("detectAndDecodeCurved(img:)")));
-		[Export ("detectAndDecodeCurved:")]
-		string DetectAndDecodeCurved (Mat img);
-
-		// -(ECIEncodings)getEncoding:(int)codeIdx __attribute__((swift_name("getEncoding(codeIdx:)")));
-		[Export ("getEncoding:")]
-		ECIEncodings GetEncoding (int codeIdx);
-
-		// -(ECIEncodings)getEncoding __attribute__((swift_name("getEncoding()")));
-		[Export ("getEncoding")]
-		ECIEncodings Encoding { get; }
-	}
-
-	// @interface QRCodeDetectorAruco : GraphicalCodeDetector
-	[BaseType (typeof (GraphicalCodeDetector))]
-	interface QRCodeDetectorAruco {
-		// -(instancetype _Nonnull)initWithParams:(QRCodeDetectorArucoParams * _Nonnull)params;
-		[Export ("initWithParams:")]
-		NativeHandle Constructor (QRCodeDetectorArucoParams @params);
-
-		// -(QRCodeDetectorAruco * _Nonnull)setDetectorParameters:(QRCodeDetectorArucoParams * _Nonnull)params __attribute__((swift_name("setDetectorParameters(params:)")));
-		[Export ("setDetectorParameters:")]
-		QRCodeDetectorAruco SetDetectorParameters (QRCodeDetectorArucoParams @params);
-	}
-
-	// @interface QRCodeDetectorArucoParams : NSObject
-	[BaseType (typeof (NSObject))]
-	interface QRCodeDetectorArucoParams {
-		// @property float minModuleSizeInPyramid;
-		[Export ("minModuleSizeInPyramid")]
-		float MinModuleSizeInPyramid { get; set; }
-
-		// @property float maxRotation;
-		[Export ("maxRotation")]
-		float MaxRotation { get; set; }
-
-		// @property float maxModuleSizeMismatch;
-		[Export ("maxModuleSizeMismatch")]
-		float MaxModuleSizeMismatch { get; set; }
-
-		// @property float maxTimingPatternMismatch;
-		[Export ("maxTimingPatternMismatch")]
-		float MaxTimingPatternMismatch { get; set; }
-
-		// @property float maxPenalties;
-		[Export ("maxPenalties")]
-		float MaxPenalties { get; set; }
-
-		// @property float maxColorsMismatch;
-		[Export ("maxColorsMismatch")]
-		float MaxColorsMismatch { get; set; }
-
-		// @property float scaleTimingPatternScore;
-		[Export ("scaleTimingPatternScore")]
-		float ScaleTimingPatternScore { get; set; }
-	}
-
-	// @interface QRCodeEncoderParams : NSObject
-	[BaseType (typeof (NSObject))]
-	interface QRCodeEncoderParams {
-		// @property int version;
-		[Export ("version")]
-		int Version { get; set; }
-
-		// @property CorrectionLevel correction_level;
-		[Export ("correction_level", ArgumentSemantic.Assign)]
-		CorrectionLevel Correction_level { get; set; }
-
-		// @property EncodeMode mode;
-		[Export ("mode", ArgumentSemantic.Assign)]
-		EncodeMode Mode { get; set; }
-
-		// @property int structure_number;
-		[Export ("structure_number")]
-		int Structure_number { get; set; }
-	}
-
-	// @interface ArucoDetector : Algorithm
-	[BaseType (typeof (Algorithm))]
-	interface ArucoDetector {
-		// -(instancetype _Nonnull)initWithDictionary:(DetectorParameters * _Nonnull)detectorParams refineParams:(RefineParameters * _Nonnull)refineParams;
-		[Export ("initWithDictionary:refineParams:")]
-		NativeHandle Constructor (DetectorParameters detectorParams, RefineParameters refineParams);
-
-		// -(instancetype _Nonnull)initWithDictionary:(DetectorParameters * _Nonnull)detectorParams;
-		[Export ("initWithDictionary:")]
-		NativeHandle Constructor (DetectorParameters detectorParams);
-
-		// -(void)detectMarkers:(Mat * _Nonnull)image corners:(NSMutableArray<Mat *> * _Nonnull)corners ids:(Mat * _Nonnull)ids rejectedImgPoints:(NSMutableArray<Mat *> * _Nonnull)rejectedImgPoints __attribute__((swift_name("detectMarkers(image:corners:ids:rejectedImgPoints:)")));
-		[Export ("detectMarkers:corners:ids:rejectedImgPoints:")]
-		void DetectMarkers (Mat image, NSMutableArray<Mat> corners, Mat ids, NSMutableArray<Mat> rejectedImgPoints);
-
-		// -(void)detectMarkers:(Mat * _Nonnull)image corners:(NSMutableArray<Mat *> * _Nonnull)corners ids:(Mat * _Nonnull)ids __attribute__((swift_name("detectMarkers(image:corners:ids:)")));
-		[Export ("detectMarkers:corners:ids:")]
-		void DetectMarkers (Mat image, NSMutableArray<Mat> corners, Mat ids);
-
-		// -(void)detectMarkersWithConfidence:(Mat * _Nonnull)image corners:(NSMutableArray<Mat *> * _Nonnull)corners ids:(Mat * _Nonnull)ids markersConfidence:(Mat * _Nonnull)markersConfidence rejectedImgPoints:(NSMutableArray<Mat *> * _Nonnull)rejectedImgPoints __attribute__((swift_name("detectMarkersWithConfidence(image:corners:ids:markersConfidence:rejectedImgPoints:)")));
-		[Export ("detectMarkersWithConfidence:corners:ids:markersConfidence:rejectedImgPoints:")]
-		void DetectMarkersWithConfidence (Mat image, NSMutableArray<Mat> corners, Mat ids, Mat markersConfidence, NSMutableArray<Mat> rejectedImgPoints);
-
-		// -(void)detectMarkersWithConfidence:(Mat * _Nonnull)image corners:(NSMutableArray<Mat *> * _Nonnull)corners ids:(Mat * _Nonnull)ids markersConfidence:(Mat * _Nonnull)markersConfidence __attribute__((swift_name("detectMarkersWithConfidence(image:corners:ids:markersConfidence:)")));
-		[Export ("detectMarkersWithConfidence:corners:ids:markersConfidence:")]
-		void DetectMarkersWithConfidence (Mat image, NSMutableArray<Mat> corners, Mat ids, Mat markersConfidence);
-
-		// -(void)refineDetectedMarkers:(Mat * _Nonnull)image board:(Board * _Nonnull)board detectedCorners:(NSMutableArray<Mat *> * _Nonnull)detectedCorners detectedIds:(Mat * _Nonnull)detectedIds rejectedCorners:(NSMutableArray<Mat *> * _Nonnull)rejectedCorners cameraMatrix:(Mat * _Nonnull)cameraMatrix distCoeffs:(Mat * _Nonnull)distCoeffs recoveredIdxs:(Mat * _Nonnull)recoveredIdxs __attribute__((swift_name("refineDetectedMarkers(image:board:detectedCorners:detectedIds:rejectedCorners:cameraMatrix:distCoeffs:recoveredIdxs:)")));
-		[Export ("refineDetectedMarkers:board:detectedCorners:detectedIds:rejectedCorners:cameraMatrix:distCoeffs:recoveredIdxs:")]
-		void RefineDetectedMarkers (Mat image, Board board, NSMutableArray<Mat> detectedCorners, Mat detectedIds, NSMutableArray<Mat> rejectedCorners, Mat cameraMatrix, Mat distCoeffs, Mat recoveredIdxs);
-
-		// -(void)refineDetectedMarkers:(Mat * _Nonnull)image board:(Board * _Nonnull)board detectedCorners:(NSMutableArray<Mat *> * _Nonnull)detectedCorners detectedIds:(Mat * _Nonnull)detectedIds rejectedCorners:(NSMutableArray<Mat *> * _Nonnull)rejectedCorners cameraMatrix:(Mat * _Nonnull)cameraMatrix distCoeffs:(Mat * _Nonnull)distCoeffs __attribute__((swift_name("refineDetectedMarkers(image:board:detectedCorners:detectedIds:rejectedCorners:cameraMatrix:distCoeffs:)")));
-		[Export ("refineDetectedMarkers:board:detectedCorners:detectedIds:rejectedCorners:cameraMatrix:distCoeffs:")]
-		void RefineDetectedMarkers (Mat image, Board board, NSMutableArray<Mat> detectedCorners, Mat detectedIds, NSMutableArray<Mat> rejectedCorners, Mat cameraMatrix, Mat distCoeffs);
-
-		// -(void)refineDetectedMarkers:(Mat * _Nonnull)image board:(Board * _Nonnull)board detectedCorners:(NSMutableArray<Mat *> * _Nonnull)detectedCorners detectedIds:(Mat * _Nonnull)detectedIds rejectedCorners:(NSMutableArray<Mat *> * _Nonnull)rejectedCorners cameraMatrix:(Mat * _Nonnull)cameraMatrix __attribute__((swift_name("refineDetectedMarkers(image:board:detectedCorners:detectedIds:rejectedCorners:cameraMatrix:)")));
-		[Export ("refineDetectedMarkers:board:detectedCorners:detectedIds:rejectedCorners:cameraMatrix:")]
-		void RefineDetectedMarkers (Mat image, Board board, NSMutableArray<Mat> detectedCorners, Mat detectedIds, NSMutableArray<Mat> rejectedCorners, Mat cameraMatrix);
-
-		// -(void)refineDetectedMarkers:(Mat * _Nonnull)image board:(Board * _Nonnull)board detectedCorners:(NSMutableArray<Mat *> * _Nonnull)detectedCorners detectedIds:(Mat * _Nonnull)detectedIds rejectedCorners:(NSMutableArray<Mat *> * _Nonnull)rejectedCorners __attribute__((swift_name("refineDetectedMarkers(image:board:detectedCorners:detectedIds:rejectedCorners:)")));
-		[Export ("refineDetectedMarkers:board:detectedCorners:detectedIds:rejectedCorners:")]
-		void RefineDetectedMarkers (Mat image, Board board, NSMutableArray<Mat> detectedCorners, Mat detectedIds, NSMutableArray<Mat> rejectedCorners);
-
-		// -(void)detectMarkersMultiDict:(Mat * _Nonnull)image corners:(NSMutableArray<Mat *> * _Nonnull)corners ids:(Mat * _Nonnull)ids rejectedImgPoints:(NSMutableArray<Mat *> * _Nonnull)rejectedImgPoints dictIndices:(Mat * _Nonnull)dictIndices __attribute__((swift_name("detectMarkersMultiDict(image:corners:ids:rejectedImgPoints:dictIndices:)")));
-		[Export ("detectMarkersMultiDict:corners:ids:rejectedImgPoints:dictIndices:")]
-		void DetectMarkersMultiDict (Mat image, NSMutableArray<Mat> corners, Mat ids, NSMutableArray<Mat> rejectedImgPoints, Mat dictIndices);
-
-		// -(void)detectMarkersMultiDict:(Mat * _Nonnull)image corners:(NSMutableArray<Mat *> * _Nonnull)corners ids:(Mat * _Nonnull)ids rejectedImgPoints:(NSMutableArray<Mat *> * _Nonnull)rejectedImgPoints __attribute__((swift_name("detectMarkersMultiDict(image:corners:ids:rejectedImgPoints:)")));
-		[Export ("detectMarkersMultiDict:corners:ids:rejectedImgPoints:")]
-		void DetectMarkersMultiDict (Mat image, NSMutableArray<Mat> corners, Mat ids, NSMutableArray<Mat> rejectedImgPoints);
-
-		// -(void)detectMarkersMultiDict:(Mat * _Nonnull)image corners:(NSMutableArray<Mat *> * _Nonnull)corners ids:(Mat * _Nonnull)ids __attribute__((swift_name("detectMarkersMultiDict(image:corners:ids:)")));
-		[Export ("detectMarkersMultiDict:corners:ids:")]
-		void DetectMarkersMultiDict (Mat image, NSMutableArray<Mat> corners, Mat ids);
-
-		// -(Dictionary * _Nonnull)getDictionary __attribute__((swift_name("getDictionary()")));
-		[Export ("getDictionary")]
-		Dictionary Dictionary { get; }
-
-		// -(void)setDictionary:(Dictionary * _Nonnull)dictionary __attribute__((swift_name("setDictionary(dictionary:)")));
-		[Export ("setDictionary:")]
-		void SetDictionary (Dictionary dictionary);
-
-		// -(DetectorParameters * _Nonnull)getDetectorParameters __attribute__((swift_name("getDetectorParameters()")));
-		[Export ("getDetectorParameters")]
-		DetectorParameters DetectorParameters { get; }
-
-		// -(void)setDetectorParameters:(DetectorParameters * _Nonnull)detectorParameters __attribute__((swift_name("setDetectorParameters(detectorParameters:)")));
-		[Export ("setDetectorParameters:")]
-		void SetDetectorParameters (DetectorParameters detectorParameters);
-
-		// -(RefineParameters * _Nonnull)getRefineParameters __attribute__((swift_name("getRefineParameters()")));
-		[Export ("getRefineParameters")]
-		RefineParameters RefineParameters { get; }
-
-		// -(void)setRefineParameters:(RefineParameters * _Nonnull)refineParameters __attribute__((swift_name("setRefineParameters(refineParameters:)")));
-		[Export ("setRefineParameters:")]
-		void SetRefineParameters (RefineParameters refineParameters);
-	}
-
-	// @interface Board : NSObject
-	[BaseType (typeof (NSObject))]
-	interface Board {
-		// -(instancetype _Nonnull)initWithObjPoints:(NSArray<Mat *> * _Nonnull)objPoints dictionary:(Dictionary * _Nonnull)dictionary ids:(Mat * _Nonnull)ids;
-		[Export ("initWithObjPoints:dictionary:ids:")]
-		NativeHandle Constructor (Mat [] objPoints, Dictionary dictionary, Mat ids);
-
-		// -(Dictionary * _Nonnull)getDictionary __attribute__((swift_name("getDictionary()")));
-		[Export ("getDictionary")]
-		Dictionary Dictionary { get; }
-
-		// -(NSArray<NSArray<Point3f *> *> * _Nonnull)getObjPoints __attribute__((swift_name("getObjPoints()")));
-		[Export ("getObjPoints")]
-		NSArray<Point3f> [] ObjPoints { get; }
-
-		// -(IntVector * _Nonnull)getIds __attribute__((swift_name("getIds()")));
-		[Export ("getIds")]
-		IntVector Ids { get; }
-
-		// -(Point3f * _Nonnull)getRightBottomCorner __attribute__((swift_name("getRightBottomCorner()")));
-		[Export ("getRightBottomCorner")]
-		Point3f RightBottomCorner { get; }
-
-		// -(void)matchImagePoints:(NSArray<Mat *> * _Nonnull)detectedCorners detectedIds:(Mat * _Nonnull)detectedIds objPoints:(Mat * _Nonnull)objPoints imgPoints:(Mat * _Nonnull)imgPoints __attribute__((swift_name("matchImagePoints(detectedCorners:detectedIds:objPoints:imgPoints:)")));
-		[Export ("matchImagePoints:detectedIds:objPoints:imgPoints:")]
-		void MatchImagePoints (Mat [] detectedCorners, Mat detectedIds, Mat objPoints, Mat imgPoints);
-
-		// -(void)generateImage:(Size2i * _Nonnull)outSize img:(Mat * _Nonnull)img marginSize:(int)marginSize borderBits:(int)borderBits __attribute__((swift_name("generateImage(outSize:img:marginSize:borderBits:)")));
-		[Export ("generateImage:img:marginSize:borderBits:")]
-		void GenerateImage (Size2i outSize, Mat img, int marginSize, int borderBits);
-
-		// -(void)generateImage:(Size2i * _Nonnull)outSize img:(Mat * _Nonnull)img marginSize:(int)marginSize __attribute__((swift_name("generateImage(outSize:img:marginSize:)")));
-		[Export ("generateImage:img:marginSize:")]
-		void GenerateImage (Size2i outSize, Mat img, int marginSize);
-
-		// -(void)generateImage:(Size2i * _Nonnull)outSize img:(Mat * _Nonnull)img __attribute__((swift_name("generateImage(outSize:img:)")));
-		[Export ("generateImage:img:")]
-		void GenerateImage (Size2i outSize, Mat img);
-	}
-
-	// @interface CharucoBoard : Board
-	[BaseType (typeof (Board))]
-	interface CharucoBoard {
-		// -(instancetype _Nonnull)initWithSize:(Size2i * _Nonnull)size squareLength:(float)squareLength markerLength:(float)markerLength dictionary:(Dictionary * _Nonnull)dictionary ids:(Mat * _Nonnull)ids;
-		[Export ("initWithSize:squareLength:markerLength:dictionary:ids:")]
-		NativeHandle Constructor (Size2i size, float squareLength, float markerLength, Dictionary dictionary, Mat ids);
-
-		// -(instancetype _Nonnull)initWithSize:(Size2i * _Nonnull)size squareLength:(float)squareLength markerLength:(float)markerLength dictionary:(Dictionary * _Nonnull)dictionary;
-		[Export ("initWithSize:squareLength:markerLength:dictionary:")]
-		NativeHandle Constructor (Size2i size, float squareLength, float markerLength, Dictionary dictionary);
-
-		// -(void)setLegacyPattern:(BOOL)legacyPattern __attribute__((swift_name("setLegacyPattern(legacyPattern:)")));
-		[Export ("setLegacyPattern:")]
-		void SetLegacyPattern (bool legacyPattern);
-
-		// -(BOOL)getLegacyPattern __attribute__((swift_name("getLegacyPattern()")));
-		[Export ("getLegacyPattern")]
-		bool LegacyPattern { get; }
-
-		// -(Size2i * _Nonnull)getChessboardSize __attribute__((swift_name("getChessboardSize()")));
-		[Export ("getChessboardSize")]
-		Size2i ChessboardSize { get; }
-
-		// -(float)getSquareLength __attribute__((swift_name("getSquareLength()")));
-		[Export ("getSquareLength")]
-		float SquareLength { get; }
-
-		// -(float)getMarkerLength __attribute__((swift_name("getMarkerLength()")));
-		[Export ("getMarkerLength")]
-		float MarkerLength { get; }
-
-		// -(NSArray<Point3f *> * _Nonnull)getChessboardCorners __attribute__((swift_name("getChessboardCorners()")));
-		[Export ("getChessboardCorners")]
-		Point3f [] ChessboardCorners { get; }
-
-		// -(BOOL)checkCharucoCornersCollinear:(Mat * _Nonnull)charucoIds __attribute__((swift_name("checkCharucoCornersCollinear(charucoIds:)")));
-		[Export ("checkCharucoCornersCollinear:")]
-		bool CheckCharucoCornersCollinear (Mat charucoIds);
-	}
-
-	// @interface CharucoDetector : Algorithm
-	[BaseType (typeof (Algorithm))]
-	interface CharucoDetector {
-		// -(instancetype _Nonnull)initWithBoard:(CharucoBoard * _Nonnull)board charucoParams:(CharucoParameters * _Nonnull)charucoParams detectorParams:(DetectorParameters * _Nonnull)detectorParams refineParams:(RefineParameters * _Nonnull)refineParams;
-		[Export ("initWithBoard:charucoParams:detectorParams:refineParams:")]
-		NativeHandle Constructor (CharucoBoard board, CharucoParameters charucoParams, DetectorParameters detectorParams, RefineParameters refineParams);
-
-		// -(instancetype _Nonnull)initWithBoard:(CharucoBoard * _Nonnull)board charucoParams:(CharucoParameters * _Nonnull)charucoParams detectorParams:(DetectorParameters * _Nonnull)detectorParams;
-		[Export ("initWithBoard:charucoParams:detectorParams:")]
-		NativeHandle Constructor (CharucoBoard board, CharucoParameters charucoParams, DetectorParameters detectorParams);
-
-		// -(instancetype _Nonnull)initWithBoard:(CharucoBoard * _Nonnull)board charucoParams:(CharucoParameters * _Nonnull)charucoParams;
-		[Export ("initWithBoard:charucoParams:")]
-		NativeHandle Constructor (CharucoBoard board, CharucoParameters charucoParams);
-
-		// -(instancetype _Nonnull)initWithBoard:(CharucoBoard * _Nonnull)board;
-		[Export ("initWithBoard:")]
-		NativeHandle Constructor (CharucoBoard board);
-
-		// -(CharucoBoard * _Nonnull)getBoard __attribute__((swift_name("getBoard()")));
-		[Export ("getBoard")]
-		CharucoBoard Board { get; }
-
-		// -(void)setBoard:(CharucoBoard * _Nonnull)board __attribute__((swift_name("setBoard(board:)")));
-		[Export ("setBoard:")]
-		void SetBoard (CharucoBoard board);
-
-		// -(CharucoParameters * _Nonnull)getCharucoParameters __attribute__((swift_name("getCharucoParameters()")));
-		[Export ("getCharucoParameters")]
-		CharucoParameters CharucoParameters { get; }
-
-		// -(void)setCharucoParameters:(CharucoParameters * _Nonnull)charucoParameters __attribute__((swift_name("setCharucoParameters(charucoParameters:)")));
-		[Export ("setCharucoParameters:")]
-		void SetCharucoParameters (CharucoParameters charucoParameters);
-
-		// -(DetectorParameters * _Nonnull)getDetectorParameters __attribute__((swift_name("getDetectorParameters()")));
-		[Export ("getDetectorParameters")]
-		DetectorParameters DetectorParameters { get; }
-
-		// -(void)setDetectorParameters:(DetectorParameters * _Nonnull)detectorParameters __attribute__((swift_name("setDetectorParameters(detectorParameters:)")));
-		[Export ("setDetectorParameters:")]
-		void SetDetectorParameters (DetectorParameters detectorParameters);
-
-		// -(RefineParameters * _Nonnull)getRefineParameters __attribute__((swift_name("getRefineParameters()")));
-		[Export ("getRefineParameters")]
-		RefineParameters RefineParameters { get; }
-
-		// -(void)setRefineParameters:(RefineParameters * _Nonnull)refineParameters __attribute__((swift_name("setRefineParameters(refineParameters:)")));
-		[Export ("setRefineParameters:")]
-		void SetRefineParameters (RefineParameters refineParameters);
-
-		// -(void)detectBoard:(Mat * _Nonnull)image charucoCorners:(Mat * _Nonnull)charucoCorners charucoIds:(Mat * _Nonnull)charucoIds markerCorners:(NSMutableArray<Mat *> * _Nonnull)markerCorners markerIds:(Mat * _Nonnull)markerIds __attribute__((swift_name("detectBoard(image:charucoCorners:charucoIds:markerCorners:markerIds:)")));
-		[Export ("detectBoard:charucoCorners:charucoIds:markerCorners:markerIds:")]
-		void DetectBoard (Mat image, Mat charucoCorners, Mat charucoIds, NSMutableArray<Mat> markerCorners, Mat markerIds);
-
-		// -(void)detectBoard:(Mat * _Nonnull)image charucoCorners:(Mat * _Nonnull)charucoCorners charucoIds:(Mat * _Nonnull)charucoIds markerCorners:(NSMutableArray<Mat *> * _Nonnull)markerCorners __attribute__((swift_name("detectBoard(image:charucoCorners:charucoIds:markerCorners:)")));
-		[Export ("detectBoard:charucoCorners:charucoIds:markerCorners:")]
-		void DetectBoard (Mat image, Mat charucoCorners, Mat charucoIds, NSMutableArray<Mat> markerCorners);
-
-		// -(void)detectBoard:(Mat * _Nonnull)image charucoCorners:(Mat * _Nonnull)charucoCorners charucoIds:(Mat * _Nonnull)charucoIds __attribute__((swift_name("detectBoard(image:charucoCorners:charucoIds:)")));
-		[Export ("detectBoard:charucoCorners:charucoIds:")]
-		void DetectBoard (Mat image, Mat charucoCorners, Mat charucoIds);
-
-		// -(void)detectDiamonds:(Mat * _Nonnull)image diamondCorners:(NSMutableArray<Mat *> * _Nonnull)diamondCorners diamondIds:(Mat * _Nonnull)diamondIds markerCorners:(NSMutableArray<Mat *> * _Nonnull)markerCorners markerIds:(Mat * _Nonnull)markerIds __attribute__((swift_name("detectDiamonds(image:diamondCorners:diamondIds:markerCorners:markerIds:)")));
-		[Export ("detectDiamonds:diamondCorners:diamondIds:markerCorners:markerIds:")]
-		void DetectDiamonds (Mat image, NSMutableArray<Mat> diamondCorners, Mat diamondIds, NSMutableArray<Mat> markerCorners, Mat markerIds);
-
-		// -(void)detectDiamonds:(Mat * _Nonnull)image diamondCorners:(NSMutableArray<Mat *> * _Nonnull)diamondCorners diamondIds:(Mat * _Nonnull)diamondIds markerCorners:(NSMutableArray<Mat *> * _Nonnull)markerCorners __attribute__((swift_name("detectDiamonds(image:diamondCorners:diamondIds:markerCorners:)")));
-		[Export ("detectDiamonds:diamondCorners:diamondIds:markerCorners:")]
-		void DetectDiamonds (Mat image, NSMutableArray<Mat> diamondCorners, Mat diamondIds, NSMutableArray<Mat> markerCorners);
-
-		// -(void)detectDiamonds:(Mat * _Nonnull)image diamondCorners:(NSMutableArray<Mat *> * _Nonnull)diamondCorners diamondIds:(Mat * _Nonnull)diamondIds __attribute__((swift_name("detectDiamonds(image:diamondCorners:diamondIds:)")));
-		[Export ("detectDiamonds:diamondCorners:diamondIds:")]
-		void DetectDiamonds (Mat image, NSMutableArray<Mat> diamondCorners, Mat diamondIds);
-	}
-
-	// @interface CharucoParameters : NSObject
-	[BaseType (typeof (NSObject))]
-	interface CharucoParameters {
-		// @property Mat * _Nonnull cameraMatrix;
-		[Export ("cameraMatrix", ArgumentSemantic.Assign)]
-		Mat CameraMatrix { get; set; }
-
-		// @property Mat * _Nonnull distCoeffs;
-		[Export ("distCoeffs", ArgumentSemantic.Assign)]
-		Mat DistCoeffs { get; set; }
-
-		// @property int minMarkers;
-		[Export ("minMarkers")]
-		int MinMarkers { get; set; }
-
-		// @property BOOL tryRefineMarkers;
-		[Export ("tryRefineMarkers")]
-		bool TryRefineMarkers { get; set; }
-
-		// @property BOOL checkMarkers;
-		[Export ("checkMarkers")]
-		bool CheckMarkers { get; set; }
-	}
-
-	// @interface DetectorParameters : NSObject
-	[BaseType (typeof (NSObject))]
-	interface DetectorParameters {
-		// @property int adaptiveThreshWinSizeMin;
-		[Export ("adaptiveThreshWinSizeMin")]
-		int AdaptiveThreshWinSizeMin { get; set; }
-
-		// @property int adaptiveThreshWinSizeMax;
-		[Export ("adaptiveThreshWinSizeMax")]
-		int AdaptiveThreshWinSizeMax { get; set; }
-
-		// @property int adaptiveThreshWinSizeStep;
-		[Export ("adaptiveThreshWinSizeStep")]
-		int AdaptiveThreshWinSizeStep { get; set; }
-
-		// @property double adaptiveThreshConstant;
-		[Export ("adaptiveThreshConstant")]
-		double AdaptiveThreshConstant { get; set; }
-
-		// @property double minMarkerPerimeterRate;
-		[Export ("minMarkerPerimeterRate")]
-		double MinMarkerPerimeterRate { get; set; }
-
-		// @property double maxMarkerPerimeterRate;
-		[Export ("maxMarkerPerimeterRate")]
-		double MaxMarkerPerimeterRate { get; set; }
-
-		// @property double polygonalApproxAccuracyRate;
-		[Export ("polygonalApproxAccuracyRate")]
-		double PolygonalApproxAccuracyRate { get; set; }
-
-		// @property double minCornerDistanceRate;
-		[Export ("minCornerDistanceRate")]
-		double MinCornerDistanceRate { get; set; }
-
-		// @property int minDistanceToBorder;
-		[Export ("minDistanceToBorder")]
-		int MinDistanceToBorder { get; set; }
-
-		// @property double minMarkerDistanceRate;
-		[Export ("minMarkerDistanceRate")]
-		double MinMarkerDistanceRate { get; set; }
-
-		// @property float minGroupDistance;
-		[Export ("minGroupDistance")]
-		float MinGroupDistance { get; set; }
-
-		// @property int cornerRefinementMethod;
-		[Export ("cornerRefinementMethod")]
-		int CornerRefinementMethod { get; set; }
-
-		// @property int cornerRefinementWinSize;
-		[Export ("cornerRefinementWinSize")]
-		int CornerRefinementWinSize { get; set; }
-
-		// @property float relativeCornerRefinmentWinSize;
-		[Export ("relativeCornerRefinmentWinSize")]
-		float RelativeCornerRefinmentWinSize { get; set; }
-
-		// @property int cornerRefinementMaxIterations;
-		[Export ("cornerRefinementMaxIterations")]
-		int CornerRefinementMaxIterations { get; set; }
-
-		// @property double cornerRefinementMinAccuracy;
-		[Export ("cornerRefinementMinAccuracy")]
-		double CornerRefinementMinAccuracy { get; set; }
-
-		// @property int markerBorderBits;
-		[Export ("markerBorderBits")]
-		int MarkerBorderBits { get; set; }
-
-		// @property int perspectiveRemovePixelPerCell;
-		[Export ("perspectiveRemovePixelPerCell")]
-		int PerspectiveRemovePixelPerCell { get; set; }
-
-		// @property double perspectiveRemoveIgnoredMarginPerCell;
-		[Export ("perspectiveRemoveIgnoredMarginPerCell")]
-		double PerspectiveRemoveIgnoredMarginPerCell { get; set; }
-
-		// @property double maxErroneousBitsInBorderRate;
-		[Export ("maxErroneousBitsInBorderRate")]
-		double MaxErroneousBitsInBorderRate { get; set; }
-
-		// @property double minOtsuStdDev;
-		[Export ("minOtsuStdDev")]
-		double MinOtsuStdDev { get; set; }
-
-		// @property double errorCorrectionRate;
-		[Export ("errorCorrectionRate")]
-		double ErrorCorrectionRate { get; set; }
-
-		// @property float aprilTagQuadDecimate;
-		[Export ("aprilTagQuadDecimate")]
-		float AprilTagQuadDecimate { get; set; }
-
-		// @property float aprilTagQuadSigma;
-		[Export ("aprilTagQuadSigma")]
-		float AprilTagQuadSigma { get; set; }
-
-		// @property int aprilTagMinClusterPixels;
-		[Export ("aprilTagMinClusterPixels")]
-		int AprilTagMinClusterPixels { get; set; }
-
-		// @property int aprilTagMaxNmaxima;
-		[Export ("aprilTagMaxNmaxima")]
-		int AprilTagMaxNmaxima { get; set; }
-
-		// @property float aprilTagCriticalRad;
-		[Export ("aprilTagCriticalRad")]
-		float AprilTagCriticalRad { get; set; }
-
-		// @property float aprilTagMaxLineFitMse;
-		[Export ("aprilTagMaxLineFitMse")]
-		float AprilTagMaxLineFitMse { get; set; }
-
-		// @property int aprilTagMinWhiteBlackDiff;
-		[Export ("aprilTagMinWhiteBlackDiff")]
-		int AprilTagMinWhiteBlackDiff { get; set; }
-
-		// @property int aprilTagDeglitch;
-		[Export ("aprilTagDeglitch")]
-		int AprilTagDeglitch { get; set; }
-
-		// @property BOOL detectInvertedMarker;
-		[Export ("detectInvertedMarker")]
-		bool DetectInvertedMarker { get; set; }
-
-		// @property BOOL useAruco3Detection;
-		[Export ("useAruco3Detection")]
-		bool UseAruco3Detection { get; set; }
-
-		// @property int minSideLengthCanonicalImg;
-		[Export ("minSideLengthCanonicalImg")]
-		int MinSideLengthCanonicalImg { get; set; }
-
-		// @property float minMarkerLengthRatioOriginalImg;
-		[Export ("minMarkerLengthRatioOriginalImg")]
-		float MinMarkerLengthRatioOriginalImg { get; set; }
-
-		// @property float validBitIdThreshold;
-		[Export ("validBitIdThreshold")]
-		float ValidBitIdThreshold { get; set; }
-	}
-
-	// @interface Dictionary : NSObject
-	[BaseType (typeof (NSObject))]
-	interface Dictionary {
-		// -(instancetype _Nonnull)initWithBytesList:(Mat * _Nonnull)bytesList _markerSize:(int)_markerSize maxcorr:(int)maxcorr;
-		[Export ("initWithBytesList:_markerSize:maxcorr:")]
-		NativeHandle Constructor (Mat bytesList, int _markerSize, int maxcorr);
-
-		// -(instancetype _Nonnull)initWithBytesList:(Mat * _Nonnull)bytesList _markerSize:(int)_markerSize;
-		[Export ("initWithBytesList:_markerSize:")]
-		NativeHandle Constructor (Mat bytesList, int _markerSize);
-
-		// -(BOOL)identify:(Mat * _Nonnull)onlyBits idx:(int * _Nonnull)idx rotation:(int * _Nonnull)rotation maxCorrectionRate:(double)maxCorrectionRate __attribute__((swift_name("identify(onlyBits:idx:rotation:maxCorrectionRate:)")));
-		[Export ("identify:idx:rotation:maxCorrectionRate:")]
-		unsafe bool Identify (Mat onlyBits, int* idx, int* rotation, double maxCorrectionRate);
-
-		// -(BOOL)identify:(Mat * _Nonnull)onlyCellPixelRatio idx:(int * _Nonnull)idx rotation:(int * _Nonnull)rotation maxCorrectionRate:(double)maxCorrectionRate validBitIdThreshold:(float)validBitIdThreshold __attribute__((swift_name("identify(onlyCellPixelRatio:idx:rotation:maxCorrectionRate:validBitIdThreshold:)")));
-		[Export ("identify:idx:rotation:maxCorrectionRate:validBitIdThreshold:")]
-		unsafe bool Identify (Mat onlyCellPixelRatio, int* idx, int* rotation, double maxCorrectionRate, float validBitIdThreshold);
-
-		// -(int)getDistanceToId:(Mat * _Nonnull)bits id:(int)id allRotations:(BOOL)allRotations __attribute__((swift_name("getDistanceToId(bits:id:allRotations:)")));
-		[Export ("getDistanceToId:id:allRotations:")]
-		int GetDistanceToId (Mat bits, int id, bool allRotations);
-
-		// -(int)getDistanceToId:(Mat * _Nonnull)bits id:(int)id __attribute__((swift_name("getDistanceToId(bits:id:)")));
-		[Export ("getDistanceToId:id:")]
-		int GetDistanceToId (Mat bits, int id);
-
-		// -(void)generateImageMarker:(int)id sidePixels:(int)sidePixels _img:(Mat * _Nonnull)_img borderBits:(int)borderBits __attribute__((swift_name("generateImageMarker(id:sidePixels:_img:borderBits:)")));
-		[Export ("generateImageMarker:sidePixels:_img:borderBits:")]
-		void GenerateImageMarker (int id, int sidePixels, Mat _img, int borderBits);
-
-		// -(void)generateImageMarker:(int)id sidePixels:(int)sidePixels _img:(Mat * _Nonnull)_img __attribute__((swift_name("generateImageMarker(id:sidePixels:_img:)")));
-		[Export ("generateImageMarker:sidePixels:_img:")]
-		void GenerateImageMarker (int id, int sidePixels, Mat _img);
-
-		// +(Mat * _Nonnull)getByteListFromBits:(Mat * _Nonnull)bits __attribute__((swift_name("getByteListFromBits(bits:)")));
-		[Static]
-		[Export ("getByteListFromBits:")]
-		Mat GetByteListFromBits (Mat bits);
-
-		// +(Mat * _Nonnull)getBitsFromByteList:(Mat * _Nonnull)byteList markerSize:(int)markerSize rotationId:(int)rotationId __attribute__((swift_name("getBitsFromByteList(byteList:markerSize:rotationId:)")));
-		[Static]
-		[Export ("getBitsFromByteList:markerSize:rotationId:")]
-		Mat GetBitsFromByteList (Mat byteList, int markerSize, int rotationId);
-
-		// +(Mat * _Nonnull)getBitsFromByteList:(Mat * _Nonnull)byteList markerSize:(int)markerSize __attribute__((swift_name("getBitsFromByteList(byteList:markerSize:)")));
-		[Static]
-		[Export ("getBitsFromByteList:markerSize:")]
-		Mat GetBitsFromByteList (Mat byteList, int markerSize);
-
-		// -(Mat * _Nonnull)getMarkerBits:(int)markerId rotationId:(int)rotationId __attribute__((swift_name("getMarkerBits(markerId:rotationId:)")));
-		[Export ("getMarkerBits:rotationId:")]
-		Mat GetMarkerBits (int markerId, int rotationId);
-
-		// -(Mat * _Nonnull)getMarkerBits:(int)markerId __attribute__((swift_name("getMarkerBits(markerId:)")));
-		[Export ("getMarkerBits:")]
-		Mat GetMarkerBits (int markerId);
-
-		// @property Mat * _Nonnull bytesList;
-		[Export ("bytesList", ArgumentSemantic.Assign)]
-		Mat BytesList { get; set; }
-
-		// @property int markerSize;
-		[Export ("markerSize")]
-		int MarkerSize { get; set; }
-
-		// @property int maxCorrectionBits;
-		[Export ("maxCorrectionBits")]
-		int MaxCorrectionBits { get; set; }
-	}
-
-	// @interface GridBoard : Board
-	[BaseType (typeof (Board))]
-	interface GridBoard {
-		// -(instancetype _Nonnull)initWithSize:(Size2i * _Nonnull)size markerLength:(float)markerLength markerSeparation:(float)markerSeparation dictionary:(Dictionary * _Nonnull)dictionary ids:(Mat * _Nonnull)ids;
-		[Export ("initWithSize:markerLength:markerSeparation:dictionary:ids:")]
-		NativeHandle Constructor (Size2i size, float markerLength, float markerSeparation, Dictionary dictionary, Mat ids);
-
-		// -(instancetype _Nonnull)initWithSize:(Size2i * _Nonnull)size markerLength:(float)markerLength markerSeparation:(float)markerSeparation dictionary:(Dictionary * _Nonnull)dictionary;
-		[Export ("initWithSize:markerLength:markerSeparation:dictionary:")]
-		NativeHandle Constructor (Size2i size, float markerLength, float markerSeparation, Dictionary dictionary);
-
-		// -(Size2i * _Nonnull)getGridSize __attribute__((swift_name("getGridSize()")));
-		[Export ("getGridSize")]
-		Size2i GridSize { get; }
-
-		// -(float)getMarkerLength __attribute__((swift_name("getMarkerLength()")));
-		[Export ("getMarkerLength")]
-		float MarkerLength { get; }
-
-		// -(float)getMarkerSeparation __attribute__((swift_name("getMarkerSeparation()")));
-		[Export ("getMarkerSeparation")]
-		float MarkerSeparation { get; }
-	}
-
-	// @interface RefineParameters : NSObject
-	[BaseType (typeof (NSObject))]
-	interface RefineParameters {
-		// -(instancetype _Nonnull)initWithMinRepDistance:(float)minRepDistance errorCorrectionRate:(float)errorCorrectionRate checkAllOrders:(BOOL)checkAllOrders;
-		[Export ("initWithMinRepDistance:errorCorrectionRate:checkAllOrders:")]
-		NativeHandle Constructor (float minRepDistance, float errorCorrectionRate, bool checkAllOrders);
-
-		// -(instancetype _Nonnull)initWithMinRepDistance:(float)minRepDistance errorCorrectionRate:(float)errorCorrectionRate;
-		[Export ("initWithMinRepDistance:errorCorrectionRate:")]
-		NativeHandle Constructor (float minRepDistance, float errorCorrectionRate);
-
-		// -(instancetype _Nonnull)initWithMinRepDistance:(float)minRepDistance;
-		[Export ("initWithMinRepDistance:")]
-		NativeHandle Constructor (float minRepDistance);
-
-		// @property float minRepDistance;
-		[Export ("minRepDistance")]
-		float MinRepDistance { get; set; }
-
-		// @property float errorCorrectionRate;
-		[Export ("errorCorrectionRate")]
-		float ErrorCorrectionRate { get; set; }
-
-		// @property BOOL checkAllOrders;
-		[Export ("checkAllOrders")]
-		bool CheckAllOrders { get; set; }
-	}
-
-	// @interface BarcodeDetector : GraphicalCodeDetector
-	[BaseType (typeof (GraphicalCodeDetector))]
-	interface BarcodeDetector {
-		// -(instancetype _Nonnull)initWithSuper_resolution_model_path:(NSString * _Nonnull)super_resolution_model_path;
-		[Export ("initWithSuper_resolution_model_path:")]
-		NativeHandle Constructor (string super_resolution_model_path);
-
-		// -(BOOL)decodeWithType:(Mat * _Nonnull)img points:(Mat * _Nonnull)points decoded_info:(NSMutableArray<NSString *> * _Nonnull)decoded_info decoded_type:(NSMutableArray<NSString *> * _Nonnull)decoded_type __attribute__((swift_name("decodeWithType(img:points:decoded_info:decoded_type:)")));
-		[Export ("decodeWithType:points:decoded_info:decoded_type:")]
-		bool DecodeWithType (Mat img, Mat points, NSMutableArray<NSString> decoded_info, NSMutableArray<NSString> decoded_type);
-
-		// -(BOOL)detectAndDecodeWithType:(Mat * _Nonnull)img decoded_info:(NSMutableArray<NSString *> * _Nonnull)decoded_info decoded_type:(NSMutableArray<NSString *> * _Nonnull)decoded_type points:(Mat * _Nonnull)points __attribute__((swift_name("detectAndDecodeWithType(img:decoded_info:decoded_type:points:)")));
-		[Export ("detectAndDecodeWithType:decoded_info:decoded_type:points:")]
-		bool DetectAndDecodeWithType (Mat img, NSMutableArray<NSString> decoded_info, NSMutableArray<NSString> decoded_type, Mat points);
-
-		// -(BOOL)detectAndDecodeWithType:(Mat * _Nonnull)img decoded_info:(NSMutableArray<NSString *> * _Nonnull)decoded_info decoded_type:(NSMutableArray<NSString *> * _Nonnull)decoded_type __attribute__((swift_name("detectAndDecodeWithType(img:decoded_info:decoded_type:)")));
-		[Export ("detectAndDecodeWithType:decoded_info:decoded_type:")]
-		bool DetectAndDecodeWithType (Mat img, NSMutableArray<NSString> decoded_info, NSMutableArray<NSString> decoded_type);
-
-		// -(double)getDownsamplingThreshold __attribute__((swift_name("getDownsamplingThreshold()")));
-		[Export ("getDownsamplingThreshold")]
-		double DownsamplingThreshold { get; }
-
-		// -(BarcodeDetector * _Nonnull)setDownsamplingThreshold:(double)thresh __attribute__((swift_name("setDownsamplingThreshold(thresh:)")));
-		[Export ("setDownsamplingThreshold:")]
-		BarcodeDetector SetDownsamplingThreshold (double thresh);
-
-		// -(void)getDetectorScales:(FloatVector * _Nonnull)sizes __attribute__((swift_name("getDetectorScales(sizes:)")));
-		[Export ("getDetectorScales:")]
-		void GetDetectorScales (FloatVector sizes);
-
-		// -(BarcodeDetector * _Nonnull)setDetectorScales:(FloatVector * _Nonnull)sizes __attribute__((swift_name("setDetectorScales(sizes:)")));
-		[Export ("setDetectorScales:")]
-		BarcodeDetector SetDetectorScales (FloatVector sizes);
-
-		// -(double)getGradientThreshold __attribute__((swift_name("getGradientThreshold()")));
-		[Export ("getGradientThreshold")]
-		double GradientThreshold { get; }
-
-		// -(BarcodeDetector * _Nonnull)setGradientThreshold:(double)thresh __attribute__((swift_name("setGradientThreshold(thresh:)")));
-		[Export ("setGradientThreshold:")]
-		BarcodeDetector SetGradientThreshold (double thresh);
-	}
-
-	// @interface CChecker : Algorithm
-	[BaseType (typeof (Algorithm))]
-	interface CChecker {
-		// +(CChecker * _Nonnull)create __attribute__((swift_name("create()")));
-		[Static]
-		[Export ("create")]
-		CChecker Create ();
-
-		// -(void)setTarget:(ColorChart)_target __attribute__((swift_name("setTarget(_target:)")));
-		[Export ("setTarget:")]
-		void SetTarget (ColorChart _target);
-
-		// -(void)setBox:(NSArray<Point2f *> * _Nonnull)_box __attribute__((swift_name("setBox(_box:)")));
-		[Export ("setBox:")]
-		void SetBox (Point2f [] _box);
-
-		// -(void)setChartsRGB:(Mat * _Nonnull)_chartsRGB __attribute__((swift_name("setChartsRGB(_chartsRGB:)")));
-		[Export ("setChartsRGB:")]
-		void SetChartsRGB (Mat _chartsRGB);
-
-		// -(void)setChartsYCbCr:(Mat * _Nonnull)_chartsYCbCr __attribute__((swift_name("setChartsYCbCr(_chartsYCbCr:)")));
-		[Export ("setChartsYCbCr:")]
-		void SetChartsYCbCr (Mat _chartsYCbCr);
-
-		// -(void)setCost:(float)_cost __attribute__((swift_name("setCost(_cost:)")));
-		[Export ("setCost:")]
-		void SetCost (float _cost);
-
-		// -(void)setCenter:(Point2f * _Nonnull)_center __attribute__((swift_name("setCenter(_center:)")));
-		[Export ("setCenter:")]
-		void SetCenter (Point2f _center);
-
-		// -(ColorChart)getTarget __attribute__((swift_name("getTarget()")));
-		[Export ("getTarget")]
-		ColorChart Target { get; }
-
-		// -(NSArray<Point2f *> * _Nonnull)getBox __attribute__((swift_name("getBox()")));
-		[Export ("getBox")]
-		Point2f [] Box { get; }
-
-		// -(NSArray<Point2f *> * _Nonnull)getColorCharts __attribute__((swift_name("getColorCharts()")));
-		[Export ("getColorCharts")]
-		Point2f [] ColorCharts { get; }
-
-		// -(Mat * _Nonnull)getChartsRGB:(BOOL)getStats __attribute__((swift_name("getChartsRGB(getStats:)")));
-		[Export ("getChartsRGB:")]
-		Mat GetChartsRGB (bool getStats);
-
-		// -(Mat * _Nonnull)getChartsRGB __attribute__((swift_name("getChartsRGB()")));
-		[Export ("getChartsRGB")]
-		Mat ChartsRGB { get; }
-
-		// -(Mat * _Nonnull)getChartsYCbCr __attribute__((swift_name("getChartsYCbCr()")));
-		[Export ("getChartsYCbCr")]
-		Mat ChartsYCbCr { get; }
-
-		// -(float)getCost __attribute__((swift_name("getCost()")));
-		[Export ("getCost")]
-		float Cost { get; }
-
-		// -(Point2f * _Nonnull)getCenter __attribute__((swift_name("getCenter()")));
-		[Export ("getCenter")]
-		Point2f Center { get; }
-	}
-
-	// @interface CCheckerDetector : Algorithm
-	[BaseType (typeof (Algorithm))]
-	interface CCheckerDetector {
-		// -(BOOL)processWithROI:(Mat * _Nonnull)image regionsOfInterest:(NSArray<Rect2i *> * _Nonnull)regionsOfInterest nc:(int)nc __attribute__((swift_name("process(image:regionsOfInterest:nc:)")));
-		[Export ("processWithROI:regionsOfInterest:nc:")]
-		bool ProcessWithROI (Mat image, Rect2i [] regionsOfInterest, int nc);
-
-		// -(BOOL)processWithROI:(Mat * _Nonnull)image regionsOfInterest:(NSArray<Rect2i *> * _Nonnull)regionsOfInterest __attribute__((swift_name("process(image:regionsOfInterest:)")));
-		[Export ("processWithROI:regionsOfInterest:")]
-		bool ProcessWithROI (Mat image, Rect2i [] regionsOfInterest);
-
-		// -(BOOL)process:(Mat * _Nonnull)image nc:(int)nc __attribute__((swift_name("process(image:nc:)")));
-		[Export ("process:nc:")]
-		bool Process (Mat image, int nc);
-
-		// -(BOOL)process:(Mat * _Nonnull)image __attribute__((swift_name("process(image:)")));
-		[Export ("process:")]
-		bool Process (Mat image);
-
-		// +(CCheckerDetector * _Nonnull)create __attribute__((swift_name("create()")));
-		[Static]
-		[Export ("create")]
-		CCheckerDetector Create ();
-
-		// -(Mat * _Nonnull)getRefColors __attribute__((swift_name("getRefColors()")));
-		[Export ("getRefColors")]
-		Mat RefColors { get; }
-
-		// -(void)setDetectionParams:(DetectorParametersMCC * _Nonnull)params __attribute__((swift_name("setDetectionParams(params:)")));
-		[Export ("setDetectionParams:")]
-		void SetDetectionParams (DetectorParametersMCC @params);
-
-		// -(void)setColorChartType:(ColorChart)chartType __attribute__((swift_name("setColorChartType(chartType:)")));
-		[Export ("setColorChartType:")]
-		void SetColorChartType (ColorChart chartType);
-
-		// -(void)setUseDnnModel:(BOOL)useDnn __attribute__((swift_name("setUseDnnModel(useDnn:)")));
-		[Export ("setUseDnnModel:")]
-		void SetUseDnnModel (bool useDnn);
-
-		// -(BOOL)getUseDnnModel __attribute__((swift_name("getUseDnnModel()")));
-		[Export ("getUseDnnModel")]
-		bool UseDnnModel { get; }
-
-		// -(DetectorParametersMCC * _Nonnull)getDetectionParams __attribute__((swift_name("getDetectionParams()")));
-		[Export ("getDetectionParams")]
-		DetectorParametersMCC DetectionParams { get; }
-
-		// -(ColorChart)getColorChartType __attribute__((swift_name("getColorChartType()")));
-		[Export ("getColorChartType")]
-		ColorChart ColorChartType { get; }
-	}
-
-	// @interface DetectorParametersMCC : NSObject
-	[BaseType (typeof (NSObject))]
-	interface DetectorParametersMCC {
-		// @property int adaptiveThreshWinSizeMin;
-		[Export ("adaptiveThreshWinSizeMin")]
-		int AdaptiveThreshWinSizeMin { get; set; }
-
-		// @property int adaptiveThreshWinSizeMax;
-		[Export ("adaptiveThreshWinSizeMax")]
-		int AdaptiveThreshWinSizeMax { get; set; }
-
-		// @property int adaptiveThreshWinSizeStep;
-		[Export ("adaptiveThreshWinSizeStep")]
-		int AdaptiveThreshWinSizeStep { get; set; }
-
-		// @property double adaptiveThreshConstant;
-		[Export ("adaptiveThreshConstant")]
-		double AdaptiveThreshConstant { get; set; }
-
-		// @property double minContoursAreaRate;
-		[Export ("minContoursAreaRate")]
-		double MinContoursAreaRate { get; set; }
-
-		// @property double minContoursArea;
-		[Export ("minContoursArea")]
-		double MinContoursArea { get; set; }
-
-		// @property double confidenceThreshold;
-		[Export ("confidenceThreshold")]
-		double ConfidenceThreshold { get; set; }
-
-		// @property double minContourSolidity;
-		[Export ("minContourSolidity")]
-		double MinContourSolidity { get; set; }
-
-		// @property double findCandidatesApproxPolyDPEpsMultiplier;
-		[Export ("findCandidatesApproxPolyDPEpsMultiplier")]
-		double FindCandidatesApproxPolyDPEpsMultiplier { get; set; }
-
-		// @property int borderWidth;
-		[Export ("borderWidth")]
-		int BorderWidth { get; set; }
-
-		// @property float B0factor;
-		[Export ("B0factor")]
-		float B0factor { get; set; }
-
-		// @property float maxError;
-		[Export ("maxError")]
-		float MaxError { get; set; }
-
-		// @property int minContourPointsAllowed;
-		[Export ("minContourPointsAllowed")]
-		int MinContourPointsAllowed { get; set; }
-
-		// @property int minContourLengthAllowed;
-		[Export ("minContourLengthAllowed")]
-		int MinContourLengthAllowed { get; set; }
-
-		// @property int minInterContourDistance;
-		[Export ("minInterContourDistance")]
-		int MinInterContourDistance { get; set; }
-
-		// @property int minInterCheckerDistance;
-		[Export ("minInterCheckerDistance")]
-		int MinInterCheckerDistance { get; set; }
-
-		// @property int minImageSize;
-		[Export ("minImageSize")]
-		int MinImageSize { get; set; }
-
-		// @property int minGroupSize;
-		[Export ("minGroupSize")]
-		int MinGroupSize { get; set; }
-	}
-
-	// @interface Video : NSObject
-	[BaseType (typeof (NSObject))]
-	interface Video {
-		// @property (readonly, class) int OPTFLOW_USE_INITIAL_FLOW __attribute__((swift_name("OPTFLOW_USE_INITIAL_FLOW")));
-		[Static]
-		[Export ("OPTFLOW_USE_INITIAL_FLOW")]
-		int OPTFLOW_USE_INITIAL_FLOW { get; }
-
-		// @property (readonly, class) int OPTFLOW_LK_GET_MIN_EIGENVALS __attribute__((swift_name("OPTFLOW_LK_GET_MIN_EIGENVALS")));
-		[Static]
-		[Export ("OPTFLOW_LK_GET_MIN_EIGENVALS")]
-		int OPTFLOW_LK_GET_MIN_EIGENVALS { get; }
-
-		// @property (readonly, class) int OPTFLOW_FARNEBACK_GAUSSIAN __attribute__((swift_name("OPTFLOW_FARNEBACK_GAUSSIAN")));
-		[Static]
-		[Export ("OPTFLOW_FARNEBACK_GAUSSIAN")]
-		int OPTFLOW_FARNEBACK_GAUSSIAN { get; }
-
-		// @property (readonly, class) int MOTION_TRANSLATION __attribute__((swift_name("MOTION_TRANSLATION")));
-		[Static]
-		[Export ("MOTION_TRANSLATION")]
-		int MOTION_TRANSLATION { get; }
-
-		// @property (readonly, class) int MOTION_EUCLIDEAN __attribute__((swift_name("MOTION_EUCLIDEAN")));
-		[Static]
-		[Export ("MOTION_EUCLIDEAN")]
-		int MOTION_EUCLIDEAN { get; }
-
-		// @property (readonly, class) int MOTION_AFFINE __attribute__((swift_name("MOTION_AFFINE")));
-		[Static]
-		[Export ("MOTION_AFFINE")]
-		int MOTION_AFFINE { get; }
-
-		// @property (readonly, class) int MOTION_HOMOGRAPHY __attribute__((swift_name("MOTION_HOMOGRAPHY")));
-		[Static]
-		[Export ("MOTION_HOMOGRAPHY")]
-		int MOTION_HOMOGRAPHY { get; }
-
-		// +(RotatedRect * _Nonnull)CamShift:(Mat * _Nonnull)probImage window:(Rect2i * _Nonnull)window criteria:(TermCriteria * _Nonnull)criteria __attribute__((swift_name("CamShift(probImage:window:criteria:)")));
-		[Static]
-		[Export ("CamShift:window:criteria:")]
-		RotatedRect CamShift (Mat probImage, Rect2i window, TermCriteria criteria);
-
-		// +(int)meanShift:(Mat * _Nonnull)probImage window:(Rect2i * _Nonnull)window criteria:(TermCriteria * _Nonnull)criteria __attribute__((swift_name("meanShift(probImage:window:criteria:)")));
-		[Static]
-		[Export ("meanShift:window:criteria:")]
-		int MeanShift (Mat probImage, Rect2i window, TermCriteria criteria);
-
-		// +(int)buildOpticalFlowPyramid:(Mat * _Nonnull)img pyramid:(NSMutableArray<Mat *> * _Nonnull)pyramid winSize:(Size2i * _Nonnull)winSize maxLevel:(int)maxLevel withDerivatives:(BOOL)withDerivatives pyrBorder:(int)pyrBorder derivBorder:(int)derivBorder tryReuseInputImage:(BOOL)tryReuseInputImage __attribute__((swift_name("buildOpticalFlowPyramid(img:pyramid:winSize:maxLevel:withDerivatives:pyrBorder:derivBorder:tryReuseInputImage:)")));
-		[Static]
-		[Export ("buildOpticalFlowPyramid:pyramid:winSize:maxLevel:withDerivatives:pyrBorder:derivBorder:tryReuseInputImage:")]
-		int BuildOpticalFlowPyramid (Mat img, NSMutableArray<Mat> pyramid, Size2i winSize, int maxLevel, bool withDerivatives, int pyrBorder, int derivBorder, bool tryReuseInputImage);
-
-		// +(int)buildOpticalFlowPyramid:(Mat * _Nonnull)img pyramid:(NSMutableArray<Mat *> * _Nonnull)pyramid winSize:(Size2i * _Nonnull)winSize maxLevel:(int)maxLevel withDerivatives:(BOOL)withDerivatives pyrBorder:(int)pyrBorder derivBorder:(int)derivBorder __attribute__((swift_name("buildOpticalFlowPyramid(img:pyramid:winSize:maxLevel:withDerivatives:pyrBorder:derivBorder:)")));
-		[Static]
-		[Export ("buildOpticalFlowPyramid:pyramid:winSize:maxLevel:withDerivatives:pyrBorder:derivBorder:")]
-		int BuildOpticalFlowPyramid (Mat img, NSMutableArray<Mat> pyramid, Size2i winSize, int maxLevel, bool withDerivatives, int pyrBorder, int derivBorder);
-
-		// +(int)buildOpticalFlowPyramid:(Mat * _Nonnull)img pyramid:(NSMutableArray<Mat *> * _Nonnull)pyramid winSize:(Size2i * _Nonnull)winSize maxLevel:(int)maxLevel withDerivatives:(BOOL)withDerivatives pyrBorder:(int)pyrBorder __attribute__((swift_name("buildOpticalFlowPyramid(img:pyramid:winSize:maxLevel:withDerivatives:pyrBorder:)")));
-		[Static]
-		[Export ("buildOpticalFlowPyramid:pyramid:winSize:maxLevel:withDerivatives:pyrBorder:")]
-		int BuildOpticalFlowPyramid (Mat img, NSMutableArray<Mat> pyramid, Size2i winSize, int maxLevel, bool withDerivatives, int pyrBorder);
-
-		// +(int)buildOpticalFlowPyramid:(Mat * _Nonnull)img pyramid:(NSMutableArray<Mat *> * _Nonnull)pyramid winSize:(Size2i * _Nonnull)winSize maxLevel:(int)maxLevel withDerivatives:(BOOL)withDerivatives __attribute__((swift_name("buildOpticalFlowPyramid(img:pyramid:winSize:maxLevel:withDerivatives:)")));
-		[Static]
-		[Export ("buildOpticalFlowPyramid:pyramid:winSize:maxLevel:withDerivatives:")]
-		int BuildOpticalFlowPyramid (Mat img, NSMutableArray<Mat> pyramid, Size2i winSize, int maxLevel, bool withDerivatives);
-
-		// +(int)buildOpticalFlowPyramid:(Mat * _Nonnull)img pyramid:(NSMutableArray<Mat *> * _Nonnull)pyramid winSize:(Size2i * _Nonnull)winSize maxLevel:(int)maxLevel __attribute__((swift_name("buildOpticalFlowPyramid(img:pyramid:winSize:maxLevel:)")));
-		[Static]
-		[Export ("buildOpticalFlowPyramid:pyramid:winSize:maxLevel:")]
-		int BuildOpticalFlowPyramid (Mat img, NSMutableArray<Mat> pyramid, Size2i winSize, int maxLevel);
-
-		// +(void)calcOpticalFlowPyrLK:(Mat * _Nonnull)prevImg nextImg:(Mat * _Nonnull)nextImg prevPts:(Mat * _Nonnull)prevPts nextPts:(Mat * _Nonnull)nextPts status:(Mat * _Nonnull)status err:(Mat * _Nonnull)err winSize:(Size2i * _Nonnull)winSize maxLevel:(int)maxLevel criteria:(TermCriteria * _Nonnull)criteria flags:(int)flags minEigThreshold:(double)minEigThreshold __attribute__((swift_name("calcOpticalFlowPyrLK(prevImg:nextImg:prevPts:nextPts:status:err:winSize:maxLevel:criteria:flags:minEigThreshold:)")));
-		[Static]
-		[Export ("calcOpticalFlowPyrLK:nextImg:prevPts:nextPts:status:err:winSize:maxLevel:criteria:flags:minEigThreshold:")]
-		void CalcOpticalFlowPyrLK (Mat prevImg, Mat nextImg, Mat prevPts, Mat nextPts, Mat status, Mat err, Size2i winSize, int maxLevel, TermCriteria criteria, int flags, double minEigThreshold);
-
-		// +(void)calcOpticalFlowPyrLK:(Mat * _Nonnull)prevImg nextImg:(Mat * _Nonnull)nextImg prevPts:(Mat * _Nonnull)prevPts nextPts:(Mat * _Nonnull)nextPts status:(Mat * _Nonnull)status err:(Mat * _Nonnull)err winSize:(Size2i * _Nonnull)winSize maxLevel:(int)maxLevel criteria:(TermCriteria * _Nonnull)criteria flags:(int)flags __attribute__((swift_name("calcOpticalFlowPyrLK(prevImg:nextImg:prevPts:nextPts:status:err:winSize:maxLevel:criteria:flags:)")));
-		[Static]
-		[Export ("calcOpticalFlowPyrLK:nextImg:prevPts:nextPts:status:err:winSize:maxLevel:criteria:flags:")]
-		void CalcOpticalFlowPyrLK (Mat prevImg, Mat nextImg, Mat prevPts, Mat nextPts, Mat status, Mat err, Size2i winSize, int maxLevel, TermCriteria criteria, int flags);
-
-		// +(void)calcOpticalFlowPyrLK:(Mat * _Nonnull)prevImg nextImg:(Mat * _Nonnull)nextImg prevPts:(Mat * _Nonnull)prevPts nextPts:(Mat * _Nonnull)nextPts status:(Mat * _Nonnull)status err:(Mat * _Nonnull)err winSize:(Size2i * _Nonnull)winSize maxLevel:(int)maxLevel criteria:(TermCriteria * _Nonnull)criteria __attribute__((swift_name("calcOpticalFlowPyrLK(prevImg:nextImg:prevPts:nextPts:status:err:winSize:maxLevel:criteria:)")));
-		[Static]
-		[Export ("calcOpticalFlowPyrLK:nextImg:prevPts:nextPts:status:err:winSize:maxLevel:criteria:")]
-		void CalcOpticalFlowPyrLK (Mat prevImg, Mat nextImg, Mat prevPts, Mat nextPts, Mat status, Mat err, Size2i winSize, int maxLevel, TermCriteria criteria);
-
-		// +(void)calcOpticalFlowPyrLK:(Mat * _Nonnull)prevImg nextImg:(Mat * _Nonnull)nextImg prevPts:(Mat * _Nonnull)prevPts nextPts:(Mat * _Nonnull)nextPts status:(Mat * _Nonnull)status err:(Mat * _Nonnull)err winSize:(Size2i * _Nonnull)winSize maxLevel:(int)maxLevel __attribute__((swift_name("calcOpticalFlowPyrLK(prevImg:nextImg:prevPts:nextPts:status:err:winSize:maxLevel:)")));
-		[Static]
-		[Export ("calcOpticalFlowPyrLK:nextImg:prevPts:nextPts:status:err:winSize:maxLevel:")]
-		void CalcOpticalFlowPyrLK (Mat prevImg, Mat nextImg, Mat prevPts, Mat nextPts, Mat status, Mat err, Size2i winSize, int maxLevel);
-
-		// +(void)calcOpticalFlowPyrLK:(Mat * _Nonnull)prevImg nextImg:(Mat * _Nonnull)nextImg prevPts:(Mat * _Nonnull)prevPts nextPts:(Mat * _Nonnull)nextPts status:(Mat * _Nonnull)status err:(Mat * _Nonnull)err winSize:(Size2i * _Nonnull)winSize __attribute__((swift_name("calcOpticalFlowPyrLK(prevImg:nextImg:prevPts:nextPts:status:err:winSize:)")));
-		[Static]
-		[Export ("calcOpticalFlowPyrLK:nextImg:prevPts:nextPts:status:err:winSize:")]
-		void CalcOpticalFlowPyrLK (Mat prevImg, Mat nextImg, Mat prevPts, Mat nextPts, Mat status, Mat err, Size2i winSize);
-
-		// +(void)calcOpticalFlowPyrLK:(Mat * _Nonnull)prevImg nextImg:(Mat * _Nonnull)nextImg prevPts:(Mat * _Nonnull)prevPts nextPts:(Mat * _Nonnull)nextPts status:(Mat * _Nonnull)status err:(Mat * _Nonnull)err __attribute__((swift_name("calcOpticalFlowPyrLK(prevImg:nextImg:prevPts:nextPts:status:err:)")));
-		[Static]
-		[Export ("calcOpticalFlowPyrLK:nextImg:prevPts:nextPts:status:err:")]
-		void CalcOpticalFlowPyrLK (Mat prevImg, Mat nextImg, Mat prevPts, Mat nextPts, Mat status, Mat err);
-
-		// +(void)calcOpticalFlowFarneback:(Mat * _Nonnull)prev next:(Mat * _Nonnull)next flow:(Mat * _Nonnull)flow pyr_scale:(double)pyr_scale levels:(int)levels winsize:(int)winsize iterations:(int)iterations poly_n:(int)poly_n poly_sigma:(double)poly_sigma flags:(int)flags __attribute__((swift_name("calcOpticalFlowFarneback(prev:next:flow:pyr_scale:levels:winsize:iterations:poly_n:poly_sigma:flags:)")));
-		[Static]
-		[Export ("calcOpticalFlowFarneback:next:flow:pyr_scale:levels:winsize:iterations:poly_n:poly_sigma:flags:")]
-		void CalcOpticalFlowFarneback (Mat prev, Mat next, Mat flow, double pyr_scale, int levels, int winsize, int iterations, int poly_n, double poly_sigma, int flags);
-
-		// +(double)computeECC:(Mat * _Nonnull)templateImage inputImage:(Mat * _Nonnull)inputImage inputMask:(Mat * _Nonnull)inputMask __attribute__((swift_name("computeECC(templateImage:inputImage:inputMask:)")));
-		[Static]
-		[Export ("computeECC:inputImage:inputMask:")]
-		double ComputeECC (Mat templateImage, Mat inputImage, Mat inputMask);
-
-		// +(double)computeECC:(Mat * _Nonnull)templateImage inputImage:(Mat * _Nonnull)inputImage __attribute__((swift_name("computeECC(templateImage:inputImage:)")));
-		[Static]
-		[Export ("computeECC:inputImage:")]
-		double ComputeECC (Mat templateImage, Mat inputImage);
-
-		// +(double)findTransformECC:(Mat * _Nonnull)templateImage inputImage:(Mat * _Nonnull)inputImage warpMatrix:(Mat * _Nonnull)warpMatrix motionType:(int)motionType criteria:(TermCriteria * _Nonnull)criteria inputMask:(Mat * _Nonnull)inputMask gaussFiltSize:(int)gaussFiltSize __attribute__((swift_name("findTransformECC(templateImage:inputImage:warpMatrix:motionType:criteria:inputMask:gaussFiltSize:)")));
-		[Static]
-		[Export ("findTransformECC:inputImage:warpMatrix:motionType:criteria:inputMask:gaussFiltSize:")]
-		double FindTransformECC (Mat templateImage, Mat inputImage, Mat warpMatrix, int motionType, TermCriteria criteria, Mat inputMask, int gaussFiltSize);
-
-		// +(double)findTransformECC:(Mat * _Nonnull)templateImage inputImage:(Mat * _Nonnull)inputImage warpMatrix:(Mat * _Nonnull)warpMatrix motionType:(int)motionType criteria:(TermCriteria * _Nonnull)criteria inputMask:(Mat * _Nonnull)inputMask __attribute__((swift_name("findTransformECC(templateImage:inputImage:warpMatrix:motionType:criteria:inputMask:)")));
-		[Static]
-		[Export ("findTransformECC:inputImage:warpMatrix:motionType:criteria:inputMask:")]
-		double FindTransformECC (Mat templateImage, Mat inputImage, Mat warpMatrix, int motionType, TermCriteria criteria, Mat inputMask);
-
-		// +(double)findTransformECC:(Mat * _Nonnull)templateImage inputImage:(Mat * _Nonnull)inputImage warpMatrix:(Mat * _Nonnull)warpMatrix motionType:(int)motionType criteria:(TermCriteria * _Nonnull)criteria __attribute__((swift_name("findTransformECC(templateImage:inputImage:warpMatrix:motionType:criteria:)")));
-		[Static]
-		[Export ("findTransformECC:inputImage:warpMatrix:motionType:criteria:")]
-		double FindTransformECC (Mat templateImage, Mat inputImage, Mat warpMatrix, int motionType, TermCriteria criteria);
-
-		// +(double)findTransformECC:(Mat * _Nonnull)templateImage inputImage:(Mat * _Nonnull)inputImage warpMatrix:(Mat * _Nonnull)warpMatrix motionType:(int)motionType __attribute__((swift_name("findTransformECC(templateImage:inputImage:warpMatrix:motionType:)")));
-		[Static]
-		[Export ("findTransformECC:inputImage:warpMatrix:motionType:")]
-		double FindTransformECC (Mat templateImage, Mat inputImage, Mat warpMatrix, int motionType);
-
-		// +(double)findTransformECC:(Mat * _Nonnull)templateImage inputImage:(Mat * _Nonnull)inputImage warpMatrix:(Mat * _Nonnull)warpMatrix __attribute__((swift_name("findTransformECC(templateImage:inputImage:warpMatrix:)")));
-		[Static]
-		[Export ("findTransformECC:inputImage:warpMatrix:")]
-		double FindTransformECC (Mat templateImage, Mat inputImage, Mat warpMatrix);
-
-		// +(double)findTransformECCWithMask:(Mat * _Nonnull)templateImage inputImage:(Mat * _Nonnull)inputImage templateMask:(Mat * _Nonnull)templateMask inputMask:(Mat * _Nonnull)inputMask warpMatrix:(Mat * _Nonnull)warpMatrix motionType:(int)motionType criteria:(TermCriteria * _Nonnull)criteria gaussFiltSize:(int)gaussFiltSize __attribute__((swift_name("findTransformECCWithMask(templateImage:inputImage:templateMask:inputMask:warpMatrix:motionType:criteria:gaussFiltSize:)")));
-		[Static]
-		[Export ("findTransformECCWithMask:inputImage:templateMask:inputMask:warpMatrix:motionType:criteria:gaussFiltSize:")]
-		double FindTransformECCWithMask (Mat templateImage, Mat inputImage, Mat templateMask, Mat inputMask, Mat warpMatrix, int motionType, TermCriteria criteria, int gaussFiltSize);
-
-		// +(double)findTransformECCWithMask:(Mat * _Nonnull)templateImage inputImage:(Mat * _Nonnull)inputImage templateMask:(Mat * _Nonnull)templateMask inputMask:(Mat * _Nonnull)inputMask warpMatrix:(Mat * _Nonnull)warpMatrix motionType:(int)motionType criteria:(TermCriteria * _Nonnull)criteria __attribute__((swift_name("findTransformECCWithMask(templateImage:inputImage:templateMask:inputMask:warpMatrix:motionType:criteria:)")));
-		[Static]
-		[Export ("findTransformECCWithMask:inputImage:templateMask:inputMask:warpMatrix:motionType:criteria:")]
-		double FindTransformECCWithMask (Mat templateImage, Mat inputImage, Mat templateMask, Mat inputMask, Mat warpMatrix, int motionType, TermCriteria criteria);
-
-		// +(double)findTransformECCWithMask:(Mat * _Nonnull)templateImage inputImage:(Mat * _Nonnull)inputImage templateMask:(Mat * _Nonnull)templateMask inputMask:(Mat * _Nonnull)inputMask warpMatrix:(Mat * _Nonnull)warpMatrix motionType:(int)motionType __attribute__((swift_name("findTransformECCWithMask(templateImage:inputImage:templateMask:inputMask:warpMatrix:motionType:)")));
-		[Static]
-		[Export ("findTransformECCWithMask:inputImage:templateMask:inputMask:warpMatrix:motionType:")]
-		double FindTransformECCWithMask (Mat templateImage, Mat inputImage, Mat templateMask, Mat inputMask, Mat warpMatrix, int motionType);
-
-		// +(double)findTransformECCWithMask:(Mat * _Nonnull)templateImage inputImage:(Mat * _Nonnull)inputImage templateMask:(Mat * _Nonnull)templateMask inputMask:(Mat * _Nonnull)inputMask warpMatrix:(Mat * _Nonnull)warpMatrix __attribute__((swift_name("findTransformECCWithMask(templateImage:inputImage:templateMask:inputMask:warpMatrix:)")));
-		[Static]
-		[Export ("findTransformECCWithMask:inputImage:templateMask:inputMask:warpMatrix:")]
-		double FindTransformECCWithMask (Mat templateImage, Mat inputImage, Mat templateMask, Mat inputMask, Mat warpMatrix);
-
-		// +(double)findTransformECCMultiScale:(Mat * _Nonnull)reference sample:(Mat * _Nonnull)sample warpMatrix:(Mat * _Nonnull)warpMatrix eccParams:(ECCParameters * _Nonnull)eccParams referenceMask:(Mat * _Nonnull)referenceMask sampleMask:(Mat * _Nonnull)sampleMask __attribute__((swift_name("findTransformECCMultiScale(reference:sample:warpMatrix:eccParams:referenceMask:sampleMask:)")));
-		[Static]
-		[Export ("findTransformECCMultiScale:sample:warpMatrix:eccParams:referenceMask:sampleMask:")]
-		double FindTransformECCMultiScale (Mat reference, Mat sample, Mat warpMatrix, ECCParameters eccParams, Mat referenceMask, Mat sampleMask);
-
-		// +(double)findTransformECCMultiScale:(Mat * _Nonnull)reference sample:(Mat * _Nonnull)sample warpMatrix:(Mat * _Nonnull)warpMatrix eccParams:(ECCParameters * _Nonnull)eccParams referenceMask:(Mat * _Nonnull)referenceMask __attribute__((swift_name("findTransformECCMultiScale(reference:sample:warpMatrix:eccParams:referenceMask:)")));
-		[Static]
-		[Export ("findTransformECCMultiScale:sample:warpMatrix:eccParams:referenceMask:")]
-		double FindTransformECCMultiScale (Mat reference, Mat sample, Mat warpMatrix, ECCParameters eccParams, Mat referenceMask);
-
-		// +(double)findTransformECCMultiScale:(Mat * _Nonnull)reference sample:(Mat * _Nonnull)sample warpMatrix:(Mat * _Nonnull)warpMatrix eccParams:(ECCParameters * _Nonnull)eccParams __attribute__((swift_name("findTransformECCMultiScale(reference:sample:warpMatrix:eccParams:)")));
-		[Static]
-		[Export ("findTransformECCMultiScale:sample:warpMatrix:eccParams:")]
-		double FindTransformECCMultiScale (Mat reference, Mat sample, Mat warpMatrix, ECCParameters eccParams);
-
-		// +(double)findTransformECCMultiScale:(Mat * _Nonnull)reference sample:(Mat * _Nonnull)sample warpMatrix:(Mat * _Nonnull)warpMatrix __attribute__((swift_name("findTransformECCMultiScale(reference:sample:warpMatrix:)")));
-		[Static]
-		[Export ("findTransformECCMultiScale:sample:warpMatrix:")]
-		double FindTransformECCMultiScale (Mat reference, Mat sample, Mat warpMatrix);
-
-		// +(Mat * _Nonnull)readOpticalFlow:(NSString * _Nonnull)path __attribute__((swift_name("readOpticalFlow(path:)")));
-		[Static]
-		[Export ("readOpticalFlow:")]
-		Mat ReadOpticalFlow (string path);
-
-		// +(BOOL)writeOpticalFlow:(NSString * _Nonnull)path flow:(Mat * _Nonnull)flow __attribute__((swift_name("writeOpticalFlow(path:flow:)")));
-		[Static]
-		[Export ("writeOpticalFlow:flow:")]
-		bool WriteOpticalFlow (string path, Mat flow);
-
-		// +(BackgroundSubtractorMOG2 * _Nonnull)createBackgroundSubtractorMOG2:(int)history varThreshold:(double)varThreshold detectShadows:(BOOL)detectShadows __attribute__((swift_name("createBackgroundSubtractorMOG2(history:varThreshold:detectShadows:)")));
-		[Static]
-		[Export ("createBackgroundSubtractorMOG2:varThreshold:detectShadows:")]
-		BackgroundSubtractorMOG2 CreateBackgroundSubtractorMOG2 (int history, double varThreshold, bool detectShadows);
-
-		// +(BackgroundSubtractorMOG2 * _Nonnull)createBackgroundSubtractorMOG2:(int)history varThreshold:(double)varThreshold __attribute__((swift_name("createBackgroundSubtractorMOG2(history:varThreshold:)")));
-		[Static]
-		[Export ("createBackgroundSubtractorMOG2:varThreshold:")]
-		BackgroundSubtractorMOG2 CreateBackgroundSubtractorMOG2 (int history, double varThreshold);
-
-		// +(BackgroundSubtractorMOG2 * _Nonnull)createBackgroundSubtractorMOG2:(int)history __attribute__((swift_name("createBackgroundSubtractorMOG2(history:)")));
-		[Static]
-		[Export ("createBackgroundSubtractorMOG2:")]
-		BackgroundSubtractorMOG2 CreateBackgroundSubtractorMOG2 (int history);
-
-		// +(BackgroundSubtractorMOG2 * _Nonnull)createBackgroundSubtractorMOG2 __attribute__((swift_name("createBackgroundSubtractorMOG2()")));
-		[Static]
-		[Export ("createBackgroundSubtractorMOG2")]
-		BackgroundSubtractorMOG2 CreateBackgroundSubtractorMOG2 ();
-
-		// +(BackgroundSubtractorKNN * _Nonnull)createBackgroundSubtractorKNN:(int)history dist2Threshold:(double)dist2Threshold detectShadows:(BOOL)detectShadows __attribute__((swift_name("createBackgroundSubtractorKNN(history:dist2Threshold:detectShadows:)")));
-		[Static]
-		[Export ("createBackgroundSubtractorKNN:dist2Threshold:detectShadows:")]
-		BackgroundSubtractorKNN CreateBackgroundSubtractorKNN (int history, double dist2Threshold, bool detectShadows);
-
-		// +(BackgroundSubtractorKNN * _Nonnull)createBackgroundSubtractorKNN:(int)history dist2Threshold:(double)dist2Threshold __attribute__((swift_name("createBackgroundSubtractorKNN(history:dist2Threshold:)")));
-		[Static]
-		[Export ("createBackgroundSubtractorKNN:dist2Threshold:")]
-		BackgroundSubtractorKNN CreateBackgroundSubtractorKNN (int history, double dist2Threshold);
-
-		// +(BackgroundSubtractorKNN * _Nonnull)createBackgroundSubtractorKNN:(int)history __attribute__((swift_name("createBackgroundSubtractorKNN(history:)")));
-		[Static]
-		[Export ("createBackgroundSubtractorKNN:")]
-		BackgroundSubtractorKNN CreateBackgroundSubtractorKNN (int history);
-
-		// +(BackgroundSubtractorKNN * _Nonnull)createBackgroundSubtractorKNN __attribute__((swift_name("createBackgroundSubtractorKNN()")));
-		[Static]
-		[Export ("createBackgroundSubtractorKNN")]
-		BackgroundSubtractorKNN CreateBackgroundSubtractorKNN ();
-	}
-
-	// @interface BackgroundSubtractor : Algorithm
-	[BaseType (typeof (Algorithm))]
-	interface BackgroundSubtractor {
-		// -(void)apply:(Mat * _Nonnull)image fgmask:(Mat * _Nonnull)fgmask learningRate:(double)learningRate __attribute__((swift_name("apply(image:fgmask:learningRate:)")));
-		[Export ("apply:fgmask:learningRate:")]
-		void Apply (Mat image, Mat fgmask, double learningRate);
-
-		// -(void)apply:(Mat * _Nonnull)image fgmask:(Mat * _Nonnull)fgmask __attribute__((swift_name("apply(image:fgmask:)")));
-		[Export ("apply:fgmask:")]
-		void Apply (Mat image, Mat fgmask);
-
-		// -(void)apply:(Mat * _Nonnull)image knownForegroundMask:(Mat * _Nonnull)knownForegroundMask fgmask:(Mat * _Nonnull)fgmask learningRate:(double)learningRate __attribute__((swift_name("apply(image:knownForegroundMask:fgmask:learningRate:)")));
-		[Export ("apply:knownForegroundMask:fgmask:learningRate:")]
-		void Apply (Mat image, Mat knownForegroundMask, Mat fgmask, double learningRate);
-
-		// -(void)apply:(Mat * _Nonnull)image knownForegroundMask:(Mat * _Nonnull)knownForegroundMask fgmask:(Mat * _Nonnull)fgmask __attribute__((swift_name("apply(image:knownForegroundMask:fgmask:)")));
-		[Export ("apply:knownForegroundMask:fgmask:")]
-		void Apply (Mat image, Mat knownForegroundMask, Mat fgmask);
-
-		// -(void)getBackgroundImage:(Mat * _Nonnull)backgroundImage __attribute__((swift_name("getBackgroundImage(backgroundImage:)")));
-		[Export ("getBackgroundImage:")]
-		void GetBackgroundImage (Mat backgroundImage);
-	}
-
-	// @interface BackgroundSubtractorKNN : BackgroundSubtractor
-	[BaseType (typeof (BackgroundSubtractor))]
-	interface BackgroundSubtractorKNN {
-		// -(int)getHistory __attribute__((swift_name("getHistory()")));
-		[Export ("getHistory")]
-		int History { get; }
-
-		// -(void)setHistory:(int)history __attribute__((swift_name("setHistory(history:)")));
-		[Export ("setHistory:")]
-		void SetHistory (int history);
-
-		// -(int)getNSamples __attribute__((swift_name("getNSamples()")));
-		[Export ("getNSamples")]
-		int NSamples { get; }
-
-		// -(void)setNSamples:(int)_nN __attribute__((swift_name("setNSamples(_nN:)")));
-		[Export ("setNSamples:")]
-		void SetNSamples (int _nN);
-
-		// -(double)getDist2Threshold __attribute__((swift_name("getDist2Threshold()")));
-		[Export ("getDist2Threshold")]
-		double Dist2Threshold { get; }
-
-		// -(void)setDist2Threshold:(double)_dist2Threshold __attribute__((swift_name("setDist2Threshold(_dist2Threshold:)")));
-		[Export ("setDist2Threshold:")]
-		void SetDist2Threshold (double _dist2Threshold);
-
-		// -(int)getkNNSamples __attribute__((swift_name("getkNNSamples()")));
-		[Export ("getkNNSamples")]
-		int GetkNNSamples ();
-
-		// -(void)setkNNSamples:(int)_nkNN __attribute__((swift_name("setkNNSamples(_nkNN:)")));
-		[Export ("setkNNSamples:")]
-		void SetkNNSamples (int _nkNN);
-
-		// -(BOOL)getDetectShadows __attribute__((swift_name("getDetectShadows()")));
-		[Export ("getDetectShadows")]
-		bool DetectShadows { get; }
-
-		// -(void)setDetectShadows:(BOOL)detectShadows __attribute__((swift_name("setDetectShadows(detectShadows:)")));
-		[Export ("setDetectShadows:")]
-		void SetDetectShadows (bool detectShadows);
-
-		// -(int)getShadowValue __attribute__((swift_name("getShadowValue()")));
-		[Export ("getShadowValue")]
-		int ShadowValue { get; }
-
-		// -(void)setShadowValue:(int)value __attribute__((swift_name("setShadowValue(value:)")));
-		[Export ("setShadowValue:")]
-		void SetShadowValue (int value);
-
-		// -(double)getShadowThreshold __attribute__((swift_name("getShadowThreshold()")));
-		[Export ("getShadowThreshold")]
-		double ShadowThreshold { get; }
-
-		// -(void)setShadowThreshold:(double)threshold __attribute__((swift_name("setShadowThreshold(threshold:)")));
-		[Export ("setShadowThreshold:")]
-		void SetShadowThreshold (double threshold);
-	}
-
-	// @interface BackgroundSubtractorMOG2 : BackgroundSubtractor
-	[BaseType (typeof (BackgroundSubtractor))]
-	interface BackgroundSubtractorMOG2 {
-		// -(int)getHistory __attribute__((swift_name("getHistory()")));
-		[Export ("getHistory")]
-		int History { get; }
-
-		// -(void)setHistory:(int)history __attribute__((swift_name("setHistory(history:)")));
-		[Export ("setHistory:")]
-		void SetHistory (int history);
-
-		// -(int)getNMixtures __attribute__((swift_name("getNMixtures()")));
-		[Export ("getNMixtures")]
-		int NMixtures { get; }
-
-		// -(void)setNMixtures:(int)nmixtures __attribute__((swift_name("setNMixtures(nmixtures:)")));
-		[Export ("setNMixtures:")]
-		void SetNMixtures (int nmixtures);
-
-		// -(double)getBackgroundRatio __attribute__((swift_name("getBackgroundRatio()")));
-		[Export ("getBackgroundRatio")]
-		double BackgroundRatio { get; }
-
-		// -(void)setBackgroundRatio:(double)ratio __attribute__((swift_name("setBackgroundRatio(ratio:)")));
-		[Export ("setBackgroundRatio:")]
-		void SetBackgroundRatio (double ratio);
-
-		// -(double)getVarThreshold __attribute__((swift_name("getVarThreshold()")));
-		[Export ("getVarThreshold")]
-		double VarThreshold { get; }
-
-		// -(void)setVarThreshold:(double)varThreshold __attribute__((swift_name("setVarThreshold(varThreshold:)")));
-		[Export ("setVarThreshold:")]
-		void SetVarThreshold (double varThreshold);
-
-		// -(double)getVarThresholdGen __attribute__((swift_name("getVarThresholdGen()")));
-		[Export ("getVarThresholdGen")]
-		double VarThresholdGen { get; }
-
-		// -(void)setVarThresholdGen:(double)varThresholdGen __attribute__((swift_name("setVarThresholdGen(varThresholdGen:)")));
-		[Export ("setVarThresholdGen:")]
-		void SetVarThresholdGen (double varThresholdGen);
-
-		// -(double)getVarInit __attribute__((swift_name("getVarInit()")));
-		[Export ("getVarInit")]
-		double VarInit { get; }
-
-		// -(void)setVarInit:(double)varInit __attribute__((swift_name("setVarInit(varInit:)")));
-		[Export ("setVarInit:")]
-		void SetVarInit (double varInit);
-
-		// -(double)getVarMin __attribute__((swift_name("getVarMin()")));
-		[Export ("getVarMin")]
-		double VarMin { get; }
-
-		// -(void)setVarMin:(double)varMin __attribute__((swift_name("setVarMin(varMin:)")));
-		[Export ("setVarMin:")]
-		void SetVarMin (double varMin);
-
-		// -(double)getVarMax __attribute__((swift_name("getVarMax()")));
-		[Export ("getVarMax")]
-		double VarMax { get; }
-
-		// -(void)setVarMax:(double)varMax __attribute__((swift_name("setVarMax(varMax:)")));
-		[Export ("setVarMax:")]
-		void SetVarMax (double varMax);
-
-		// -(double)getComplexityReductionThreshold __attribute__((swift_name("getComplexityReductionThreshold()")));
-		[Export ("getComplexityReductionThreshold")]
-		double ComplexityReductionThreshold { get; }
-
-		// -(void)setComplexityReductionThreshold:(double)ct __attribute__((swift_name("setComplexityReductionThreshold(ct:)")));
-		[Export ("setComplexityReductionThreshold:")]
-		void SetComplexityReductionThreshold (double ct);
-
-		// -(BOOL)getDetectShadows __attribute__((swift_name("getDetectShadows()")));
-		[Export ("getDetectShadows")]
-		bool DetectShadows { get; }
-
-		// -(void)setDetectShadows:(BOOL)detectShadows __attribute__((swift_name("setDetectShadows(detectShadows:)")));
-		[Export ("setDetectShadows:")]
-		void SetDetectShadows (bool detectShadows);
-
-		// -(int)getShadowValue __attribute__((swift_name("getShadowValue()")));
-		[Export ("getShadowValue")]
-		int ShadowValue { get; }
-
-		// -(void)setShadowValue:(int)value __attribute__((swift_name("setShadowValue(value:)")));
-		[Export ("setShadowValue:")]
-		void SetShadowValue (int value);
-
-		// -(double)getShadowThreshold __attribute__((swift_name("getShadowThreshold()")));
-		[Export ("getShadowThreshold")]
-		double ShadowThreshold { get; }
-
-		// -(void)setShadowThreshold:(double)threshold __attribute__((swift_name("setShadowThreshold(threshold:)")));
-		[Export ("setShadowThreshold:")]
-		void SetShadowThreshold (double threshold);
-
-		// -(void)apply:(Mat * _Nonnull)image fgmask:(Mat * _Nonnull)fgmask learningRate:(double)learningRate __attribute__((swift_name("apply(image:fgmask:learningRate:)")));
-		[Export ("apply:fgmask:learningRate:")]
-		void Apply (Mat image, Mat fgmask, double learningRate);
-
-		// -(void)apply:(Mat * _Nonnull)image fgmask:(Mat * _Nonnull)fgmask __attribute__((swift_name("apply(image:fgmask:)")));
-		[Export ("apply:fgmask:")]
-		void Apply (Mat image, Mat fgmask);
-
-		// -(void)apply:(Mat * _Nonnull)image knownForegroundMask:(Mat * _Nonnull)knownForegroundMask fgmask:(Mat * _Nonnull)fgmask learningRate:(double)learningRate __attribute__((swift_name("apply(image:knownForegroundMask:fgmask:learningRate:)")));
-		[Export ("apply:knownForegroundMask:fgmask:learningRate:")]
-		void Apply (Mat image, Mat knownForegroundMask, Mat fgmask, double learningRate);
-
-		// -(void)apply:(Mat * _Nonnull)image knownForegroundMask:(Mat * _Nonnull)knownForegroundMask fgmask:(Mat * _Nonnull)fgmask __attribute__((swift_name("apply(image:knownForegroundMask:fgmask:)")));
-		[Export ("apply:knownForegroundMask:fgmask:")]
-		void Apply (Mat image, Mat knownForegroundMask, Mat fgmask);
-	}
-
-	// @interface DenseOpticalFlow : Algorithm
-	[BaseType (typeof (Algorithm))]
-	interface DenseOpticalFlow {
-		// -(void)calc:(Mat * _Nonnull)I0 I1:(Mat * _Nonnull)I1 flow:(Mat * _Nonnull)flow __attribute__((swift_name("calc(I0:I1:flow:)")));
-		[Export ("calc:I1:flow:")]
-		void Calc (Mat I0, Mat I1, Mat flow);
-
-		// -(void)collectGarbage __attribute__((swift_name("collectGarbage()")));
-		[Export ("collectGarbage")]
-		void CollectGarbage ();
-	}
-
-	// @interface DISOpticalFlow : DenseOpticalFlow
-	[BaseType (typeof (DenseOpticalFlow))]
-	interface DISOpticalFlow {
-		// @property (readonly, class) int PRESET_ULTRAFAST __attribute__((swift_name("PRESET_ULTRAFAST")));
-		[Static]
-		[Export ("PRESET_ULTRAFAST")]
-		int PRESET_ULTRAFAST { get; }
-
-		// @property (readonly, class) int PRESET_FAST __attribute__((swift_name("PRESET_FAST")));
-		[Static]
-		[Export ("PRESET_FAST")]
-		int PRESET_FAST { get; }
-
-		// @property (readonly, class) int PRESET_MEDIUM __attribute__((swift_name("PRESET_MEDIUM")));
-		[Static]
-		[Export ("PRESET_MEDIUM")]
-		int PRESET_MEDIUM { get; }
-
-		// -(int)getFinestScale __attribute__((swift_name("getFinestScale()")));
-		[Export ("getFinestScale")]
-		int FinestScale { get; }
-
-		// -(void)setFinestScale:(int)val __attribute__((swift_name("setFinestScale(val:)")));
-		[Export ("setFinestScale:")]
-		void SetFinestScale (int val);
-
-		// -(void)setCoarsestScale:(int)val __attribute__((swift_name("setCoarsestScale(val:)")));
-		[Export ("setCoarsestScale:")]
-		void SetCoarsestScale (int val);
-
-		// -(int)getCoarsestScale __attribute__((swift_name("getCoarsestScale()")));
-		[Export ("getCoarsestScale")]
-		int CoarsestScale { get; }
-
-		// -(int)getPatchSize __attribute__((swift_name("getPatchSize()")));
-		[Export ("getPatchSize")]
-		int PatchSize { get; }
-
-		// -(void)setPatchSize:(int)val __attribute__((swift_name("setPatchSize(val:)")));
-		[Export ("setPatchSize:")]
-		void SetPatchSize (int val);
-
-		// -(int)getPatchStride __attribute__((swift_name("getPatchStride()")));
-		[Export ("getPatchStride")]
-		int PatchStride { get; }
-
-		// -(void)setPatchStride:(int)val __attribute__((swift_name("setPatchStride(val:)")));
-		[Export ("setPatchStride:")]
-		void SetPatchStride (int val);
-
-		// -(int)getGradientDescentIterations __attribute__((swift_name("getGradientDescentIterations()")));
-		[Export ("getGradientDescentIterations")]
-		int GradientDescentIterations { get; }
-
-		// -(void)setGradientDescentIterations:(int)val __attribute__((swift_name("setGradientDescentIterations(val:)")));
-		[Export ("setGradientDescentIterations:")]
-		void SetGradientDescentIterations (int val);
-
-		// -(int)getVariationalRefinementIterations __attribute__((swift_name("getVariationalRefinementIterations()")));
-		[Export ("getVariationalRefinementIterations")]
-		int VariationalRefinementIterations { get; }
-
-		// -(void)setVariationalRefinementIterations:(int)val __attribute__((swift_name("setVariationalRefinementIterations(val:)")));
-		[Export ("setVariationalRefinementIterations:")]
-		void SetVariationalRefinementIterations (int val);
-
-		// -(float)getVariationalRefinementAlpha __attribute__((swift_name("getVariationalRefinementAlpha()")));
-		[Export ("getVariationalRefinementAlpha")]
-		float VariationalRefinementAlpha { get; }
-
-		// -(void)setVariationalRefinementAlpha:(float)val __attribute__((swift_name("setVariationalRefinementAlpha(val:)")));
-		[Export ("setVariationalRefinementAlpha:")]
-		void SetVariationalRefinementAlpha (float val);
-
-		// -(float)getVariationalRefinementDelta __attribute__((swift_name("getVariationalRefinementDelta()")));
-		[Export ("getVariationalRefinementDelta")]
-		float VariationalRefinementDelta { get; }
-
-		// -(void)setVariationalRefinementDelta:(float)val __attribute__((swift_name("setVariationalRefinementDelta(val:)")));
-		[Export ("setVariationalRefinementDelta:")]
-		void SetVariationalRefinementDelta (float val);
-
-		// -(float)getVariationalRefinementGamma __attribute__((swift_name("getVariationalRefinementGamma()")));
-		[Export ("getVariationalRefinementGamma")]
-		float VariationalRefinementGamma { get; }
-
-		// -(void)setVariationalRefinementGamma:(float)val __attribute__((swift_name("setVariationalRefinementGamma(val:)")));
-		[Export ("setVariationalRefinementGamma:")]
-		void SetVariationalRefinementGamma (float val);
-
-		// -(float)getVariationalRefinementEpsilon __attribute__((swift_name("getVariationalRefinementEpsilon()")));
-		[Export ("getVariationalRefinementEpsilon")]
-		float VariationalRefinementEpsilon { get; }
-
-		// -(void)setVariationalRefinementEpsilon:(float)val __attribute__((swift_name("setVariationalRefinementEpsilon(val:)")));
-		[Export ("setVariationalRefinementEpsilon:")]
-		void SetVariationalRefinementEpsilon (float val);
-
-		// -(BOOL)getUseMeanNormalization __attribute__((swift_name("getUseMeanNormalization()")));
-		[Export ("getUseMeanNormalization")]
-		bool UseMeanNormalization { get; }
-
-		// -(void)setUseMeanNormalization:(BOOL)val __attribute__((swift_name("setUseMeanNormalization(val:)")));
-		[Export ("setUseMeanNormalization:")]
-		void SetUseMeanNormalization (bool val);
-
-		// -(BOOL)getUseSpatialPropagation __attribute__((swift_name("getUseSpatialPropagation()")));
-		[Export ("getUseSpatialPropagation")]
-		bool UseSpatialPropagation { get; }
-
-		// -(void)setUseSpatialPropagation:(BOOL)val __attribute__((swift_name("setUseSpatialPropagation(val:)")));
-		[Export ("setUseSpatialPropagation:")]
-		void SetUseSpatialPropagation (bool val);
-
-		// +(DISOpticalFlow * _Nonnull)create:(int)preset __attribute__((swift_name("create(preset:)")));
-		[Static]
-		[Export ("create:")]
-		DISOpticalFlow Create (int preset);
-
-		// +(DISOpticalFlow * _Nonnull)create __attribute__((swift_name("create()")));
-		[Static]
-		[Export ("create")]
-		DISOpticalFlow Create ();
-	}
-
-	// @interface ECCParameters : NSObject
-	[BaseType (typeof (NSObject))]
-	interface ECCParameters {
-		// @property int motionType;
-		[Export ("motionType")]
-		int MotionType { get; set; }
-
-		// @property TermCriteria * _Nonnull criteria;
-		[Export ("criteria", ArgumentSemantic.Assign)]
-		TermCriteria Criteria { get; set; }
-
-		// @property IntVector * _Nonnull itersPerLevel;
-		[Export ("itersPerLevel", ArgumentSemantic.Assign)]
-		IntVector ItersPerLevel { get; set; }
-
-		// @property int gaussFiltSize;
-		[Export ("gaussFiltSize")]
-		int GaussFiltSize { get; set; }
-
-		// @property int nlevels;
-		[Export ("nlevels")]
-		int Nlevels { get; set; }
-
-		// @property int interpolation;
-		[Export ("interpolation")]
-		int Interpolation { get; set; }
-	}
-
-	// @interface FarnebackOpticalFlow : DenseOpticalFlow
-	[BaseType (typeof (DenseOpticalFlow))]
-	interface FarnebackOpticalFlow {
-		// -(int)getNumLevels __attribute__((swift_name("getNumLevels()")));
-		[Export ("getNumLevels")]
-		int NumLevels { get; }
-
-		// -(void)setNumLevels:(int)numLevels __attribute__((swift_name("setNumLevels(numLevels:)")));
-		[Export ("setNumLevels:")]
-		void SetNumLevels (int numLevels);
-
-		// -(double)getPyrScale __attribute__((swift_name("getPyrScale()")));
-		[Export ("getPyrScale")]
-		double PyrScale { get; }
-
-		// -(void)setPyrScale:(double)pyrScale __attribute__((swift_name("setPyrScale(pyrScale:)")));
-		[Export ("setPyrScale:")]
-		void SetPyrScale (double pyrScale);
-
-		// -(BOOL)getFastPyramids __attribute__((swift_name("getFastPyramids()")));
-		[Export ("getFastPyramids")]
-		bool FastPyramids { get; }
-
-		// -(void)setFastPyramids:(BOOL)fastPyramids __attribute__((swift_name("setFastPyramids(fastPyramids:)")));
-		[Export ("setFastPyramids:")]
-		void SetFastPyramids (bool fastPyramids);
-
-		// -(int)getWinSize __attribute__((swift_name("getWinSize()")));
-		[Export ("getWinSize")]
-		int WinSize { get; }
-
-		// -(void)setWinSize:(int)winSize __attribute__((swift_name("setWinSize(winSize:)")));
-		[Export ("setWinSize:")]
-		void SetWinSize (int winSize);
-
-		// -(int)getNumIters __attribute__((swift_name("getNumIters()")));
-		[Export ("getNumIters")]
-		int NumIters { get; }
-
-		// -(void)setNumIters:(int)numIters __attribute__((swift_name("setNumIters(numIters:)")));
-		[Export ("setNumIters:")]
-		void SetNumIters (int numIters);
-
-		// -(int)getPolyN __attribute__((swift_name("getPolyN()")));
-		[Export ("getPolyN")]
-		int PolyN { get; }
-
-		// -(void)setPolyN:(int)polyN __attribute__((swift_name("setPolyN(polyN:)")));
-		[Export ("setPolyN:")]
-		void SetPolyN (int polyN);
-
-		// -(double)getPolySigma __attribute__((swift_name("getPolySigma()")));
-		[Export ("getPolySigma")]
-		double PolySigma { get; }
-
-		// -(void)setPolySigma:(double)polySigma __attribute__((swift_name("setPolySigma(polySigma:)")));
-		[Export ("setPolySigma:")]
-		void SetPolySigma (double polySigma);
-
-		// -(int)getFlags __attribute__((swift_name("getFlags()")));
-		[Export ("getFlags")]
-		int Flags { get; }
-
-		// -(void)setFlags:(int)flags __attribute__((swift_name("setFlags(flags:)")));
-		[Export ("setFlags:")]
-		void SetFlags (int flags);
-
-		// +(FarnebackOpticalFlow * _Nonnull)create:(int)numLevels pyrScale:(double)pyrScale fastPyramids:(BOOL)fastPyramids winSize:(int)winSize numIters:(int)numIters polyN:(int)polyN polySigma:(double)polySigma flags:(int)flags __attribute__((swift_name("create(numLevels:pyrScale:fastPyramids:winSize:numIters:polyN:polySigma:flags:)")));
-		[Static]
-		[Export ("create:pyrScale:fastPyramids:winSize:numIters:polyN:polySigma:flags:")]
-		FarnebackOpticalFlow Create (int numLevels, double pyrScale, bool fastPyramids, int winSize, int numIters, int polyN, double polySigma, int flags);
-
-		// +(FarnebackOpticalFlow * _Nonnull)create:(int)numLevels pyrScale:(double)pyrScale fastPyramids:(BOOL)fastPyramids winSize:(int)winSize numIters:(int)numIters polyN:(int)polyN polySigma:(double)polySigma __attribute__((swift_name("create(numLevels:pyrScale:fastPyramids:winSize:numIters:polyN:polySigma:)")));
-		[Static]
-		[Export ("create:pyrScale:fastPyramids:winSize:numIters:polyN:polySigma:")]
-		FarnebackOpticalFlow Create (int numLevels, double pyrScale, bool fastPyramids, int winSize, int numIters, int polyN, double polySigma);
-
-		// +(FarnebackOpticalFlow * _Nonnull)create:(int)numLevels pyrScale:(double)pyrScale fastPyramids:(BOOL)fastPyramids winSize:(int)winSize numIters:(int)numIters polyN:(int)polyN __attribute__((swift_name("create(numLevels:pyrScale:fastPyramids:winSize:numIters:polyN:)")));
-		[Static]
-		[Export ("create:pyrScale:fastPyramids:winSize:numIters:polyN:")]
-		FarnebackOpticalFlow Create (int numLevels, double pyrScale, bool fastPyramids, int winSize, int numIters, int polyN);
-
-		// +(FarnebackOpticalFlow * _Nonnull)create:(int)numLevels pyrScale:(double)pyrScale fastPyramids:(BOOL)fastPyramids winSize:(int)winSize numIters:(int)numIters __attribute__((swift_name("create(numLevels:pyrScale:fastPyramids:winSize:numIters:)")));
-		[Static]
-		[Export ("create:pyrScale:fastPyramids:winSize:numIters:")]
-		FarnebackOpticalFlow Create (int numLevels, double pyrScale, bool fastPyramids, int winSize, int numIters);
-
-		// +(FarnebackOpticalFlow * _Nonnull)create:(int)numLevels pyrScale:(double)pyrScale fastPyramids:(BOOL)fastPyramids winSize:(int)winSize __attribute__((swift_name("create(numLevels:pyrScale:fastPyramids:winSize:)")));
-		[Static]
-		[Export ("create:pyrScale:fastPyramids:winSize:")]
-		FarnebackOpticalFlow Create (int numLevels, double pyrScale, bool fastPyramids, int winSize);
-
-		// +(FarnebackOpticalFlow * _Nonnull)create:(int)numLevels pyrScale:(double)pyrScale fastPyramids:(BOOL)fastPyramids __attribute__((swift_name("create(numLevels:pyrScale:fastPyramids:)")));
-		[Static]
-		[Export ("create:pyrScale:fastPyramids:")]
-		FarnebackOpticalFlow Create (int numLevels, double pyrScale, bool fastPyramids);
-
-		// +(FarnebackOpticalFlow * _Nonnull)create:(int)numLevels pyrScale:(double)pyrScale __attribute__((swift_name("create(numLevels:pyrScale:)")));
-		[Static]
-		[Export ("create:pyrScale:")]
-		FarnebackOpticalFlow Create (int numLevels, double pyrScale);
-
-		// +(FarnebackOpticalFlow * _Nonnull)create:(int)numLevels __attribute__((swift_name("create(numLevels:)")));
-		[Static]
-		[Export ("create:")]
-		FarnebackOpticalFlow Create (int numLevels);
-
-		// +(FarnebackOpticalFlow * _Nonnull)create __attribute__((swift_name("create()")));
-		[Static]
-		[Export ("create")]
-		FarnebackOpticalFlow Create ();
-	}
-
-	// @interface KalmanFilter : NSObject
-	[BaseType (typeof (NSObject))]
-	interface KalmanFilter {
-		// -(instancetype _Nonnull)initWithDynamParams:(int)dynamParams measureParams:(int)measureParams controlParams:(int)controlParams type:(int)type;
-		[Export ("initWithDynamParams:measureParams:controlParams:type:")]
-		NativeHandle Constructor (int dynamParams, int measureParams, int controlParams, int type);
-
-		// -(instancetype _Nonnull)initWithDynamParams:(int)dynamParams measureParams:(int)measureParams controlParams:(int)controlParams;
-		[Export ("initWithDynamParams:measureParams:controlParams:")]
-		NativeHandle Constructor (int dynamParams, int measureParams, int controlParams);
-
-		// -(instancetype _Nonnull)initWithDynamParams:(int)dynamParams measureParams:(int)measureParams;
-		[Export ("initWithDynamParams:measureParams:")]
-		NativeHandle Constructor (int dynamParams, int measureParams);
-
-		// -(Mat * _Nonnull)predict:(Mat * _Nonnull)control __attribute__((swift_name("predict(control:)")));
-		[Export ("predict:")]
-		Mat Predict (Mat control);
-
-		// -(Mat * _Nonnull)predict __attribute__((swift_name("predict()")));
-		[Export ("predict")]
-		Mat Predict ();
-
-		// -(Mat * _Nonnull)correct:(Mat * _Nonnull)measurement __attribute__((swift_name("correct(measurement:)")));
-		[Export ("correct:")]
-		Mat Correct (Mat measurement);
-
-		// @property Mat * _Nonnull statePre;
-		[Export ("statePre", ArgumentSemantic.Assign)]
-		Mat StatePre { get; set; }
-
-		// @property Mat * _Nonnull statePost;
-		[Export ("statePost", ArgumentSemantic.Assign)]
-		Mat StatePost { get; set; }
-
-		// @property Mat * _Nonnull transitionMatrix;
-		[Export ("transitionMatrix", ArgumentSemantic.Assign)]
-		Mat TransitionMatrix { get; set; }
-
-		// @property Mat * _Nonnull controlMatrix;
-		[Export ("controlMatrix", ArgumentSemantic.Assign)]
-		Mat ControlMatrix { get; set; }
-
-		// @property Mat * _Nonnull measurementMatrix;
-		[Export ("measurementMatrix", ArgumentSemantic.Assign)]
-		Mat MeasurementMatrix { get; set; }
-
-		// @property Mat * _Nonnull processNoiseCov;
-		[Export ("processNoiseCov", ArgumentSemantic.Assign)]
-		Mat ProcessNoiseCov { get; set; }
-
-		// @property Mat * _Nonnull measurementNoiseCov;
-		[Export ("measurementNoiseCov", ArgumentSemantic.Assign)]
-		Mat MeasurementNoiseCov { get; set; }
-
-		// @property Mat * _Nonnull errorCovPre;
-		[Export ("errorCovPre", ArgumentSemantic.Assign)]
-		Mat ErrorCovPre { get; set; }
-
-		// @property Mat * _Nonnull gain;
-		[Export ("gain", ArgumentSemantic.Assign)]
-		Mat Gain { get; set; }
-
-		// @property Mat * _Nonnull errorCovPost;
-		[Export ("errorCovPost", ArgumentSemantic.Assign)]
-		Mat ErrorCovPost { get; set; }
-	}
-
-	// @interface SparseOpticalFlow : Algorithm
-	[BaseType (typeof (Algorithm))]
-	interface SparseOpticalFlow {
-		// -(void)calc:(Mat * _Nonnull)prevImg nextImg:(Mat * _Nonnull)nextImg prevPts:(Mat * _Nonnull)prevPts nextPts:(Mat * _Nonnull)nextPts status:(Mat * _Nonnull)status err:(Mat * _Nonnull)err __attribute__((swift_name("calc(prevImg:nextImg:prevPts:nextPts:status:err:)")));
-		[Export ("calc:nextImg:prevPts:nextPts:status:err:")]
-		void Calc (Mat prevImg, Mat nextImg, Mat prevPts, Mat nextPts, Mat status, Mat err);
-
-		// -(void)calc:(Mat * _Nonnull)prevImg nextImg:(Mat * _Nonnull)nextImg prevPts:(Mat * _Nonnull)prevPts nextPts:(Mat * _Nonnull)nextPts status:(Mat * _Nonnull)status __attribute__((swift_name("calc(prevImg:nextImg:prevPts:nextPts:status:)")));
-		[Export ("calc:nextImg:prevPts:nextPts:status:")]
-		void Calc (Mat prevImg, Mat nextImg, Mat prevPts, Mat nextPts, Mat status);
-	}
-
-	// @interface SparsePyrLKOpticalFlow : SparseOpticalFlow
-	[BaseType (typeof (SparseOpticalFlow))]
-	interface SparsePyrLKOpticalFlow {
-		// -(Size2i * _Nonnull)getWinSize __attribute__((swift_name("getWinSize()")));
-		[Export ("getWinSize")]
-		Size2i WinSize { get; }
-
-		// -(void)setWinSize:(Size2i * _Nonnull)winSize __attribute__((swift_name("setWinSize(winSize:)")));
-		[Export ("setWinSize:")]
-		void SetWinSize (Size2i winSize);
-
-		// -(int)getMaxLevel __attribute__((swift_name("getMaxLevel()")));
-		[Export ("getMaxLevel")]
-		int MaxLevel { get; }
-
-		// -(void)setMaxLevel:(int)maxLevel __attribute__((swift_name("setMaxLevel(maxLevel:)")));
-		[Export ("setMaxLevel:")]
-		void SetMaxLevel (int maxLevel);
-
-		// -(TermCriteria * _Nonnull)getTermCriteria __attribute__((swift_name("getTermCriteria()")));
-		[Export ("getTermCriteria")]
-		TermCriteria TermCriteria { get; }
-
-		// -(void)setTermCriteria:(TermCriteria * _Nonnull)crit __attribute__((swift_name("setTermCriteria(crit:)")));
-		[Export ("setTermCriteria:")]
-		void SetTermCriteria (TermCriteria crit);
-
-		// -(int)getFlags __attribute__((swift_name("getFlags()")));
-		[Export ("getFlags")]
-		int Flags { get; }
-
-		// -(void)setFlags:(int)flags __attribute__((swift_name("setFlags(flags:)")));
-		[Export ("setFlags:")]
-		void SetFlags (int flags);
-
-		// -(double)getMinEigThreshold __attribute__((swift_name("getMinEigThreshold()")));
-		[Export ("getMinEigThreshold")]
-		double MinEigThreshold { get; }
-
-		// -(void)setMinEigThreshold:(double)minEigThreshold __attribute__((swift_name("setMinEigThreshold(minEigThreshold:)")));
-		[Export ("setMinEigThreshold:")]
-		void SetMinEigThreshold (double minEigThreshold);
-
-		// +(SparsePyrLKOpticalFlow * _Nonnull)create:(Size2i * _Nonnull)winSize maxLevel:(int)maxLevel crit:(TermCriteria * _Nonnull)crit flags:(int)flags minEigThreshold:(double)minEigThreshold __attribute__((swift_name("create(winSize:maxLevel:crit:flags:minEigThreshold:)")));
-		[Static]
-		[Export ("create:maxLevel:crit:flags:minEigThreshold:")]
-		SparsePyrLKOpticalFlow Create (Size2i winSize, int maxLevel, TermCriteria crit, int flags, double minEigThreshold);
-
-		// +(SparsePyrLKOpticalFlow * _Nonnull)create:(Size2i * _Nonnull)winSize maxLevel:(int)maxLevel crit:(TermCriteria * _Nonnull)crit flags:(int)flags __attribute__((swift_name("create(winSize:maxLevel:crit:flags:)")));
-		[Static]
-		[Export ("create:maxLevel:crit:flags:")]
-		SparsePyrLKOpticalFlow Create (Size2i winSize, int maxLevel, TermCriteria crit, int flags);
-
-		// +(SparsePyrLKOpticalFlow * _Nonnull)create:(Size2i * _Nonnull)winSize maxLevel:(int)maxLevel crit:(TermCriteria * _Nonnull)crit __attribute__((swift_name("create(winSize:maxLevel:crit:)")));
-		[Static]
-		[Export ("create:maxLevel:crit:")]
-		SparsePyrLKOpticalFlow Create (Size2i winSize, int maxLevel, TermCriteria crit);
-
-		// +(SparsePyrLKOpticalFlow * _Nonnull)create:(Size2i * _Nonnull)winSize maxLevel:(int)maxLevel __attribute__((swift_name("create(winSize:maxLevel:)")));
-		[Static]
-		[Export ("create:maxLevel:")]
-		SparsePyrLKOpticalFlow Create (Size2i winSize, int maxLevel);
-
-		// +(SparsePyrLKOpticalFlow * _Nonnull)create:(Size2i * _Nonnull)winSize __attribute__((swift_name("create(winSize:)")));
-		[Static]
-		[Export ("create:")]
-		SparsePyrLKOpticalFlow Create (Size2i winSize);
-
-		// +(SparsePyrLKOpticalFlow * _Nonnull)create __attribute__((swift_name("create()")));
-		[Static]
-		[Export ("create")]
-		SparsePyrLKOpticalFlow Create ();
-	}
-
-	// @interface Tracker : NSObject
-	[BaseType (typeof (NSObject))]
-	interface Tracker {
-		// -(void)init:(Mat * _Nonnull)image boundingBox:(Rect2i * _Nonnull)boundingBox __attribute__((swift_name("init(image:boundingBox:)")));
-		[Export ("init:boundingBox:")]
-		void Init (Mat image, Rect2i boundingBox);
-
-		// -(BOOL)update:(Mat * _Nonnull)image boundingBox:(Rect2i * _Nonnull)boundingBox __attribute__((swift_name("update(image:boundingBox:)")));
-		[Export ("update:boundingBox:")]
-		bool Update (Mat image, Rect2i boundingBox);
-
-		// -(float)getTrackingScore __attribute__((swift_name("getTrackingScore()")));
-		[Export ("getTrackingScore")]
-		float TrackingScore { get; }
-	}
-
-	// @interface TrackerDaSiamRPN : Tracker
-	[BaseType (typeof (Tracker))]
-	interface TrackerDaSiamRPN {
-		// +(TrackerDaSiamRPN * _Nonnull)create:(TrackerDaSiamRPNParams * _Nonnull)parameters __attribute__((swift_name("create(parameters:)")));
-		[Static]
-		[Export ("create:")]
-		TrackerDaSiamRPN Create (TrackerDaSiamRPNParams parameters);
-
-		// +(TrackerDaSiamRPN * _Nonnull)create __attribute__((swift_name("create()")));
-		[Static]
-		[Export ("create")]
-		TrackerDaSiamRPN Create ();
-	}
-
-	// @interface TrackerDaSiamRPNParams : NSObject
-	[BaseType (typeof (NSObject))]
-	interface TrackerDaSiamRPNParams {
-		// @property NSString * _Nonnull model;
-		[Export ("model")]
-		string Model { get; set; }
-
-		// @property NSString * _Nonnull kernel_cls1;
-		[Export ("kernel_cls1")]
-		string Kernel_cls1 { get; set; }
-
-		// @property NSString * _Nonnull kernel_r1;
-		[Export ("kernel_r1")]
-		string Kernel_r1 { get; set; }
-
-		// @property int backend;
-		[Export ("backend")]
-		int Backend { get; set; }
-
-		// @property int target;
-		[Export ("target")]
-		int Target { get; set; }
-	}
-
-	// @interface TrackerMIL : Tracker
-	[BaseType (typeof (Tracker))]
-	interface TrackerMIL {
-		// +(TrackerMIL * _Nonnull)create:(TrackerMILParams * _Nonnull)parameters __attribute__((swift_name("create(parameters:)")));
-		[Static]
-		[Export ("create:")]
-		TrackerMIL Create (TrackerMILParams parameters);
-
-		// +(TrackerMIL * _Nonnull)create __attribute__((swift_name("create()")));
-		[Static]
-		[Export ("create")]
-		TrackerMIL Create ();
-	}
-
-	// @interface TrackerMILParams : NSObject
-	[BaseType (typeof (NSObject))]
-	interface TrackerMILParams {
-		// @property float samplerInitInRadius;
-		[Export ("samplerInitInRadius")]
-		float SamplerInitInRadius { get; set; }
-
-		// @property int samplerInitMaxNegNum;
-		[Export ("samplerInitMaxNegNum")]
-		int SamplerInitMaxNegNum { get; set; }
-
-		// @property float samplerSearchWinSize;
-		[Export ("samplerSearchWinSize")]
-		float SamplerSearchWinSize { get; set; }
-
-		// @property float samplerTrackInRadius;
-		[Export ("samplerTrackInRadius")]
-		float SamplerTrackInRadius { get; set; }
-
-		// @property int samplerTrackMaxPosNum;
-		[Export ("samplerTrackMaxPosNum")]
-		int SamplerTrackMaxPosNum { get; set; }
-
-		// @property int samplerTrackMaxNegNum;
-		[Export ("samplerTrackMaxNegNum")]
-		int SamplerTrackMaxNegNum { get; set; }
-
-		// @property int featureSetNumFeatures;
-		[Export ("featureSetNumFeatures")]
-		int FeatureSetNumFeatures { get; set; }
-	}
-
-	// @interface TrackerNano : Tracker
-	[BaseType (typeof (Tracker))]
-	interface TrackerNano {
-		// +(TrackerNano * _Nonnull)create:(TrackerNanoParams * _Nonnull)parameters __attribute__((swift_name("create(parameters:)")));
-		[Static]
-		[Export ("create:")]
-		TrackerNano Create (TrackerNanoParams parameters);
-
-		// +(TrackerNano * _Nonnull)create __attribute__((swift_name("create()")));
-		[Static]
-		[Export ("create")]
-		TrackerNano Create ();
-	}
-
-	// @interface TrackerNanoParams : NSObject
-	[BaseType (typeof (NSObject))]
-	interface TrackerNanoParams {
-		// @property NSString * _Nonnull backbone;
-		[Export ("backbone")]
-		string Backbone { get; set; }
-
-		// @property NSString * _Nonnull neckhead;
-		[Export ("neckhead")]
-		string Neckhead { get; set; }
-
-		// @property int backend;
-		[Export ("backend")]
-		int Backend { get; set; }
-
-		// @property int target;
-		[Export ("target")]
-		int Target { get; set; }
-	}
-
-	// @interface TrackerVit : Tracker
-	[BaseType (typeof (Tracker))]
-	interface TrackerVit {
-		// +(TrackerVit * _Nonnull)create:(TrackerVitParams * _Nonnull)parameters __attribute__((swift_name("create(parameters:)")));
-		[Static]
-		[Export ("create:")]
-		TrackerVit Create (TrackerVitParams parameters);
-
-		// +(TrackerVit * _Nonnull)create __attribute__((swift_name("create()")));
-		[Static]
-		[Export ("create")]
-		TrackerVit Create ();
-	}
-
-	// @interface TrackerVitParams : NSObject
-	[BaseType (typeof (NSObject))]
-	interface TrackerVitParams {
-		// @property NSString * _Nonnull net;
-		[Export ("net")]
-		string Net { get; set; }
-
-		// @property int backend;
-		[Export ("backend")]
-		int Backend { get; set; }
-
-		// @property int target;
-		[Export ("target")]
-		int Target { get; set; }
-
-		// @property Scalar * _Nonnull meanvalue;
-		[Export ("meanvalue", ArgumentSemantic.Assign)]
-		Scalar Meanvalue { get; set; }
-
-		// @property Scalar * _Nonnull stdvalue;
-		[Export ("stdvalue", ArgumentSemantic.Assign)]
-		Scalar Stdvalue { get; set; }
-
-		// @property float tracking_score_threshold;
-		[Export ("tracking_score_threshold")]
-		float Tracking_score_threshold { get; set; }
-	}
-
-	// @interface VariationalRefinement : DenseOpticalFlow
-	[BaseType (typeof (DenseOpticalFlow))]
-	interface VariationalRefinement {
-		// -(void)calcUV:(Mat * _Nonnull)I0 I1:(Mat * _Nonnull)I1 flow_u:(Mat * _Nonnull)flow_u flow_v:(Mat * _Nonnull)flow_v __attribute__((swift_name("calcUV(I0:I1:flow_u:flow_v:)")));
-		[Export ("calcUV:I1:flow_u:flow_v:")]
-		void CalcUV (Mat I0, Mat I1, Mat flow_u, Mat flow_v);
-
-		// -(int)getFixedPointIterations __attribute__((swift_name("getFixedPointIterations()")));
-		[Export ("getFixedPointIterations")]
-		int FixedPointIterations { get; }
-
-		// -(void)setFixedPointIterations:(int)val __attribute__((swift_name("setFixedPointIterations(val:)")));
-		[Export ("setFixedPointIterations:")]
-		void SetFixedPointIterations (int val);
-
-		// -(int)getSorIterations __attribute__((swift_name("getSorIterations()")));
-		[Export ("getSorIterations")]
-		int SorIterations { get; }
-
-		// -(void)setSorIterations:(int)val __attribute__((swift_name("setSorIterations(val:)")));
-		[Export ("setSorIterations:")]
-		void SetSorIterations (int val);
-
-		// -(float)getOmega __attribute__((swift_name("getOmega()")));
-		[Export ("getOmega")]
-		float Omega { get; }
-
-		// -(void)setOmega:(float)val __attribute__((swift_name("setOmega(val:)")));
-		[Export ("setOmega:")]
-		void SetOmega (float val);
-
-		// -(float)getAlpha __attribute__((swift_name("getAlpha()")));
-		[Export ("getAlpha")]
-		float Alpha { get; }
-
-		// -(void)setAlpha:(float)val __attribute__((swift_name("setAlpha(val:)")));
-		[Export ("setAlpha:")]
-		void SetAlpha (float val);
-
-		// -(float)getDelta __attribute__((swift_name("getDelta()")));
-		[Export ("getDelta")]
-		float Delta { get; }
-
-		// -(void)setDelta:(float)val __attribute__((swift_name("setDelta(val:)")));
-		[Export ("setDelta:")]
-		void SetDelta (float val);
-
-		// -(float)getGamma __attribute__((swift_name("getGamma()")));
-		[Export ("getGamma")]
-		float Gamma { get; }
-
-		// -(void)setGamma:(float)val __attribute__((swift_name("setGamma(val:)")));
-		[Export ("setGamma:")]
-		void SetGamma (float val);
-
-		// -(float)getEpsilon __attribute__((swift_name("getEpsilon()")));
-		[Export ("getEpsilon")]
-		float Epsilon { get; }
-
-		// -(void)setEpsilon:(float)val __attribute__((swift_name("setEpsilon(val:)")));
-		[Export ("setEpsilon:")]
-		void SetEpsilon (float val);
-
-		// +(VariationalRefinement * _Nonnull)create __attribute__((swift_name("create()")));
-		[Static]
-		[Export ("create")]
-		VariationalRefinement Create ();
 	}
 
 	// @interface CvAbstractCamera2 : NSObject
@@ -16103,6 +10493,22 @@ namespace OpenCvSdk {
 		bool ExceptionMode { get; }
 	}
 
+	// @interface VideoDeviceInfo : NSObject
+	[BaseType (typeof (NSObject))]
+	interface VideoDeviceInfo {
+		// @property int cam_idx;
+		[Export ("cam_idx")]
+		int Cam_idx { get; set; }
+
+		// @property NSString * _Nonnull cam_name;
+		[Export ("cam_name")]
+		string Cam_name { get; set; }
+
+		// @property VideoCaptureAPIs backend;
+		[Export ("backend", ArgumentSemantic.Assign)]
+		VideoCaptureAPIs Backend { get; set; }
+	}
+
 	// @interface VideoWriter : NSObject
 	[BaseType (typeof (NSObject))]
 	interface VideoWriter {
@@ -16178,6 +10584,5046 @@ namespace OpenCvSdk {
 		// -(NSString * _Nonnull)getBackendName __attribute__((swift_name("getBackendName()")));
 		[Export ("getBackendName")]
 		string BackendName { get; }
+	}
+
+	// @interface Dnn : NSObject
+	[BaseType (typeof (NSObject))]
+	interface Dnn {
+		// +(Net * _Nonnull)readNetFromTFLiteFile:(NSString * _Nonnull)model engine:(int)engine __attribute__((swift_name("readNetFromTFLite(model:engine:)")));
+		[Static]
+		[Export ("readNetFromTFLiteFile:engine:")]
+		Net ReadNetFromTFLiteFile (string model, int engine);
+
+		// +(Net * _Nonnull)readNetFromTFLiteFile:(NSString * _Nonnull)model __attribute__((swift_name("readNetFromTFLite(model:)")));
+		[Static]
+		[Export ("readNetFromTFLiteFile:")]
+		Net ReadNetFromTFLiteFile (string model);
+
+		// +(Net * _Nonnull)readNetFromTFLite:(ByteVector * _Nonnull)bufferModel engine:(int)engine __attribute__((swift_name("readNetFromTFLite(bufferModel:engine:)")));
+		[Static]
+		[Export ("readNetFromTFLite:engine:")]
+		Net ReadNetFromTFLite (ByteVector bufferModel, int engine);
+
+		// +(Net * _Nonnull)readNetFromTFLite:(ByteVector * _Nonnull)bufferModel __attribute__((swift_name("readNetFromTFLite(bufferModel:)")));
+		[Static]
+		[Export ("readNetFromTFLite:")]
+		Net ReadNetFromTFLite (ByteVector bufferModel);
+
+		// +(Net * _Nonnull)readNet:(NSString * _Nonnull)model config:(NSString * _Nonnull)config framework:(NSString * _Nonnull)framework engine:(int)engine __attribute__((swift_name("readNet(model:config:framework:engine:)")));
+		[Static]
+		[Export ("readNet:config:framework:engine:")]
+		Net ReadNet (string model, string config, string framework, int engine);
+
+		// +(Net * _Nonnull)readNet:(NSString * _Nonnull)model config:(NSString * _Nonnull)config framework:(NSString * _Nonnull)framework __attribute__((swift_name("readNet(model:config:framework:)")));
+		[Static]
+		[Export ("readNet:config:framework:")]
+		Net ReadNet (string model, string config, string framework);
+
+		// +(Net * _Nonnull)readNet:(NSString * _Nonnull)model config:(NSString * _Nonnull)config __attribute__((swift_name("readNet(model:config:)")));
+		[Static]
+		[Export ("readNet:config:")]
+		Net ReadNet (string model, string config);
+
+		// +(Net * _Nonnull)readNet:(NSString * _Nonnull)model __attribute__((swift_name("readNet(model:)")));
+		[Static]
+		[Export ("readNet:")]
+		Net ReadNet (string model);
+
+		// +(Net * _Nonnull)readNet:(NSString * _Nonnull)framework bufferModel:(ByteVector * _Nonnull)bufferModel bufferConfig:(ByteVector * _Nonnull)bufferConfig engine:(int)engine __attribute__((swift_name("readNet(framework:bufferModel:bufferConfig:engine:)")));
+		[Static]
+		[Export ("readNet:bufferModel:bufferConfig:engine:")]
+		Net ReadNet (string framework, ByteVector bufferModel, ByteVector bufferConfig, int engine);
+
+		// +(Net * _Nonnull)readNet:(NSString * _Nonnull)framework bufferModel:(ByteVector * _Nonnull)bufferModel bufferConfig:(ByteVector * _Nonnull)bufferConfig __attribute__((swift_name("readNet(framework:bufferModel:bufferConfig:)")));
+		[Static]
+		[Export ("readNet:bufferModel:bufferConfig:")]
+		Net ReadNet (string framework, ByteVector bufferModel, ByteVector bufferConfig);
+
+		// +(Net * _Nonnull)readNet:(NSString * _Nonnull)framework bufferModel:(ByteVector * _Nonnull)bufferModel __attribute__((swift_name("readNet(framework:bufferModel:)")));
+		[Static]
+		[Export ("readNet:bufferModel:")]
+		Net ReadNet (string framework, ByteVector bufferModel);
+
+		// +(Net * _Nonnull)readNetFromModelOptimizer:(NSString * _Nonnull)xml bin:(NSString * _Nonnull)bin __attribute__((swift_name("readNetFromModelOptimizer(xml:bin:)")));
+		[Static]
+		[Export ("readNetFromModelOptimizer:bin:")]
+		Net ReadNetFromModelOptimizer (string xml, string bin);
+
+		// +(Net * _Nonnull)readNetFromModelOptimizer:(NSString * _Nonnull)xml __attribute__((swift_name("readNetFromModelOptimizer(xml:)")));
+		[Static]
+		[Export ("readNetFromModelOptimizer:")]
+		Net ReadNetFromModelOptimizer (string xml);
+
+		// +(Net * _Nonnull)readNetFromModelOptimizer:(ByteVector * _Nonnull)bufferModelConfig bufferWeights:(ByteVector * _Nonnull)bufferWeights __attribute__((swift_name("readNetFromModelOptimizer(bufferModelConfig:bufferWeights:)")));
+		[Static]
+		[Export ("readNetFromModelOptimizer:bufferWeights:")]
+		Net ReadNetFromModelOptimizer (ByteVector bufferModelConfig, ByteVector bufferWeights);
+
+		// +(Net * _Nonnull)readNetFromONNXFile:(NSString * _Nonnull)onnxFile engine:(int)engine __attribute__((swift_name("readNetFromONNX(onnxFile:engine:)")));
+		[Static]
+		[Export ("readNetFromONNXFile:engine:")]
+		Net ReadNetFromONNXFile (string onnxFile, int engine);
+
+		// +(Net * _Nonnull)readNetFromONNXFile:(NSString * _Nonnull)onnxFile __attribute__((swift_name("readNetFromONNX(onnxFile:)")));
+		[Static]
+		[Export ("readNetFromONNXFile:")]
+		Net ReadNetFromONNXFile (string onnxFile);
+
+		// +(Net * _Nonnull)readNetFromONNX:(NSString * _Nonnull)onnxFile engine:(int)engine mapExternalData:(BOOL)mapExternalData __attribute__((swift_name("readNetFromONNX(onnxFile:engine:mapExternalData:)")));
+		[Static]
+		[Export ("readNetFromONNX:engine:mapExternalData:")]
+		Net ReadNetFromONNX (string onnxFile, int engine, bool mapExternalData);
+
+		// +(Net * _Nonnull)readNetFromONNXBuffer:(ByteVector * _Nonnull)buffer engine:(int)engine __attribute__((swift_name("readNetFromONNX(buffer:engine:)")));
+		[Static]
+		[Export ("readNetFromONNXBuffer:engine:")]
+		Net ReadNetFromONNXBuffer (ByteVector buffer, int engine);
+
+		// +(Net * _Nonnull)readNetFromONNXBuffer:(ByteVector * _Nonnull)buffer __attribute__((swift_name("readNetFromONNX(buffer:)")));
+		[Static]
+		[Export ("readNetFromONNXBuffer:")]
+		Net ReadNetFromONNXBuffer (ByteVector buffer);
+
+		// +(Mat * _Nonnull)readTensorFromONNX:(NSString * _Nonnull)path __attribute__((swift_name("readTensorFromONNX(path:)")));
+		[Static]
+		[Export ("readTensorFromONNX:")]
+		Mat ReadTensorFromONNX (string path);
+
+		// +(Mat * _Nonnull)blobFromImage:(Mat * _Nonnull)image scalefactor:(double)scalefactor size:(Size2i * _Nonnull)size mean:(Scalar * _Nonnull)mean swapRB:(BOOL)swapRB crop:(BOOL)crop ddepth:(int)ddepth interpolation:(int)interpolation __attribute__((swift_name("blobFromImage(image:scalefactor:size:mean:swapRB:crop:ddepth:interpolation:)")));
+		[Static]
+		[Export ("blobFromImage:scalefactor:size:mean:swapRB:crop:ddepth:interpolation:")]
+		Mat BlobFromImage (Mat image, double scalefactor, Size2i size, Scalar mean, bool swapRB, bool crop, int ddepth, int interpolation);
+
+		// +(Mat * _Nonnull)blobFromImage:(Mat * _Nonnull)image scalefactor:(double)scalefactor size:(Size2i * _Nonnull)size mean:(Scalar * _Nonnull)mean swapRB:(BOOL)swapRB crop:(BOOL)crop ddepth:(int)ddepth __attribute__((swift_name("blobFromImage(image:scalefactor:size:mean:swapRB:crop:ddepth:)")));
+		[Static]
+		[Export ("blobFromImage:scalefactor:size:mean:swapRB:crop:ddepth:")]
+		Mat BlobFromImage (Mat image, double scalefactor, Size2i size, Scalar mean, bool swapRB, bool crop, int ddepth);
+
+		// +(Mat * _Nonnull)blobFromImage:(Mat * _Nonnull)image scalefactor:(double)scalefactor size:(Size2i * _Nonnull)size mean:(Scalar * _Nonnull)mean swapRB:(BOOL)swapRB crop:(BOOL)crop __attribute__((swift_name("blobFromImage(image:scalefactor:size:mean:swapRB:crop:)")));
+		[Static]
+		[Export ("blobFromImage:scalefactor:size:mean:swapRB:crop:")]
+		Mat BlobFromImage (Mat image, double scalefactor, Size2i size, Scalar mean, bool swapRB, bool crop);
+
+		// +(Mat * _Nonnull)blobFromImage:(Mat * _Nonnull)image scalefactor:(double)scalefactor size:(Size2i * _Nonnull)size mean:(Scalar * _Nonnull)mean swapRB:(BOOL)swapRB __attribute__((swift_name("blobFromImage(image:scalefactor:size:mean:swapRB:)")));
+		[Static]
+		[Export ("blobFromImage:scalefactor:size:mean:swapRB:")]
+		Mat BlobFromImage (Mat image, double scalefactor, Size2i size, Scalar mean, bool swapRB);
+
+		// +(Mat * _Nonnull)blobFromImage:(Mat * _Nonnull)image scalefactor:(double)scalefactor size:(Size2i * _Nonnull)size mean:(Scalar * _Nonnull)mean __attribute__((swift_name("blobFromImage(image:scalefactor:size:mean:)")));
+		[Static]
+		[Export ("blobFromImage:scalefactor:size:mean:")]
+		Mat BlobFromImage (Mat image, double scalefactor, Size2i size, Scalar mean);
+
+		// +(Mat * _Nonnull)blobFromImage:(Mat * _Nonnull)image scalefactor:(double)scalefactor size:(Size2i * _Nonnull)size __attribute__((swift_name("blobFromImage(image:scalefactor:size:)")));
+		[Static]
+		[Export ("blobFromImage:scalefactor:size:")]
+		Mat BlobFromImage (Mat image, double scalefactor, Size2i size);
+
+		// +(Mat * _Nonnull)blobFromImage:(Mat * _Nonnull)image scalefactor:(double)scalefactor __attribute__((swift_name("blobFromImage(image:scalefactor:)")));
+		[Static]
+		[Export ("blobFromImage:scalefactor:")]
+		Mat BlobFromImage (Mat image, double scalefactor);
+
+		// +(Mat * _Nonnull)blobFromImage:(Mat * _Nonnull)image __attribute__((swift_name("blobFromImage(image:)")));
+		[Static]
+		[Export ("blobFromImage:")]
+		Mat BlobFromImage (Mat image);
+
+		// +(Mat * _Nonnull)blobFromImages:(NSArray<Mat *> * _Nonnull)images scalefactor:(double)scalefactor size:(Size2i * _Nonnull)size mean:(Scalar * _Nonnull)mean swapRB:(BOOL)swapRB crop:(BOOL)crop ddepth:(int)ddepth interpolation:(int)interpolation __attribute__((swift_name("blobFromImages(images:scalefactor:size:mean:swapRB:crop:ddepth:interpolation:)")));
+		[Static]
+		[Export ("blobFromImages:scalefactor:size:mean:swapRB:crop:ddepth:interpolation:")]
+		Mat BlobFromImages (Mat [] images, double scalefactor, Size2i size, Scalar mean, bool swapRB, bool crop, int ddepth, int interpolation);
+
+		// +(Mat * _Nonnull)blobFromImages:(NSArray<Mat *> * _Nonnull)images scalefactor:(double)scalefactor size:(Size2i * _Nonnull)size mean:(Scalar * _Nonnull)mean swapRB:(BOOL)swapRB crop:(BOOL)crop ddepth:(int)ddepth __attribute__((swift_name("blobFromImages(images:scalefactor:size:mean:swapRB:crop:ddepth:)")));
+		[Static]
+		[Export ("blobFromImages:scalefactor:size:mean:swapRB:crop:ddepth:")]
+		Mat BlobFromImages (Mat [] images, double scalefactor, Size2i size, Scalar mean, bool swapRB, bool crop, int ddepth);
+
+		// +(Mat * _Nonnull)blobFromImages:(NSArray<Mat *> * _Nonnull)images scalefactor:(double)scalefactor size:(Size2i * _Nonnull)size mean:(Scalar * _Nonnull)mean swapRB:(BOOL)swapRB crop:(BOOL)crop __attribute__((swift_name("blobFromImages(images:scalefactor:size:mean:swapRB:crop:)")));
+		[Static]
+		[Export ("blobFromImages:scalefactor:size:mean:swapRB:crop:")]
+		Mat BlobFromImages (Mat [] images, double scalefactor, Size2i size, Scalar mean, bool swapRB, bool crop);
+
+		// +(Mat * _Nonnull)blobFromImages:(NSArray<Mat *> * _Nonnull)images scalefactor:(double)scalefactor size:(Size2i * _Nonnull)size mean:(Scalar * _Nonnull)mean swapRB:(BOOL)swapRB __attribute__((swift_name("blobFromImages(images:scalefactor:size:mean:swapRB:)")));
+		[Static]
+		[Export ("blobFromImages:scalefactor:size:mean:swapRB:")]
+		Mat BlobFromImages (Mat [] images, double scalefactor, Size2i size, Scalar mean, bool swapRB);
+
+		// +(Mat * _Nonnull)blobFromImages:(NSArray<Mat *> * _Nonnull)images scalefactor:(double)scalefactor size:(Size2i * _Nonnull)size mean:(Scalar * _Nonnull)mean __attribute__((swift_name("blobFromImages(images:scalefactor:size:mean:)")));
+		[Static]
+		[Export ("blobFromImages:scalefactor:size:mean:")]
+		Mat BlobFromImages (Mat [] images, double scalefactor, Size2i size, Scalar mean);
+
+		// +(Mat * _Nonnull)blobFromImages:(NSArray<Mat *> * _Nonnull)images scalefactor:(double)scalefactor size:(Size2i * _Nonnull)size __attribute__((swift_name("blobFromImages(images:scalefactor:size:)")));
+		[Static]
+		[Export ("blobFromImages:scalefactor:size:")]
+		Mat BlobFromImages (Mat [] images, double scalefactor, Size2i size);
+
+		// +(Mat * _Nonnull)blobFromImages:(NSArray<Mat *> * _Nonnull)images scalefactor:(double)scalefactor __attribute__((swift_name("blobFromImages(images:scalefactor:)")));
+		[Static]
+		[Export ("blobFromImages:scalefactor:")]
+		Mat BlobFromImages (Mat [] images, double scalefactor);
+
+		// +(Mat * _Nonnull)blobFromImages:(NSArray<Mat *> * _Nonnull)images __attribute__((swift_name("blobFromImages(images:)")));
+		[Static]
+		[Export ("blobFromImages:")]
+		Mat BlobFromImages (Mat [] images);
+
+		// +(Mat * _Nonnull)blobFromImageWithParams:(Mat * _Nonnull)image param:(Image2BlobParams * _Nonnull)param __attribute__((swift_name("blobFromImageWithParams(image:param:)")));
+		[Static]
+		[Export ("blobFromImageWithParams:param:")]
+		Mat BlobFromImageWithParams (Mat image, Image2BlobParams param);
+
+		// +(Mat * _Nonnull)blobFromImageWithParams:(Mat * _Nonnull)image __attribute__((swift_name("blobFromImageWithParams(image:)")));
+		[Static]
+		[Export ("blobFromImageWithParams:")]
+		Mat BlobFromImageWithParams (Mat image);
+
+		// +(void)blobFromImageWithParams:(Mat * _Nonnull)image blob:(Mat * _Nonnull)blob param:(Image2BlobParams * _Nonnull)param __attribute__((swift_name("blobFromImageWithParams(image:blob:param:)")));
+		[Static]
+		[Export ("blobFromImageWithParams:blob:param:")]
+		void BlobFromImageWithParams (Mat image, Mat blob, Image2BlobParams param);
+
+		// +(void)blobFromImageWithParams:(Mat * _Nonnull)image blob:(Mat * _Nonnull)blob __attribute__((swift_name("blobFromImageWithParams(image:blob:)")));
+		[Static]
+		[Export ("blobFromImageWithParams:blob:")]
+		void BlobFromImageWithParams (Mat image, Mat blob);
+
+		// +(Mat * _Nonnull)blobFromImagesWithParams:(NSArray<Mat *> * _Nonnull)images param:(Image2BlobParams * _Nonnull)param __attribute__((swift_name("blobFromImagesWithParams(images:param:)")));
+		[Static]
+		[Export ("blobFromImagesWithParams:param:")]
+		Mat BlobFromImagesWithParams (Mat [] images, Image2BlobParams param);
+
+		// +(Mat * _Nonnull)blobFromImagesWithParams:(NSArray<Mat *> * _Nonnull)images __attribute__((swift_name("blobFromImagesWithParams(images:)")));
+		[Static]
+		[Export ("blobFromImagesWithParams:")]
+		Mat BlobFromImagesWithParams (Mat [] images);
+
+		// +(void)blobFromImagesWithParams:(NSArray<Mat *> * _Nonnull)images blob:(Mat * _Nonnull)blob param:(Image2BlobParams * _Nonnull)param __attribute__((swift_name("blobFromImagesWithParams(images:blob:param:)")));
+		[Static]
+		[Export ("blobFromImagesWithParams:blob:param:")]
+		void BlobFromImagesWithParams (Mat [] images, Mat blob, Image2BlobParams param);
+
+		// +(void)blobFromImagesWithParams:(NSArray<Mat *> * _Nonnull)images blob:(Mat * _Nonnull)blob __attribute__((swift_name("blobFromImagesWithParams(images:blob:)")));
+		[Static]
+		[Export ("blobFromImagesWithParams:blob:")]
+		void BlobFromImagesWithParams (Mat [] images, Mat blob);
+
+		// +(void)imagesFromBlob:(Mat * _Nonnull)blob_ images_:(NSMutableArray<Mat *> * _Nonnull)images_ __attribute__((swift_name("imagesFromBlob(blob_:images_:)")));
+		[Static]
+		[Export ("imagesFromBlob:images_:")]
+		void ImagesFromBlob (Mat blob_, NSMutableArray<Mat> images_);
+
+		// +(void)NMSBoxes:(NSArray<Rect2d *> * _Nonnull)bboxes scores:(FloatVector * _Nonnull)scores score_threshold:(float)score_threshold nms_threshold:(float)nms_threshold indices:(IntVector * _Nonnull)indices eta:(float)eta top_k:(int)top_k __attribute__((swift_name("NMSBoxes(bboxes:scores:score_threshold:nms_threshold:indices:eta:top_k:)")));
+		[Static]
+		[Export ("NMSBoxes:scores:score_threshold:nms_threshold:indices:eta:top_k:")]
+		void NMSBoxes (Rect2d [] bboxes, FloatVector scores, float score_threshold, float nms_threshold, IntVector indices, float eta, int top_k);
+
+		// +(void)NMSBoxes:(NSArray<Rect2d *> * _Nonnull)bboxes scores:(FloatVector * _Nonnull)scores score_threshold:(float)score_threshold nms_threshold:(float)nms_threshold indices:(IntVector * _Nonnull)indices eta:(float)eta __attribute__((swift_name("NMSBoxes(bboxes:scores:score_threshold:nms_threshold:indices:eta:)")));
+		[Static]
+		[Export ("NMSBoxes:scores:score_threshold:nms_threshold:indices:eta:")]
+		void NMSBoxes (Rect2d [] bboxes, FloatVector scores, float score_threshold, float nms_threshold, IntVector indices, float eta);
+
+		// +(void)NMSBoxes:(NSArray<Rect2d *> * _Nonnull)bboxes scores:(FloatVector * _Nonnull)scores score_threshold:(float)score_threshold nms_threshold:(float)nms_threshold indices:(IntVector * _Nonnull)indices __attribute__((swift_name("NMSBoxes(bboxes:scores:score_threshold:nms_threshold:indices:)")));
+		[Static]
+		[Export ("NMSBoxes:scores:score_threshold:nms_threshold:indices:")]
+		void NMSBoxes (Rect2d [] bboxes, FloatVector scores, float score_threshold, float nms_threshold, IntVector indices);
+
+		// +(void)NMSBoxesRotated:(NSArray<RotatedRect *> * _Nonnull)bboxes scores:(FloatVector * _Nonnull)scores score_threshold:(float)score_threshold nms_threshold:(float)nms_threshold indices:(IntVector * _Nonnull)indices eta:(float)eta top_k:(int)top_k __attribute__((swift_name("NMSBoxes(bboxes:scores:score_threshold:nms_threshold:indices:eta:top_k:)")));
+		[Static]
+		[Export ("NMSBoxesRotated:scores:score_threshold:nms_threshold:indices:eta:top_k:")]
+		void NMSBoxesRotated (RotatedRect [] bboxes, FloatVector scores, float score_threshold, float nms_threshold, IntVector indices, float eta, int top_k);
+
+		// +(void)NMSBoxesRotated:(NSArray<RotatedRect *> * _Nonnull)bboxes scores:(FloatVector * _Nonnull)scores score_threshold:(float)score_threshold nms_threshold:(float)nms_threshold indices:(IntVector * _Nonnull)indices eta:(float)eta __attribute__((swift_name("NMSBoxes(bboxes:scores:score_threshold:nms_threshold:indices:eta:)")));
+		[Static]
+		[Export ("NMSBoxesRotated:scores:score_threshold:nms_threshold:indices:eta:")]
+		void NMSBoxesRotated (RotatedRect [] bboxes, FloatVector scores, float score_threshold, float nms_threshold, IntVector indices, float eta);
+
+		// +(void)NMSBoxesRotated:(NSArray<RotatedRect *> * _Nonnull)bboxes scores:(FloatVector * _Nonnull)scores score_threshold:(float)score_threshold nms_threshold:(float)nms_threshold indices:(IntVector * _Nonnull)indices __attribute__((swift_name("NMSBoxes(bboxes:scores:score_threshold:nms_threshold:indices:)")));
+		[Static]
+		[Export ("NMSBoxesRotated:scores:score_threshold:nms_threshold:indices:")]
+		void NMSBoxesRotated (RotatedRect [] bboxes, FloatVector scores, float score_threshold, float nms_threshold, IntVector indices);
+
+		// +(void)NMSBoxesBatched:(NSArray<Rect2d *> * _Nonnull)bboxes scores:(FloatVector * _Nonnull)scores class_ids:(IntVector * _Nonnull)class_ids score_threshold:(float)score_threshold nms_threshold:(float)nms_threshold indices:(IntVector * _Nonnull)indices eta:(float)eta top_k:(int)top_k __attribute__((swift_name("NMSBoxesBatched(bboxes:scores:class_ids:score_threshold:nms_threshold:indices:eta:top_k:)")));
+		[Static]
+		[Export ("NMSBoxesBatched:scores:class_ids:score_threshold:nms_threshold:indices:eta:top_k:")]
+		void NMSBoxesBatched (Rect2d [] bboxes, FloatVector scores, IntVector class_ids, float score_threshold, float nms_threshold, IntVector indices, float eta, int top_k);
+
+		// +(void)NMSBoxesBatched:(NSArray<Rect2d *> * _Nonnull)bboxes scores:(FloatVector * _Nonnull)scores class_ids:(IntVector * _Nonnull)class_ids score_threshold:(float)score_threshold nms_threshold:(float)nms_threshold indices:(IntVector * _Nonnull)indices eta:(float)eta __attribute__((swift_name("NMSBoxesBatched(bboxes:scores:class_ids:score_threshold:nms_threshold:indices:eta:)")));
+		[Static]
+		[Export ("NMSBoxesBatched:scores:class_ids:score_threshold:nms_threshold:indices:eta:")]
+		void NMSBoxesBatched (Rect2d [] bboxes, FloatVector scores, IntVector class_ids, float score_threshold, float nms_threshold, IntVector indices, float eta);
+
+		// +(void)NMSBoxesBatched:(NSArray<Rect2d *> * _Nonnull)bboxes scores:(FloatVector * _Nonnull)scores class_ids:(IntVector * _Nonnull)class_ids score_threshold:(float)score_threshold nms_threshold:(float)nms_threshold indices:(IntVector * _Nonnull)indices __attribute__((swift_name("NMSBoxesBatched(bboxes:scores:class_ids:score_threshold:nms_threshold:indices:)")));
+		[Static]
+		[Export ("NMSBoxesBatched:scores:class_ids:score_threshold:nms_threshold:indices:")]
+		void NMSBoxesBatched (Rect2d [] bboxes, FloatVector scores, IntVector class_ids, float score_threshold, float nms_threshold, IntVector indices);
+
+		// +(void)softNMSBoxes:(NSArray<Rect2i *> * _Nonnull)bboxes scores:(FloatVector * _Nonnull)scores updated_scores:(FloatVector * _Nonnull)updated_scores score_threshold:(float)score_threshold nms_threshold:(float)nms_threshold indices:(IntVector * _Nonnull)indices top_k:(size_t)top_k sigma:(float)sigma method:(SoftNMSMethod)method __attribute__((swift_name("softNMSBoxes(bboxes:scores:updated_scores:score_threshold:nms_threshold:indices:top_k:sigma:method:)")));
+		[Static]
+		[Export ("softNMSBoxes:scores:updated_scores:score_threshold:nms_threshold:indices:top_k:sigma:method:")]
+		void SoftNMSBoxes (Rect2i [] bboxes, FloatVector scores, FloatVector updated_scores, float score_threshold, float nms_threshold, IntVector indices, nuint top_k, float sigma, SoftNMSMethod method);
+
+		// +(void)softNMSBoxes:(NSArray<Rect2i *> * _Nonnull)bboxes scores:(FloatVector * _Nonnull)scores updated_scores:(FloatVector * _Nonnull)updated_scores score_threshold:(float)score_threshold nms_threshold:(float)nms_threshold indices:(IntVector * _Nonnull)indices top_k:(size_t)top_k sigma:(float)sigma __attribute__((swift_name("softNMSBoxes(bboxes:scores:updated_scores:score_threshold:nms_threshold:indices:top_k:sigma:)")));
+		[Static]
+		[Export ("softNMSBoxes:scores:updated_scores:score_threshold:nms_threshold:indices:top_k:sigma:")]
+		void SoftNMSBoxes (Rect2i [] bboxes, FloatVector scores, FloatVector updated_scores, float score_threshold, float nms_threshold, IntVector indices, nuint top_k, float sigma);
+
+		// +(void)softNMSBoxes:(NSArray<Rect2i *> * _Nonnull)bboxes scores:(FloatVector * _Nonnull)scores updated_scores:(FloatVector * _Nonnull)updated_scores score_threshold:(float)score_threshold nms_threshold:(float)nms_threshold indices:(IntVector * _Nonnull)indices top_k:(size_t)top_k __attribute__((swift_name("softNMSBoxes(bboxes:scores:updated_scores:score_threshold:nms_threshold:indices:top_k:)")));
+		[Static]
+		[Export ("softNMSBoxes:scores:updated_scores:score_threshold:nms_threshold:indices:top_k:")]
+		void SoftNMSBoxes (Rect2i [] bboxes, FloatVector scores, FloatVector updated_scores, float score_threshold, float nms_threshold, IntVector indices, nuint top_k);
+
+		// +(void)softNMSBoxes:(NSArray<Rect2i *> * _Nonnull)bboxes scores:(FloatVector * _Nonnull)scores updated_scores:(FloatVector * _Nonnull)updated_scores score_threshold:(float)score_threshold nms_threshold:(float)nms_threshold indices:(IntVector * _Nonnull)indices __attribute__((swift_name("softNMSBoxes(bboxes:scores:updated_scores:score_threshold:nms_threshold:indices:)")));
+		[Static]
+		[Export ("softNMSBoxes:scores:updated_scores:score_threshold:nms_threshold:indices:")]
+		void SoftNMSBoxes (Rect2i [] bboxes, FloatVector scores, FloatVector updated_scores, float score_threshold, float nms_threshold, IntVector indices);
+
+		// +(NSString * _Nonnull)getInferenceEngineBackendType __attribute__((swift_name("getInferenceEngineBackendType()"))) __attribute__((deprecated("")));
+		[Static]
+		[Export ("getInferenceEngineBackendType")]
+		string InferenceEngineBackendType { get; }
+
+		// +(NSString * _Nonnull)setInferenceEngineBackendType:(NSString * _Nonnull)newBackendType __attribute__((swift_name("setInferenceEngineBackendType(newBackendType:)"))) __attribute__((deprecated("")));
+		[Static]
+		[Export ("setInferenceEngineBackendType:")]
+		string SetInferenceEngineBackendType (string newBackendType);
+
+		// +(void)resetMyriadDevice __attribute__((swift_name("resetMyriadDevice()")));
+		[Static]
+		[Export ("resetMyriadDevice")]
+		void ResetMyriadDevice ();
+
+		// +(NSString * _Nonnull)getInferenceEngineVPUType __attribute__((swift_name("getInferenceEngineVPUType()")));
+		[Static]
+		[Export ("getInferenceEngineVPUType")]
+		string InferenceEngineVPUType { get; }
+
+		// +(NSString * _Nonnull)getInferenceEngineCPUType __attribute__((swift_name("getInferenceEngineCPUType()")));
+		[Static]
+		[Export ("getInferenceEngineCPUType")]
+		string InferenceEngineCPUType { get; }
+
+		// +(void)releaseHDDLPlugin __attribute__((swift_name("releaseHDDLPlugin()")));
+		[Static]
+		[Export ("releaseHDDLPlugin")]
+		void ReleaseHDDLPlugin ();
+	}
+
+	// @interface Model : NSObject
+	[BaseType (typeof (NSObject))]
+	interface Model {
+		// -(instancetype _Nonnull)initWithModel:(NSString * _Nonnull)model config:(NSString * _Nonnull)config;
+		[Export ("initWithModel:config:")]
+		NativeHandle Constructor (string model, string config);
+
+		// -(instancetype _Nonnull)initWithModel:(NSString * _Nonnull)model;
+		[Export ("initWithModel:")]
+		NativeHandle Constructor (string model);
+
+		// -(instancetype _Nonnull)initWithNetwork:(Net * _Nonnull)network;
+		[Export ("initWithNetwork:")]
+		NativeHandle Constructor (Net network);
+
+		// -(Model * _Nonnull)setInputSize:(Size2i * _Nonnull)size __attribute__((swift_name("setInputSize(size:)")));
+		[Export ("setInputSize:")]
+		Model SetInputSize (Size2i size);
+
+		// -(Model * _Nonnull)setInputSize:(int)width height:(int)height __attribute__((swift_name("setInputSize(width:height:)")));
+		[Export ("setInputSize:height:")]
+		Model SetInputSize (int width, int height);
+
+		// -(Model * _Nonnull)setInputMean:(Scalar * _Nonnull)mean __attribute__((swift_name("setInputMean(mean:)")));
+		[Export ("setInputMean:")]
+		Model SetInputMean (Scalar mean);
+
+		// -(Model * _Nonnull)setInputScale:(Scalar * _Nonnull)scale __attribute__((swift_name("setInputScale(scale:)")));
+		[Export ("setInputScale:")]
+		Model SetInputScale (Scalar scale);
+
+		// -(Model * _Nonnull)setInputCrop:(BOOL)crop __attribute__((swift_name("setInputCrop(crop:)")));
+		[Export ("setInputCrop:")]
+		Model SetInputCrop (bool crop);
+
+		// -(Model * _Nonnull)setInputSwapRB:(BOOL)swapRB __attribute__((swift_name("setInputSwapRB(swapRB:)")));
+		[Export ("setInputSwapRB:")]
+		Model SetInputSwapRB (bool swapRB);
+
+		// -(Model * _Nonnull)setOutputNames:(NSArray<NSString *> * _Nonnull)outNames __attribute__((swift_name("setOutputNames(outNames:)")));
+		[Export ("setOutputNames:")]
+		Model SetOutputNames (string [] outNames);
+
+		// -(void)setInputParams:(double)scale size:(Size2i * _Nonnull)size mean:(Scalar * _Nonnull)mean swapRB:(BOOL)swapRB crop:(BOOL)crop __attribute__((swift_name("setInputParams(scale:size:mean:swapRB:crop:)")));
+		[Export ("setInputParams:size:mean:swapRB:crop:")]
+		void SetInputParams (double scale, Size2i size, Scalar mean, bool swapRB, bool crop);
+
+		// -(void)setInputParams:(double)scale size:(Size2i * _Nonnull)size mean:(Scalar * _Nonnull)mean swapRB:(BOOL)swapRB __attribute__((swift_name("setInputParams(scale:size:mean:swapRB:)")));
+		[Export ("setInputParams:size:mean:swapRB:")]
+		void SetInputParams (double scale, Size2i size, Scalar mean, bool swapRB);
+
+		// -(void)setInputParams:(double)scale size:(Size2i * _Nonnull)size mean:(Scalar * _Nonnull)mean __attribute__((swift_name("setInputParams(scale:size:mean:)")));
+		[Export ("setInputParams:size:mean:")]
+		void SetInputParams (double scale, Size2i size, Scalar mean);
+
+		// -(void)setInputParams:(double)scale size:(Size2i * _Nonnull)size __attribute__((swift_name("setInputParams(scale:size:)")));
+		[Export ("setInputParams:size:")]
+		void SetInputParams (double scale, Size2i size);
+
+		// -(void)setInputParams:(double)scale __attribute__((swift_name("setInputParams(scale:)")));
+		[Export ("setInputParams:")]
+		void SetInputParams (double scale);
+
+		// -(void)setInputParams __attribute__((swift_name("setInputParams()")));
+		[Export ("setInputParams")]
+		void SetInputParams ();
+
+		// -(void)predict:(Mat * _Nonnull)frame outs:(NSMutableArray<Mat *> * _Nonnull)outs __attribute__((swift_name("predict(frame:outs:)")));
+		[Export ("predict:outs:")]
+		void Predict (Mat frame, NSMutableArray<Mat> outs);
+
+		// -(Model * _Nonnull)setPreferableBackend:(Backend)backendId __attribute__((swift_name("setPreferableBackend(backendId:)")));
+		[Export ("setPreferableBackend:")]
+		Model SetPreferableBackend (Backend backendId);
+
+		// -(Model * _Nonnull)setPreferableTarget:(Target)targetId __attribute__((swift_name("setPreferableTarget(targetId:)")));
+		[Export ("setPreferableTarget:")]
+		Model SetPreferableTarget (Target targetId);
+
+		// -(Model * _Nonnull)enableWinograd:(BOOL)useWinograd __attribute__((swift_name("enableWinograd(useWinograd:)")));
+		[Export ("enableWinograd:")]
+		Model EnableWinograd (bool useWinograd);
+
+		// -(Model * _Nonnull)enableTF32:(BOOL)useTF32 __attribute__((swift_name("enableTF32(useTF32:)")));
+		[Export ("enableTF32:")]
+		Model EnableTF32 (bool useTF32);
+	}
+
+	// @interface ClassificationModel : Model
+	[BaseType (typeof (Model))]
+	interface ClassificationModel {
+		// -(instancetype _Nonnull)initWithModel:(NSString * _Nonnull)model config:(NSString * _Nonnull)config;
+		[Export ("initWithModel:config:")]
+		NativeHandle Constructor (string model, string config);
+
+		// -(instancetype _Nonnull)initWithModel:(NSString * _Nonnull)model;
+		[Export ("initWithModel:")]
+		NativeHandle Constructor (string model);
+
+		// -(instancetype _Nonnull)initWithNetwork:(Net * _Nonnull)network;
+		[Export ("initWithNetwork:")]
+		NativeHandle Constructor (Net network);
+
+		// -(ClassificationModel * _Nonnull)setEnableSoftmaxPostProcessing:(BOOL)enable __attribute__((swift_name("setEnableSoftmaxPostProcessing(enable:)")));
+		[Export ("setEnableSoftmaxPostProcessing:")]
+		ClassificationModel SetEnableSoftmaxPostProcessing (bool enable);
+
+		// -(BOOL)getEnableSoftmaxPostProcessing __attribute__((swift_name("getEnableSoftmaxPostProcessing()")));
+		[Export ("getEnableSoftmaxPostProcessing")]
+		bool EnableSoftmaxPostProcessing { get; }
+
+		// -(void)classify:(Mat * _Nonnull)frame classId:(int * _Nonnull)classId conf:(float * _Nonnull)conf __attribute__((swift_name("classify(frame:classId:conf:)")));
+		[Export ("classify:classId:conf:")]
+		unsafe void Classify (Mat frame, int* classId, float* conf);
+	}
+
+	// @interface DetectionModel : Model
+	[BaseType (typeof (Model))]
+	interface DetectionModel {
+		// -(instancetype _Nonnull)initWithModel:(NSString * _Nonnull)model config:(NSString * _Nonnull)config;
+		[Export ("initWithModel:config:")]
+		NativeHandle Constructor (string model, string config);
+
+		// -(instancetype _Nonnull)initWithModel:(NSString * _Nonnull)model;
+		[Export ("initWithModel:")]
+		NativeHandle Constructor (string model);
+
+		// -(instancetype _Nonnull)initWithNetwork:(Net * _Nonnull)network;
+		[Export ("initWithNetwork:")]
+		NativeHandle Constructor (Net network);
+
+		// -(DetectionModel * _Nonnull)setNmsAcrossClasses:(BOOL)value __attribute__((swift_name("setNmsAcrossClasses(value:)")));
+		[Export ("setNmsAcrossClasses:")]
+		DetectionModel SetNmsAcrossClasses (bool value);
+
+		// -(BOOL)getNmsAcrossClasses __attribute__((swift_name("getNmsAcrossClasses()")));
+		[Export ("getNmsAcrossClasses")]
+		bool NmsAcrossClasses { get; }
+
+		// -(void)detect:(Mat * _Nonnull)frame classIds:(IntVector * _Nonnull)classIds confidences:(FloatVector * _Nonnull)confidences boxes:(NSMutableArray<Rect2i *> * _Nonnull)boxes confThreshold:(float)confThreshold nmsThreshold:(float)nmsThreshold __attribute__((swift_name("detect(frame:classIds:confidences:boxes:confThreshold:nmsThreshold:)")));
+		[Export ("detect:classIds:confidences:boxes:confThreshold:nmsThreshold:")]
+		void Detect (Mat frame, IntVector classIds, FloatVector confidences, NSMutableArray<Rect2i> boxes, float confThreshold, float nmsThreshold);
+
+		// -(void)detect:(Mat * _Nonnull)frame classIds:(IntVector * _Nonnull)classIds confidences:(FloatVector * _Nonnull)confidences boxes:(NSMutableArray<Rect2i *> * _Nonnull)boxes confThreshold:(float)confThreshold __attribute__((swift_name("detect(frame:classIds:confidences:boxes:confThreshold:)")));
+		[Export ("detect:classIds:confidences:boxes:confThreshold:")]
+		void Detect (Mat frame, IntVector classIds, FloatVector confidences, NSMutableArray<Rect2i> boxes, float confThreshold);
+
+		// -(void)detect:(Mat * _Nonnull)frame classIds:(IntVector * _Nonnull)classIds confidences:(FloatVector * _Nonnull)confidences boxes:(NSMutableArray<Rect2i *> * _Nonnull)boxes __attribute__((swift_name("detect(frame:classIds:confidences:boxes:)")));
+		[Export ("detect:classIds:confidences:boxes:")]
+		void Detect (Mat frame, IntVector classIds, FloatVector confidences, NSMutableArray<Rect2i> boxes);
+	}
+
+	// @interface DictValue : NSObject
+	[BaseType (typeof (NSObject))]
+	interface DictValue {
+		// -(instancetype _Nonnull)initWithI:(int)i;
+		[Export ("initWithI:")]
+		NativeHandle Constructor (int i);
+
+		// -(instancetype _Nonnull)initWithP:(double)p;
+		[Export ("initWithP:")]
+		NativeHandle Constructor (double p);
+
+		// -(instancetype _Nonnull)initWithS:(NSString * _Nonnull)s;
+		[Export ("initWithS:")]
+		NativeHandle Constructor (string s);
+
+		// -(BOOL)isInt __attribute__((swift_name("isInt()")));
+		[Export ("isInt")]
+		bool IsInt { get; }
+
+		// -(BOOL)isString __attribute__((swift_name("isString()")));
+		[Export ("isString")]
+		bool IsString { get; }
+
+		// -(BOOL)isReal __attribute__((swift_name("isReal()")));
+		[Export ("isReal")]
+		bool IsReal { get; }
+
+		// -(int)getIntValue:(int)idx __attribute__((swift_name("getIntValue(idx:)")));
+		[Export ("getIntValue:")]
+		int GetIntValue (int idx);
+
+		// -(int)getIntValue __attribute__((swift_name("getIntValue()")));
+		[Export ("getIntValue")]
+		int IntValue { get; }
+
+		// -(double)getRealValue:(int)idx __attribute__((swift_name("getRealValue(idx:)")));
+		[Export ("getRealValue:")]
+		double GetRealValue (int idx);
+
+		// -(double)getRealValue __attribute__((swift_name("getRealValue()")));
+		[Export ("getRealValue")]
+		double RealValue { get; }
+
+		// -(NSString * _Nonnull)getStringValue:(int)idx __attribute__((swift_name("getStringValue(idx:)")));
+		[Export ("getStringValue:")]
+		string GetStringValue (int idx);
+
+		// -(NSString * _Nonnull)getStringValue __attribute__((swift_name("getStringValue()")));
+		[Export ("getStringValue")]
+		string StringValue { get; }
+	}
+
+	// @interface Image2BlobParams : NSObject
+	[BaseType (typeof (NSObject))]
+	interface Image2BlobParams {
+		// -(instancetype _Nonnull)initWithScalefactor:(Scalar * _Nonnull)scalefactor size:(Size2i * _Nonnull)size mean:(Scalar * _Nonnull)mean swapRB:(BOOL)swapRB ddepth:(int)ddepth datalayout:(int)datalayout mode:(ImagePaddingMode)mode borderValue:(Scalar * _Nonnull)borderValue interpolation:(int)interpolation;
+		[Export ("initWithScalefactor:size:mean:swapRB:ddepth:datalayout:mode:borderValue:interpolation:")]
+		NativeHandle Constructor (Scalar scalefactor, Size2i size, Scalar mean, bool swapRB, int ddepth, int datalayout, ImagePaddingMode mode, Scalar borderValue, int interpolation);
+
+		// -(instancetype _Nonnull)initWithScalefactor:(Scalar * _Nonnull)scalefactor size:(Size2i * _Nonnull)size mean:(Scalar * _Nonnull)mean swapRB:(BOOL)swapRB ddepth:(int)ddepth datalayout:(int)datalayout mode:(ImagePaddingMode)mode borderValue:(Scalar * _Nonnull)borderValue;
+		[Export ("initWithScalefactor:size:mean:swapRB:ddepth:datalayout:mode:borderValue:")]
+		NativeHandle Constructor (Scalar scalefactor, Size2i size, Scalar mean, bool swapRB, int ddepth, int datalayout, ImagePaddingMode mode, Scalar borderValue);
+
+		// -(instancetype _Nonnull)initWithScalefactor:(Scalar * _Nonnull)scalefactor size:(Size2i * _Nonnull)size mean:(Scalar * _Nonnull)mean swapRB:(BOOL)swapRB ddepth:(int)ddepth datalayout:(int)datalayout mode:(ImagePaddingMode)mode;
+		[Export ("initWithScalefactor:size:mean:swapRB:ddepth:datalayout:mode:")]
+		NativeHandle Constructor (Scalar scalefactor, Size2i size, Scalar mean, bool swapRB, int ddepth, int datalayout, ImagePaddingMode mode);
+
+		// -(instancetype _Nonnull)initWithScalefactor:(Scalar * _Nonnull)scalefactor size:(Size2i * _Nonnull)size mean:(Scalar * _Nonnull)mean swapRB:(BOOL)swapRB ddepth:(int)ddepth datalayout:(int)datalayout;
+		[Export ("initWithScalefactor:size:mean:swapRB:ddepth:datalayout:")]
+		NativeHandle Constructor (Scalar scalefactor, Size2i size, Scalar mean, bool swapRB, int ddepth, int datalayout);
+
+		// -(instancetype _Nonnull)initWithScalefactor:(Scalar * _Nonnull)scalefactor size:(Size2i * _Nonnull)size mean:(Scalar * _Nonnull)mean swapRB:(BOOL)swapRB ddepth:(int)ddepth;
+		[Export ("initWithScalefactor:size:mean:swapRB:ddepth:")]
+		NativeHandle Constructor (Scalar scalefactor, Size2i size, Scalar mean, bool swapRB, int ddepth);
+
+		// -(instancetype _Nonnull)initWithScalefactor:(Scalar * _Nonnull)scalefactor size:(Size2i * _Nonnull)size mean:(Scalar * _Nonnull)mean swapRB:(BOOL)swapRB;
+		[Export ("initWithScalefactor:size:mean:swapRB:")]
+		NativeHandle Constructor (Scalar scalefactor, Size2i size, Scalar mean, bool swapRB);
+
+		// -(instancetype _Nonnull)initWithScalefactor:(Scalar * _Nonnull)scalefactor size:(Size2i * _Nonnull)size mean:(Scalar * _Nonnull)mean;
+		[Export ("initWithScalefactor:size:mean:")]
+		NativeHandle Constructor (Scalar scalefactor, Size2i size, Scalar mean);
+
+		// -(instancetype _Nonnull)initWithScalefactor:(Scalar * _Nonnull)scalefactor size:(Size2i * _Nonnull)size;
+		[Export ("initWithScalefactor:size:")]
+		NativeHandle Constructor (Scalar scalefactor, Size2i size);
+
+		// -(instancetype _Nonnull)initWithScalefactor:(Scalar * _Nonnull)scalefactor;
+		[Export ("initWithScalefactor:")]
+		NativeHandle Constructor (Scalar scalefactor);
+
+		// -(Rect2i * _Nonnull)blobRectToImageRect:(Rect2i * _Nonnull)rBlob size:(Size2i * _Nonnull)size __attribute__((swift_name("blobRectToImageRect(rBlob:size:)")));
+		[Export ("blobRectToImageRect:size:")]
+		Rect2i BlobRectToImageRect (Rect2i rBlob, Size2i size);
+
+		// -(void)blobRectsToImageRects:(NSArray<Rect2i *> * _Nonnull)rBlob rImg:(NSMutableArray<Rect2i *> * _Nonnull)rImg size:(Size2i * _Nonnull)size __attribute__((swift_name("blobRectsToImageRects(rBlob:rImg:size:)")));
+		[Export ("blobRectsToImageRects:rImg:size:")]
+		void BlobRectsToImageRects (Rect2i [] rBlob, NSMutableArray<Rect2i> rImg, Size2i size);
+
+		// @property Scalar * _Nonnull scalefactor;
+		[Export ("scalefactor", ArgumentSemantic.Assign)]
+		Scalar Scalefactor { get; set; }
+
+		// @property Size2i * _Nonnull size;
+		[Export ("size", ArgumentSemantic.Assign)]
+		Size2i Size { get; set; }
+
+		// @property Scalar * _Nonnull mean;
+		[Export ("mean", ArgumentSemantic.Assign)]
+		Scalar Mean { get; set; }
+
+		// @property BOOL swapRB;
+		[Export ("swapRB")]
+		bool SwapRB { get; set; }
+
+		// @property int ddepth;
+		[Export ("ddepth")]
+		int Ddepth { get; set; }
+
+		// @property int datalayout;
+		[Export ("datalayout")]
+		int Datalayout { get; set; }
+
+		// @property ImagePaddingMode paddingmode;
+		[Export ("paddingmode", ArgumentSemantic.Assign)]
+		ImagePaddingMode Paddingmode { get; set; }
+
+		// @property Scalar * _Nonnull borderValue;
+		[Export ("borderValue", ArgumentSemantic.Assign)]
+		Scalar BorderValue { get; set; }
+
+		// @property int interpolation;
+		[Export ("interpolation")]
+		int Interpolation { get; set; }
+	}
+
+	// @interface KeypointsModel : Model
+	[BaseType (typeof (Model))]
+	interface KeypointsModel {
+		// -(instancetype _Nonnull)initWithModel:(NSString * _Nonnull)model config:(NSString * _Nonnull)config;
+		[Export ("initWithModel:config:")]
+		NativeHandle Constructor (string model, string config);
+
+		// -(instancetype _Nonnull)initWithModel:(NSString * _Nonnull)model;
+		[Export ("initWithModel:")]
+		NativeHandle Constructor (string model);
+
+		// -(instancetype _Nonnull)initWithNetwork:(Net * _Nonnull)network;
+		[Export ("initWithNetwork:")]
+		NativeHandle Constructor (Net network);
+
+		// -(NSArray<Point2f *> * _Nonnull)estimate:(Mat * _Nonnull)frame thresh:(float)thresh __attribute__((swift_name("estimate(frame:thresh:)")));
+		[Export ("estimate:thresh:")]
+		Point2f [] Estimate (Mat frame, float thresh);
+
+		// -(NSArray<Point2f *> * _Nonnull)estimate:(Mat * _Nonnull)frame __attribute__((swift_name("estimate(frame:)")));
+		[Export ("estimate:")]
+		Point2f [] Estimate (Mat frame);
+	}
+
+	// @interface LayerInfo : NSObject
+	[BaseType (typeof (NSObject))]
+	interface LayerInfo {
+		// -(int)outputNameToIndex:(NSString * _Nonnull)outputName __attribute__((swift_name("outputNameToIndex(outputName:)")));
+		[Export ("outputNameToIndex:")]
+		int OutputNameToIndex (string outputName);
+
+		// @property Mat * _Nonnull blobs;
+		[Export ("blobs", ArgumentSemantic.Assign)]
+		Mat Blobs { get; set; }
+
+		// @property (readonly) NSString * _Nonnull name;
+		[Export ("name")]
+		string Name { get; }
+
+		// @property (readonly) NSString * _Nonnull type;
+		[Export ("type")]
+		string Type { get; }
+	}
+
+	// @interface Layer : LayerInfo
+	[BaseType (typeof (LayerInfo))]
+	interface Layer {
+		// -(void)finalize:(NSArray<Mat *> * _Nonnull)inputs outputs:(NSMutableArray<Mat *> * _Nonnull)outputs __attribute__((swift_name("finalize(inputs:outputs:)")));
+		[Export ("finalize:outputs:")]
+		void Finalize (Mat [] inputs, NSMutableArray<Mat> outputs);
+
+		// -(void)run:(NSArray<Mat *> * _Nonnull)inputs outputs:(NSMutableArray<Mat *> * _Nonnull)outputs internals:(NSMutableArray<Mat *> * _Nonnull)internals __attribute__((swift_name("run(inputs:outputs:internals:)"))) __attribute__((deprecated("")));
+		[Export ("run:outputs:internals:")]
+		void Run (Mat [] inputs, NSMutableArray<Mat> outputs, NSMutableArray<Mat> internals);
+
+		// @property (readonly) int preferableTarget;
+		[Export ("preferableTarget")]
+		int PreferableTarget { get; }
+	}
+
+	// @interface Net : NSObject
+	[BaseType (typeof (NSObject))]
+	interface Net {
+		// +(Net * _Nonnull)readFromModelOptimizer:(NSString * _Nonnull)xml bin:(NSString * _Nonnull)bin __attribute__((swift_name("readFromModelOptimizer(xml:bin:)")));
+		[Static]
+		[Export ("readFromModelOptimizer:bin:")]
+		Net ReadFromModelOptimizer (string xml, string bin);
+
+		// +(Net * _Nonnull)readFromModelOptimizer:(ByteVector * _Nonnull)bufferModelConfig bufferWeights:(ByteVector * _Nonnull)bufferWeights __attribute__((swift_name("readFromModelOptimizer(bufferModelConfig:bufferWeights:)")));
+		[Static]
+		[Export ("readFromModelOptimizer:bufferWeights:")]
+		Net ReadFromModelOptimizer (ByteVector bufferModelConfig, ByteVector bufferWeights);
+
+		// -(BOOL)empty __attribute__((swift_name("empty()")));
+		[Export ("empty")]
+		bool Empty { get; }
+
+		// -(NSString * _Nonnull)dump __attribute__((swift_name("dump()")));
+		[Export ("dump")]
+		string Dump ();
+
+		// -(void)dumpToFile:(NSString * _Nonnull)path __attribute__((swift_name("dumpToFile(path:)")));
+		[Export ("dumpToFile:")]
+		void DumpToFile (string path);
+
+		// -(void)dumpToPbtxt:(NSString * _Nonnull)path __attribute__((swift_name("dumpToPbtxt(path:)")));
+		[Export ("dumpToPbtxt:")]
+		void DumpToPbtxt (string path);
+
+		// -(int)getLayerId:(NSString * _Nonnull)layer __attribute__((swift_name("getLayerId(layer:)")));
+		[Export ("getLayerId:")]
+		int GetLayerId (string layer);
+
+		// -(NSArray<NSString *> * _Nonnull)getLayerNames __attribute__((swift_name("getLayerNames()")));
+		[Export ("getLayerNames")]
+		string [] LayerNames { get; }
+
+		// -(Layer * _Nonnull)getLayer:(int)layerId __attribute__((swift_name("getLayer(layerId:)")));
+		[Export ("getLayer:")]
+		Layer GetLayer (int layerId);
+
+		// -(Layer * _Nonnull)getLayerByName:(NSString * _Nonnull)layerName __attribute__((swift_name("getLayer(layerName:)"))) __attribute__((deprecated("")));
+		[Export ("getLayerByName:")]
+		Layer GetLayerByName (string layerName);
+
+		// -(Layer * _Nonnull)getLayerByDictValue:(DictValue * _Nonnull)layerId __attribute__((swift_name("getLayer(layerId:)"))) __attribute__((deprecated("")));
+		[Export ("getLayerByDictValue:")]
+		Layer GetLayerByDictValue (DictValue layerId);
+
+		// -(void)connect:(NSString * _Nonnull)outPin inpPin:(NSString * _Nonnull)inpPin __attribute__((swift_name("connect(outPin:inpPin:)")));
+		[Export ("connect:inpPin:")]
+		void Connect (string outPin, string inpPin);
+
+		// -(int)registerOutput:(NSString * _Nonnull)outputName layerId:(int)layerId outputPort:(int)outputPort __attribute__((swift_name("registerOutput(outputName:layerId:outputPort:)")));
+		[Export ("registerOutput:layerId:outputPort:")]
+		int RegisterOutput (string outputName, int layerId, int outputPort);
+
+		// -(void)setInputsNames:(NSArray<NSString *> * _Nonnull)inputBlobNames __attribute__((swift_name("setInputsNames(inputBlobNames:)")));
+		[Export ("setInputsNames:")]
+		void SetInputsNames (string [] inputBlobNames);
+
+		// -(void)setInputShape:(NSString * _Nonnull)inputName shape:(IntVector * _Nonnull)shape __attribute__((swift_name("setInputShape(inputName:shape:)")));
+		[Export ("setInputShape:shape:")]
+		void SetInputShape (string inputName, IntVector shape);
+
+		// -(Mat * _Nonnull)forward:(NSString * _Nonnull)outputName __attribute__((swift_name("forward(outputName:)")));
+		[Export ("forward:")]
+		Mat Forward (string outputName);
+
+		// -(Mat * _Nonnull)forward __attribute__((swift_name("forward()")));
+		[Export ("forward")]
+		Mat Forward ();
+
+		// -(void)forwardOutputBlobs:(NSMutableArray<Mat *> * _Nonnull)outputBlobs outputName:(NSString * _Nonnull)outputName __attribute__((swift_name("forward(outputBlobs:outputName:)")));
+		[Export ("forwardOutputBlobs:outputName:")]
+		void ForwardOutputBlobs (NSMutableArray<Mat> outputBlobs, string outputName);
+
+		// -(void)forwardOutputBlobs:(NSMutableArray<Mat *> * _Nonnull)outputBlobs __attribute__((swift_name("forward(outputBlobs:)")));
+		[Export ("forwardOutputBlobs:")]
+		void ForwardOutputBlobs (NSMutableArray<Mat> outputBlobs);
+
+		// -(void)forwardOutputBlobs:(NSMutableArray<Mat *> * _Nonnull)outputBlobs outBlobNames:(NSArray<NSString *> * _Nonnull)outBlobNames __attribute__((swift_name("forward(outputBlobs:outBlobNames:)")));
+		[Export ("forwardOutputBlobs:outBlobNames:")]
+		void ForwardOutputBlobs (NSMutableArray<Mat> outputBlobs, string [] outBlobNames);
+
+		// -(void)forwardAndRetrieve:(NSMutableArray<NSMutableArray<Mat *> *> * _Nonnull)outputBlobs outBlobNames:(NSArray<NSString *> * _Nonnull)outBlobNames __attribute__((swift_name("forwardAndRetrieve(outputBlobs:outBlobNames:)")));
+		[Export ("forwardAndRetrieve:outBlobNames:")]
+		void ForwardAndRetrieve (NSMutableArray<NSMutableArray<Mat>> outputBlobs, string [] outBlobNames);
+
+		// -(void)setPreferableBackend:(int)backendId __attribute__((swift_name("setPreferableBackend(backendId:)")));
+		[Export ("setPreferableBackend:")]
+		void SetPreferableBackend (int backendId);
+
+		// -(void)setPreferableTarget:(int)targetId __attribute__((swift_name("setPreferableTarget(targetId:)")));
+		[Export ("setPreferableTarget:")]
+		void SetPreferableTarget (int targetId);
+
+		// -(void)finalizeNet __attribute__((swift_name("finalizeNet()")));
+		[Export ("finalizeNet")]
+		void FinalizeNet ();
+
+		// -(void)setTracingMode:(TracingMode)tracingMode __attribute__((swift_name("setTracingMode(tracingMode:)")));
+		[Export ("setTracingMode:")]
+		void SetTracingMode (TracingMode tracingMode);
+
+		// -(TracingMode)getTracingMode __attribute__((swift_name("getTracingMode()")));
+		[Export ("getTracingMode")]
+		TracingMode TracingMode { get; }
+
+		// -(void)setProfilingMode:(ProfilingMode)profilingMode __attribute__((swift_name("setProfilingMode(profilingMode:)")));
+		[Export ("setProfilingMode:")]
+		void SetProfilingMode (ProfilingMode profilingMode);
+
+		// -(ProfilingMode)getProfilingMode __attribute__((swift_name("getProfilingMode()")));
+		[Export ("getProfilingMode")]
+		ProfilingMode ProfilingMode { get; }
+
+		// -(ModelFormat)getModelFormat __attribute__((swift_name("getModelFormat()")));
+		[Export ("getModelFormat")]
+		ModelFormat ModelFormat { get; }
+
+		// -(void)setInput:(Mat * _Nonnull)blob name:(NSString * _Nonnull)name scalefactor:(double)scalefactor mean:(Scalar * _Nonnull)mean __attribute__((swift_name("setInput(blob:name:scalefactor:mean:)")));
+		[Export ("setInput:name:scalefactor:mean:")]
+		void SetInput (Mat blob, string name, double scalefactor, Scalar mean);
+
+		// -(void)setInput:(Mat * _Nonnull)blob name:(NSString * _Nonnull)name scalefactor:(double)scalefactor __attribute__((swift_name("setInput(blob:name:scalefactor:)")));
+		[Export ("setInput:name:scalefactor:")]
+		void SetInput (Mat blob, string name, double scalefactor);
+
+		// -(void)setInput:(Mat * _Nonnull)blob name:(NSString * _Nonnull)name __attribute__((swift_name("setInput(blob:name:)")));
+		[Export ("setInput:name:")]
+		void SetInput (Mat blob, string name);
+
+		// -(void)setInput:(Mat * _Nonnull)blob __attribute__((swift_name("setInput(blob:)")));
+		[Export ("setInput:")]
+		void SetInput (Mat blob);
+
+		// -(void)setParam:(int)layer numParam:(int)numParam blob:(Mat * _Nonnull)blob __attribute__((swift_name("setParam(layer:numParam:blob:)")));
+		[Export ("setParam:numParam:blob:")]
+		void SetParam (int layer, int numParam, Mat blob);
+
+		// -(void)setParamByName:(NSString * _Nonnull)layerName numParam:(int)numParam blob:(Mat * _Nonnull)blob __attribute__((swift_name("setParam(layerName:numParam:blob:)")));
+		[Export ("setParamByName:numParam:blob:")]
+		void SetParamByName (string layerName, int numParam, Mat blob);
+
+		// -(Mat * _Nonnull)getParam:(int)layer numParam:(int)numParam __attribute__((swift_name("getParam(layer:numParam:)")));
+		[Export ("getParam:numParam:")]
+		Mat GetParam (int layer, int numParam);
+
+		// -(Mat * _Nonnull)getParam:(int)layer __attribute__((swift_name("getParam(layer:)")));
+		[Export ("getParam:")]
+		Mat GetParam (int layer);
+
+		// -(Mat * _Nonnull)getParamByName:(NSString * _Nonnull)layerName numParam:(int)numParam __attribute__((swift_name("getParam(layerName:numParam:)")));
+		[Export ("getParamByName:numParam:")]
+		Mat GetParamByName (string layerName, int numParam);
+
+		// -(Mat * _Nonnull)getParamByName:(NSString * _Nonnull)layerName __attribute__((swift_name("getParam(layerName:)")));
+		[Export ("getParamByName:")]
+		Mat GetParamByName (string layerName);
+
+		// -(IntVector * _Nonnull)getUnconnectedOutLayers __attribute__((swift_name("getUnconnectedOutLayers()")));
+		[Export ("getUnconnectedOutLayers")]
+		IntVector UnconnectedOutLayers { get; }
+
+		// -(NSArray<NSString *> * _Nonnull)getUnconnectedOutLayersNames __attribute__((swift_name("getUnconnectedOutLayersNames()")));
+		[Export ("getUnconnectedOutLayersNames")]
+		string [] UnconnectedOutLayersNames { get; }
+
+		// -(void)getLayerShapes:(NSArray<IntVector *> * _Nonnull)netInputShapes netInputTypes:(IntVector * _Nonnull)netInputTypes layerId:(int)layerId inLayerShapes:(NSMutableArray<IntVector *> * _Nonnull)inLayerShapes outLayerShapes:(NSMutableArray<IntVector *> * _Nonnull)outLayerShapes __attribute__((swift_name("getLayerShapes(netInputShapes:netInputTypes:layerId:inLayerShapes:outLayerShapes:)")));
+		[Export ("getLayerShapes:netInputTypes:layerId:inLayerShapes:outLayerShapes:")]
+		void GetLayerShapes (IntVector [] netInputShapes, IntVector netInputTypes, int layerId, NSMutableArray<IntVector> inLayerShapes, NSMutableArray<IntVector> outLayerShapes);
+
+		// -(long)getFLOPS:(NSArray<IntVector *> * _Nonnull)netInputShapes netInputTypes:(IntVector * _Nonnull)netInputTypes __attribute__((swift_name("getFLOPS(netInputShapes:netInputTypes:)")));
+		[Export ("getFLOPS:netInputTypes:")]
+		nint GetFLOPS (IntVector [] netInputShapes, IntVector netInputTypes);
+
+		// -(void)getLayerTypes:(NSMutableArray<NSString *> * _Nonnull)layersTypes __attribute__((swift_name("getLayerTypes(layersTypes:)")));
+		[Export ("getLayerTypes:")]
+		void GetLayerTypes (NSMutableArray<NSString> layersTypes);
+
+		// -(int)getLayersCount:(NSString * _Nonnull)layerType __attribute__((swift_name("getLayersCount(layerType:)")));
+		[Export ("getLayersCount:")]
+		int GetLayersCount (string layerType);
+
+		// -(void)getMemoryConsumption:(NSArray<IntVector *> * _Nonnull)netInputShapes netInputTypes:(IntVector * _Nonnull)netInputTypes weights:(size_t)weights blobs:(size_t)blobs __attribute__((swift_name("getMemoryConsumption(netInputShapes:netInputTypes:weights:blobs:)")));
+		[Export ("getMemoryConsumption:netInputTypes:weights:blobs:")]
+		void GetMemoryConsumption (IntVector [] netInputShapes, IntVector netInputTypes, nuint weights, nuint blobs);
+
+		// -(void)enableFusion:(BOOL)fusion __attribute__((swift_name("enableFusion(fusion:)")));
+		[Export ("enableFusion:")]
+		void EnableFusion (bool fusion);
+
+		// -(void)enableWinograd:(BOOL)useWinograd __attribute__((swift_name("enableWinograd(useWinograd:)")));
+		[Export ("enableWinograd:")]
+		void EnableWinograd (bool useWinograd);
+
+		// -(void)enableTF32:(BOOL)useTF32 __attribute__((swift_name("enableTF32(useTF32:)")));
+		[Export ("enableTF32:")]
+		void EnableTF32 (bool useTF32);
+
+		// -(long)getPerfProfile:(DoubleVector * _Nonnull)timings __attribute__((swift_name("getPerfProfile(timings:)")));
+		[Export ("getPerfProfile:")]
+		nint GetPerfProfile (DoubleVector timings);
+
+		// -(void)enableKVCache __attribute__((swift_name("enableKVCache()")));
+		[Export ("enableKVCache")]
+		void EnableKVCache ();
+
+		// -(void)disableKVCache __attribute__((swift_name("disableKVCache()")));
+		[Export ("disableKVCache")]
+		void DisableKVCache ();
+
+		// -(void)resetKVCache __attribute__((swift_name("resetKVCache()")));
+		[Export ("resetKVCache")]
+		void ResetKVCache ();
+
+		// -(void)reserveKVCache:(int)maxSequenceLength __attribute__((swift_name("reserveKVCache(maxSequenceLength:)")));
+		[Export ("reserveKVCache:")]
+		void ReserveKVCache (int maxSequenceLength);
+
+		// -(void)getPerfProfile:(NSMutableArray<NSString *> * _Nonnull)names timems:(NSMutableArray<NSString *> * _Nonnull)timems counts:(NSMutableArray<NSString *> * _Nonnull)counts __attribute__((swift_name("getPerfProfile(names:timems:counts:)")));
+		[Export ("getPerfProfile:timems:counts:")]
+		void GetPerfProfile (NSMutableArray<NSString> names, NSMutableArray<NSString> timems, NSMutableArray<NSString> counts);
+
+		// -(void)printPerfProfile __attribute__((swift_name("printPerfProfile()")));
+		[Export ("printPerfProfile")]
+		void PrintPerfProfile ();
+	}
+
+	// @interface SegmentationModel : Model
+	[BaseType (typeof (Model))]
+	interface SegmentationModel {
+		// -(instancetype _Nonnull)initWithModel:(NSString * _Nonnull)model config:(NSString * _Nonnull)config;
+		[Export ("initWithModel:config:")]
+		NativeHandle Constructor (string model, string config);
+
+		// -(instancetype _Nonnull)initWithModel:(NSString * _Nonnull)model;
+		[Export ("initWithModel:")]
+		NativeHandle Constructor (string model);
+
+		// -(instancetype _Nonnull)initWithNetwork:(Net * _Nonnull)network;
+		[Export ("initWithNetwork:")]
+		NativeHandle Constructor (Net network);
+
+		// -(void)segment:(Mat * _Nonnull)frame mask:(Mat * _Nonnull)mask __attribute__((swift_name("segment(frame:mask:)")));
+		[Export ("segment:mask:")]
+		void Segment (Mat frame, Mat mask);
+	}
+
+	// @interface TextDetectionModel : Model
+	[BaseType (typeof (Model))]
+	interface TextDetectionModel {
+		// -(void)detect:(Mat * _Nonnull)frame detections:(NSMutableArray<NSMutableArray<Point2i *> *> * _Nonnull)detections confidences:(FloatVector * _Nonnull)confidences __attribute__((swift_name("detect(frame:detections:confidences:)")));
+		[Export ("detect:detections:confidences:")]
+		void Detect (Mat frame, NSMutableArray<NSMutableArray<Point2i>> detections, FloatVector confidences);
+
+		// -(void)detect:(Mat * _Nonnull)frame detections:(NSMutableArray<NSMutableArray<Point2i *> *> * _Nonnull)detections __attribute__((swift_name("detect(frame:detections:)")));
+		[Export ("detect:detections:")]
+		void Detect (Mat frame, NSMutableArray<NSMutableArray<Point2i>> detections);
+
+		// -(void)detectTextRectangles:(Mat * _Nonnull)frame detections:(NSMutableArray<RotatedRect *> * _Nonnull)detections confidences:(FloatVector * _Nonnull)confidences __attribute__((swift_name("detectTextRectangles(frame:detections:confidences:)")));
+		[Export ("detectTextRectangles:detections:confidences:")]
+		void DetectTextRectangles (Mat frame, NSMutableArray<RotatedRect> detections, FloatVector confidences);
+
+		// -(void)detectTextRectangles:(Mat * _Nonnull)frame detections:(NSMutableArray<RotatedRect *> * _Nonnull)detections __attribute__((swift_name("detectTextRectangles(frame:detections:)")));
+		[Export ("detectTextRectangles:detections:")]
+		void DetectTextRectangles (Mat frame, NSMutableArray<RotatedRect> detections);
+	}
+
+	// @interface TextDetectionModel_DB : TextDetectionModel
+	[BaseType (typeof (TextDetectionModel))]
+	interface TextDetectionModel_DB {
+		// -(instancetype _Nonnull)initWithNetwork:(Net * _Nonnull)network;
+		[Export ("initWithNetwork:")]
+		NativeHandle Constructor (Net network);
+
+		// -(instancetype _Nonnull)initWithModel:(NSString * _Nonnull)model config:(NSString * _Nonnull)config;
+		[Export ("initWithModel:config:")]
+		NativeHandle Constructor (string model, string config);
+
+		// -(instancetype _Nonnull)initWithModel:(NSString * _Nonnull)model;
+		[Export ("initWithModel:")]
+		NativeHandle Constructor (string model);
+
+		// -(TextDetectionModel_DB * _Nonnull)setBinaryThreshold:(float)binaryThreshold __attribute__((swift_name("setBinaryThreshold(binaryThreshold:)")));
+		[Export ("setBinaryThreshold:")]
+		TextDetectionModel_DB SetBinaryThreshold (float binaryThreshold);
+
+		// -(float)getBinaryThreshold __attribute__((swift_name("getBinaryThreshold()")));
+		[Export ("getBinaryThreshold")]
+		float BinaryThreshold { get; }
+
+		// -(TextDetectionModel_DB * _Nonnull)setPolygonThreshold:(float)polygonThreshold __attribute__((swift_name("setPolygonThreshold(polygonThreshold:)")));
+		[Export ("setPolygonThreshold:")]
+		TextDetectionModel_DB SetPolygonThreshold (float polygonThreshold);
+
+		// -(float)getPolygonThreshold __attribute__((swift_name("getPolygonThreshold()")));
+		[Export ("getPolygonThreshold")]
+		float PolygonThreshold { get; }
+
+		// -(TextDetectionModel_DB * _Nonnull)setUnclipRatio:(double)unclipRatio __attribute__((swift_name("setUnclipRatio(unclipRatio:)")));
+		[Export ("setUnclipRatio:")]
+		TextDetectionModel_DB SetUnclipRatio (double unclipRatio);
+
+		// -(double)getUnclipRatio __attribute__((swift_name("getUnclipRatio()")));
+		[Export ("getUnclipRatio")]
+		double UnclipRatio { get; }
+
+		// -(TextDetectionModel_DB * _Nonnull)setMaxCandidates:(int)maxCandidates __attribute__((swift_name("setMaxCandidates(maxCandidates:)")));
+		[Export ("setMaxCandidates:")]
+		TextDetectionModel_DB SetMaxCandidates (int maxCandidates);
+
+		// -(int)getMaxCandidates __attribute__((swift_name("getMaxCandidates()")));
+		[Export ("getMaxCandidates")]
+		int MaxCandidates { get; }
+	}
+
+	// @interface TextDetectionModel_EAST : TextDetectionModel
+	[BaseType (typeof (TextDetectionModel))]
+	interface TextDetectionModel_EAST {
+		// -(instancetype _Nonnull)initWithNetwork:(Net * _Nonnull)network;
+		[Export ("initWithNetwork:")]
+		NativeHandle Constructor (Net network);
+
+		// -(instancetype _Nonnull)initWithModel:(NSString * _Nonnull)model config:(NSString * _Nonnull)config;
+		[Export ("initWithModel:config:")]
+		NativeHandle Constructor (string model, string config);
+
+		// -(instancetype _Nonnull)initWithModel:(NSString * _Nonnull)model;
+		[Export ("initWithModel:")]
+		NativeHandle Constructor (string model);
+
+		// -(TextDetectionModel_EAST * _Nonnull)setConfidenceThreshold:(float)confThreshold __attribute__((swift_name("setConfidenceThreshold(confThreshold:)")));
+		[Export ("setConfidenceThreshold:")]
+		TextDetectionModel_EAST SetConfidenceThreshold (float confThreshold);
+
+		// -(float)getConfidenceThreshold __attribute__((swift_name("getConfidenceThreshold()")));
+		[Export ("getConfidenceThreshold")]
+		float ConfidenceThreshold { get; }
+
+		// -(TextDetectionModel_EAST * _Nonnull)setNMSThreshold:(float)nmsThreshold __attribute__((swift_name("setNMSThreshold(nmsThreshold:)")));
+		[Export ("setNMSThreshold:")]
+		TextDetectionModel_EAST SetNMSThreshold (float nmsThreshold);
+
+		// -(float)getNMSThreshold __attribute__((swift_name("getNMSThreshold()")));
+		[Export ("getNMSThreshold")]
+		float NMSThreshold { get; }
+	}
+
+	// @interface TextRecognitionModel : Model
+	[BaseType (typeof (Model))]
+	interface TextRecognitionModel {
+		// -(instancetype _Nonnull)initWithNetwork:(Net * _Nonnull)network;
+		[Export ("initWithNetwork:")]
+		NativeHandle Constructor (Net network);
+
+		// -(instancetype _Nonnull)initWithModel:(NSString * _Nonnull)model config:(NSString * _Nonnull)config;
+		[Export ("initWithModel:config:")]
+		NativeHandle Constructor (string model, string config);
+
+		// -(instancetype _Nonnull)initWithModel:(NSString * _Nonnull)model;
+		[Export ("initWithModel:")]
+		NativeHandle Constructor (string model);
+
+		// -(TextRecognitionModel * _Nonnull)setDecodeType:(NSString * _Nonnull)decodeType __attribute__((swift_name("setDecodeType(decodeType:)")));
+		[Export ("setDecodeType:")]
+		TextRecognitionModel SetDecodeType (string decodeType);
+
+		// -(NSString * _Nonnull)getDecodeType __attribute__((swift_name("getDecodeType()")));
+		[Export ("getDecodeType")]
+		string DecodeType { get; }
+
+		// -(TextRecognitionModel * _Nonnull)setDecodeOptsCTCPrefixBeamSearch:(int)beamSize vocPruneSize:(int)vocPruneSize __attribute__((swift_name("setDecodeOptsCTCPrefixBeamSearch(beamSize:vocPruneSize:)")));
+		[Export ("setDecodeOptsCTCPrefixBeamSearch:vocPruneSize:")]
+		TextRecognitionModel SetDecodeOptsCTCPrefixBeamSearch (int beamSize, int vocPruneSize);
+
+		// -(TextRecognitionModel * _Nonnull)setDecodeOptsCTCPrefixBeamSearch:(int)beamSize __attribute__((swift_name("setDecodeOptsCTCPrefixBeamSearch(beamSize:)")));
+		[Export ("setDecodeOptsCTCPrefixBeamSearch:")]
+		TextRecognitionModel SetDecodeOptsCTCPrefixBeamSearch (int beamSize);
+
+		// -(TextRecognitionModel * _Nonnull)setVocabulary:(NSArray<NSString *> * _Nonnull)vocabulary __attribute__((swift_name("setVocabulary(vocabulary:)")));
+		[Export ("setVocabulary:")]
+		TextRecognitionModel SetVocabulary (string [] vocabulary);
+
+		// -(NSArray<NSString *> * _Nonnull)getVocabulary __attribute__((swift_name("getVocabulary()")));
+		[Export ("getVocabulary")]
+		string [] Vocabulary { get; }
+
+		// -(NSString * _Nonnull)recognize:(Mat * _Nonnull)frame __attribute__((swift_name("recognize(frame:)")));
+		[Export ("recognize:")]
+		string Recognize (Mat frame);
+
+		// -(void)recognize:(Mat * _Nonnull)frame roiRects:(NSArray<Mat *> * _Nonnull)roiRects results:(NSMutableArray<NSString *> * _Nonnull)results __attribute__((swift_name("recognize(frame:roiRects:results:)")));
+		[Export ("recognize:roiRects:results:")]
+		void Recognize (Mat frame, Mat [] roiRects, NSMutableArray<NSString> results);
+	}
+
+	// @interface Tokenizer : NSObject
+	[BaseType (typeof (NSObject))]
+	interface Tokenizer {
+		// +(Tokenizer * _Nonnull)load:(NSString * _Nonnull)model_config __attribute__((swift_name("load(model_config:)")));
+		[Static]
+		[Export ("load:")]
+		Tokenizer Load (string model_config);
+
+		// -(IntVector * _Nonnull)encode:(NSString * _Nonnull)text __attribute__((swift_name("encode(text:)")));
+		[Export ("encode:")]
+		IntVector Encode (string text);
+
+		// -(IntVector * _Nonnull)encodeChunks:(NSArray<NSString *> * _Nonnull)textChunks __attribute__((swift_name("encode(textChunks:)")));
+		[Export ("encodeChunks:")]
+		IntVector EncodeChunks (string [] textChunks);
+
+		// -(NSString * _Nonnull)decode:(IntVector * _Nonnull)tokens __attribute__((swift_name("decode(tokens:)")));
+		[Export ("decode:")]
+		string Decode (IntVector tokens);
+	}
+
+	// @interface Features : NSObject
+	[BaseType (typeof (NSObject))]
+	interface Features {
+		// +(void)goodFeaturesToTrack:(Mat * _Nonnull)image corners:(Mat * _Nonnull)corners maxCorners:(int)maxCorners qualityLevel:(double)qualityLevel minDistance:(double)minDistance mask:(Mat * _Nonnull)mask blockSize:(int)blockSize useHarrisDetector:(BOOL)useHarrisDetector k:(double)k __attribute__((swift_name("goodFeaturesToTrack(image:corners:maxCorners:qualityLevel:minDistance:mask:blockSize:useHarrisDetector:k:)")));
+		[Static]
+		[Export ("goodFeaturesToTrack:corners:maxCorners:qualityLevel:minDistance:mask:blockSize:useHarrisDetector:k:")]
+		void GoodFeaturesToTrack (Mat image, Mat corners, int maxCorners, double qualityLevel, double minDistance, Mat mask, int blockSize, bool useHarrisDetector, double k);
+
+		// +(void)goodFeaturesToTrack:(Mat * _Nonnull)image corners:(Mat * _Nonnull)corners maxCorners:(int)maxCorners qualityLevel:(double)qualityLevel minDistance:(double)minDistance mask:(Mat * _Nonnull)mask blockSize:(int)blockSize useHarrisDetector:(BOOL)useHarrisDetector __attribute__((swift_name("goodFeaturesToTrack(image:corners:maxCorners:qualityLevel:minDistance:mask:blockSize:useHarrisDetector:)")));
+		[Static]
+		[Export ("goodFeaturesToTrack:corners:maxCorners:qualityLevel:minDistance:mask:blockSize:useHarrisDetector:")]
+		void GoodFeaturesToTrack (Mat image, Mat corners, int maxCorners, double qualityLevel, double minDistance, Mat mask, int blockSize, bool useHarrisDetector);
+
+		// +(void)goodFeaturesToTrack:(Mat * _Nonnull)image corners:(Mat * _Nonnull)corners maxCorners:(int)maxCorners qualityLevel:(double)qualityLevel minDistance:(double)minDistance mask:(Mat * _Nonnull)mask blockSize:(int)blockSize __attribute__((swift_name("goodFeaturesToTrack(image:corners:maxCorners:qualityLevel:minDistance:mask:blockSize:)")));
+		[Static]
+		[Export ("goodFeaturesToTrack:corners:maxCorners:qualityLevel:minDistance:mask:blockSize:")]
+		void GoodFeaturesToTrack (Mat image, Mat corners, int maxCorners, double qualityLevel, double minDistance, Mat mask, int blockSize);
+
+		// +(void)goodFeaturesToTrack:(Mat * _Nonnull)image corners:(Mat * _Nonnull)corners maxCorners:(int)maxCorners qualityLevel:(double)qualityLevel minDistance:(double)minDistance mask:(Mat * _Nonnull)mask __attribute__((swift_name("goodFeaturesToTrack(image:corners:maxCorners:qualityLevel:minDistance:mask:)")));
+		[Static]
+		[Export ("goodFeaturesToTrack:corners:maxCorners:qualityLevel:minDistance:mask:")]
+		void GoodFeaturesToTrack (Mat image, Mat corners, int maxCorners, double qualityLevel, double minDistance, Mat mask);
+
+		// +(void)goodFeaturesToTrack:(Mat * _Nonnull)image corners:(Mat * _Nonnull)corners maxCorners:(int)maxCorners qualityLevel:(double)qualityLevel minDistance:(double)minDistance __attribute__((swift_name("goodFeaturesToTrack(image:corners:maxCorners:qualityLevel:minDistance:)")));
+		[Static]
+		[Export ("goodFeaturesToTrack:corners:maxCorners:qualityLevel:minDistance:")]
+		void GoodFeaturesToTrack (Mat image, Mat corners, int maxCorners, double qualityLevel, double minDistance);
+
+		// +(void)goodFeaturesToTrack:(Mat * _Nonnull)image corners:(Mat * _Nonnull)corners maxCorners:(int)maxCorners qualityLevel:(double)qualityLevel minDistance:(double)minDistance mask:(Mat * _Nonnull)mask blockSize:(int)blockSize gradientSize:(int)gradientSize useHarrisDetector:(BOOL)useHarrisDetector k:(double)k __attribute__((swift_name("goodFeaturesToTrack(image:corners:maxCorners:qualityLevel:minDistance:mask:blockSize:gradientSize:useHarrisDetector:k:)")));
+		[Static]
+		[Export ("goodFeaturesToTrack:corners:maxCorners:qualityLevel:minDistance:mask:blockSize:gradientSize:useHarrisDetector:k:")]
+		void GoodFeaturesToTrack (Mat image, Mat corners, int maxCorners, double qualityLevel, double minDistance, Mat mask, int blockSize, int gradientSize, bool useHarrisDetector, double k);
+
+		// +(void)goodFeaturesToTrack:(Mat * _Nonnull)image corners:(Mat * _Nonnull)corners maxCorners:(int)maxCorners qualityLevel:(double)qualityLevel minDistance:(double)minDistance mask:(Mat * _Nonnull)mask blockSize:(int)blockSize gradientSize:(int)gradientSize useHarrisDetector:(BOOL)useHarrisDetector __attribute__((swift_name("goodFeaturesToTrack(image:corners:maxCorners:qualityLevel:minDistance:mask:blockSize:gradientSize:useHarrisDetector:)")));
+		[Static]
+		[Export ("goodFeaturesToTrack:corners:maxCorners:qualityLevel:minDistance:mask:blockSize:gradientSize:useHarrisDetector:")]
+		void GoodFeaturesToTrack (Mat image, Mat corners, int maxCorners, double qualityLevel, double minDistance, Mat mask, int blockSize, int gradientSize, bool useHarrisDetector);
+
+		// +(void)goodFeaturesToTrack:(Mat * _Nonnull)image corners:(Mat * _Nonnull)corners maxCorners:(int)maxCorners qualityLevel:(double)qualityLevel minDistance:(double)minDistance mask:(Mat * _Nonnull)mask blockSize:(int)blockSize gradientSize:(int)gradientSize __attribute__((swift_name("goodFeaturesToTrack(image:corners:maxCorners:qualityLevel:minDistance:mask:blockSize:gradientSize:)")));
+		[Static]
+		[Export ("goodFeaturesToTrack:corners:maxCorners:qualityLevel:minDistance:mask:blockSize:gradientSize:")]
+		void GoodFeaturesToTrack (Mat image, Mat corners, int maxCorners, double qualityLevel, double minDistance, Mat mask, int blockSize, int gradientSize);
+
+		// +(void)goodFeaturesToTrackWithQuality:(Mat * _Nonnull)image corners:(Mat * _Nonnull)corners maxCorners:(int)maxCorners qualityLevel:(double)qualityLevel minDistance:(double)minDistance mask:(Mat * _Nonnull)mask cornersQuality:(Mat * _Nonnull)cornersQuality blockSize:(int)blockSize gradientSize:(int)gradientSize useHarrisDetector:(BOOL)useHarrisDetector k:(double)k __attribute__((swift_name("goodFeaturesToTrack(image:corners:maxCorners:qualityLevel:minDistance:mask:cornersQuality:blockSize:gradientSize:useHarrisDetector:k:)")));
+		[Static]
+		[Export ("goodFeaturesToTrackWithQuality:corners:maxCorners:qualityLevel:minDistance:mask:cornersQuality:blockSize:gradientSize:useHarrisDetector:k:")]
+		void GoodFeaturesToTrackWithQuality (Mat image, Mat corners, int maxCorners, double qualityLevel, double minDistance, Mat mask, Mat cornersQuality, int blockSize, int gradientSize, bool useHarrisDetector, double k);
+
+		// +(void)goodFeaturesToTrackWithQuality:(Mat * _Nonnull)image corners:(Mat * _Nonnull)corners maxCorners:(int)maxCorners qualityLevel:(double)qualityLevel minDistance:(double)minDistance mask:(Mat * _Nonnull)mask cornersQuality:(Mat * _Nonnull)cornersQuality blockSize:(int)blockSize gradientSize:(int)gradientSize useHarrisDetector:(BOOL)useHarrisDetector __attribute__((swift_name("goodFeaturesToTrack(image:corners:maxCorners:qualityLevel:minDistance:mask:cornersQuality:blockSize:gradientSize:useHarrisDetector:)")));
+		[Static]
+		[Export ("goodFeaturesToTrackWithQuality:corners:maxCorners:qualityLevel:minDistance:mask:cornersQuality:blockSize:gradientSize:useHarrisDetector:")]
+		void GoodFeaturesToTrackWithQuality (Mat image, Mat corners, int maxCorners, double qualityLevel, double minDistance, Mat mask, Mat cornersQuality, int blockSize, int gradientSize, bool useHarrisDetector);
+
+		// +(void)goodFeaturesToTrackWithQuality:(Mat * _Nonnull)image corners:(Mat * _Nonnull)corners maxCorners:(int)maxCorners qualityLevel:(double)qualityLevel minDistance:(double)minDistance mask:(Mat * _Nonnull)mask cornersQuality:(Mat * _Nonnull)cornersQuality blockSize:(int)blockSize gradientSize:(int)gradientSize __attribute__((swift_name("goodFeaturesToTrack(image:corners:maxCorners:qualityLevel:minDistance:mask:cornersQuality:blockSize:gradientSize:)")));
+		[Static]
+		[Export ("goodFeaturesToTrackWithQuality:corners:maxCorners:qualityLevel:minDistance:mask:cornersQuality:blockSize:gradientSize:")]
+		void GoodFeaturesToTrackWithQuality (Mat image, Mat corners, int maxCorners, double qualityLevel, double minDistance, Mat mask, Mat cornersQuality, int blockSize, int gradientSize);
+
+		// +(void)goodFeaturesToTrackWithQuality:(Mat * _Nonnull)image corners:(Mat * _Nonnull)corners maxCorners:(int)maxCorners qualityLevel:(double)qualityLevel minDistance:(double)minDistance mask:(Mat * _Nonnull)mask cornersQuality:(Mat * _Nonnull)cornersQuality blockSize:(int)blockSize __attribute__((swift_name("goodFeaturesToTrack(image:corners:maxCorners:qualityLevel:minDistance:mask:cornersQuality:blockSize:)")));
+		[Static]
+		[Export ("goodFeaturesToTrackWithQuality:corners:maxCorners:qualityLevel:minDistance:mask:cornersQuality:blockSize:")]
+		void GoodFeaturesToTrackWithQuality (Mat image, Mat corners, int maxCorners, double qualityLevel, double minDistance, Mat mask, Mat cornersQuality, int blockSize);
+
+		// +(void)goodFeaturesToTrackWithQuality:(Mat * _Nonnull)image corners:(Mat * _Nonnull)corners maxCorners:(int)maxCorners qualityLevel:(double)qualityLevel minDistance:(double)minDistance mask:(Mat * _Nonnull)mask cornersQuality:(Mat * _Nonnull)cornersQuality __attribute__((swift_name("goodFeaturesToTrack(image:corners:maxCorners:qualityLevel:minDistance:mask:cornersQuality:)")));
+		[Static]
+		[Export ("goodFeaturesToTrackWithQuality:corners:maxCorners:qualityLevel:minDistance:mask:cornersQuality:")]
+		void GoodFeaturesToTrackWithQuality (Mat image, Mat corners, int maxCorners, double qualityLevel, double minDistance, Mat mask, Mat cornersQuality);
+
+		// +(void)drawKeypoints:(Mat * _Nonnull)image keypoints:(NSArray<KeyPoint *> * _Nonnull)keypoints outImage:(Mat * _Nonnull)outImage color:(Scalar * _Nonnull)color flags:(DrawMatchesFlags)flags __attribute__((swift_name("drawKeypoints(image:keypoints:outImage:color:flags:)")));
+		[Static]
+		[Export ("drawKeypoints:keypoints:outImage:color:flags:")]
+		void DrawKeypoints (Mat image, KeyPoint [] keypoints, Mat outImage, Scalar color, DrawMatchesFlags flags);
+
+		// +(void)drawKeypoints:(Mat * _Nonnull)image keypoints:(NSArray<KeyPoint *> * _Nonnull)keypoints outImage:(Mat * _Nonnull)outImage color:(Scalar * _Nonnull)color __attribute__((swift_name("drawKeypoints(image:keypoints:outImage:color:)")));
+		[Static]
+		[Export ("drawKeypoints:keypoints:outImage:color:")]
+		void DrawKeypoints (Mat image, KeyPoint [] keypoints, Mat outImage, Scalar color);
+
+		// +(void)drawKeypoints:(Mat * _Nonnull)image keypoints:(NSArray<KeyPoint *> * _Nonnull)keypoints outImage:(Mat * _Nonnull)outImage __attribute__((swift_name("drawKeypoints(image:keypoints:outImage:)")));
+		[Static]
+		[Export ("drawKeypoints:keypoints:outImage:")]
+		void DrawKeypoints (Mat image, KeyPoint [] keypoints, Mat outImage);
+
+		// +(void)drawMatches:(Mat * _Nonnull)img1 keypoints1:(NSArray<KeyPoint *> * _Nonnull)keypoints1 img2:(Mat * _Nonnull)img2 keypoints2:(NSArray<KeyPoint *> * _Nonnull)keypoints2 matches1to2:(NSArray<DMatch *> * _Nonnull)matches1to2 outImg:(Mat * _Nonnull)outImg matchColor:(Scalar * _Nonnull)matchColor singlePointColor:(Scalar * _Nonnull)singlePointColor matchesMask:(ByteVector * _Nonnull)matchesMask flags:(DrawMatchesFlags)flags __attribute__((swift_name("drawMatches(img1:keypoints1:img2:keypoints2:matches1to2:outImg:matchColor:singlePointColor:matchesMask:flags:)")));
+		[Static]
+		[Export ("drawMatches:keypoints1:img2:keypoints2:matches1to2:outImg:matchColor:singlePointColor:matchesMask:flags:")]
+		void DrawMatches (Mat img1, KeyPoint [] keypoints1, Mat img2, KeyPoint [] keypoints2, DMatch [] matches1to2, Mat outImg, Scalar matchColor, Scalar singlePointColor, ByteVector matchesMask, DrawMatchesFlags flags);
+
+		// +(void)drawMatches:(Mat * _Nonnull)img1 keypoints1:(NSArray<KeyPoint *> * _Nonnull)keypoints1 img2:(Mat * _Nonnull)img2 keypoints2:(NSArray<KeyPoint *> * _Nonnull)keypoints2 matches1to2:(NSArray<DMatch *> * _Nonnull)matches1to2 outImg:(Mat * _Nonnull)outImg matchColor:(Scalar * _Nonnull)matchColor singlePointColor:(Scalar * _Nonnull)singlePointColor matchesMask:(ByteVector * _Nonnull)matchesMask __attribute__((swift_name("drawMatches(img1:keypoints1:img2:keypoints2:matches1to2:outImg:matchColor:singlePointColor:matchesMask:)")));
+		[Static]
+		[Export ("drawMatches:keypoints1:img2:keypoints2:matches1to2:outImg:matchColor:singlePointColor:matchesMask:")]
+		void DrawMatches (Mat img1, KeyPoint [] keypoints1, Mat img2, KeyPoint [] keypoints2, DMatch [] matches1to2, Mat outImg, Scalar matchColor, Scalar singlePointColor, ByteVector matchesMask);
+
+		// +(void)drawMatches:(Mat * _Nonnull)img1 keypoints1:(NSArray<KeyPoint *> * _Nonnull)keypoints1 img2:(Mat * _Nonnull)img2 keypoints2:(NSArray<KeyPoint *> * _Nonnull)keypoints2 matches1to2:(NSArray<DMatch *> * _Nonnull)matches1to2 outImg:(Mat * _Nonnull)outImg matchColor:(Scalar * _Nonnull)matchColor singlePointColor:(Scalar * _Nonnull)singlePointColor __attribute__((swift_name("drawMatches(img1:keypoints1:img2:keypoints2:matches1to2:outImg:matchColor:singlePointColor:)")));
+		[Static]
+		[Export ("drawMatches:keypoints1:img2:keypoints2:matches1to2:outImg:matchColor:singlePointColor:")]
+		void DrawMatches (Mat img1, KeyPoint [] keypoints1, Mat img2, KeyPoint [] keypoints2, DMatch [] matches1to2, Mat outImg, Scalar matchColor, Scalar singlePointColor);
+
+		// +(void)drawMatches:(Mat * _Nonnull)img1 keypoints1:(NSArray<KeyPoint *> * _Nonnull)keypoints1 img2:(Mat * _Nonnull)img2 keypoints2:(NSArray<KeyPoint *> * _Nonnull)keypoints2 matches1to2:(NSArray<DMatch *> * _Nonnull)matches1to2 outImg:(Mat * _Nonnull)outImg matchColor:(Scalar * _Nonnull)matchColor __attribute__((swift_name("drawMatches(img1:keypoints1:img2:keypoints2:matches1to2:outImg:matchColor:)")));
+		[Static]
+		[Export ("drawMatches:keypoints1:img2:keypoints2:matches1to2:outImg:matchColor:")]
+		void DrawMatches (Mat img1, KeyPoint [] keypoints1, Mat img2, KeyPoint [] keypoints2, DMatch [] matches1to2, Mat outImg, Scalar matchColor);
+
+		// +(void)drawMatches:(Mat * _Nonnull)img1 keypoints1:(NSArray<KeyPoint *> * _Nonnull)keypoints1 img2:(Mat * _Nonnull)img2 keypoints2:(NSArray<KeyPoint *> * _Nonnull)keypoints2 matches1to2:(NSArray<DMatch *> * _Nonnull)matches1to2 outImg:(Mat * _Nonnull)outImg __attribute__((swift_name("drawMatches(img1:keypoints1:img2:keypoints2:matches1to2:outImg:)")));
+		[Static]
+		[Export ("drawMatches:keypoints1:img2:keypoints2:matches1to2:outImg:")]
+		void DrawMatches (Mat img1, KeyPoint [] keypoints1, Mat img2, KeyPoint [] keypoints2, DMatch [] matches1to2, Mat outImg);
+
+		// +(void)drawMatches:(Mat * _Nonnull)img1 keypoints1:(NSArray<KeyPoint *> * _Nonnull)keypoints1 img2:(Mat * _Nonnull)img2 keypoints2:(NSArray<KeyPoint *> * _Nonnull)keypoints2 matches1to2:(NSArray<DMatch *> * _Nonnull)matches1to2 outImg:(Mat * _Nonnull)outImg matchesThickness:(int)matchesThickness matchColor:(Scalar * _Nonnull)matchColor singlePointColor:(Scalar * _Nonnull)singlePointColor matchesMask:(ByteVector * _Nonnull)matchesMask flags:(DrawMatchesFlags)flags __attribute__((swift_name("drawMatches(img1:keypoints1:img2:keypoints2:matches1to2:outImg:matchesThickness:matchColor:singlePointColor:matchesMask:flags:)")));
+		[Static]
+		[Export ("drawMatches:keypoints1:img2:keypoints2:matches1to2:outImg:matchesThickness:matchColor:singlePointColor:matchesMask:flags:")]
+		void DrawMatches (Mat img1, KeyPoint [] keypoints1, Mat img2, KeyPoint [] keypoints2, DMatch [] matches1to2, Mat outImg, int matchesThickness, Scalar matchColor, Scalar singlePointColor, ByteVector matchesMask, DrawMatchesFlags flags);
+
+		// +(void)drawMatches:(Mat * _Nonnull)img1 keypoints1:(NSArray<KeyPoint *> * _Nonnull)keypoints1 img2:(Mat * _Nonnull)img2 keypoints2:(NSArray<KeyPoint *> * _Nonnull)keypoints2 matches1to2:(NSArray<DMatch *> * _Nonnull)matches1to2 outImg:(Mat * _Nonnull)outImg matchesThickness:(int)matchesThickness matchColor:(Scalar * _Nonnull)matchColor singlePointColor:(Scalar * _Nonnull)singlePointColor matchesMask:(ByteVector * _Nonnull)matchesMask __attribute__((swift_name("drawMatches(img1:keypoints1:img2:keypoints2:matches1to2:outImg:matchesThickness:matchColor:singlePointColor:matchesMask:)")));
+		[Static]
+		[Export ("drawMatches:keypoints1:img2:keypoints2:matches1to2:outImg:matchesThickness:matchColor:singlePointColor:matchesMask:")]
+		void DrawMatches (Mat img1, KeyPoint [] keypoints1, Mat img2, KeyPoint [] keypoints2, DMatch [] matches1to2, Mat outImg, int matchesThickness, Scalar matchColor, Scalar singlePointColor, ByteVector matchesMask);
+
+		// +(void)drawMatches:(Mat * _Nonnull)img1 keypoints1:(NSArray<KeyPoint *> * _Nonnull)keypoints1 img2:(Mat * _Nonnull)img2 keypoints2:(NSArray<KeyPoint *> * _Nonnull)keypoints2 matches1to2:(NSArray<DMatch *> * _Nonnull)matches1to2 outImg:(Mat * _Nonnull)outImg matchesThickness:(int)matchesThickness matchColor:(Scalar * _Nonnull)matchColor singlePointColor:(Scalar * _Nonnull)singlePointColor __attribute__((swift_name("drawMatches(img1:keypoints1:img2:keypoints2:matches1to2:outImg:matchesThickness:matchColor:singlePointColor:)")));
+		[Static]
+		[Export ("drawMatches:keypoints1:img2:keypoints2:matches1to2:outImg:matchesThickness:matchColor:singlePointColor:")]
+		void DrawMatches (Mat img1, KeyPoint [] keypoints1, Mat img2, KeyPoint [] keypoints2, DMatch [] matches1to2, Mat outImg, int matchesThickness, Scalar matchColor, Scalar singlePointColor);
+
+		// +(void)drawMatches:(Mat * _Nonnull)img1 keypoints1:(NSArray<KeyPoint *> * _Nonnull)keypoints1 img2:(Mat * _Nonnull)img2 keypoints2:(NSArray<KeyPoint *> * _Nonnull)keypoints2 matches1to2:(NSArray<DMatch *> * _Nonnull)matches1to2 outImg:(Mat * _Nonnull)outImg matchesThickness:(int)matchesThickness matchColor:(Scalar * _Nonnull)matchColor __attribute__((swift_name("drawMatches(img1:keypoints1:img2:keypoints2:matches1to2:outImg:matchesThickness:matchColor:)")));
+		[Static]
+		[Export ("drawMatches:keypoints1:img2:keypoints2:matches1to2:outImg:matchesThickness:matchColor:")]
+		void DrawMatches (Mat img1, KeyPoint [] keypoints1, Mat img2, KeyPoint [] keypoints2, DMatch [] matches1to2, Mat outImg, int matchesThickness, Scalar matchColor);
+
+		// +(void)drawMatches:(Mat * _Nonnull)img1 keypoints1:(NSArray<KeyPoint *> * _Nonnull)keypoints1 img2:(Mat * _Nonnull)img2 keypoints2:(NSArray<KeyPoint *> * _Nonnull)keypoints2 matches1to2:(NSArray<DMatch *> * _Nonnull)matches1to2 outImg:(Mat * _Nonnull)outImg matchesThickness:(int)matchesThickness __attribute__((swift_name("drawMatches(img1:keypoints1:img2:keypoints2:matches1to2:outImg:matchesThickness:)")));
+		[Static]
+		[Export ("drawMatches:keypoints1:img2:keypoints2:matches1to2:outImg:matchesThickness:")]
+		void DrawMatches (Mat img1, KeyPoint [] keypoints1, Mat img2, KeyPoint [] keypoints2, DMatch [] matches1to2, Mat outImg, int matchesThickness);
+
+		// +(void)drawMatchesKnn:(Mat * _Nonnull)img1 keypoints1:(NSArray<KeyPoint *> * _Nonnull)keypoints1 img2:(Mat * _Nonnull)img2 keypoints2:(NSArray<KeyPoint *> * _Nonnull)keypoints2 matches1to2:(NSArray<NSArray<DMatch *> *> * _Nonnull)matches1to2 outImg:(Mat * _Nonnull)outImg matchColor:(Scalar * _Nonnull)matchColor singlePointColor:(Scalar * _Nonnull)singlePointColor matchesMask:(NSArray<ByteVector *> * _Nonnull)matchesMask flags:(DrawMatchesFlags)flags __attribute__((swift_name("drawMatches(img1:keypoints1:img2:keypoints2:matches1to2:outImg:matchColor:singlePointColor:matchesMask:flags:)")));
+		[Static]
+		[Export ("drawMatchesKnn:keypoints1:img2:keypoints2:matches1to2:outImg:matchColor:singlePointColor:matchesMask:flags:")]
+		void DrawMatchesKnn (Mat img1, KeyPoint [] keypoints1, Mat img2, KeyPoint [] keypoints2, NSArray<DMatch> [] matches1to2, Mat outImg, Scalar matchColor, Scalar singlePointColor, ByteVector [] matchesMask, DrawMatchesFlags flags);
+
+		// +(void)drawMatchesKnn:(Mat * _Nonnull)img1 keypoints1:(NSArray<KeyPoint *> * _Nonnull)keypoints1 img2:(Mat * _Nonnull)img2 keypoints2:(NSArray<KeyPoint *> * _Nonnull)keypoints2 matches1to2:(NSArray<NSArray<DMatch *> *> * _Nonnull)matches1to2 outImg:(Mat * _Nonnull)outImg matchColor:(Scalar * _Nonnull)matchColor singlePointColor:(Scalar * _Nonnull)singlePointColor matchesMask:(NSArray<ByteVector *> * _Nonnull)matchesMask __attribute__((swift_name("drawMatches(img1:keypoints1:img2:keypoints2:matches1to2:outImg:matchColor:singlePointColor:matchesMask:)")));
+		[Static]
+		[Export ("drawMatchesKnn:keypoints1:img2:keypoints2:matches1to2:outImg:matchColor:singlePointColor:matchesMask:")]
+		void DrawMatchesKnn (Mat img1, KeyPoint [] keypoints1, Mat img2, KeyPoint [] keypoints2, NSArray<DMatch> [] matches1to2, Mat outImg, Scalar matchColor, Scalar singlePointColor, ByteVector [] matchesMask);
+
+		// +(void)drawMatchesKnn:(Mat * _Nonnull)img1 keypoints1:(NSArray<KeyPoint *> * _Nonnull)keypoints1 img2:(Mat * _Nonnull)img2 keypoints2:(NSArray<KeyPoint *> * _Nonnull)keypoints2 matches1to2:(NSArray<NSArray<DMatch *> *> * _Nonnull)matches1to2 outImg:(Mat * _Nonnull)outImg matchColor:(Scalar * _Nonnull)matchColor singlePointColor:(Scalar * _Nonnull)singlePointColor __attribute__((swift_name("drawMatches(img1:keypoints1:img2:keypoints2:matches1to2:outImg:matchColor:singlePointColor:)")));
+		[Static]
+		[Export ("drawMatchesKnn:keypoints1:img2:keypoints2:matches1to2:outImg:matchColor:singlePointColor:")]
+		void DrawMatchesKnn (Mat img1, KeyPoint [] keypoints1, Mat img2, KeyPoint [] keypoints2, NSArray<DMatch> [] matches1to2, Mat outImg, Scalar matchColor, Scalar singlePointColor);
+
+		// +(void)drawMatchesKnn:(Mat * _Nonnull)img1 keypoints1:(NSArray<KeyPoint *> * _Nonnull)keypoints1 img2:(Mat * _Nonnull)img2 keypoints2:(NSArray<KeyPoint *> * _Nonnull)keypoints2 matches1to2:(NSArray<NSArray<DMatch *> *> * _Nonnull)matches1to2 outImg:(Mat * _Nonnull)outImg matchColor:(Scalar * _Nonnull)matchColor __attribute__((swift_name("drawMatches(img1:keypoints1:img2:keypoints2:matches1to2:outImg:matchColor:)")));
+		[Static]
+		[Export ("drawMatchesKnn:keypoints1:img2:keypoints2:matches1to2:outImg:matchColor:")]
+		void DrawMatchesKnn (Mat img1, KeyPoint [] keypoints1, Mat img2, KeyPoint [] keypoints2, NSArray<DMatch> [] matches1to2, Mat outImg, Scalar matchColor);
+
+		// +(void)drawMatchesKnn:(Mat * _Nonnull)img1 keypoints1:(NSArray<KeyPoint *> * _Nonnull)keypoints1 img2:(Mat * _Nonnull)img2 keypoints2:(NSArray<KeyPoint *> * _Nonnull)keypoints2 matches1to2:(NSArray<NSArray<DMatch *> *> * _Nonnull)matches1to2 outImg:(Mat * _Nonnull)outImg __attribute__((swift_name("drawMatches(img1:keypoints1:img2:keypoints2:matches1to2:outImg:)")));
+		[Static]
+		[Export ("drawMatchesKnn:keypoints1:img2:keypoints2:matches1to2:outImg:")]
+		void DrawMatchesKnn (Mat img1, KeyPoint [] keypoints1, Mat img2, KeyPoint [] keypoints2, NSArray<DMatch> [] matches1to2, Mat outImg);
+	}
+
+	// @interface Feature2D : Algorithm
+	[BaseType (typeof (Algorithm))]
+	interface Feature2D {
+		// -(void)detect:(Mat * _Nonnull)image keypoints:(NSMutableArray<KeyPoint *> * _Nonnull)keypoints mask:(Mat * _Nonnull)mask __attribute__((swift_name("detect(image:keypoints:mask:)")));
+		[Export ("detect:keypoints:mask:")]
+		void Detect (Mat image, NSMutableArray<KeyPoint> keypoints, Mat mask);
+
+		// -(void)detect:(Mat * _Nonnull)image keypoints:(NSMutableArray<KeyPoint *> * _Nonnull)keypoints __attribute__((swift_name("detect(image:keypoints:)")));
+		[Export ("detect:keypoints:")]
+		void Detect (Mat image, NSMutableArray<KeyPoint> keypoints);
+
+		// -(void)detect2:(NSArray<Mat *> * _Nonnull)images keypoints:(NSMutableArray<NSMutableArray<KeyPoint *> *> * _Nonnull)keypoints masks:(NSArray<Mat *> * _Nonnull)masks __attribute__((swift_name("detect(images:keypoints:masks:)")));
+		[Export ("detect2:keypoints:masks:")]
+		void Detect2 (Mat [] images, NSMutableArray<NSMutableArray<KeyPoint>> keypoints, Mat [] masks);
+
+		// -(void)detect2:(NSArray<Mat *> * _Nonnull)images keypoints:(NSMutableArray<NSMutableArray<KeyPoint *> *> * _Nonnull)keypoints __attribute__((swift_name("detect(images:keypoints:)")));
+		[Export ("detect2:keypoints:")]
+		void Detect2 (Mat [] images, NSMutableArray<NSMutableArray<KeyPoint>> keypoints);
+
+		// -(void)compute:(Mat * _Nonnull)image keypoints:(NSMutableArray<KeyPoint *> * _Nonnull)keypoints descriptors:(Mat * _Nonnull)descriptors __attribute__((swift_name("compute(image:keypoints:descriptors:)")));
+		[Export ("compute:keypoints:descriptors:")]
+		void Compute (Mat image, NSMutableArray<KeyPoint> keypoints, Mat descriptors);
+
+		// -(void)compute2:(NSArray<Mat *> * _Nonnull)images keypoints:(NSMutableArray<NSMutableArray<KeyPoint *> *> * _Nonnull)keypoints descriptors:(NSMutableArray<Mat *> * _Nonnull)descriptors __attribute__((swift_name("compute(images:keypoints:descriptors:)")));
+		[Export ("compute2:keypoints:descriptors:")]
+		void Compute2 (Mat [] images, NSMutableArray<NSMutableArray<KeyPoint>> keypoints, NSMutableArray<Mat> descriptors);
+
+		// -(void)detectAndCompute:(Mat * _Nonnull)image mask:(Mat * _Nonnull)mask keypoints:(NSMutableArray<KeyPoint *> * _Nonnull)keypoints descriptors:(Mat * _Nonnull)descriptors useProvidedKeypoints:(BOOL)useProvidedKeypoints __attribute__((swift_name("detectAndCompute(image:mask:keypoints:descriptors:useProvidedKeypoints:)")));
+		[Export ("detectAndCompute:mask:keypoints:descriptors:useProvidedKeypoints:")]
+		void DetectAndCompute (Mat image, Mat mask, NSMutableArray<KeyPoint> keypoints, Mat descriptors, bool useProvidedKeypoints);
+
+		// -(void)detectAndCompute:(Mat * _Nonnull)image mask:(Mat * _Nonnull)mask keypoints:(NSMutableArray<KeyPoint *> * _Nonnull)keypoints descriptors:(Mat * _Nonnull)descriptors __attribute__((swift_name("detectAndCompute(image:mask:keypoints:descriptors:)")));
+		[Export ("detectAndCompute:mask:keypoints:descriptors:")]
+		void DetectAndCompute (Mat image, Mat mask, NSMutableArray<KeyPoint> keypoints, Mat descriptors);
+
+		// -(int)descriptorSize __attribute__((swift_name("descriptorSize()")));
+		[Export ("descriptorSize")]
+		int DescriptorSize { get; }
+
+		// -(int)descriptorType __attribute__((swift_name("descriptorType()")));
+		[Export ("descriptorType")]
+		int DescriptorType { get; }
+
+		// -(int)defaultNorm __attribute__((swift_name("defaultNorm()")));
+		[Export ("defaultNorm")]
+		int DefaultNorm { get; }
+
+		// -(void)write:(NSString * _Nonnull)fileName __attribute__((swift_name("write(fileName:)")));
+		[Export ("write:")]
+		void Write (string fileName);
+
+		// -(void)read:(NSString * _Nonnull)fileName __attribute__((swift_name("read(fileName:)")));
+		[Export ("read:")]
+		void Read (string fileName);
+
+		// -(BOOL)empty __attribute__((swift_name("empty()")));
+		[Export ("empty")]
+		bool Empty { get; }
+
+		// -(NSString * _Nonnull)getDefaultName __attribute__((swift_name("getDefaultName()")));
+		[Export ("getDefaultName")]
+		string DefaultName { get; }
+	}
+
+	// @interface ALIKED : Feature2D
+	[BaseType (typeof (Feature2D))]
+	interface ALIKED {
+		// +(ALIKED * _Nonnull)create:(NSString * _Nonnull)modelPath params:(ALIKEDParams * _Nonnull)params __attribute__((swift_name("create(modelPath:params:)")));
+		[Static]
+		[Export ("create:params:")]
+		ALIKED Create (string modelPath, ALIKEDParams @params);
+
+		// +(ALIKED * _Nonnull)create:(NSString * _Nonnull)modelPath __attribute__((swift_name("create(modelPath:)")));
+		[Static]
+		[Export ("create:")]
+		ALIKED Create (string modelPath);
+	}
+
+	// @interface ALIKEDParams : NSObject
+	[BaseType (typeof (NSObject))]
+	interface ALIKEDParams {
+		// @property Size2i * _Nonnull inputSize;
+		[Export ("inputSize", ArgumentSemantic.Assign)]
+		Size2i InputSize { get; set; }
+
+		// @property BOOL normalizeDescriptors;
+		[Export ("normalizeDescriptors")]
+		bool NormalizeDescriptors { get; set; }
+
+		// @property int engine;
+		[Export ("engine")]
+		int Engine { get; set; }
+
+		// @property int backend;
+		[Export ("backend")]
+		int Backend { get; set; }
+
+		// @property int target;
+		[Export ("target")]
+		int Target { get; set; }
+	}
+
+	// @interface ANNIndex : NSObject
+	[BaseType (typeof (NSObject))]
+	interface ANNIndex {
+		// -(void)addItems:(Mat * _Nonnull)features __attribute__((swift_name("addItems(features:)")));
+		[Export ("addItems:")]
+		void AddItems (Mat features);
+
+		// -(void)build:(int)trees __attribute__((swift_name("build(trees:)")));
+		[Export ("build:")]
+		void Build (int trees);
+
+		// -(void)build __attribute__((swift_name("build()")));
+		[Export ("build")]
+		void Build ();
+
+		// -(void)knnSearch:(Mat * _Nonnull)query indices:(Mat * _Nonnull)indices dists:(Mat * _Nonnull)dists knn:(int)knn search_k:(int)search_k __attribute__((swift_name("knnSearch(query:indices:dists:knn:search_k:)")));
+		[Export ("knnSearch:indices:dists:knn:search_k:")]
+		void KnnSearch (Mat query, Mat indices, Mat dists, int knn, int search_k);
+
+		// -(void)knnSearch:(Mat * _Nonnull)query indices:(Mat * _Nonnull)indices dists:(Mat * _Nonnull)dists knn:(int)knn __attribute__((swift_name("knnSearch(query:indices:dists:knn:)")));
+		[Export ("knnSearch:indices:dists:knn:")]
+		void KnnSearch (Mat query, Mat indices, Mat dists, int knn);
+
+		// -(void)save:(NSString * _Nonnull)filename prefault:(BOOL)prefault __attribute__((swift_name("save(filename:prefault:)")));
+		[Export ("save:prefault:")]
+		void Save (string filename, bool prefault);
+
+		// -(void)save:(NSString * _Nonnull)filename __attribute__((swift_name("save(filename:)")));
+		[Export ("save:")]
+		void Save (string filename);
+
+		// -(void)load:(NSString * _Nonnull)filename prefault:(BOOL)prefault __attribute__((swift_name("load(filename:prefault:)")));
+		[Export ("load:prefault:")]
+		void Load (string filename, bool prefault);
+
+		// -(void)load:(NSString * _Nonnull)filename __attribute__((swift_name("load(filename:)")));
+		[Export ("load:")]
+		void Load (string filename);
+
+		// -(int)getTreeNumber __attribute__((swift_name("getTreeNumber()")));
+		[Export ("getTreeNumber")]
+		int TreeNumber { get; }
+
+		// -(int)getItemNumber __attribute__((swift_name("getItemNumber()")));
+		[Export ("getItemNumber")]
+		int ItemNumber { get; }
+
+		// -(BOOL)setOnDiskBuild:(NSString * _Nonnull)filename __attribute__((swift_name("setOnDiskBuild(filename:)")));
+		[Export ("setOnDiskBuild:")]
+		bool SetOnDiskBuild (string filename);
+
+		// -(void)setSeed:(int)seed __attribute__((swift_name("setSeed(seed:)")));
+		[Export ("setSeed:")]
+		void SetSeed (int seed);
+
+		// +(ANNIndex * _Nonnull)create:(int)dim distType:(Distance)distType __attribute__((swift_name("create(dim:distType:)")));
+		[Static]
+		[Export ("create:distType:")]
+		ANNIndex Create (int dim, Distance distType);
+
+		// +(ANNIndex * _Nonnull)create:(int)dim __attribute__((swift_name("create(dim:)")));
+		[Static]
+		[Export ("create:")]
+		ANNIndex Create (int dim);
+	}
+
+	// @interface AffineFeature : Feature2D
+	[BaseType (typeof (Feature2D))]
+	interface AffineFeature {
+		// +(AffineFeature * _Nonnull)create:(Feature2D * _Nonnull)backend maxTilt:(int)maxTilt minTilt:(int)minTilt tiltStep:(float)tiltStep rotateStepBase:(float)rotateStepBase __attribute__((swift_name("create(backend:maxTilt:minTilt:tiltStep:rotateStepBase:)")));
+		[Static]
+		[Export ("create:maxTilt:minTilt:tiltStep:rotateStepBase:")]
+		AffineFeature Create (Feature2D backend, int maxTilt, int minTilt, float tiltStep, float rotateStepBase);
+
+		// +(AffineFeature * _Nonnull)create:(Feature2D * _Nonnull)backend maxTilt:(int)maxTilt minTilt:(int)minTilt tiltStep:(float)tiltStep __attribute__((swift_name("create(backend:maxTilt:minTilt:tiltStep:)")));
+		[Static]
+		[Export ("create:maxTilt:minTilt:tiltStep:")]
+		AffineFeature Create (Feature2D backend, int maxTilt, int minTilt, float tiltStep);
+
+		// +(AffineFeature * _Nonnull)create:(Feature2D * _Nonnull)backend maxTilt:(int)maxTilt minTilt:(int)minTilt __attribute__((swift_name("create(backend:maxTilt:minTilt:)")));
+		[Static]
+		[Export ("create:maxTilt:minTilt:")]
+		AffineFeature Create (Feature2D backend, int maxTilt, int minTilt);
+
+		// +(AffineFeature * _Nonnull)create:(Feature2D * _Nonnull)backend maxTilt:(int)maxTilt __attribute__((swift_name("create(backend:maxTilt:)")));
+		[Static]
+		[Export ("create:maxTilt:")]
+		AffineFeature Create (Feature2D backend, int maxTilt);
+
+		// +(AffineFeature * _Nonnull)create:(Feature2D * _Nonnull)backend __attribute__((swift_name("create(backend:)")));
+		[Static]
+		[Export ("create:")]
+		AffineFeature Create (Feature2D backend);
+
+		// -(void)setViewParams:(FloatVector * _Nonnull)tilts rolls:(FloatVector * _Nonnull)rolls __attribute__((swift_name("setViewParams(tilts:rolls:)")));
+		[Export ("setViewParams:rolls:")]
+		void SetViewParams (FloatVector tilts, FloatVector rolls);
+
+		// -(void)getViewParams:(FloatVector * _Nonnull)tilts rolls:(FloatVector * _Nonnull)rolls __attribute__((swift_name("getViewParams(tilts:rolls:)")));
+		[Export ("getViewParams:rolls:")]
+		void GetViewParams (FloatVector tilts, FloatVector rolls);
+
+		// -(NSString * _Nonnull)getDefaultName __attribute__((swift_name("getDefaultName()")));
+		[Export ("getDefaultName")]
+		string DefaultName { get; }
+	}
+
+	// @interface DescriptorMatcher : Algorithm
+	[BaseType (typeof (Algorithm))]
+	interface DescriptorMatcher {
+		// -(void)add:(NSArray<Mat *> * _Nonnull)descriptors __attribute__((swift_name("add(descriptors:)")));
+		[Export ("add:")]
+		void Add (Mat [] descriptors);
+
+		// -(NSArray<Mat *> * _Nonnull)getTrainDescriptors __attribute__((swift_name("getTrainDescriptors()")));
+		[Export ("getTrainDescriptors")]
+		Mat [] TrainDescriptors { get; }
+
+		// -(void)clear __attribute__((swift_name("clear()")));
+		[Export ("clear")]
+		void Clear ();
+
+		// -(BOOL)empty __attribute__((swift_name("empty()")));
+		[Export ("empty")]
+		bool Empty { get; }
+
+		// -(BOOL)isMaskSupported __attribute__((swift_name("isMaskSupported()")));
+		[Export ("isMaskSupported")]
+		bool IsMaskSupported { get; }
+
+		// -(void)setImagePairInfo:(NSArray<KeyPoint *> * _Nonnull)queryKpts trainKpts:(NSArray<KeyPoint *> * _Nonnull)trainKpts queryImageSize:(Size2i * _Nonnull)queryImageSize trainImageSize:(Size2i * _Nonnull)trainImageSize __attribute__((swift_name("setImagePairInfo(queryKpts:trainKpts:queryImageSize:trainImageSize:)")));
+		[Export ("setImagePairInfo:trainKpts:queryImageSize:trainImageSize:")]
+		void SetImagePairInfo (KeyPoint [] queryKpts, KeyPoint [] trainKpts, Size2i queryImageSize, Size2i trainImageSize);
+
+		// -(void)setImagePairInfo:(NSArray<KeyPoint *> * _Nonnull)queryKpts trainKpts:(NSArray<KeyPoint *> * _Nonnull)trainKpts queryImageSize:(Size2i * _Nonnull)queryImageSize __attribute__((swift_name("setImagePairInfo(queryKpts:trainKpts:queryImageSize:)")));
+		[Export ("setImagePairInfo:trainKpts:queryImageSize:")]
+		void SetImagePairInfo (KeyPoint [] queryKpts, KeyPoint [] trainKpts, Size2i queryImageSize);
+
+		// -(void)setImagePairInfo:(NSArray<KeyPoint *> * _Nonnull)queryKpts trainKpts:(NSArray<KeyPoint *> * _Nonnull)trainKpts __attribute__((swift_name("setImagePairInfo(queryKpts:trainKpts:)")));
+		[Export ("setImagePairInfo:trainKpts:")]
+		void SetImagePairInfo (KeyPoint [] queryKpts, KeyPoint [] trainKpts);
+
+		// -(void)train __attribute__((swift_name("train()")));
+		[Export ("train")]
+		void Train ();
+
+		// -(void)match:(Mat * _Nonnull)queryDescriptors trainDescriptors:(Mat * _Nonnull)trainDescriptors matches:(NSMutableArray<DMatch *> * _Nonnull)matches mask:(Mat * _Nonnull)mask __attribute__((swift_name("match(queryDescriptors:trainDescriptors:matches:mask:)")));
+		[Export ("match:trainDescriptors:matches:mask:")]
+		void Match (Mat queryDescriptors, Mat trainDescriptors, NSMutableArray<DMatch> matches, Mat mask);
+
+		// -(void)match:(Mat * _Nonnull)queryDescriptors trainDescriptors:(Mat * _Nonnull)trainDescriptors matches:(NSMutableArray<DMatch *> * _Nonnull)matches __attribute__((swift_name("match(queryDescriptors:trainDescriptors:matches:)")));
+		[Export ("match:trainDescriptors:matches:")]
+		void Match (Mat queryDescriptors, Mat trainDescriptors, NSMutableArray<DMatch> matches);
+
+		// -(void)knnMatch:(Mat * _Nonnull)queryDescriptors trainDescriptors:(Mat * _Nonnull)trainDescriptors matches:(NSMutableArray<NSMutableArray<DMatch *> *> * _Nonnull)matches k:(int)k mask:(Mat * _Nonnull)mask compactResult:(BOOL)compactResult __attribute__((swift_name("knnMatch(queryDescriptors:trainDescriptors:matches:k:mask:compactResult:)")));
+		[Export ("knnMatch:trainDescriptors:matches:k:mask:compactResult:")]
+		void KnnMatch (Mat queryDescriptors, Mat trainDescriptors, NSMutableArray<NSMutableArray<DMatch>> matches, int k, Mat mask, bool compactResult);
+
+		// -(void)knnMatch:(Mat * _Nonnull)queryDescriptors trainDescriptors:(Mat * _Nonnull)trainDescriptors matches:(NSMutableArray<NSMutableArray<DMatch *> *> * _Nonnull)matches k:(int)k mask:(Mat * _Nonnull)mask __attribute__((swift_name("knnMatch(queryDescriptors:trainDescriptors:matches:k:mask:)")));
+		[Export ("knnMatch:trainDescriptors:matches:k:mask:")]
+		void KnnMatch (Mat queryDescriptors, Mat trainDescriptors, NSMutableArray<NSMutableArray<DMatch>> matches, int k, Mat mask);
+
+		// -(void)knnMatch:(Mat * _Nonnull)queryDescriptors trainDescriptors:(Mat * _Nonnull)trainDescriptors matches:(NSMutableArray<NSMutableArray<DMatch *> *> * _Nonnull)matches k:(int)k __attribute__((swift_name("knnMatch(queryDescriptors:trainDescriptors:matches:k:)")));
+		[Export ("knnMatch:trainDescriptors:matches:k:")]
+		void KnnMatch (Mat queryDescriptors, Mat trainDescriptors, NSMutableArray<NSMutableArray<DMatch>> matches, int k);
+
+		// -(void)radiusMatch:(Mat * _Nonnull)queryDescriptors trainDescriptors:(Mat * _Nonnull)trainDescriptors matches:(NSMutableArray<NSMutableArray<DMatch *> *> * _Nonnull)matches maxDistance:(float)maxDistance mask:(Mat * _Nonnull)mask compactResult:(BOOL)compactResult __attribute__((swift_name("radiusMatch(queryDescriptors:trainDescriptors:matches:maxDistance:mask:compactResult:)")));
+		[Export ("radiusMatch:trainDescriptors:matches:maxDistance:mask:compactResult:")]
+		void RadiusMatch (Mat queryDescriptors, Mat trainDescriptors, NSMutableArray<NSMutableArray<DMatch>> matches, float maxDistance, Mat mask, bool compactResult);
+
+		// -(void)radiusMatch:(Mat * _Nonnull)queryDescriptors trainDescriptors:(Mat * _Nonnull)trainDescriptors matches:(NSMutableArray<NSMutableArray<DMatch *> *> * _Nonnull)matches maxDistance:(float)maxDistance mask:(Mat * _Nonnull)mask __attribute__((swift_name("radiusMatch(queryDescriptors:trainDescriptors:matches:maxDistance:mask:)")));
+		[Export ("radiusMatch:trainDescriptors:matches:maxDistance:mask:")]
+		void RadiusMatch (Mat queryDescriptors, Mat trainDescriptors, NSMutableArray<NSMutableArray<DMatch>> matches, float maxDistance, Mat mask);
+
+		// -(void)radiusMatch:(Mat * _Nonnull)queryDescriptors trainDescriptors:(Mat * _Nonnull)trainDescriptors matches:(NSMutableArray<NSMutableArray<DMatch *> *> * _Nonnull)matches maxDistance:(float)maxDistance __attribute__((swift_name("radiusMatch(queryDescriptors:trainDescriptors:matches:maxDistance:)")));
+		[Export ("radiusMatch:trainDescriptors:matches:maxDistance:")]
+		void RadiusMatch (Mat queryDescriptors, Mat trainDescriptors, NSMutableArray<NSMutableArray<DMatch>> matches, float maxDistance);
+
+		// -(void)match:(Mat * _Nonnull)queryDescriptors matches:(NSMutableArray<DMatch *> * _Nonnull)matches masks:(NSArray<Mat *> * _Nonnull)masks __attribute__((swift_name("match(queryDescriptors:matches:masks:)")));
+		[Export ("match:matches:masks:")]
+		void Match (Mat queryDescriptors, NSMutableArray<DMatch> matches, Mat [] masks);
+
+		// -(void)match:(Mat * _Nonnull)queryDescriptors matches:(NSMutableArray<DMatch *> * _Nonnull)matches __attribute__((swift_name("match(queryDescriptors:matches:)")));
+		[Export ("match:matches:")]
+		void Match (Mat queryDescriptors, NSMutableArray<DMatch> matches);
+
+		// -(void)knnMatch:(Mat * _Nonnull)queryDescriptors matches:(NSMutableArray<NSMutableArray<DMatch *> *> * _Nonnull)matches k:(int)k masks:(NSArray<Mat *> * _Nonnull)masks compactResult:(BOOL)compactResult __attribute__((swift_name("knnMatch(queryDescriptors:matches:k:masks:compactResult:)")));
+		[Export ("knnMatch:matches:k:masks:compactResult:")]
+		void KnnMatch (Mat queryDescriptors, NSMutableArray<NSMutableArray<DMatch>> matches, int k, Mat [] masks, bool compactResult);
+
+		// -(void)knnMatch:(Mat * _Nonnull)queryDescriptors matches:(NSMutableArray<NSMutableArray<DMatch *> *> * _Nonnull)matches k:(int)k masks:(NSArray<Mat *> * _Nonnull)masks __attribute__((swift_name("knnMatch(queryDescriptors:matches:k:masks:)")));
+		[Export ("knnMatch:matches:k:masks:")]
+		void KnnMatch (Mat queryDescriptors, NSMutableArray<NSMutableArray<DMatch>> matches, int k, Mat [] masks);
+
+		// -(void)knnMatch:(Mat * _Nonnull)queryDescriptors matches:(NSMutableArray<NSMutableArray<DMatch *> *> * _Nonnull)matches k:(int)k __attribute__((swift_name("knnMatch(queryDescriptors:matches:k:)")));
+		[Export ("knnMatch:matches:k:")]
+		void KnnMatch (Mat queryDescriptors, NSMutableArray<NSMutableArray<DMatch>> matches, int k);
+
+		// -(void)radiusMatch:(Mat * _Nonnull)queryDescriptors matches:(NSMutableArray<NSMutableArray<DMatch *> *> * _Nonnull)matches maxDistance:(float)maxDistance masks:(NSArray<Mat *> * _Nonnull)masks compactResult:(BOOL)compactResult __attribute__((swift_name("radiusMatch(queryDescriptors:matches:maxDistance:masks:compactResult:)")));
+		[Export ("radiusMatch:matches:maxDistance:masks:compactResult:")]
+		void RadiusMatch (Mat queryDescriptors, NSMutableArray<NSMutableArray<DMatch>> matches, float maxDistance, Mat [] masks, bool compactResult);
+
+		// -(void)radiusMatch:(Mat * _Nonnull)queryDescriptors matches:(NSMutableArray<NSMutableArray<DMatch *> *> * _Nonnull)matches maxDistance:(float)maxDistance masks:(NSArray<Mat *> * _Nonnull)masks __attribute__((swift_name("radiusMatch(queryDescriptors:matches:maxDistance:masks:)")));
+		[Export ("radiusMatch:matches:maxDistance:masks:")]
+		void RadiusMatch (Mat queryDescriptors, NSMutableArray<NSMutableArray<DMatch>> matches, float maxDistance, Mat [] masks);
+
+		// -(void)radiusMatch:(Mat * _Nonnull)queryDescriptors matches:(NSMutableArray<NSMutableArray<DMatch *> *> * _Nonnull)matches maxDistance:(float)maxDistance __attribute__((swift_name("radiusMatch(queryDescriptors:matches:maxDistance:)")));
+		[Export ("radiusMatch:matches:maxDistance:")]
+		void RadiusMatch (Mat queryDescriptors, NSMutableArray<NSMutableArray<DMatch>> matches, float maxDistance);
+
+		// -(void)write:(NSString * _Nonnull)fileName __attribute__((swift_name("write(fileName:)")));
+		[Export ("write:")]
+		void Write (string fileName);
+
+		// -(void)read:(NSString * _Nonnull)fileName __attribute__((swift_name("read(fileName:)")));
+		[Export ("read:")]
+		void Read (string fileName);
+
+		// -(DescriptorMatcher * _Nonnull)clone:(BOOL)emptyTrainData __attribute__((swift_name("clone(emptyTrainData:)")));
+		[Export ("clone:")]
+		DescriptorMatcher Clone (bool emptyTrainData);
+
+		// -(DescriptorMatcher * _Nonnull)clone __attribute__((swift_name("clone()")));
+		[Export ("clone")]
+		DescriptorMatcher Clone ();
+
+		// +(DescriptorMatcher * _Nonnull)create2:(NSString * _Nonnull)descriptorMatcherType __attribute__((swift_name("create(descriptorMatcherType:)")));
+		[Static]
+		[Export ("create2:")]
+		DescriptorMatcher Create2 (string descriptorMatcherType);
+
+		// +(DescriptorMatcher * _Nonnull)create:(MatcherType)matcherType __attribute__((swift_name("create(matcherType:)")));
+		[Static]
+		[Export ("create:")]
+		DescriptorMatcher Create (MatcherType matcherType);
+	}
+
+	// @interface BFMatcher : DescriptorMatcher
+	[BaseType (typeof (DescriptorMatcher))]
+	interface BFMatcher {
+		// -(instancetype _Nonnull)initWithNormType:(NormTypes)normType crossCheck:(BOOL)crossCheck;
+		[Export ("initWithNormType:crossCheck:")]
+		NativeHandle Constructor (NormTypes normType, bool crossCheck);
+
+		// -(instancetype _Nonnull)initWithNormType:(NormTypes)normType;
+		[Export ("initWithNormType:")]
+		NativeHandle Constructor (NormTypes normType);
+
+		// +(BFMatcher * _Nonnull)createBFMatcher:(NormTypes)normType crossCheck:(BOOL)crossCheck __attribute__((swift_name("create(normType:crossCheck:)")));
+		[Static]
+		[Export ("createBFMatcher:crossCheck:")]
+		BFMatcher CreateBFMatcher (NormTypes normType, bool crossCheck);
+
+		// +(BFMatcher * _Nonnull)createBFMatcher:(NormTypes)normType __attribute__((swift_name("create(normType:)")));
+		[Static]
+		[Export ("createBFMatcher:")]
+		BFMatcher CreateBFMatcher (NormTypes normType);
+
+		// +(BFMatcher * _Nonnull)createBFMatcher __attribute__((swift_name("create()")));
+		[Static]
+		[Export ("createBFMatcher")]
+		BFMatcher CreateBFMatcher ();
+	}
+
+	// @interface DISK : Feature2D
+	[BaseType (typeof (Feature2D))]
+	interface DISK {
+		// +(DISK * _Nonnull)create:(NSString * _Nonnull)modelPath maxKeypoints:(int)maxKeypoints scoreThreshold:(float)scoreThreshold imageSize:(Size2i * _Nonnull)imageSize backendId:(int)backendId targetId:(int)targetId __attribute__((swift_name("create(modelPath:maxKeypoints:scoreThreshold:imageSize:backendId:targetId:)")));
+		[Static]
+		[Export ("create:maxKeypoints:scoreThreshold:imageSize:backendId:targetId:")]
+		DISK Create (string modelPath, int maxKeypoints, float scoreThreshold, Size2i imageSize, int backendId, int targetId);
+
+		// +(DISK * _Nonnull)create:(NSString * _Nonnull)modelPath maxKeypoints:(int)maxKeypoints scoreThreshold:(float)scoreThreshold imageSize:(Size2i * _Nonnull)imageSize backendId:(int)backendId __attribute__((swift_name("create(modelPath:maxKeypoints:scoreThreshold:imageSize:backendId:)")));
+		[Static]
+		[Export ("create:maxKeypoints:scoreThreshold:imageSize:backendId:")]
+		DISK Create (string modelPath, int maxKeypoints, float scoreThreshold, Size2i imageSize, int backendId);
+
+		// +(DISK * _Nonnull)create:(NSString * _Nonnull)modelPath maxKeypoints:(int)maxKeypoints scoreThreshold:(float)scoreThreshold imageSize:(Size2i * _Nonnull)imageSize __attribute__((swift_name("create(modelPath:maxKeypoints:scoreThreshold:imageSize:)")));
+		[Static]
+		[Export ("create:maxKeypoints:scoreThreshold:imageSize:")]
+		DISK Create (string modelPath, int maxKeypoints, float scoreThreshold, Size2i imageSize);
+
+		// +(DISK * _Nonnull)create:(NSString * _Nonnull)modelPath maxKeypoints:(int)maxKeypoints scoreThreshold:(float)scoreThreshold __attribute__((swift_name("create(modelPath:maxKeypoints:scoreThreshold:)")));
+		[Static]
+		[Export ("create:maxKeypoints:scoreThreshold:")]
+		DISK Create (string modelPath, int maxKeypoints, float scoreThreshold);
+
+		// +(DISK * _Nonnull)create:(NSString * _Nonnull)modelPath maxKeypoints:(int)maxKeypoints __attribute__((swift_name("create(modelPath:maxKeypoints:)")));
+		[Static]
+		[Export ("create:maxKeypoints:")]
+		DISK Create (string modelPath, int maxKeypoints);
+
+		// +(DISK * _Nonnull)create:(NSString * _Nonnull)modelPath __attribute__((swift_name("create(modelPath:)")));
+		[Static]
+		[Export ("create:")]
+		DISK Create (string modelPath);
+
+		// +(DISK * _Nonnull)createFromMemory:(ByteVector * _Nonnull)bufferModel maxKeypoints:(int)maxKeypoints scoreThreshold:(float)scoreThreshold imageSize:(Size2i * _Nonnull)imageSize backendId:(int)backendId targetId:(int)targetId __attribute__((swift_name("create(bufferModel:maxKeypoints:scoreThreshold:imageSize:backendId:targetId:)")));
+		[Static]
+		[Export ("createFromMemory:maxKeypoints:scoreThreshold:imageSize:backendId:targetId:")]
+		DISK CreateFromMemory (ByteVector bufferModel, int maxKeypoints, float scoreThreshold, Size2i imageSize, int backendId, int targetId);
+
+		// +(DISK * _Nonnull)createFromMemory:(ByteVector * _Nonnull)bufferModel maxKeypoints:(int)maxKeypoints scoreThreshold:(float)scoreThreshold imageSize:(Size2i * _Nonnull)imageSize backendId:(int)backendId __attribute__((swift_name("create(bufferModel:maxKeypoints:scoreThreshold:imageSize:backendId:)")));
+		[Static]
+		[Export ("createFromMemory:maxKeypoints:scoreThreshold:imageSize:backendId:")]
+		DISK CreateFromMemory (ByteVector bufferModel, int maxKeypoints, float scoreThreshold, Size2i imageSize, int backendId);
+
+		// +(DISK * _Nonnull)createFromMemory:(ByteVector * _Nonnull)bufferModel maxKeypoints:(int)maxKeypoints scoreThreshold:(float)scoreThreshold imageSize:(Size2i * _Nonnull)imageSize __attribute__((swift_name("create(bufferModel:maxKeypoints:scoreThreshold:imageSize:)")));
+		[Static]
+		[Export ("createFromMemory:maxKeypoints:scoreThreshold:imageSize:")]
+		DISK CreateFromMemory (ByteVector bufferModel, int maxKeypoints, float scoreThreshold, Size2i imageSize);
+
+		// +(DISK * _Nonnull)createFromMemory:(ByteVector * _Nonnull)bufferModel maxKeypoints:(int)maxKeypoints scoreThreshold:(float)scoreThreshold __attribute__((swift_name("create(bufferModel:maxKeypoints:scoreThreshold:)")));
+		[Static]
+		[Export ("createFromMemory:maxKeypoints:scoreThreshold:")]
+		DISK CreateFromMemory (ByteVector bufferModel, int maxKeypoints, float scoreThreshold);
+
+		// +(DISK * _Nonnull)createFromMemory:(ByteVector * _Nonnull)bufferModel maxKeypoints:(int)maxKeypoints __attribute__((swift_name("create(bufferModel:maxKeypoints:)")));
+		[Static]
+		[Export ("createFromMemory:maxKeypoints:")]
+		DISK CreateFromMemory (ByteVector bufferModel, int maxKeypoints);
+
+		// +(DISK * _Nonnull)createFromMemory:(ByteVector * _Nonnull)bufferModel __attribute__((swift_name("create(bufferModel:)")));
+		[Static]
+		[Export ("createFromMemory:")]
+		DISK CreateFromMemory (ByteVector bufferModel);
+
+		// -(void)setMaxKeypoints:(int)maxKeypoints __attribute__((swift_name("setMaxKeypoints(maxKeypoints:)")));
+		[Export ("setMaxKeypoints:")]
+		void SetMaxKeypoints (int maxKeypoints);
+
+		// -(int)getMaxKeypoints __attribute__((swift_name("getMaxKeypoints()")));
+		[Export ("getMaxKeypoints")]
+		int MaxKeypoints { get; }
+
+		// -(void)setScoreThreshold:(float)threshold __attribute__((swift_name("setScoreThreshold(threshold:)")));
+		[Export ("setScoreThreshold:")]
+		void SetScoreThreshold (float threshold);
+
+		// -(float)getScoreThreshold __attribute__((swift_name("getScoreThreshold()")));
+		[Export ("getScoreThreshold")]
+		float ScoreThreshold { get; }
+
+		// -(void)setImageSize:(Size2i * _Nonnull)size __attribute__((swift_name("setImageSize(size:)")));
+		[Export ("setImageSize:")]
+		void SetImageSize (Size2i size);
+
+		// -(Size2i * _Nonnull)getImageSize __attribute__((swift_name("getImageSize()")));
+		[Export ("getImageSize")]
+		Size2i ImageSize { get; }
+
+		// -(NSString * _Nonnull)getDefaultName __attribute__((swift_name("getDefaultName()")));
+		[Export ("getDefaultName")]
+		string DefaultName { get; }
+	}
+
+	// @interface FastFeatureDetector : Feature2D
+	[BaseType (typeof (Feature2D))]
+	interface FastFeatureDetector {
+		// @property (readonly, class) int THRESHOLD __attribute__((swift_name("THRESHOLD")));
+		[Static]
+		[Export ("THRESHOLD")]
+		int THRESHOLD { get; }
+
+		// @property (readonly, class) int NONMAX_SUPPRESSION __attribute__((swift_name("NONMAX_SUPPRESSION")));
+		[Static]
+		[Export ("NONMAX_SUPPRESSION")]
+		int NONMAX_SUPPRESSION { get; }
+
+		// @property (readonly, class) int FAST_N __attribute__((swift_name("FAST_N")));
+		[Static]
+		[Export ("FAST_N")]
+		int FAST_N { get; }
+
+		// +(FastFeatureDetector * _Nonnull)create:(int)threshold nonmaxSuppression:(BOOL)nonmaxSuppression type:(FastDetectorType)type __attribute__((swift_name("create(threshold:nonmaxSuppression:type:)")));
+		[Static]
+		[Export ("create:nonmaxSuppression:type:")]
+		FastFeatureDetector Create (int threshold, bool nonmaxSuppression, FastDetectorType type);
+
+		// +(FastFeatureDetector * _Nonnull)create:(int)threshold nonmaxSuppression:(BOOL)nonmaxSuppression __attribute__((swift_name("create(threshold:nonmaxSuppression:)")));
+		[Static]
+		[Export ("create:nonmaxSuppression:")]
+		FastFeatureDetector Create (int threshold, bool nonmaxSuppression);
+
+		// +(FastFeatureDetector * _Nonnull)create:(int)threshold __attribute__((swift_name("create(threshold:)")));
+		[Static]
+		[Export ("create:")]
+		FastFeatureDetector Create (int threshold);
+
+		// +(FastFeatureDetector * _Nonnull)create __attribute__((swift_name("create()")));
+		[Static]
+		[Export ("create")]
+		FastFeatureDetector Create ();
+
+		// -(void)setThreshold:(int)threshold __attribute__((swift_name("setThreshold(threshold:)")));
+		[Export ("setThreshold:")]
+		void SetThreshold (int threshold);
+
+		// -(int)getThreshold __attribute__((swift_name("getThreshold()")));
+		[Export ("getThreshold")]
+		int Threshold { get; }
+
+		// -(void)setNonmaxSuppression:(BOOL)f __attribute__((swift_name("setNonmaxSuppression(f:)")));
+		[Export ("setNonmaxSuppression:")]
+		void SetNonmaxSuppression (bool f);
+
+		// -(BOOL)getNonmaxSuppression __attribute__((swift_name("getNonmaxSuppression()")));
+		[Export ("getNonmaxSuppression")]
+		bool NonmaxSuppression { get; }
+
+		// -(void)setType:(FastDetectorType)type __attribute__((swift_name("setType(type:)")));
+		[Export ("setType:")]
+		void SetType (FastDetectorType type);
+
+		// -(FastDetectorType)getType __attribute__((swift_name("getType()")));
+		[Export ("getType")]
+		FastDetectorType Type { get; }
+
+		// -(NSString * _Nonnull)getDefaultName __attribute__((swift_name("getDefaultName()")));
+		[Export ("getDefaultName")]
+		string DefaultName { get; }
+	}
+
+	// @interface FlannBasedMatcher : DescriptorMatcher
+	[BaseType (typeof (DescriptorMatcher))]
+	interface FlannBasedMatcher {
+		// +(FlannBasedMatcher * _Nonnull)create __attribute__((swift_name("create()")));
+		[Static]
+		[Export ("create")]
+		FlannBasedMatcher Create ();
+	}
+
+	// @interface GFTTDetector : Feature2D
+	[BaseType (typeof (Feature2D))]
+	interface GFTTDetector {
+		// +(GFTTDetector * _Nonnull)create:(int)maxCorners qualityLevel:(double)qualityLevel minDistance:(double)minDistance blockSize:(int)blockSize useHarrisDetector:(BOOL)useHarrisDetector k:(double)k __attribute__((swift_name("create(maxCorners:qualityLevel:minDistance:blockSize:useHarrisDetector:k:)")));
+		[Static]
+		[Export ("create:qualityLevel:minDistance:blockSize:useHarrisDetector:k:")]
+		GFTTDetector Create (int maxCorners, double qualityLevel, double minDistance, int blockSize, bool useHarrisDetector, double k);
+
+		// +(GFTTDetector * _Nonnull)create:(int)maxCorners qualityLevel:(double)qualityLevel minDistance:(double)minDistance blockSize:(int)blockSize useHarrisDetector:(BOOL)useHarrisDetector __attribute__((swift_name("create(maxCorners:qualityLevel:minDistance:blockSize:useHarrisDetector:)")));
+		[Static]
+		[Export ("create:qualityLevel:minDistance:blockSize:useHarrisDetector:")]
+		GFTTDetector Create (int maxCorners, double qualityLevel, double minDistance, int blockSize, bool useHarrisDetector);
+
+		// +(GFTTDetector * _Nonnull)create:(int)maxCorners qualityLevel:(double)qualityLevel minDistance:(double)minDistance blockSize:(int)blockSize __attribute__((swift_name("create(maxCorners:qualityLevel:minDistance:blockSize:)")));
+		[Static]
+		[Export ("create:qualityLevel:minDistance:blockSize:")]
+		GFTTDetector Create (int maxCorners, double qualityLevel, double minDistance, int blockSize);
+
+		// +(GFTTDetector * _Nonnull)create:(int)maxCorners qualityLevel:(double)qualityLevel minDistance:(double)minDistance __attribute__((swift_name("create(maxCorners:qualityLevel:minDistance:)")));
+		[Static]
+		[Export ("create:qualityLevel:minDistance:")]
+		GFTTDetector Create (int maxCorners, double qualityLevel, double minDistance);
+
+		// +(GFTTDetector * _Nonnull)create:(int)maxCorners qualityLevel:(double)qualityLevel __attribute__((swift_name("create(maxCorners:qualityLevel:)")));
+		[Static]
+		[Export ("create:qualityLevel:")]
+		GFTTDetector Create (int maxCorners, double qualityLevel);
+
+		// +(GFTTDetector * _Nonnull)create:(int)maxCorners __attribute__((swift_name("create(maxCorners:)")));
+		[Static]
+		[Export ("create:")]
+		GFTTDetector Create (int maxCorners);
+
+		// +(GFTTDetector * _Nonnull)create __attribute__((swift_name("create()")));
+		[Static]
+		[Export ("create")]
+		GFTTDetector Create ();
+
+		// +(GFTTDetector * _Nonnull)create:(int)maxCorners qualityLevel:(double)qualityLevel minDistance:(double)minDistance blockSize:(int)blockSize gradientSize:(int)gradientSize useHarrisDetector:(BOOL)useHarrisDetector k:(double)k __attribute__((swift_name("create(maxCorners:qualityLevel:minDistance:blockSize:gradientSize:useHarrisDetector:k:)")));
+		[Static]
+		[Export ("create:qualityLevel:minDistance:blockSize:gradientSize:useHarrisDetector:k:")]
+		GFTTDetector Create (int maxCorners, double qualityLevel, double minDistance, int blockSize, int gradientSize, bool useHarrisDetector, double k);
+
+		// +(GFTTDetector * _Nonnull)create:(int)maxCorners qualityLevel:(double)qualityLevel minDistance:(double)minDistance blockSize:(int)blockSize gradientSize:(int)gradientSize useHarrisDetector:(BOOL)useHarrisDetector __attribute__((swift_name("create(maxCorners:qualityLevel:minDistance:blockSize:gradientSize:useHarrisDetector:)")));
+		[Static]
+		[Export ("create:qualityLevel:minDistance:blockSize:gradientSize:useHarrisDetector:")]
+		GFTTDetector Create (int maxCorners, double qualityLevel, double minDistance, int blockSize, int gradientSize, bool useHarrisDetector);
+
+		// +(GFTTDetector * _Nonnull)create:(int)maxCorners qualityLevel:(double)qualityLevel minDistance:(double)minDistance blockSize:(int)blockSize gradientSize:(int)gradientSize __attribute__((swift_name("create(maxCorners:qualityLevel:minDistance:blockSize:gradientSize:)")));
+		[Static]
+		[Export ("create:qualityLevel:minDistance:blockSize:gradientSize:")]
+		GFTTDetector Create (int maxCorners, double qualityLevel, double minDistance, int blockSize, int gradientSize);
+
+		// -(void)setMaxFeatures:(int)maxFeatures __attribute__((swift_name("setMaxFeatures(maxFeatures:)")));
+		[Export ("setMaxFeatures:")]
+		void SetMaxFeatures (int maxFeatures);
+
+		// -(int)getMaxFeatures __attribute__((swift_name("getMaxFeatures()")));
+		[Export ("getMaxFeatures")]
+		int MaxFeatures { get; }
+
+		// -(void)setQualityLevel:(double)qlevel __attribute__((swift_name("setQualityLevel(qlevel:)")));
+		[Export ("setQualityLevel:")]
+		void SetQualityLevel (double qlevel);
+
+		// -(double)getQualityLevel __attribute__((swift_name("getQualityLevel()")));
+		[Export ("getQualityLevel")]
+		double QualityLevel { get; }
+
+		// -(void)setMinDistance:(double)minDistance __attribute__((swift_name("setMinDistance(minDistance:)")));
+		[Export ("setMinDistance:")]
+		void SetMinDistance (double minDistance);
+
+		// -(double)getMinDistance __attribute__((swift_name("getMinDistance()")));
+		[Export ("getMinDistance")]
+		double MinDistance { get; }
+
+		// -(void)setBlockSize:(int)blockSize __attribute__((swift_name("setBlockSize(blockSize:)")));
+		[Export ("setBlockSize:")]
+		void SetBlockSize (int blockSize);
+
+		// -(int)getBlockSize __attribute__((swift_name("getBlockSize()")));
+		[Export ("getBlockSize")]
+		int BlockSize { get; }
+
+		// -(void)setGradientSize:(int)gradientSize_ __attribute__((swift_name("setGradientSize(gradientSize_:)")));
+		[Export ("setGradientSize:")]
+		void SetGradientSize (int gradientSize_);
+
+		// -(int)getGradientSize __attribute__((swift_name("getGradientSize()")));
+		[Export ("getGradientSize")]
+		int GradientSize { get; }
+
+		// -(void)setHarrisDetector:(BOOL)val __attribute__((swift_name("setHarrisDetector(val:)")));
+		[Export ("setHarrisDetector:")]
+		void SetHarrisDetector (bool val);
+
+		// -(BOOL)getHarrisDetector __attribute__((swift_name("getHarrisDetector()")));
+		[Export ("getHarrisDetector")]
+		bool HarrisDetector { get; }
+
+		// -(void)setK:(double)k __attribute__((swift_name("setK(k:)")));
+		[Export ("setK:")]
+		void SetK (double k);
+
+		// -(double)getK __attribute__((swift_name("getK()")));
+		[Export ("getK")]
+		double K { get; }
+
+		// -(NSString * _Nonnull)getDefaultName __attribute__((swift_name("getDefaultName()")));
+		[Export ("getDefaultName")]
+		string DefaultName { get; }
+	}
+
+	// @interface LightGlueMatcher : DescriptorMatcher
+	[BaseType (typeof (DescriptorMatcher))]
+	interface LightGlueMatcher {
+		// +(LightGlueMatcher * _Nonnull)createFromFile:(NSString * _Nonnull)modelPath scoreThreshold:(float)scoreThreshold backend:(int)backend target:(int)target type:(int)type __attribute__((swift_name("create(modelPath:scoreThreshold:backend:target:type:)")));
+		[Static]
+		[Export ("createFromFile:scoreThreshold:backend:target:type:")]
+		LightGlueMatcher CreateFromFile (string modelPath, float scoreThreshold, int backend, int target, int type);
+
+		// +(LightGlueMatcher * _Nonnull)createFromFile:(NSString * _Nonnull)modelPath scoreThreshold:(float)scoreThreshold backend:(int)backend target:(int)target __attribute__((swift_name("create(modelPath:scoreThreshold:backend:target:)")));
+		[Static]
+		[Export ("createFromFile:scoreThreshold:backend:target:")]
+		LightGlueMatcher CreateFromFile (string modelPath, float scoreThreshold, int backend, int target);
+
+		// +(LightGlueMatcher * _Nonnull)createFromFile:(NSString * _Nonnull)modelPath scoreThreshold:(float)scoreThreshold backend:(int)backend __attribute__((swift_name("create(modelPath:scoreThreshold:backend:)")));
+		[Static]
+		[Export ("createFromFile:scoreThreshold:backend:")]
+		LightGlueMatcher CreateFromFile (string modelPath, float scoreThreshold, int backend);
+
+		// +(LightGlueMatcher * _Nonnull)createFromFile:(NSString * _Nonnull)modelPath scoreThreshold:(float)scoreThreshold __attribute__((swift_name("create(modelPath:scoreThreshold:)")));
+		[Static]
+		[Export ("createFromFile:scoreThreshold:")]
+		LightGlueMatcher CreateFromFile (string modelPath, float scoreThreshold);
+
+		// +(LightGlueMatcher * _Nonnull)createFromFile:(NSString * _Nonnull)modelPath __attribute__((swift_name("create(modelPath:)")));
+		[Static]
+		[Export ("createFromFile:")]
+		LightGlueMatcher CreateFromFile (string modelPath);
+
+		// +(LightGlueMatcher * _Nonnull)createFromMemory:(ByteVector * _Nonnull)modelData scoreThreshold:(float)scoreThreshold backend:(int)backend target:(int)target type:(int)type __attribute__((swift_name("create(modelData:scoreThreshold:backend:target:type:)")));
+		[Static]
+		[Export ("createFromMemory:scoreThreshold:backend:target:type:")]
+		LightGlueMatcher CreateFromMemory (ByteVector modelData, float scoreThreshold, int backend, int target, int type);
+
+		// +(LightGlueMatcher * _Nonnull)createFromMemory:(ByteVector * _Nonnull)modelData scoreThreshold:(float)scoreThreshold backend:(int)backend target:(int)target __attribute__((swift_name("create(modelData:scoreThreshold:backend:target:)")));
+		[Static]
+		[Export ("createFromMemory:scoreThreshold:backend:target:")]
+		LightGlueMatcher CreateFromMemory (ByteVector modelData, float scoreThreshold, int backend, int target);
+
+		// +(LightGlueMatcher * _Nonnull)createFromMemory:(ByteVector * _Nonnull)modelData scoreThreshold:(float)scoreThreshold backend:(int)backend __attribute__((swift_name("create(modelData:scoreThreshold:backend:)")));
+		[Static]
+		[Export ("createFromMemory:scoreThreshold:backend:")]
+		LightGlueMatcher CreateFromMemory (ByteVector modelData, float scoreThreshold, int backend);
+
+		// +(LightGlueMatcher * _Nonnull)createFromMemory:(ByteVector * _Nonnull)modelData scoreThreshold:(float)scoreThreshold __attribute__((swift_name("create(modelData:scoreThreshold:)")));
+		[Static]
+		[Export ("createFromMemory:scoreThreshold:")]
+		LightGlueMatcher CreateFromMemory (ByteVector modelData, float scoreThreshold);
+
+		// +(LightGlueMatcher * _Nonnull)createFromMemory:(ByteVector * _Nonnull)modelData __attribute__((swift_name("create(modelData:)")));
+		[Static]
+		[Export ("createFromMemory:")]
+		LightGlueMatcher CreateFromMemory (ByteVector modelData);
+
+		// -(void)setPairInfo:(Mat * _Nonnull)queryKpts trainKpts:(Mat * _Nonnull)trainKpts queryImageSize:(Size2i * _Nonnull)queryImageSize trainImageSize:(Size2i * _Nonnull)trainImageSize __attribute__((swift_name("setPairInfo(queryKpts:trainKpts:queryImageSize:trainImageSize:)")));
+		[Export ("setPairInfo:trainKpts:queryImageSize:trainImageSize:")]
+		void SetPairInfo (Mat queryKpts, Mat trainKpts, Size2i queryImageSize, Size2i trainImageSize);
+
+		// -(void)setPairInfo:(Mat * _Nonnull)queryKpts trainKpts:(Mat * _Nonnull)trainKpts queryImageSize:(Size2i * _Nonnull)queryImageSize __attribute__((swift_name("setPairInfo(queryKpts:trainKpts:queryImageSize:)")));
+		[Export ("setPairInfo:trainKpts:queryImageSize:")]
+		void SetPairInfo (Mat queryKpts, Mat trainKpts, Size2i queryImageSize);
+
+		// -(void)setPairInfo:(Mat * _Nonnull)queryKpts trainKpts:(Mat * _Nonnull)trainKpts __attribute__((swift_name("setPairInfo(queryKpts:trainKpts:)")));
+		[Export ("setPairInfo:trainKpts:")]
+		void SetPairInfo (Mat queryKpts, Mat trainKpts);
+
+		// -(void)clearPairInfo __attribute__((swift_name("clearPairInfo()")));
+		[Export ("clearPairInfo")]
+		void ClearPairInfo ();
+
+		// -(void)setKeypointNormalization:(int)normalization __attribute__((swift_name("setKeypointNormalization(normalization:)")));
+		[Export ("setKeypointNormalization:")]
+		void SetKeypointNormalization (int normalization);
+
+		// -(int)getKeypointNormalization __attribute__((swift_name("getKeypointNormalization()")));
+		[Export ("getKeypointNormalization")]
+		int KeypointNormalization { get; }
+
+		// -(void)setImagePairInfo:(NSArray<KeyPoint *> * _Nonnull)queryKpts trainKpts:(NSArray<KeyPoint *> * _Nonnull)trainKpts queryImageSize:(Size2i * _Nonnull)queryImageSize trainImageSize:(Size2i * _Nonnull)trainImageSize __attribute__((swift_name("setImagePairInfo(queryKpts:trainKpts:queryImageSize:trainImageSize:)")));
+		[Export ("setImagePairInfo:trainKpts:queryImageSize:trainImageSize:")]
+		void SetImagePairInfo (KeyPoint [] queryKpts, KeyPoint [] trainKpts, Size2i queryImageSize, Size2i trainImageSize);
+
+		// -(void)setImagePairInfo:(NSArray<KeyPoint *> * _Nonnull)queryKpts trainKpts:(NSArray<KeyPoint *> * _Nonnull)trainKpts queryImageSize:(Size2i * _Nonnull)queryImageSize __attribute__((swift_name("setImagePairInfo(queryKpts:trainKpts:queryImageSize:)")));
+		[Export ("setImagePairInfo:trainKpts:queryImageSize:")]
+		void SetImagePairInfo (KeyPoint [] queryKpts, KeyPoint [] trainKpts, Size2i queryImageSize);
+
+		// -(void)setImagePairInfo:(NSArray<KeyPoint *> * _Nonnull)queryKpts trainKpts:(NSArray<KeyPoint *> * _Nonnull)trainKpts __attribute__((swift_name("setImagePairInfo(queryKpts:trainKpts:)")));
+		[Export ("setImagePairInfo:trainKpts:")]
+		void SetImagePairInfo (KeyPoint [] queryKpts, KeyPoint [] trainKpts);
+	}
+
+	// @interface MSER : Feature2D
+	[BaseType (typeof (Feature2D))]
+	interface MSER {
+		// +(MSER * _Nonnull)create:(int)delta min_area:(int)min_area max_area:(int)max_area max_variation:(double)max_variation min_diversity:(double)min_diversity max_evolution:(int)max_evolution area_threshold:(double)area_threshold min_margin:(double)min_margin edge_blur_size:(int)edge_blur_size __attribute__((swift_name("create(delta:min_area:max_area:max_variation:min_diversity:max_evolution:area_threshold:min_margin:edge_blur_size:)")));
+		[Static]
+		[Export ("create:min_area:max_area:max_variation:min_diversity:max_evolution:area_threshold:min_margin:edge_blur_size:")]
+		MSER Create (int delta, int min_area, int max_area, double max_variation, double min_diversity, int max_evolution, double area_threshold, double min_margin, int edge_blur_size);
+
+		// +(MSER * _Nonnull)create:(int)delta min_area:(int)min_area max_area:(int)max_area max_variation:(double)max_variation min_diversity:(double)min_diversity max_evolution:(int)max_evolution area_threshold:(double)area_threshold min_margin:(double)min_margin __attribute__((swift_name("create(delta:min_area:max_area:max_variation:min_diversity:max_evolution:area_threshold:min_margin:)")));
+		[Static]
+		[Export ("create:min_area:max_area:max_variation:min_diversity:max_evolution:area_threshold:min_margin:")]
+		MSER Create (int delta, int min_area, int max_area, double max_variation, double min_diversity, int max_evolution, double area_threshold, double min_margin);
+
+		// +(MSER * _Nonnull)create:(int)delta min_area:(int)min_area max_area:(int)max_area max_variation:(double)max_variation min_diversity:(double)min_diversity max_evolution:(int)max_evolution area_threshold:(double)area_threshold __attribute__((swift_name("create(delta:min_area:max_area:max_variation:min_diversity:max_evolution:area_threshold:)")));
+		[Static]
+		[Export ("create:min_area:max_area:max_variation:min_diversity:max_evolution:area_threshold:")]
+		MSER Create (int delta, int min_area, int max_area, double max_variation, double min_diversity, int max_evolution, double area_threshold);
+
+		// +(MSER * _Nonnull)create:(int)delta min_area:(int)min_area max_area:(int)max_area max_variation:(double)max_variation min_diversity:(double)min_diversity max_evolution:(int)max_evolution __attribute__((swift_name("create(delta:min_area:max_area:max_variation:min_diversity:max_evolution:)")));
+		[Static]
+		[Export ("create:min_area:max_area:max_variation:min_diversity:max_evolution:")]
+		MSER Create (int delta, int min_area, int max_area, double max_variation, double min_diversity, int max_evolution);
+
+		// +(MSER * _Nonnull)create:(int)delta min_area:(int)min_area max_area:(int)max_area max_variation:(double)max_variation min_diversity:(double)min_diversity __attribute__((swift_name("create(delta:min_area:max_area:max_variation:min_diversity:)")));
+		[Static]
+		[Export ("create:min_area:max_area:max_variation:min_diversity:")]
+		MSER Create (int delta, int min_area, int max_area, double max_variation, double min_diversity);
+
+		// +(MSER * _Nonnull)create:(int)delta min_area:(int)min_area max_area:(int)max_area max_variation:(double)max_variation __attribute__((swift_name("create(delta:min_area:max_area:max_variation:)")));
+		[Static]
+		[Export ("create:min_area:max_area:max_variation:")]
+		MSER Create (int delta, int min_area, int max_area, double max_variation);
+
+		// +(MSER * _Nonnull)create:(int)delta min_area:(int)min_area max_area:(int)max_area __attribute__((swift_name("create(delta:min_area:max_area:)")));
+		[Static]
+		[Export ("create:min_area:max_area:")]
+		MSER Create (int delta, int min_area, int max_area);
+
+		// +(MSER * _Nonnull)create:(int)delta min_area:(int)min_area __attribute__((swift_name("create(delta:min_area:)")));
+		[Static]
+		[Export ("create:min_area:")]
+		MSER Create (int delta, int min_area);
+
+		// +(MSER * _Nonnull)create:(int)delta __attribute__((swift_name("create(delta:)")));
+		[Static]
+		[Export ("create:")]
+		MSER Create (int delta);
+
+		// +(MSER * _Nonnull)create __attribute__((swift_name("create()")));
+		[Static]
+		[Export ("create")]
+		MSER Create ();
+
+		// -(void)detectRegions:(Mat * _Nonnull)image msers:(NSMutableArray<NSMutableArray<Point2i *> *> * _Nonnull)msers bboxes:(NSMutableArray<Rect2i *> * _Nonnull)bboxes __attribute__((swift_name("detectRegions(image:msers:bboxes:)")));
+		[Export ("detectRegions:msers:bboxes:")]
+		void DetectRegions (Mat image, NSMutableArray<NSMutableArray<Point2i>> msers, NSMutableArray<Rect2i> bboxes);
+
+		// -(void)setDelta:(int)delta __attribute__((swift_name("setDelta(delta:)")));
+		[Export ("setDelta:")]
+		void SetDelta (int delta);
+
+		// -(int)getDelta __attribute__((swift_name("getDelta()")));
+		[Export ("getDelta")]
+		int Delta { get; }
+
+		// -(void)setMinArea:(int)minArea __attribute__((swift_name("setMinArea(minArea:)")));
+		[Export ("setMinArea:")]
+		void SetMinArea (int minArea);
+
+		// -(int)getMinArea __attribute__((swift_name("getMinArea()")));
+		[Export ("getMinArea")]
+		int MinArea { get; }
+
+		// -(void)setMaxArea:(int)maxArea __attribute__((swift_name("setMaxArea(maxArea:)")));
+		[Export ("setMaxArea:")]
+		void SetMaxArea (int maxArea);
+
+		// -(int)getMaxArea __attribute__((swift_name("getMaxArea()")));
+		[Export ("getMaxArea")]
+		int MaxArea { get; }
+
+		// -(void)setMaxVariation:(double)maxVariation __attribute__((swift_name("setMaxVariation(maxVariation:)")));
+		[Export ("setMaxVariation:")]
+		void SetMaxVariation (double maxVariation);
+
+		// -(double)getMaxVariation __attribute__((swift_name("getMaxVariation()")));
+		[Export ("getMaxVariation")]
+		double MaxVariation { get; }
+
+		// -(void)setMinDiversity:(double)minDiversity __attribute__((swift_name("setMinDiversity(minDiversity:)")));
+		[Export ("setMinDiversity:")]
+		void SetMinDiversity (double minDiversity);
+
+		// -(double)getMinDiversity __attribute__((swift_name("getMinDiversity()")));
+		[Export ("getMinDiversity")]
+		double MinDiversity { get; }
+
+		// -(void)setMaxEvolution:(int)maxEvolution __attribute__((swift_name("setMaxEvolution(maxEvolution:)")));
+		[Export ("setMaxEvolution:")]
+		void SetMaxEvolution (int maxEvolution);
+
+		// -(int)getMaxEvolution __attribute__((swift_name("getMaxEvolution()")));
+		[Export ("getMaxEvolution")]
+		int MaxEvolution { get; }
+
+		// -(void)setAreaThreshold:(double)areaThreshold __attribute__((swift_name("setAreaThreshold(areaThreshold:)")));
+		[Export ("setAreaThreshold:")]
+		void SetAreaThreshold (double areaThreshold);
+
+		// -(double)getAreaThreshold __attribute__((swift_name("getAreaThreshold()")));
+		[Export ("getAreaThreshold")]
+		double AreaThreshold { get; }
+
+		// -(void)setMinMargin:(double)min_margin __attribute__((swift_name("setMinMargin(min_margin:)")));
+		[Export ("setMinMargin:")]
+		void SetMinMargin (double min_margin);
+
+		// -(double)getMinMargin __attribute__((swift_name("getMinMargin()")));
+		[Export ("getMinMargin")]
+		double MinMargin { get; }
+
+		// -(void)setEdgeBlurSize:(int)edge_blur_size __attribute__((swift_name("setEdgeBlurSize(edge_blur_size:)")));
+		[Export ("setEdgeBlurSize:")]
+		void SetEdgeBlurSize (int edge_blur_size);
+
+		// -(int)getEdgeBlurSize __attribute__((swift_name("getEdgeBlurSize()")));
+		[Export ("getEdgeBlurSize")]
+		int EdgeBlurSize { get; }
+
+		// -(void)setPass2Only:(BOOL)f __attribute__((swift_name("setPass2Only(f:)")));
+		[Export ("setPass2Only:")]
+		void SetPass2Only (bool f);
+
+		// -(BOOL)getPass2Only __attribute__((swift_name("getPass2Only()")));
+		[Export ("getPass2Only")]
+		bool Pass2Only { get; }
+
+		// -(NSString * _Nonnull)getDefaultName __attribute__((swift_name("getDefaultName()")));
+		[Export ("getDefaultName")]
+		string DefaultName { get; }
+	}
+
+	// @interface ORB : Feature2D
+	[BaseType (typeof (Feature2D))]
+	interface ORB {
+		// +(ORB * _Nonnull)create:(int)nfeatures scaleFactor:(float)scaleFactor nlevels:(int)nlevels edgeThreshold:(int)edgeThreshold firstLevel:(int)firstLevel WTA_K:(int)WTA_K scoreType:(ScoreType)scoreType patchSize:(int)patchSize fastThreshold:(int)fastThreshold __attribute__((swift_name("create(nfeatures:scaleFactor:nlevels:edgeThreshold:firstLevel:WTA_K:scoreType:patchSize:fastThreshold:)")));
+		[Static]
+		[Export ("create:scaleFactor:nlevels:edgeThreshold:firstLevel:WTA_K:scoreType:patchSize:fastThreshold:")]
+		ORB Create (int nfeatures, float scaleFactor, int nlevels, int edgeThreshold, int firstLevel, int WTA_K, ScoreType scoreType, int patchSize, int fastThreshold);
+
+		// +(ORB * _Nonnull)create:(int)nfeatures scaleFactor:(float)scaleFactor nlevels:(int)nlevels edgeThreshold:(int)edgeThreshold firstLevel:(int)firstLevel WTA_K:(int)WTA_K scoreType:(ScoreType)scoreType patchSize:(int)patchSize __attribute__((swift_name("create(nfeatures:scaleFactor:nlevels:edgeThreshold:firstLevel:WTA_K:scoreType:patchSize:)")));
+		[Static]
+		[Export ("create:scaleFactor:nlevels:edgeThreshold:firstLevel:WTA_K:scoreType:patchSize:")]
+		ORB Create (int nfeatures, float scaleFactor, int nlevels, int edgeThreshold, int firstLevel, int WTA_K, ScoreType scoreType, int patchSize);
+
+		// +(ORB * _Nonnull)create:(int)nfeatures scaleFactor:(float)scaleFactor nlevels:(int)nlevels edgeThreshold:(int)edgeThreshold firstLevel:(int)firstLevel WTA_K:(int)WTA_K scoreType:(ScoreType)scoreType __attribute__((swift_name("create(nfeatures:scaleFactor:nlevels:edgeThreshold:firstLevel:WTA_K:scoreType:)")));
+		[Static]
+		[Export ("create:scaleFactor:nlevels:edgeThreshold:firstLevel:WTA_K:scoreType:")]
+		ORB Create (int nfeatures, float scaleFactor, int nlevels, int edgeThreshold, int firstLevel, int WTA_K, ScoreType scoreType);
+
+		// +(ORB * _Nonnull)create:(int)nfeatures scaleFactor:(float)scaleFactor nlevels:(int)nlevels edgeThreshold:(int)edgeThreshold firstLevel:(int)firstLevel WTA_K:(int)WTA_K __attribute__((swift_name("create(nfeatures:scaleFactor:nlevels:edgeThreshold:firstLevel:WTA_K:)")));
+		[Static]
+		[Export ("create:scaleFactor:nlevels:edgeThreshold:firstLevel:WTA_K:")]
+		ORB Create (int nfeatures, float scaleFactor, int nlevels, int edgeThreshold, int firstLevel, int WTA_K);
+
+		// +(ORB * _Nonnull)create:(int)nfeatures scaleFactor:(float)scaleFactor nlevels:(int)nlevels edgeThreshold:(int)edgeThreshold firstLevel:(int)firstLevel __attribute__((swift_name("create(nfeatures:scaleFactor:nlevels:edgeThreshold:firstLevel:)")));
+		[Static]
+		[Export ("create:scaleFactor:nlevels:edgeThreshold:firstLevel:")]
+		ORB Create (int nfeatures, float scaleFactor, int nlevels, int edgeThreshold, int firstLevel);
+
+		// +(ORB * _Nonnull)create:(int)nfeatures scaleFactor:(float)scaleFactor nlevels:(int)nlevels edgeThreshold:(int)edgeThreshold __attribute__((swift_name("create(nfeatures:scaleFactor:nlevels:edgeThreshold:)")));
+		[Static]
+		[Export ("create:scaleFactor:nlevels:edgeThreshold:")]
+		ORB Create (int nfeatures, float scaleFactor, int nlevels, int edgeThreshold);
+
+		// +(ORB * _Nonnull)create:(int)nfeatures scaleFactor:(float)scaleFactor nlevels:(int)nlevels __attribute__((swift_name("create(nfeatures:scaleFactor:nlevels:)")));
+		[Static]
+		[Export ("create:scaleFactor:nlevels:")]
+		ORB Create (int nfeatures, float scaleFactor, int nlevels);
+
+		// +(ORB * _Nonnull)create:(int)nfeatures scaleFactor:(float)scaleFactor __attribute__((swift_name("create(nfeatures:scaleFactor:)")));
+		[Static]
+		[Export ("create:scaleFactor:")]
+		ORB Create (int nfeatures, float scaleFactor);
+
+		// +(ORB * _Nonnull)create:(int)nfeatures __attribute__((swift_name("create(nfeatures:)")));
+		[Static]
+		[Export ("create:")]
+		ORB Create (int nfeatures);
+
+		// +(ORB * _Nonnull)create __attribute__((swift_name("create()")));
+		[Static]
+		[Export ("create")]
+		ORB Create ();
+
+		// -(void)setMaxFeatures:(int)maxFeatures __attribute__((swift_name("setMaxFeatures(maxFeatures:)")));
+		[Export ("setMaxFeatures:")]
+		void SetMaxFeatures (int maxFeatures);
+
+		// -(int)getMaxFeatures __attribute__((swift_name("getMaxFeatures()")));
+		[Export ("getMaxFeatures")]
+		int MaxFeatures { get; }
+
+		// -(void)setScaleFactor:(double)scaleFactor __attribute__((swift_name("setScaleFactor(scaleFactor:)")));
+		[Export ("setScaleFactor:")]
+		void SetScaleFactor (double scaleFactor);
+
+		// -(double)getScaleFactor __attribute__((swift_name("getScaleFactor()")));
+		[Export ("getScaleFactor")]
+		double ScaleFactor { get; }
+
+		// -(void)setNLevels:(int)nlevels __attribute__((swift_name("setNLevels(nlevels:)")));
+		[Export ("setNLevels:")]
+		void SetNLevels (int nlevels);
+
+		// -(int)getNLevels __attribute__((swift_name("getNLevels()")));
+		[Export ("getNLevels")]
+		int NLevels { get; }
+
+		// -(void)setEdgeThreshold:(int)edgeThreshold __attribute__((swift_name("setEdgeThreshold(edgeThreshold:)")));
+		[Export ("setEdgeThreshold:")]
+		void SetEdgeThreshold (int edgeThreshold);
+
+		// -(int)getEdgeThreshold __attribute__((swift_name("getEdgeThreshold()")));
+		[Export ("getEdgeThreshold")]
+		int EdgeThreshold { get; }
+
+		// -(void)setFirstLevel:(int)firstLevel __attribute__((swift_name("setFirstLevel(firstLevel:)")));
+		[Export ("setFirstLevel:")]
+		void SetFirstLevel (int firstLevel);
+
+		// -(int)getFirstLevel __attribute__((swift_name("getFirstLevel()")));
+		[Export ("getFirstLevel")]
+		int FirstLevel { get; }
+
+		// -(void)setWTA_K:(int)wta_k __attribute__((swift_name("setWTA_K(wta_k:)")));
+		[Export ("setWTA_K:")]
+		void SetWTA_K (int wta_k);
+
+		// -(int)getWTA_K __attribute__((swift_name("getWTA_K()")));
+		[Export ("getWTA_K")]
+		int WTA_K { get; }
+
+		// -(void)setScoreType:(ScoreType)scoreType __attribute__((swift_name("setScoreType(scoreType:)")));
+		[Export ("setScoreType:")]
+		void SetScoreType (ScoreType scoreType);
+
+		// -(ScoreType)getScoreType __attribute__((swift_name("getScoreType()")));
+		[Export ("getScoreType")]
+		ScoreType ScoreType { get; }
+
+		// -(void)setPatchSize:(int)patchSize __attribute__((swift_name("setPatchSize(patchSize:)")));
+		[Export ("setPatchSize:")]
+		void SetPatchSize (int patchSize);
+
+		// -(int)getPatchSize __attribute__((swift_name("getPatchSize()")));
+		[Export ("getPatchSize")]
+		int PatchSize { get; }
+
+		// -(void)setFastThreshold:(int)fastThreshold __attribute__((swift_name("setFastThreshold(fastThreshold:)")));
+		[Export ("setFastThreshold:")]
+		void SetFastThreshold (int fastThreshold);
+
+		// -(int)getFastThreshold __attribute__((swift_name("getFastThreshold()")));
+		[Export ("getFastThreshold")]
+		int FastThreshold { get; }
+
+		// -(NSString * _Nonnull)getDefaultName __attribute__((swift_name("getDefaultName()")));
+		[Export ("getDefaultName")]
+		string DefaultName { get; }
+	}
+
+	// @interface SIFT : Feature2D
+	[BaseType (typeof (Feature2D))]
+	interface SIFT {
+		// +(SIFT * _Nonnull)create:(int)nfeatures nOctaveLayers:(int)nOctaveLayers contrastThreshold:(double)contrastThreshold edgeThreshold:(double)edgeThreshold sigma:(double)sigma enable_precise_upscale:(BOOL)enable_precise_upscale __attribute__((swift_name("create(nfeatures:nOctaveLayers:contrastThreshold:edgeThreshold:sigma:enable_precise_upscale:)")));
+		[Static]
+		[Export ("create:nOctaveLayers:contrastThreshold:edgeThreshold:sigma:enable_precise_upscale:")]
+		SIFT Create (int nfeatures, int nOctaveLayers, double contrastThreshold, double edgeThreshold, double sigma, bool enable_precise_upscale);
+
+		// +(SIFT * _Nonnull)create:(int)nfeatures nOctaveLayers:(int)nOctaveLayers contrastThreshold:(double)contrastThreshold edgeThreshold:(double)edgeThreshold sigma:(double)sigma __attribute__((swift_name("create(nfeatures:nOctaveLayers:contrastThreshold:edgeThreshold:sigma:)")));
+		[Static]
+		[Export ("create:nOctaveLayers:contrastThreshold:edgeThreshold:sigma:")]
+		SIFT Create (int nfeatures, int nOctaveLayers, double contrastThreshold, double edgeThreshold, double sigma);
+
+		// +(SIFT * _Nonnull)create:(int)nfeatures nOctaveLayers:(int)nOctaveLayers contrastThreshold:(double)contrastThreshold edgeThreshold:(double)edgeThreshold __attribute__((swift_name("create(nfeatures:nOctaveLayers:contrastThreshold:edgeThreshold:)")));
+		[Static]
+		[Export ("create:nOctaveLayers:contrastThreshold:edgeThreshold:")]
+		SIFT Create (int nfeatures, int nOctaveLayers, double contrastThreshold, double edgeThreshold);
+
+		// +(SIFT * _Nonnull)create:(int)nfeatures nOctaveLayers:(int)nOctaveLayers contrastThreshold:(double)contrastThreshold __attribute__((swift_name("create(nfeatures:nOctaveLayers:contrastThreshold:)")));
+		[Static]
+		[Export ("create:nOctaveLayers:contrastThreshold:")]
+		SIFT Create (int nfeatures, int nOctaveLayers, double contrastThreshold);
+
+		// +(SIFT * _Nonnull)create:(int)nfeatures nOctaveLayers:(int)nOctaveLayers __attribute__((swift_name("create(nfeatures:nOctaveLayers:)")));
+		[Static]
+		[Export ("create:nOctaveLayers:")]
+		SIFT Create (int nfeatures, int nOctaveLayers);
+
+		// +(SIFT * _Nonnull)create:(int)nfeatures __attribute__((swift_name("create(nfeatures:)")));
+		[Static]
+		[Export ("create:")]
+		SIFT Create (int nfeatures);
+
+		// +(SIFT * _Nonnull)create __attribute__((swift_name("create()")));
+		[Static]
+		[Export ("create")]
+		SIFT Create ();
+
+		// +(SIFT * _Nonnull)create:(int)nfeatures nOctaveLayers:(int)nOctaveLayers contrastThreshold:(double)contrastThreshold edgeThreshold:(double)edgeThreshold sigma:(double)sigma descriptorType:(int)descriptorType enable_precise_upscale:(BOOL)enable_precise_upscale __attribute__((swift_name("create(nfeatures:nOctaveLayers:contrastThreshold:edgeThreshold:sigma:descriptorType:enable_precise_upscale:)")));
+		[Static]
+		[Export ("create:nOctaveLayers:contrastThreshold:edgeThreshold:sigma:descriptorType:enable_precise_upscale:")]
+		SIFT Create (int nfeatures, int nOctaveLayers, double contrastThreshold, double edgeThreshold, double sigma, int descriptorType, bool enable_precise_upscale);
+
+		// +(SIFT * _Nonnull)create:(int)nfeatures nOctaveLayers:(int)nOctaveLayers contrastThreshold:(double)contrastThreshold edgeThreshold:(double)edgeThreshold sigma:(double)sigma descriptorType:(int)descriptorType __attribute__((swift_name("create(nfeatures:nOctaveLayers:contrastThreshold:edgeThreshold:sigma:descriptorType:)")));
+		[Static]
+		[Export ("create:nOctaveLayers:contrastThreshold:edgeThreshold:sigma:descriptorType:")]
+		SIFT Create (int nfeatures, int nOctaveLayers, double contrastThreshold, double edgeThreshold, double sigma, int descriptorType);
+
+		// -(NSString * _Nonnull)getDefaultName __attribute__((swift_name("getDefaultName()")));
+		[Export ("getDefaultName")]
+		string DefaultName { get; }
+
+		// -(void)setNFeatures:(int)maxFeatures __attribute__((swift_name("setNFeatures(maxFeatures:)")));
+		[Export ("setNFeatures:")]
+		void SetNFeatures (int maxFeatures);
+
+		// -(int)getNFeatures __attribute__((swift_name("getNFeatures()")));
+		[Export ("getNFeatures")]
+		int NFeatures { get; }
+
+		// -(void)setNOctaveLayers:(int)nOctaveLayers __attribute__((swift_name("setNOctaveLayers(nOctaveLayers:)")));
+		[Export ("setNOctaveLayers:")]
+		void SetNOctaveLayers (int nOctaveLayers);
+
+		// -(int)getNOctaveLayers __attribute__((swift_name("getNOctaveLayers()")));
+		[Export ("getNOctaveLayers")]
+		int NOctaveLayers { get; }
+
+		// -(void)setContrastThreshold:(double)contrastThreshold __attribute__((swift_name("setContrastThreshold(contrastThreshold:)")));
+		[Export ("setContrastThreshold:")]
+		void SetContrastThreshold (double contrastThreshold);
+
+		// -(double)getContrastThreshold __attribute__((swift_name("getContrastThreshold()")));
+		[Export ("getContrastThreshold")]
+		double ContrastThreshold { get; }
+
+		// -(void)setEdgeThreshold:(double)edgeThreshold __attribute__((swift_name("setEdgeThreshold(edgeThreshold:)")));
+		[Export ("setEdgeThreshold:")]
+		void SetEdgeThreshold (double edgeThreshold);
+
+		// -(double)getEdgeThreshold __attribute__((swift_name("getEdgeThreshold()")));
+		[Export ("getEdgeThreshold")]
+		double EdgeThreshold { get; }
+
+		// -(void)setSigma:(double)sigma __attribute__((swift_name("setSigma(sigma:)")));
+		[Export ("setSigma:")]
+		void SetSigma (double sigma);
+
+		// -(double)getSigma __attribute__((swift_name("getSigma()")));
+		[Export ("getSigma")]
+		double Sigma { get; }
+	}
+
+	// @interface SimpleBlobDetector : Feature2D
+	[BaseType (typeof (Feature2D))]
+	interface SimpleBlobDetector {
+		// +(SimpleBlobDetector * _Nonnull)create:(SimpleBlobDetectorParams * _Nonnull)parameters __attribute__((swift_name("create(parameters:)")));
+		[Static]
+		[Export ("create:")]
+		SimpleBlobDetector Create (SimpleBlobDetectorParams parameters);
+
+		// +(SimpleBlobDetector * _Nonnull)create __attribute__((swift_name("create()")));
+		[Static]
+		[Export ("create")]
+		SimpleBlobDetector Create ();
+
+		// -(NSString * _Nonnull)getDefaultName __attribute__((swift_name("getDefaultName()")));
+		[Export ("getDefaultName")]
+		string DefaultName { get; }
+
+		// -(NSArray<NSArray<Point2i *> *> * _Nonnull)getBlobContours __attribute__((swift_name("getBlobContours()")));
+		[Export ("getBlobContours")]
+		NSArray<Point2i> [] BlobContours { get; }
+	}
+
+	// @interface SimpleBlobDetectorParams : NSObject
+	[BaseType (typeof (NSObject))]
+	interface SimpleBlobDetectorParams {
+		// @property float thresholdStep;
+		[Export ("thresholdStep")]
+		float ThresholdStep { get; set; }
+
+		// @property float minThreshold;
+		[Export ("minThreshold")]
+		float MinThreshold { get; set; }
+
+		// @property float maxThreshold;
+		[Export ("maxThreshold")]
+		float MaxThreshold { get; set; }
+
+		// @property size_t minRepeatability;
+		[Export ("minRepeatability")]
+		nuint MinRepeatability { get; set; }
+
+		// @property float minDistBetweenBlobs;
+		[Export ("minDistBetweenBlobs")]
+		float MinDistBetweenBlobs { get; set; }
+
+		// @property BOOL filterByColor;
+		[Export ("filterByColor")]
+		bool FilterByColor { get; set; }
+
+		// @property unsigned char blobColor;
+		[Export ("blobColor")]
+		byte BlobColor { get; set; }
+
+		// @property BOOL filterByArea;
+		[Export ("filterByArea")]
+		bool FilterByArea { get; set; }
+
+		// @property float minArea;
+		[Export ("minArea")]
+		float MinArea { get; set; }
+
+		// @property float maxArea;
+		[Export ("maxArea")]
+		float MaxArea { get; set; }
+
+		// @property BOOL filterByCircularity;
+		[Export ("filterByCircularity")]
+		bool FilterByCircularity { get; set; }
+
+		// @property float minCircularity;
+		[Export ("minCircularity")]
+		float MinCircularity { get; set; }
+
+		// @property float maxCircularity;
+		[Export ("maxCircularity")]
+		float MaxCircularity { get; set; }
+
+		// @property BOOL filterByInertia;
+		[Export ("filterByInertia")]
+		bool FilterByInertia { get; set; }
+
+		// @property float minInertiaRatio;
+		[Export ("minInertiaRatio")]
+		float MinInertiaRatio { get; set; }
+
+		// @property float maxInertiaRatio;
+		[Export ("maxInertiaRatio")]
+		float MaxInertiaRatio { get; set; }
+
+		// @property BOOL filterByConvexity;
+		[Export ("filterByConvexity")]
+		bool FilterByConvexity { get; set; }
+
+		// @property float minConvexity;
+		[Export ("minConvexity")]
+		float MinConvexity { get; set; }
+
+		// @property float maxConvexity;
+		[Export ("maxConvexity")]
+		float MaxConvexity { get; set; }
+
+		// @property BOOL collectContours;
+		[Export ("collectContours")]
+		bool CollectContours { get; set; }
+	}
+
+	// @interface XFeat : Feature2D
+	[BaseType (typeof (Feature2D))]
+	interface XFeat {
+		// +(XFeat * _Nonnull)create:(NSString * _Nonnull)modelPath maxKeypoints:(int)maxKeypoints scoreThreshold:(float)scoreThreshold inputSize:(Size2i * _Nonnull)inputSize backendId:(int)backendId targetId:(int)targetId __attribute__((swift_name("create(modelPath:maxKeypoints:scoreThreshold:inputSize:backendId:targetId:)")));
+		[Static]
+		[Export ("create:maxKeypoints:scoreThreshold:inputSize:backendId:targetId:")]
+		XFeat Create (string modelPath, int maxKeypoints, float scoreThreshold, Size2i inputSize, int backendId, int targetId);
+
+		// +(XFeat * _Nonnull)create:(NSString * _Nonnull)modelPath maxKeypoints:(int)maxKeypoints scoreThreshold:(float)scoreThreshold inputSize:(Size2i * _Nonnull)inputSize backendId:(int)backendId __attribute__((swift_name("create(modelPath:maxKeypoints:scoreThreshold:inputSize:backendId:)")));
+		[Static]
+		[Export ("create:maxKeypoints:scoreThreshold:inputSize:backendId:")]
+		XFeat Create (string modelPath, int maxKeypoints, float scoreThreshold, Size2i inputSize, int backendId);
+
+		// +(XFeat * _Nonnull)create:(NSString * _Nonnull)modelPath maxKeypoints:(int)maxKeypoints scoreThreshold:(float)scoreThreshold inputSize:(Size2i * _Nonnull)inputSize __attribute__((swift_name("create(modelPath:maxKeypoints:scoreThreshold:inputSize:)")));
+		[Static]
+		[Export ("create:maxKeypoints:scoreThreshold:inputSize:")]
+		XFeat Create (string modelPath, int maxKeypoints, float scoreThreshold, Size2i inputSize);
+
+		// +(XFeat * _Nonnull)create:(NSString * _Nonnull)modelPath maxKeypoints:(int)maxKeypoints scoreThreshold:(float)scoreThreshold __attribute__((swift_name("create(modelPath:maxKeypoints:scoreThreshold:)")));
+		[Static]
+		[Export ("create:maxKeypoints:scoreThreshold:")]
+		XFeat Create (string modelPath, int maxKeypoints, float scoreThreshold);
+
+		// +(XFeat * _Nonnull)create:(NSString * _Nonnull)modelPath maxKeypoints:(int)maxKeypoints __attribute__((swift_name("create(modelPath:maxKeypoints:)")));
+		[Static]
+		[Export ("create:maxKeypoints:")]
+		XFeat Create (string modelPath, int maxKeypoints);
+
+		// +(XFeat * _Nonnull)create:(NSString * _Nonnull)modelPath __attribute__((swift_name("create(modelPath:)")));
+		[Static]
+		[Export ("create:")]
+		XFeat Create (string modelPath);
+
+		// +(XFeat * _Nonnull)createFromMemory:(ByteVector * _Nonnull)bufferModel maxKeypoints:(int)maxKeypoints scoreThreshold:(float)scoreThreshold inputSize:(Size2i * _Nonnull)inputSize backendId:(int)backendId targetId:(int)targetId __attribute__((swift_name("create(bufferModel:maxKeypoints:scoreThreshold:inputSize:backendId:targetId:)")));
+		[Static]
+		[Export ("createFromMemory:maxKeypoints:scoreThreshold:inputSize:backendId:targetId:")]
+		XFeat CreateFromMemory (ByteVector bufferModel, int maxKeypoints, float scoreThreshold, Size2i inputSize, int backendId, int targetId);
+
+		// +(XFeat * _Nonnull)createFromMemory:(ByteVector * _Nonnull)bufferModel maxKeypoints:(int)maxKeypoints scoreThreshold:(float)scoreThreshold inputSize:(Size2i * _Nonnull)inputSize backendId:(int)backendId __attribute__((swift_name("create(bufferModel:maxKeypoints:scoreThreshold:inputSize:backendId:)")));
+		[Static]
+		[Export ("createFromMemory:maxKeypoints:scoreThreshold:inputSize:backendId:")]
+		XFeat CreateFromMemory (ByteVector bufferModel, int maxKeypoints, float scoreThreshold, Size2i inputSize, int backendId);
+
+		// +(XFeat * _Nonnull)createFromMemory:(ByteVector * _Nonnull)bufferModel maxKeypoints:(int)maxKeypoints scoreThreshold:(float)scoreThreshold inputSize:(Size2i * _Nonnull)inputSize __attribute__((swift_name("create(bufferModel:maxKeypoints:scoreThreshold:inputSize:)")));
+		[Static]
+		[Export ("createFromMemory:maxKeypoints:scoreThreshold:inputSize:")]
+		XFeat CreateFromMemory (ByteVector bufferModel, int maxKeypoints, float scoreThreshold, Size2i inputSize);
+
+		// +(XFeat * _Nonnull)createFromMemory:(ByteVector * _Nonnull)bufferModel maxKeypoints:(int)maxKeypoints scoreThreshold:(float)scoreThreshold __attribute__((swift_name("create(bufferModel:maxKeypoints:scoreThreshold:)")));
+		[Static]
+		[Export ("createFromMemory:maxKeypoints:scoreThreshold:")]
+		XFeat CreateFromMemory (ByteVector bufferModel, int maxKeypoints, float scoreThreshold);
+
+		// +(XFeat * _Nonnull)createFromMemory:(ByteVector * _Nonnull)bufferModel maxKeypoints:(int)maxKeypoints __attribute__((swift_name("create(bufferModel:maxKeypoints:)")));
+		[Static]
+		[Export ("createFromMemory:maxKeypoints:")]
+		XFeat CreateFromMemory (ByteVector bufferModel, int maxKeypoints);
+
+		// +(XFeat * _Nonnull)createFromMemory:(ByteVector * _Nonnull)bufferModel __attribute__((swift_name("create(bufferModel:)")));
+		[Static]
+		[Export ("createFromMemory:")]
+		XFeat CreateFromMemory (ByteVector bufferModel);
+
+		// -(void)setMaxKeypoints:(int)maxKeypoints __attribute__((swift_name("setMaxKeypoints(maxKeypoints:)")));
+		[Export ("setMaxKeypoints:")]
+		void SetMaxKeypoints (int maxKeypoints);
+
+		// -(int)getMaxKeypoints __attribute__((swift_name("getMaxKeypoints()")));
+		[Export ("getMaxKeypoints")]
+		int MaxKeypoints { get; }
+
+		// -(void)setScoreThreshold:(float)threshold __attribute__((swift_name("setScoreThreshold(threshold:)")));
+		[Export ("setScoreThreshold:")]
+		void SetScoreThreshold (float threshold);
+
+		// -(float)getScoreThreshold __attribute__((swift_name("getScoreThreshold()")));
+		[Export ("getScoreThreshold")]
+		float ScoreThreshold { get; }
+
+		// -(void)setInputSize:(Size2i * _Nonnull)inputSize __attribute__((swift_name("setInputSize(inputSize:)")));
+		[Export ("setInputSize:")]
+		void SetInputSize (Size2i inputSize);
+
+		// -(Size2i * _Nonnull)getInputSize __attribute__((swift_name("getInputSize()")));
+		[Export ("getInputSize")]
+		Size2i InputSize { get; }
+
+		// -(NSString * _Nonnull)getDefaultName __attribute__((swift_name("getDefaultName()")));
+		[Export ("getDefaultName")]
+		string DefaultName { get; }
+	}
+
+	// @interface Objdetect : NSObject
+	[BaseType (typeof (NSObject))]
+	interface Objdetect {
+		// @property (readonly, class) int CALIB_CB_ADAPTIVE_THRESH __attribute__((swift_name("CALIB_CB_ADAPTIVE_THRESH")));
+		[Static]
+		[Export ("CALIB_CB_ADAPTIVE_THRESH")]
+		int CALIB_CB_ADAPTIVE_THRESH { get; }
+
+		// @property (readonly, class) int CALIB_CB_NORMALIZE_IMAGE __attribute__((swift_name("CALIB_CB_NORMALIZE_IMAGE")));
+		[Static]
+		[Export ("CALIB_CB_NORMALIZE_IMAGE")]
+		int CALIB_CB_NORMALIZE_IMAGE { get; }
+
+		// @property (readonly, class) int CALIB_CB_FILTER_QUADS __attribute__((swift_name("CALIB_CB_FILTER_QUADS")));
+		[Static]
+		[Export ("CALIB_CB_FILTER_QUADS")]
+		int CALIB_CB_FILTER_QUADS { get; }
+
+		// @property (readonly, class) int CALIB_CB_FAST_CHECK __attribute__((swift_name("CALIB_CB_FAST_CHECK")));
+		[Static]
+		[Export ("CALIB_CB_FAST_CHECK")]
+		int CALIB_CB_FAST_CHECK { get; }
+
+		// @property (readonly, class) int CALIB_CB_EXHAUSTIVE __attribute__((swift_name("CALIB_CB_EXHAUSTIVE")));
+		[Static]
+		[Export ("CALIB_CB_EXHAUSTIVE")]
+		int CALIB_CB_EXHAUSTIVE { get; }
+
+		// @property (readonly, class) int CALIB_CB_ACCURACY __attribute__((swift_name("CALIB_CB_ACCURACY")));
+		[Static]
+		[Export ("CALIB_CB_ACCURACY")]
+		int CALIB_CB_ACCURACY { get; }
+
+		// @property (readonly, class) int CALIB_CB_LARGER __attribute__((swift_name("CALIB_CB_LARGER")));
+		[Static]
+		[Export ("CALIB_CB_LARGER")]
+		int CALIB_CB_LARGER { get; }
+
+		// @property (readonly, class) int CALIB_CB_MARKER __attribute__((swift_name("CALIB_CB_MARKER")));
+		[Static]
+		[Export ("CALIB_CB_MARKER")]
+		int CALIB_CB_MARKER { get; }
+
+		// @property (readonly, class) int CALIB_CB_PLAIN __attribute__((swift_name("CALIB_CB_PLAIN")));
+		[Static]
+		[Export ("CALIB_CB_PLAIN")]
+		int CALIB_CB_PLAIN { get; }
+
+		// @property (readonly, class) int CALIB_CB_SYMMETRIC_GRID __attribute__((swift_name("CALIB_CB_SYMMETRIC_GRID")));
+		[Static]
+		[Export ("CALIB_CB_SYMMETRIC_GRID")]
+		int CALIB_CB_SYMMETRIC_GRID { get; }
+
+		// @property (readonly, class) int CALIB_CB_ASYMMETRIC_GRID __attribute__((swift_name("CALIB_CB_ASYMMETRIC_GRID")));
+		[Static]
+		[Export ("CALIB_CB_ASYMMETRIC_GRID")]
+		int CALIB_CB_ASYMMETRIC_GRID { get; }
+
+		// @property (readonly, class) int CALIB_CB_CLUSTERING __attribute__((swift_name("CALIB_CB_CLUSTERING")));
+		[Static]
+		[Export ("CALIB_CB_CLUSTERING")]
+		int CALIB_CB_CLUSTERING { get; }
+
+		// +(BOOL)findChessboardCorners:(Mat * _Nonnull)image patternSize:(Size2i * _Nonnull)patternSize corners:(Mat * _Nonnull)corners flags:(int)flags __attribute__((swift_name("findChessboardCorners(image:patternSize:corners:flags:)")));
+		[Static]
+		[Export ("findChessboardCorners:patternSize:corners:flags:")]
+		bool FindChessboardCorners (Mat image, Size2i patternSize, Mat corners, int flags);
+
+		// +(BOOL)findChessboardCorners:(Mat * _Nonnull)image patternSize:(Size2i * _Nonnull)patternSize corners:(Mat * _Nonnull)corners __attribute__((swift_name("findChessboardCorners(image:patternSize:corners:)")));
+		[Static]
+		[Export ("findChessboardCorners:patternSize:corners:")]
+		bool FindChessboardCorners (Mat image, Size2i patternSize, Mat corners);
+
+		// +(BOOL)checkChessboard:(Mat * _Nonnull)img size:(Size2i * _Nonnull)size __attribute__((swift_name("checkChessboard(img:size:)")));
+		[Static]
+		[Export ("checkChessboard:size:")]
+		bool CheckChessboard (Mat img, Size2i size);
+
+		// +(BOOL)findChessboardCornersSBWithMeta:(Mat * _Nonnull)image patternSize:(Size2i * _Nonnull)patternSize corners:(Mat * _Nonnull)corners flags:(int)flags meta:(Mat * _Nonnull)meta __attribute__((swift_name("findChessboardCornersSB(image:patternSize:corners:flags:meta:)")));
+		[Static]
+		[Export ("findChessboardCornersSBWithMeta:patternSize:corners:flags:meta:")]
+		bool FindChessboardCornersSBWithMeta (Mat image, Size2i patternSize, Mat corners, int flags, Mat meta);
+
+		// +(BOOL)findChessboardCornersSB:(Mat * _Nonnull)image patternSize:(Size2i * _Nonnull)patternSize corners:(Mat * _Nonnull)corners flags:(int)flags __attribute__((swift_name("findChessboardCornersSB(image:patternSize:corners:flags:)")));
+		[Static]
+		[Export ("findChessboardCornersSB:patternSize:corners:flags:")]
+		bool FindChessboardCornersSB (Mat image, Size2i patternSize, Mat corners, int flags);
+
+		// +(BOOL)findChessboardCornersSB:(Mat * _Nonnull)image patternSize:(Size2i * _Nonnull)patternSize corners:(Mat * _Nonnull)corners __attribute__((swift_name("findChessboardCornersSB(image:patternSize:corners:)")));
+		[Static]
+		[Export ("findChessboardCornersSB:patternSize:corners:")]
+		bool FindChessboardCornersSB (Mat image, Size2i patternSize, Mat corners);
+
+		// +(Scalar * _Nonnull)estimateChessboardSharpness:(Mat * _Nonnull)image patternSize:(Size2i * _Nonnull)patternSize corners:(Mat * _Nonnull)corners rise_distance:(float)rise_distance vertical:(BOOL)vertical sharpness:(Mat * _Nonnull)sharpness __attribute__((swift_name("estimateChessboardSharpness(image:patternSize:corners:rise_distance:vertical:sharpness:)")));
+		[Static]
+		[Export ("estimateChessboardSharpness:patternSize:corners:rise_distance:vertical:sharpness:")]
+		Scalar EstimateChessboardSharpness (Mat image, Size2i patternSize, Mat corners, float rise_distance, bool vertical, Mat sharpness);
+
+		// +(Scalar * _Nonnull)estimateChessboardSharpness:(Mat * _Nonnull)image patternSize:(Size2i * _Nonnull)patternSize corners:(Mat * _Nonnull)corners rise_distance:(float)rise_distance vertical:(BOOL)vertical __attribute__((swift_name("estimateChessboardSharpness(image:patternSize:corners:rise_distance:vertical:)")));
+		[Static]
+		[Export ("estimateChessboardSharpness:patternSize:corners:rise_distance:vertical:")]
+		Scalar EstimateChessboardSharpness (Mat image, Size2i patternSize, Mat corners, float rise_distance, bool vertical);
+
+		// +(Scalar * _Nonnull)estimateChessboardSharpness:(Mat * _Nonnull)image patternSize:(Size2i * _Nonnull)patternSize corners:(Mat * _Nonnull)corners rise_distance:(float)rise_distance __attribute__((swift_name("estimateChessboardSharpness(image:patternSize:corners:rise_distance:)")));
+		[Static]
+		[Export ("estimateChessboardSharpness:patternSize:corners:rise_distance:")]
+		Scalar EstimateChessboardSharpness (Mat image, Size2i patternSize, Mat corners, float rise_distance);
+
+		// +(Scalar * _Nonnull)estimateChessboardSharpness:(Mat * _Nonnull)image patternSize:(Size2i * _Nonnull)patternSize corners:(Mat * _Nonnull)corners __attribute__((swift_name("estimateChessboardSharpness(image:patternSize:corners:)")));
+		[Static]
+		[Export ("estimateChessboardSharpness:patternSize:corners:")]
+		Scalar EstimateChessboardSharpness (Mat image, Size2i patternSize, Mat corners);
+
+		// +(BOOL)find4QuadCornerSubpix:(Mat * _Nonnull)img corners:(Mat * _Nonnull)corners region_size:(Size2i * _Nonnull)region_size __attribute__((swift_name("find4QuadCornerSubpix(img:corners:region_size:)")));
+		[Static]
+		[Export ("find4QuadCornerSubpix:corners:region_size:")]
+		bool Find4QuadCornerSubpix (Mat img, Mat corners, Size2i region_size);
+
+		// +(void)drawChessboardCorners:(Mat * _Nonnull)image patternSize:(Size2i * _Nonnull)patternSize corners:(Mat * _Nonnull)corners patternWasFound:(BOOL)patternWasFound __attribute__((swift_name("drawChessboardCorners(image:patternSize:corners:patternWasFound:)")));
+		[Static]
+		[Export ("drawChessboardCorners:patternSize:corners:patternWasFound:")]
+		void DrawChessboardCorners (Mat image, Size2i patternSize, Mat corners, bool patternWasFound);
+
+		// +(BOOL)findCirclesGrid:(Mat * _Nonnull)image patternSize:(Size2i * _Nonnull)patternSize centers:(Mat * _Nonnull)centers flags:(int)flags __attribute__((swift_name("findCirclesGrid(image:patternSize:centers:flags:)")));
+		[Static]
+		[Export ("findCirclesGrid:patternSize:centers:flags:")]
+		bool FindCirclesGrid (Mat image, Size2i patternSize, Mat centers, int flags);
+
+		// +(BOOL)findCirclesGrid:(Mat * _Nonnull)image patternSize:(Size2i * _Nonnull)patternSize centers:(Mat * _Nonnull)centers __attribute__((swift_name("findCirclesGrid(image:patternSize:centers:)")));
+		[Static]
+		[Export ("findCirclesGrid:patternSize:centers:")]
+		bool FindCirclesGrid (Mat image, Size2i patternSize, Mat centers);
+
+		// +(void)drawDetectedMarkers:(Mat * _Nonnull)image corners:(NSArray<Mat *> * _Nonnull)corners ids:(Mat * _Nonnull)ids borderColor:(Scalar * _Nonnull)borderColor __attribute__((swift_name("drawDetectedMarkers(image:corners:ids:borderColor:)")));
+		[Static]
+		[Export ("drawDetectedMarkers:corners:ids:borderColor:")]
+		void DrawDetectedMarkers (Mat image, Mat [] corners, Mat ids, Scalar borderColor);
+
+		// +(void)drawDetectedMarkers:(Mat * _Nonnull)image corners:(NSArray<Mat *> * _Nonnull)corners ids:(Mat * _Nonnull)ids __attribute__((swift_name("drawDetectedMarkers(image:corners:ids:)")));
+		[Static]
+		[Export ("drawDetectedMarkers:corners:ids:")]
+		void DrawDetectedMarkers (Mat image, Mat [] corners, Mat ids);
+
+		// +(void)drawDetectedMarkers:(Mat * _Nonnull)image corners:(NSArray<Mat *> * _Nonnull)corners __attribute__((swift_name("drawDetectedMarkers(image:corners:)")));
+		[Static]
+		[Export ("drawDetectedMarkers:corners:")]
+		void DrawDetectedMarkers (Mat image, Mat [] corners);
+
+		// +(void)generateImageMarker:(Dictionary * _Nonnull)dictionary id:(int)id sidePixels:(int)sidePixels img:(Mat * _Nonnull)img borderBits:(int)borderBits __attribute__((swift_name("generateImageMarker(dictionary:id:sidePixels:img:borderBits:)")));
+		[Static]
+		[Export ("generateImageMarker:id:sidePixels:img:borderBits:")]
+		void GenerateImageMarker (Dictionary dictionary, int id, int sidePixels, Mat img, int borderBits);
+
+		// +(void)generateImageMarker:(Dictionary * _Nonnull)dictionary id:(int)id sidePixels:(int)sidePixels img:(Mat * _Nonnull)img __attribute__((swift_name("generateImageMarker(dictionary:id:sidePixels:img:)")));
+		[Static]
+		[Export ("generateImageMarker:id:sidePixels:img:")]
+		void GenerateImageMarker (Dictionary dictionary, int id, int sidePixels, Mat img);
+
+		// +(Dictionary * _Nonnull)getPredefinedDictionary:(int)dict __attribute__((swift_name("getPredefinedDictionary(dict:)")));
+		[Static]
+		[Export ("getPredefinedDictionary:")]
+		Dictionary GetPredefinedDictionary (int dict);
+
+		// +(Dictionary * _Nonnull)extendDictionary:(int)nMarkers markerSize:(int)markerSize baseDictionary:(Dictionary * _Nonnull)baseDictionary randomSeed:(int)randomSeed __attribute__((swift_name("extendDictionary(nMarkers:markerSize:baseDictionary:randomSeed:)")));
+		[Static]
+		[Export ("extendDictionary:markerSize:baseDictionary:randomSeed:")]
+		Dictionary ExtendDictionary (int nMarkers, int markerSize, Dictionary baseDictionary, int randomSeed);
+
+		// +(Dictionary * _Nonnull)extendDictionary:(int)nMarkers markerSize:(int)markerSize baseDictionary:(Dictionary * _Nonnull)baseDictionary __attribute__((swift_name("extendDictionary(nMarkers:markerSize:baseDictionary:)")));
+		[Static]
+		[Export ("extendDictionary:markerSize:baseDictionary:")]
+		Dictionary ExtendDictionary (int nMarkers, int markerSize, Dictionary baseDictionary);
+
+		// +(Dictionary * _Nonnull)extendDictionary:(int)nMarkers markerSize:(int)markerSize __attribute__((swift_name("extendDictionary(nMarkers:markerSize:)")));
+		[Static]
+		[Export ("extendDictionary:markerSize:")]
+		Dictionary ExtendDictionary (int nMarkers, int markerSize);
+
+		// +(void)drawDetectedCornersCharuco:(Mat * _Nonnull)image charucoCorners:(Mat * _Nonnull)charucoCorners charucoIds:(Mat * _Nonnull)charucoIds cornerColor:(Scalar * _Nonnull)cornerColor __attribute__((swift_name("drawDetectedCornersCharuco(image:charucoCorners:charucoIds:cornerColor:)")));
+		[Static]
+		[Export ("drawDetectedCornersCharuco:charucoCorners:charucoIds:cornerColor:")]
+		void DrawDetectedCornersCharuco (Mat image, Mat charucoCorners, Mat charucoIds, Scalar cornerColor);
+
+		// +(void)drawDetectedCornersCharuco:(Mat * _Nonnull)image charucoCorners:(Mat * _Nonnull)charucoCorners charucoIds:(Mat * _Nonnull)charucoIds __attribute__((swift_name("drawDetectedCornersCharuco(image:charucoCorners:charucoIds:)")));
+		[Static]
+		[Export ("drawDetectedCornersCharuco:charucoCorners:charucoIds:")]
+		void DrawDetectedCornersCharuco (Mat image, Mat charucoCorners, Mat charucoIds);
+
+		// +(void)drawDetectedCornersCharuco:(Mat * _Nonnull)image charucoCorners:(Mat * _Nonnull)charucoCorners __attribute__((swift_name("drawDetectedCornersCharuco(image:charucoCorners:)")));
+		[Static]
+		[Export ("drawDetectedCornersCharuco:charucoCorners:")]
+		void DrawDetectedCornersCharuco (Mat image, Mat charucoCorners);
+
+		// +(void)drawDetectedDiamonds:(Mat * _Nonnull)image diamondCorners:(NSArray<Mat *> * _Nonnull)diamondCorners diamondIds:(Mat * _Nonnull)diamondIds borderColor:(Scalar * _Nonnull)borderColor __attribute__((swift_name("drawDetectedDiamonds(image:diamondCorners:diamondIds:borderColor:)")));
+		[Static]
+		[Export ("drawDetectedDiamonds:diamondCorners:diamondIds:borderColor:")]
+		void DrawDetectedDiamonds (Mat image, Mat [] diamondCorners, Mat diamondIds, Scalar borderColor);
+
+		// +(void)drawDetectedDiamonds:(Mat * _Nonnull)image diamondCorners:(NSArray<Mat *> * _Nonnull)diamondCorners diamondIds:(Mat * _Nonnull)diamondIds __attribute__((swift_name("drawDetectedDiamonds(image:diamondCorners:diamondIds:)")));
+		[Static]
+		[Export ("drawDetectedDiamonds:diamondCorners:diamondIds:")]
+		void DrawDetectedDiamonds (Mat image, Mat [] diamondCorners, Mat diamondIds);
+
+		// +(void)drawDetectedDiamonds:(Mat * _Nonnull)image diamondCorners:(NSArray<Mat *> * _Nonnull)diamondCorners __attribute__((swift_name("drawDetectedDiamonds(image:diamondCorners:)")));
+		[Static]
+		[Export ("drawDetectedDiamonds:diamondCorners:")]
+		void DrawDetectedDiamonds (Mat image, Mat [] diamondCorners);
+	}
+
+	// @interface CirclesGridFinderParameters : NSObject
+	[BaseType (typeof (NSObject))]
+	interface CirclesGridFinderParameters {
+		// @property Size2f * _Nonnull densityNeighborhoodSize;
+		[Export ("densityNeighborhoodSize", ArgumentSemantic.Assign)]
+		Size2f DensityNeighborhoodSize { get; set; }
+
+		// @property float minDensity;
+		[Export ("minDensity")]
+		float MinDensity { get; set; }
+
+		// @property int kmeansAttempts;
+		[Export ("kmeansAttempts")]
+		int KmeansAttempts { get; set; }
+
+		// @property int minDistanceToAddKeypoint;
+		[Export ("minDistanceToAddKeypoint")]
+		int MinDistanceToAddKeypoint { get; set; }
+
+		// @property int keypointScale;
+		[Export ("keypointScale")]
+		int KeypointScale { get; set; }
+
+		// @property float minGraphConfidence;
+		[Export ("minGraphConfidence")]
+		float MinGraphConfidence { get; set; }
+
+		// @property float vertexGain;
+		[Export ("vertexGain")]
+		float VertexGain { get; set; }
+
+		// @property float vertexPenalty;
+		[Export ("vertexPenalty")]
+		float VertexPenalty { get; set; }
+
+		// @property float existingVertexGain;
+		[Export ("existingVertexGain")]
+		float ExistingVertexGain { get; set; }
+
+		// @property float edgeGain;
+		[Export ("edgeGain")]
+		float EdgeGain { get; set; }
+
+		// @property float edgePenalty;
+		[Export ("edgePenalty")]
+		float EdgePenalty { get; set; }
+
+		// @property float convexHullFactor;
+		[Export ("convexHullFactor")]
+		float ConvexHullFactor { get; set; }
+
+		// @property float minRNGEdgeSwitchDist;
+		[Export ("minRNGEdgeSwitchDist")]
+		float MinRNGEdgeSwitchDist { get; set; }
+
+		// @property GridType gridType;
+		[Export ("gridType", ArgumentSemantic.Assign)]
+		GridType GridType { get; set; }
+
+		// @property float squareSize;
+		[Export ("squareSize")]
+		float SquareSize { get; set; }
+
+		// @property float maxRectifiedDistance;
+		[Export ("maxRectifiedDistance")]
+		float MaxRectifiedDistance { get; set; }
+	}
+
+	// @interface FaceDetectorYN : NSObject
+	[BaseType (typeof (NSObject))]
+	interface FaceDetectorYN {
+		// -(void)setInputSize:(Size2i * _Nonnull)input_size __attribute__((swift_name("setInputSize(input_size:)")));
+		[Export ("setInputSize:")]
+		void SetInputSize (Size2i input_size);
+
+		// -(Size2i * _Nonnull)getInputSize __attribute__((swift_name("getInputSize()")));
+		[Export ("getInputSize")]
+		Size2i InputSize { get; }
+
+		// -(void)setScoreThreshold:(float)score_threshold __attribute__((swift_name("setScoreThreshold(score_threshold:)")));
+		[Export ("setScoreThreshold:")]
+		void SetScoreThreshold (float score_threshold);
+
+		// -(float)getScoreThreshold __attribute__((swift_name("getScoreThreshold()")));
+		[Export ("getScoreThreshold")]
+		float ScoreThreshold { get; }
+
+		// -(void)setNMSThreshold:(float)nms_threshold __attribute__((swift_name("setNMSThreshold(nms_threshold:)")));
+		[Export ("setNMSThreshold:")]
+		void SetNMSThreshold (float nms_threshold);
+
+		// -(float)getNMSThreshold __attribute__((swift_name("getNMSThreshold()")));
+		[Export ("getNMSThreshold")]
+		float NMSThreshold { get; }
+
+		// -(void)setTopK:(int)top_k __attribute__((swift_name("setTopK(top_k:)")));
+		[Export ("setTopK:")]
+		void SetTopK (int top_k);
+
+		// -(int)getTopK __attribute__((swift_name("getTopK()")));
+		[Export ("getTopK")]
+		int TopK { get; }
+
+		// -(int)detect:(Mat * _Nonnull)image faces:(Mat * _Nonnull)faces __attribute__((swift_name("detect(image:faces:)")));
+		[Export ("detect:faces:")]
+		int Detect (Mat image, Mat faces);
+
+		// +(FaceDetectorYN * _Nonnull)create:(NSString * _Nonnull)model config:(NSString * _Nonnull)config input_size:(Size2i * _Nonnull)input_size score_threshold:(float)score_threshold nms_threshold:(float)nms_threshold top_k:(int)top_k backend_id:(int)backend_id target_id:(int)target_id __attribute__((swift_name("create(model:config:input_size:score_threshold:nms_threshold:top_k:backend_id:target_id:)")));
+		[Static]
+		[Export ("create:config:input_size:score_threshold:nms_threshold:top_k:backend_id:target_id:")]
+		FaceDetectorYN Create (string model, string config, Size2i input_size, float score_threshold, float nms_threshold, int top_k, int backend_id, int target_id);
+
+		// +(FaceDetectorYN * _Nonnull)create:(NSString * _Nonnull)model config:(NSString * _Nonnull)config input_size:(Size2i * _Nonnull)input_size score_threshold:(float)score_threshold nms_threshold:(float)nms_threshold top_k:(int)top_k backend_id:(int)backend_id __attribute__((swift_name("create(model:config:input_size:score_threshold:nms_threshold:top_k:backend_id:)")));
+		[Static]
+		[Export ("create:config:input_size:score_threshold:nms_threshold:top_k:backend_id:")]
+		FaceDetectorYN Create (string model, string config, Size2i input_size, float score_threshold, float nms_threshold, int top_k, int backend_id);
+
+		// +(FaceDetectorYN * _Nonnull)create:(NSString * _Nonnull)model config:(NSString * _Nonnull)config input_size:(Size2i * _Nonnull)input_size score_threshold:(float)score_threshold nms_threshold:(float)nms_threshold top_k:(int)top_k __attribute__((swift_name("create(model:config:input_size:score_threshold:nms_threshold:top_k:)")));
+		[Static]
+		[Export ("create:config:input_size:score_threshold:nms_threshold:top_k:")]
+		FaceDetectorYN Create (string model, string config, Size2i input_size, float score_threshold, float nms_threshold, int top_k);
+
+		// +(FaceDetectorYN * _Nonnull)create:(NSString * _Nonnull)model config:(NSString * _Nonnull)config input_size:(Size2i * _Nonnull)input_size score_threshold:(float)score_threshold nms_threshold:(float)nms_threshold __attribute__((swift_name("create(model:config:input_size:score_threshold:nms_threshold:)")));
+		[Static]
+		[Export ("create:config:input_size:score_threshold:nms_threshold:")]
+		FaceDetectorYN Create (string model, string config, Size2i input_size, float score_threshold, float nms_threshold);
+
+		// +(FaceDetectorYN * _Nonnull)create:(NSString * _Nonnull)model config:(NSString * _Nonnull)config input_size:(Size2i * _Nonnull)input_size score_threshold:(float)score_threshold __attribute__((swift_name("create(model:config:input_size:score_threshold:)")));
+		[Static]
+		[Export ("create:config:input_size:score_threshold:")]
+		FaceDetectorYN Create (string model, string config, Size2i input_size, float score_threshold);
+
+		// +(FaceDetectorYN * _Nonnull)create:(NSString * _Nonnull)model config:(NSString * _Nonnull)config input_size:(Size2i * _Nonnull)input_size __attribute__((swift_name("create(model:config:input_size:)")));
+		[Static]
+		[Export ("create:config:input_size:")]
+		FaceDetectorYN Create (string model, string config, Size2i input_size);
+
+		// +(FaceDetectorYN * _Nonnull)create:(NSString * _Nonnull)framework bufferModel:(ByteVector * _Nonnull)bufferModel bufferConfig:(ByteVector * _Nonnull)bufferConfig input_size:(Size2i * _Nonnull)input_size score_threshold:(float)score_threshold nms_threshold:(float)nms_threshold top_k:(int)top_k backend_id:(int)backend_id target_id:(int)target_id __attribute__((swift_name("create(framework:bufferModel:bufferConfig:input_size:score_threshold:nms_threshold:top_k:backend_id:target_id:)")));
+		[Static]
+		[Export ("create:bufferModel:bufferConfig:input_size:score_threshold:nms_threshold:top_k:backend_id:target_id:")]
+		FaceDetectorYN Create (string framework, ByteVector bufferModel, ByteVector bufferConfig, Size2i input_size, float score_threshold, float nms_threshold, int top_k, int backend_id, int target_id);
+
+		// +(FaceDetectorYN * _Nonnull)create:(NSString * _Nonnull)framework bufferModel:(ByteVector * _Nonnull)bufferModel bufferConfig:(ByteVector * _Nonnull)bufferConfig input_size:(Size2i * _Nonnull)input_size score_threshold:(float)score_threshold nms_threshold:(float)nms_threshold top_k:(int)top_k backend_id:(int)backend_id __attribute__((swift_name("create(framework:bufferModel:bufferConfig:input_size:score_threshold:nms_threshold:top_k:backend_id:)")));
+		[Static]
+		[Export ("create:bufferModel:bufferConfig:input_size:score_threshold:nms_threshold:top_k:backend_id:")]
+		FaceDetectorYN Create (string framework, ByteVector bufferModel, ByteVector bufferConfig, Size2i input_size, float score_threshold, float nms_threshold, int top_k, int backend_id);
+
+		// +(FaceDetectorYN * _Nonnull)create:(NSString * _Nonnull)framework bufferModel:(ByteVector * _Nonnull)bufferModel bufferConfig:(ByteVector * _Nonnull)bufferConfig input_size:(Size2i * _Nonnull)input_size score_threshold:(float)score_threshold nms_threshold:(float)nms_threshold top_k:(int)top_k __attribute__((swift_name("create(framework:bufferModel:bufferConfig:input_size:score_threshold:nms_threshold:top_k:)")));
+		[Static]
+		[Export ("create:bufferModel:bufferConfig:input_size:score_threshold:nms_threshold:top_k:")]
+		FaceDetectorYN Create (string framework, ByteVector bufferModel, ByteVector bufferConfig, Size2i input_size, float score_threshold, float nms_threshold, int top_k);
+
+		// +(FaceDetectorYN * _Nonnull)create:(NSString * _Nonnull)framework bufferModel:(ByteVector * _Nonnull)bufferModel bufferConfig:(ByteVector * _Nonnull)bufferConfig input_size:(Size2i * _Nonnull)input_size score_threshold:(float)score_threshold nms_threshold:(float)nms_threshold __attribute__((swift_name("create(framework:bufferModel:bufferConfig:input_size:score_threshold:nms_threshold:)")));
+		[Static]
+		[Export ("create:bufferModel:bufferConfig:input_size:score_threshold:nms_threshold:")]
+		FaceDetectorYN Create (string framework, ByteVector bufferModel, ByteVector bufferConfig, Size2i input_size, float score_threshold, float nms_threshold);
+
+		// +(FaceDetectorYN * _Nonnull)create:(NSString * _Nonnull)framework bufferModel:(ByteVector * _Nonnull)bufferModel bufferConfig:(ByteVector * _Nonnull)bufferConfig input_size:(Size2i * _Nonnull)input_size score_threshold:(float)score_threshold __attribute__((swift_name("create(framework:bufferModel:bufferConfig:input_size:score_threshold:)")));
+		[Static]
+		[Export ("create:bufferModel:bufferConfig:input_size:score_threshold:")]
+		FaceDetectorYN Create (string framework, ByteVector bufferModel, ByteVector bufferConfig, Size2i input_size, float score_threshold);
+
+		// +(FaceDetectorYN * _Nonnull)create:(NSString * _Nonnull)framework bufferModel:(ByteVector * _Nonnull)bufferModel bufferConfig:(ByteVector * _Nonnull)bufferConfig input_size:(Size2i * _Nonnull)input_size __attribute__((swift_name("create(framework:bufferModel:bufferConfig:input_size:)")));
+		[Static]
+		[Export ("create:bufferModel:bufferConfig:input_size:")]
+		FaceDetectorYN Create (string framework, ByteVector bufferModel, ByteVector bufferConfig, Size2i input_size);
+	}
+
+	// @interface FaceRecognizerSF : NSObject
+	[BaseType (typeof (NSObject))]
+	interface FaceRecognizerSF {
+		// -(void)alignCrop:(Mat * _Nonnull)src_img face_box:(Mat * _Nonnull)face_box aligned_img:(Mat * _Nonnull)aligned_img __attribute__((swift_name("alignCrop(src_img:face_box:aligned_img:)")));
+		[Export ("alignCrop:face_box:aligned_img:")]
+		void AlignCrop (Mat src_img, Mat face_box, Mat aligned_img);
+
+		// -(void)feature:(Mat * _Nonnull)aligned_img face_feature:(Mat * _Nonnull)face_feature __attribute__((swift_name("feature(aligned_img:face_feature:)")));
+		[Export ("feature:face_feature:")]
+		void Feature (Mat aligned_img, Mat face_feature);
+
+		// -(double)match:(Mat * _Nonnull)face_feature1 face_feature2:(Mat * _Nonnull)face_feature2 dis_type:(int)dis_type __attribute__((swift_name("match(face_feature1:face_feature2:dis_type:)")));
+		[Export ("match:face_feature2:dis_type:")]
+		double Match (Mat face_feature1, Mat face_feature2, int dis_type);
+
+		// -(double)match:(Mat * _Nonnull)face_feature1 face_feature2:(Mat * _Nonnull)face_feature2 __attribute__((swift_name("match(face_feature1:face_feature2:)")));
+		[Export ("match:face_feature2:")]
+		double Match (Mat face_feature1, Mat face_feature2);
+
+		// +(FaceRecognizerSF * _Nonnull)create:(NSString * _Nonnull)model config:(NSString * _Nonnull)config backend_id:(int)backend_id target_id:(int)target_id __attribute__((swift_name("create(model:config:backend_id:target_id:)")));
+		[Static]
+		[Export ("create:config:backend_id:target_id:")]
+		FaceRecognizerSF Create (string model, string config, int backend_id, int target_id);
+
+		// +(FaceRecognizerSF * _Nonnull)create:(NSString * _Nonnull)model config:(NSString * _Nonnull)config backend_id:(int)backend_id __attribute__((swift_name("create(model:config:backend_id:)")));
+		[Static]
+		[Export ("create:config:backend_id:")]
+		FaceRecognizerSF Create (string model, string config, int backend_id);
+
+		// +(FaceRecognizerSF * _Nonnull)create:(NSString * _Nonnull)model config:(NSString * _Nonnull)config __attribute__((swift_name("create(model:config:)")));
+		[Static]
+		[Export ("create:config:")]
+		FaceRecognizerSF Create (string model, string config);
+
+		// +(FaceRecognizerSF * _Nonnull)create:(NSString * _Nonnull)framework bufferModel:(ByteVector * _Nonnull)bufferModel bufferConfig:(ByteVector * _Nonnull)bufferConfig backend_id:(int)backend_id target_id:(int)target_id __attribute__((swift_name("create(framework:bufferModel:bufferConfig:backend_id:target_id:)")));
+		[Static]
+		[Export ("create:bufferModel:bufferConfig:backend_id:target_id:")]
+		FaceRecognizerSF Create (string framework, ByteVector bufferModel, ByteVector bufferConfig, int backend_id, int target_id);
+
+		// +(FaceRecognizerSF * _Nonnull)create:(NSString * _Nonnull)framework bufferModel:(ByteVector * _Nonnull)bufferModel bufferConfig:(ByteVector * _Nonnull)bufferConfig backend_id:(int)backend_id __attribute__((swift_name("create(framework:bufferModel:bufferConfig:backend_id:)")));
+		[Static]
+		[Export ("create:bufferModel:bufferConfig:backend_id:")]
+		FaceRecognizerSF Create (string framework, ByteVector bufferModel, ByteVector bufferConfig, int backend_id);
+
+		// +(FaceRecognizerSF * _Nonnull)create:(NSString * _Nonnull)framework bufferModel:(ByteVector * _Nonnull)bufferModel bufferConfig:(ByteVector * _Nonnull)bufferConfig __attribute__((swift_name("create(framework:bufferModel:bufferConfig:)")));
+		[Static]
+		[Export ("create:bufferModel:bufferConfig:")]
+		FaceRecognizerSF Create (string framework, ByteVector bufferModel, ByteVector bufferConfig);
+	}
+
+	// @interface GraphicalCodeDetector : NSObject
+	[BaseType (typeof (NSObject))]
+	interface GraphicalCodeDetector {
+		// -(BOOL)detect:(Mat * _Nonnull)img points:(Mat * _Nonnull)points __attribute__((swift_name("detect(img:points:)")));
+		[Export ("detect:points:")]
+		bool Detect (Mat img, Mat points);
+
+		// -(NSString * _Nonnull)decode:(Mat * _Nonnull)img points:(Mat * _Nonnull)points straight_code:(Mat * _Nonnull)straight_code __attribute__((swift_name("decode(img:points:straight_code:)")));
+		[Export ("decode:points:straight_code:")]
+		string Decode (Mat img, Mat points, Mat straight_code);
+
+		// -(NSString * _Nonnull)decode:(Mat * _Nonnull)img points:(Mat * _Nonnull)points __attribute__((swift_name("decode(img:points:)")));
+		[Export ("decode:points:")]
+		string Decode (Mat img, Mat points);
+
+		// -(NSString * _Nonnull)detectAndDecode:(Mat * _Nonnull)img points:(Mat * _Nonnull)points straight_code:(Mat * _Nonnull)straight_code __attribute__((swift_name("detectAndDecode(img:points:straight_code:)")));
+		[Export ("detectAndDecode:points:straight_code:")]
+		string DetectAndDecode (Mat img, Mat points, Mat straight_code);
+
+		// -(NSString * _Nonnull)detectAndDecode:(Mat * _Nonnull)img points:(Mat * _Nonnull)points __attribute__((swift_name("detectAndDecode(img:points:)")));
+		[Export ("detectAndDecode:points:")]
+		string DetectAndDecode (Mat img, Mat points);
+
+		// -(NSString * _Nonnull)detectAndDecode:(Mat * _Nonnull)img __attribute__((swift_name("detectAndDecode(img:)")));
+		[Export ("detectAndDecode:")]
+		string DetectAndDecode (Mat img);
+
+		// -(BOOL)detectMulti:(Mat * _Nonnull)img points:(Mat * _Nonnull)points __attribute__((swift_name("detectMulti(img:points:)")));
+		[Export ("detectMulti:points:")]
+		bool DetectMulti (Mat img, Mat points);
+
+		// -(BOOL)decodeMulti:(Mat * _Nonnull)img points:(Mat * _Nonnull)points decoded_info:(NSMutableArray<NSString *> * _Nonnull)decoded_info straight_code:(NSMutableArray<Mat *> * _Nonnull)straight_code __attribute__((swift_name("decodeMulti(img:points:decoded_info:straight_code:)")));
+		[Export ("decodeMulti:points:decoded_info:straight_code:")]
+		bool DecodeMulti (Mat img, Mat points, NSMutableArray<NSString> decoded_info, NSMutableArray<Mat> straight_code);
+
+		// -(BOOL)decodeMulti:(Mat * _Nonnull)img points:(Mat * _Nonnull)points decoded_info:(NSMutableArray<NSString *> * _Nonnull)decoded_info __attribute__((swift_name("decodeMulti(img:points:decoded_info:)")));
+		[Export ("decodeMulti:points:decoded_info:")]
+		bool DecodeMulti (Mat img, Mat points, NSMutableArray<NSString> decoded_info);
+
+		// -(BOOL)detectAndDecodeMulti:(Mat * _Nonnull)img decoded_info:(NSMutableArray<NSString *> * _Nonnull)decoded_info points:(Mat * _Nonnull)points straight_code:(NSMutableArray<Mat *> * _Nonnull)straight_code __attribute__((swift_name("detectAndDecodeMulti(img:decoded_info:points:straight_code:)")));
+		[Export ("detectAndDecodeMulti:decoded_info:points:straight_code:")]
+		bool DetectAndDecodeMulti (Mat img, NSMutableArray<NSString> decoded_info, Mat points, NSMutableArray<Mat> straight_code);
+
+		// -(BOOL)detectAndDecodeMulti:(Mat * _Nonnull)img decoded_info:(NSMutableArray<NSString *> * _Nonnull)decoded_info points:(Mat * _Nonnull)points __attribute__((swift_name("detectAndDecodeMulti(img:decoded_info:points:)")));
+		[Export ("detectAndDecodeMulti:decoded_info:points:")]
+		bool DetectAndDecodeMulti (Mat img, NSMutableArray<NSString> decoded_info, Mat points);
+
+		// -(BOOL)detectAndDecodeMulti:(Mat * _Nonnull)img decoded_info:(NSMutableArray<NSString *> * _Nonnull)decoded_info __attribute__((swift_name("detectAndDecodeMulti(img:decoded_info:)")));
+		[Export ("detectAndDecodeMulti:decoded_info:")]
+		bool DetectAndDecodeMulti (Mat img, NSMutableArray<NSString> decoded_info);
+	}
+
+	// @interface QRCodeEncoder : NSObject
+	[BaseType (typeof (NSObject))]
+	interface QRCodeEncoder {
+		// +(QRCodeEncoder * _Nonnull)create:(QRCodeEncoderParams * _Nonnull)parameters __attribute__((swift_name("create(parameters:)")));
+		[Static]
+		[Export ("create:")]
+		QRCodeEncoder Create (QRCodeEncoderParams parameters);
+
+		// +(QRCodeEncoder * _Nonnull)create __attribute__((swift_name("create()")));
+		[Static]
+		[Export ("create")]
+		QRCodeEncoder Create ();
+
+		// -(void)encode:(NSString * _Nonnull)encoded_info qrcode:(Mat * _Nonnull)qrcode __attribute__((swift_name("encode(encoded_info:qrcode:)")));
+		[Export ("encode:qrcode:")]
+		void Encode (string encoded_info, Mat qrcode);
+
+		// -(void)encodeStructuredAppend:(NSString * _Nonnull)encoded_info qrcodes:(NSMutableArray<Mat *> * _Nonnull)qrcodes __attribute__((swift_name("encodeStructuredAppend(encoded_info:qrcodes:)")));
+		[Export ("encodeStructuredAppend:qrcodes:")]
+		void EncodeStructuredAppend (string encoded_info, NSMutableArray<Mat> qrcodes);
+	}
+
+	// @interface QRCodeDetector : GraphicalCodeDetector
+	[BaseType (typeof (GraphicalCodeDetector))]
+	interface QRCodeDetector {
+		// -(QRCodeDetector * _Nonnull)setEpsX:(double)epsX __attribute__((swift_name("setEpsX(epsX:)")));
+		[Export ("setEpsX:")]
+		QRCodeDetector SetEpsX (double epsX);
+
+		// -(QRCodeDetector * _Nonnull)setEpsY:(double)epsY __attribute__((swift_name("setEpsY(epsY:)")));
+		[Export ("setEpsY:")]
+		QRCodeDetector SetEpsY (double epsY);
+
+		// -(QRCodeDetector * _Nonnull)setUseAlignmentMarkers:(BOOL)useAlignmentMarkers __attribute__((swift_name("setUseAlignmentMarkers(useAlignmentMarkers:)")));
+		[Export ("setUseAlignmentMarkers:")]
+		QRCodeDetector SetUseAlignmentMarkers (bool useAlignmentMarkers);
+
+		// -(NSString * _Nonnull)decodeCurved:(Mat * _Nonnull)img points:(Mat * _Nonnull)points straight_qrcode:(Mat * _Nonnull)straight_qrcode __attribute__((swift_name("decodeCurved(img:points:straight_qrcode:)")));
+		[Export ("decodeCurved:points:straight_qrcode:")]
+		string DecodeCurved (Mat img, Mat points, Mat straight_qrcode);
+
+		// -(NSString * _Nonnull)decodeCurved:(Mat * _Nonnull)img points:(Mat * _Nonnull)points __attribute__((swift_name("decodeCurved(img:points:)")));
+		[Export ("decodeCurved:points:")]
+		string DecodeCurved (Mat img, Mat points);
+
+		// -(NSString * _Nonnull)detectAndDecodeCurved:(Mat * _Nonnull)img points:(Mat * _Nonnull)points straight_qrcode:(Mat * _Nonnull)straight_qrcode __attribute__((swift_name("detectAndDecodeCurved(img:points:straight_qrcode:)")));
+		[Export ("detectAndDecodeCurved:points:straight_qrcode:")]
+		string DetectAndDecodeCurved (Mat img, Mat points, Mat straight_qrcode);
+
+		// -(NSString * _Nonnull)detectAndDecodeCurved:(Mat * _Nonnull)img points:(Mat * _Nonnull)points __attribute__((swift_name("detectAndDecodeCurved(img:points:)")));
+		[Export ("detectAndDecodeCurved:points:")]
+		string DetectAndDecodeCurved (Mat img, Mat points);
+
+		// -(NSString * _Nonnull)detectAndDecodeCurved:(Mat * _Nonnull)img __attribute__((swift_name("detectAndDecodeCurved(img:)")));
+		[Export ("detectAndDecodeCurved:")]
+		string DetectAndDecodeCurved (Mat img);
+
+		// -(ECIEncodings)getEncoding:(int)codeIdx __attribute__((swift_name("getEncoding(codeIdx:)")));
+		[Export ("getEncoding:")]
+		ECIEncodings GetEncoding (int codeIdx);
+
+		// -(ECIEncodings)getEncoding __attribute__((swift_name("getEncoding()")));
+		[Export ("getEncoding")]
+		ECIEncodings Encoding { get; }
+	}
+
+	// @interface QRCodeDetectorAruco : GraphicalCodeDetector
+	[BaseType (typeof (GraphicalCodeDetector))]
+	interface QRCodeDetectorAruco {
+		// -(instancetype _Nonnull)initWithParams:(QRCodeDetectorArucoParams * _Nonnull)params;
+		[Export ("initWithParams:")]
+		NativeHandle Constructor (QRCodeDetectorArucoParams @params);
+
+		// -(QRCodeDetectorAruco * _Nonnull)setDetectorParameters:(QRCodeDetectorArucoParams * _Nonnull)params __attribute__((swift_name("setDetectorParameters(params:)")));
+		[Export ("setDetectorParameters:")]
+		QRCodeDetectorAruco SetDetectorParameters (QRCodeDetectorArucoParams @params);
+	}
+
+	// @interface QRCodeDetectorArucoParams : NSObject
+	[BaseType (typeof (NSObject))]
+	interface QRCodeDetectorArucoParams {
+		// @property float minModuleSizeInPyramid;
+		[Export ("minModuleSizeInPyramid")]
+		float MinModuleSizeInPyramid { get; set; }
+
+		// @property float maxRotation;
+		[Export ("maxRotation")]
+		float MaxRotation { get; set; }
+
+		// @property float maxModuleSizeMismatch;
+		[Export ("maxModuleSizeMismatch")]
+		float MaxModuleSizeMismatch { get; set; }
+
+		// @property float maxTimingPatternMismatch;
+		[Export ("maxTimingPatternMismatch")]
+		float MaxTimingPatternMismatch { get; set; }
+
+		// @property float maxPenalties;
+		[Export ("maxPenalties")]
+		float MaxPenalties { get; set; }
+
+		// @property float maxColorsMismatch;
+		[Export ("maxColorsMismatch")]
+		float MaxColorsMismatch { get; set; }
+
+		// @property float scaleTimingPatternScore;
+		[Export ("scaleTimingPatternScore")]
+		float ScaleTimingPatternScore { get; set; }
+	}
+
+	// @interface QRCodeEncoderParams : NSObject
+	[BaseType (typeof (NSObject))]
+	interface QRCodeEncoderParams {
+		// @property int version;
+		[Export ("version")]
+		int Version { get; set; }
+
+		// @property CorrectionLevel correction_level;
+		[Export ("correction_level", ArgumentSemantic.Assign)]
+		CorrectionLevel Correction_level { get; set; }
+
+		// @property EncodeMode mode;
+		[Export ("mode", ArgumentSemantic.Assign)]
+		EncodeMode Mode { get; set; }
+
+		// @property int structure_number;
+		[Export ("structure_number")]
+		int Structure_number { get; set; }
+	}
+
+	// @interface ArucoDetector : Algorithm
+	[BaseType (typeof (Algorithm))]
+	interface ArucoDetector {
+		// -(instancetype _Nonnull)initWithDictionary:(DetectorParameters * _Nonnull)detectorParams refineParams:(RefineParameters * _Nonnull)refineParams;
+		[Export ("initWithDictionary:refineParams:")]
+		NativeHandle Constructor (DetectorParameters detectorParams, RefineParameters refineParams);
+
+		// -(instancetype _Nonnull)initWithDictionary:(DetectorParameters * _Nonnull)detectorParams;
+		[Export ("initWithDictionary:")]
+		NativeHandle Constructor (DetectorParameters detectorParams);
+
+		// -(void)detectMarkers:(Mat * _Nonnull)image corners:(NSMutableArray<Mat *> * _Nonnull)corners ids:(Mat * _Nonnull)ids rejectedImgPoints:(NSMutableArray<Mat *> * _Nonnull)rejectedImgPoints __attribute__((swift_name("detectMarkers(image:corners:ids:rejectedImgPoints:)")));
+		[Export ("detectMarkers:corners:ids:rejectedImgPoints:")]
+		void DetectMarkers (Mat image, NSMutableArray<Mat> corners, Mat ids, NSMutableArray<Mat> rejectedImgPoints);
+
+		// -(void)detectMarkers:(Mat * _Nonnull)image corners:(NSMutableArray<Mat *> * _Nonnull)corners ids:(Mat * _Nonnull)ids __attribute__((swift_name("detectMarkers(image:corners:ids:)")));
+		[Export ("detectMarkers:corners:ids:")]
+		void DetectMarkers (Mat image, NSMutableArray<Mat> corners, Mat ids);
+
+		// -(void)detectMarkersWithConfidence:(Mat * _Nonnull)image corners:(NSMutableArray<Mat *> * _Nonnull)corners ids:(Mat * _Nonnull)ids markersConfidence:(Mat * _Nonnull)markersConfidence rejectedImgPoints:(NSMutableArray<Mat *> * _Nonnull)rejectedImgPoints __attribute__((swift_name("detectMarkersWithConfidence(image:corners:ids:markersConfidence:rejectedImgPoints:)")));
+		[Export ("detectMarkersWithConfidence:corners:ids:markersConfidence:rejectedImgPoints:")]
+		void DetectMarkersWithConfidence (Mat image, NSMutableArray<Mat> corners, Mat ids, Mat markersConfidence, NSMutableArray<Mat> rejectedImgPoints);
+
+		// -(void)detectMarkersWithConfidence:(Mat * _Nonnull)image corners:(NSMutableArray<Mat *> * _Nonnull)corners ids:(Mat * _Nonnull)ids markersConfidence:(Mat * _Nonnull)markersConfidence __attribute__((swift_name("detectMarkersWithConfidence(image:corners:ids:markersConfidence:)")));
+		[Export ("detectMarkersWithConfidence:corners:ids:markersConfidence:")]
+		void DetectMarkersWithConfidence (Mat image, NSMutableArray<Mat> corners, Mat ids, Mat markersConfidence);
+
+		// -(void)refineDetectedMarkers:(Mat * _Nonnull)image board:(Board * _Nonnull)board detectedCorners:(NSMutableArray<Mat *> * _Nonnull)detectedCorners detectedIds:(Mat * _Nonnull)detectedIds rejectedCorners:(NSMutableArray<Mat *> * _Nonnull)rejectedCorners cameraMatrix:(Mat * _Nonnull)cameraMatrix distCoeffs:(Mat * _Nonnull)distCoeffs recoveredIdxs:(Mat * _Nonnull)recoveredIdxs __attribute__((swift_name("refineDetectedMarkers(image:board:detectedCorners:detectedIds:rejectedCorners:cameraMatrix:distCoeffs:recoveredIdxs:)")));
+		[Export ("refineDetectedMarkers:board:detectedCorners:detectedIds:rejectedCorners:cameraMatrix:distCoeffs:recoveredIdxs:")]
+		void RefineDetectedMarkers (Mat image, Board board, NSMutableArray<Mat> detectedCorners, Mat detectedIds, NSMutableArray<Mat> rejectedCorners, Mat cameraMatrix, Mat distCoeffs, Mat recoveredIdxs);
+
+		// -(void)refineDetectedMarkers:(Mat * _Nonnull)image board:(Board * _Nonnull)board detectedCorners:(NSMutableArray<Mat *> * _Nonnull)detectedCorners detectedIds:(Mat * _Nonnull)detectedIds rejectedCorners:(NSMutableArray<Mat *> * _Nonnull)rejectedCorners cameraMatrix:(Mat * _Nonnull)cameraMatrix distCoeffs:(Mat * _Nonnull)distCoeffs __attribute__((swift_name("refineDetectedMarkers(image:board:detectedCorners:detectedIds:rejectedCorners:cameraMatrix:distCoeffs:)")));
+		[Export ("refineDetectedMarkers:board:detectedCorners:detectedIds:rejectedCorners:cameraMatrix:distCoeffs:")]
+		void RefineDetectedMarkers (Mat image, Board board, NSMutableArray<Mat> detectedCorners, Mat detectedIds, NSMutableArray<Mat> rejectedCorners, Mat cameraMatrix, Mat distCoeffs);
+
+		// -(void)refineDetectedMarkers:(Mat * _Nonnull)image board:(Board * _Nonnull)board detectedCorners:(NSMutableArray<Mat *> * _Nonnull)detectedCorners detectedIds:(Mat * _Nonnull)detectedIds rejectedCorners:(NSMutableArray<Mat *> * _Nonnull)rejectedCorners cameraMatrix:(Mat * _Nonnull)cameraMatrix __attribute__((swift_name("refineDetectedMarkers(image:board:detectedCorners:detectedIds:rejectedCorners:cameraMatrix:)")));
+		[Export ("refineDetectedMarkers:board:detectedCorners:detectedIds:rejectedCorners:cameraMatrix:")]
+		void RefineDetectedMarkers (Mat image, Board board, NSMutableArray<Mat> detectedCorners, Mat detectedIds, NSMutableArray<Mat> rejectedCorners, Mat cameraMatrix);
+
+		// -(void)refineDetectedMarkers:(Mat * _Nonnull)image board:(Board * _Nonnull)board detectedCorners:(NSMutableArray<Mat *> * _Nonnull)detectedCorners detectedIds:(Mat * _Nonnull)detectedIds rejectedCorners:(NSMutableArray<Mat *> * _Nonnull)rejectedCorners __attribute__((swift_name("refineDetectedMarkers(image:board:detectedCorners:detectedIds:rejectedCorners:)")));
+		[Export ("refineDetectedMarkers:board:detectedCorners:detectedIds:rejectedCorners:")]
+		void RefineDetectedMarkers (Mat image, Board board, NSMutableArray<Mat> detectedCorners, Mat detectedIds, NSMutableArray<Mat> rejectedCorners);
+
+		// -(void)detectMarkersMultiDict:(Mat * _Nonnull)image corners:(NSMutableArray<Mat *> * _Nonnull)corners ids:(Mat * _Nonnull)ids rejectedImgPoints:(NSMutableArray<Mat *> * _Nonnull)rejectedImgPoints dictIndices:(Mat * _Nonnull)dictIndices __attribute__((swift_name("detectMarkersMultiDict(image:corners:ids:rejectedImgPoints:dictIndices:)")));
+		[Export ("detectMarkersMultiDict:corners:ids:rejectedImgPoints:dictIndices:")]
+		void DetectMarkersMultiDict (Mat image, NSMutableArray<Mat> corners, Mat ids, NSMutableArray<Mat> rejectedImgPoints, Mat dictIndices);
+
+		// -(void)detectMarkersMultiDict:(Mat * _Nonnull)image corners:(NSMutableArray<Mat *> * _Nonnull)corners ids:(Mat * _Nonnull)ids rejectedImgPoints:(NSMutableArray<Mat *> * _Nonnull)rejectedImgPoints __attribute__((swift_name("detectMarkersMultiDict(image:corners:ids:rejectedImgPoints:)")));
+		[Export ("detectMarkersMultiDict:corners:ids:rejectedImgPoints:")]
+		void DetectMarkersMultiDict (Mat image, NSMutableArray<Mat> corners, Mat ids, NSMutableArray<Mat> rejectedImgPoints);
+
+		// -(void)detectMarkersMultiDict:(Mat * _Nonnull)image corners:(NSMutableArray<Mat *> * _Nonnull)corners ids:(Mat * _Nonnull)ids __attribute__((swift_name("detectMarkersMultiDict(image:corners:ids:)")));
+		[Export ("detectMarkersMultiDict:corners:ids:")]
+		void DetectMarkersMultiDict (Mat image, NSMutableArray<Mat> corners, Mat ids);
+
+		// -(Dictionary * _Nonnull)getDictionary __attribute__((swift_name("getDictionary()")));
+		[Export ("getDictionary")]
+		Dictionary Dictionary { get; }
+
+		// -(void)setDictionary:(Dictionary * _Nonnull)dictionary __attribute__((swift_name("setDictionary(dictionary:)")));
+		[Export ("setDictionary:")]
+		void SetDictionary (Dictionary dictionary);
+
+		// -(DetectorParameters * _Nonnull)getDetectorParameters __attribute__((swift_name("getDetectorParameters()")));
+		[Export ("getDetectorParameters")]
+		DetectorParameters DetectorParameters { get; }
+
+		// -(void)setDetectorParameters:(DetectorParameters * _Nonnull)detectorParameters __attribute__((swift_name("setDetectorParameters(detectorParameters:)")));
+		[Export ("setDetectorParameters:")]
+		void SetDetectorParameters (DetectorParameters detectorParameters);
+
+		// -(RefineParameters * _Nonnull)getRefineParameters __attribute__((swift_name("getRefineParameters()")));
+		[Export ("getRefineParameters")]
+		RefineParameters RefineParameters { get; }
+
+		// -(void)setRefineParameters:(RefineParameters * _Nonnull)refineParameters __attribute__((swift_name("setRefineParameters(refineParameters:)")));
+		[Export ("setRefineParameters:")]
+		void SetRefineParameters (RefineParameters refineParameters);
+	}
+
+	// @interface Board : NSObject
+	[BaseType (typeof (NSObject))]
+	interface Board {
+		// -(instancetype _Nonnull)initWithObjPoints:(NSArray<Mat *> * _Nonnull)objPoints dictionary:(Dictionary * _Nonnull)dictionary ids:(Mat * _Nonnull)ids;
+		[Export ("initWithObjPoints:dictionary:ids:")]
+		NativeHandle Constructor (Mat [] objPoints, Dictionary dictionary, Mat ids);
+
+		// -(Dictionary * _Nonnull)getDictionary __attribute__((swift_name("getDictionary()")));
+		[Export ("getDictionary")]
+		Dictionary Dictionary { get; }
+
+		// -(NSArray<NSArray<Point3f *> *> * _Nonnull)getObjPoints __attribute__((swift_name("getObjPoints()")));
+		[Export ("getObjPoints")]
+		NSArray<Point3f> [] ObjPoints { get; }
+
+		// -(IntVector * _Nonnull)getIds __attribute__((swift_name("getIds()")));
+		[Export ("getIds")]
+		IntVector Ids { get; }
+
+		// -(Point3f * _Nonnull)getRightBottomCorner __attribute__((swift_name("getRightBottomCorner()")));
+		[Export ("getRightBottomCorner")]
+		Point3f RightBottomCorner { get; }
+
+		// -(void)matchImagePoints:(NSArray<Mat *> * _Nonnull)detectedCorners detectedIds:(Mat * _Nonnull)detectedIds objPoints:(Mat * _Nonnull)objPoints imgPoints:(Mat * _Nonnull)imgPoints __attribute__((swift_name("matchImagePoints(detectedCorners:detectedIds:objPoints:imgPoints:)")));
+		[Export ("matchImagePoints:detectedIds:objPoints:imgPoints:")]
+		void MatchImagePoints (Mat [] detectedCorners, Mat detectedIds, Mat objPoints, Mat imgPoints);
+
+		// -(void)generateImage:(Size2i * _Nonnull)outSize img:(Mat * _Nonnull)img marginSize:(int)marginSize borderBits:(int)borderBits __attribute__((swift_name("generateImage(outSize:img:marginSize:borderBits:)")));
+		[Export ("generateImage:img:marginSize:borderBits:")]
+		void GenerateImage (Size2i outSize, Mat img, int marginSize, int borderBits);
+
+		// -(void)generateImage:(Size2i * _Nonnull)outSize img:(Mat * _Nonnull)img marginSize:(int)marginSize __attribute__((swift_name("generateImage(outSize:img:marginSize:)")));
+		[Export ("generateImage:img:marginSize:")]
+		void GenerateImage (Size2i outSize, Mat img, int marginSize);
+
+		// -(void)generateImage:(Size2i * _Nonnull)outSize img:(Mat * _Nonnull)img __attribute__((swift_name("generateImage(outSize:img:)")));
+		[Export ("generateImage:img:")]
+		void GenerateImage (Size2i outSize, Mat img);
+	}
+
+	// @interface CharucoBoard : Board
+	[BaseType (typeof (Board))]
+	interface CharucoBoard {
+		// -(instancetype _Nonnull)initWithSize:(Size2i * _Nonnull)size squareLength:(float)squareLength markerLength:(float)markerLength dictionary:(Dictionary * _Nonnull)dictionary ids:(Mat * _Nonnull)ids;
+		[Export ("initWithSize:squareLength:markerLength:dictionary:ids:")]
+		NativeHandle Constructor (Size2i size, float squareLength, float markerLength, Dictionary dictionary, Mat ids);
+
+		// -(instancetype _Nonnull)initWithSize:(Size2i * _Nonnull)size squareLength:(float)squareLength markerLength:(float)markerLength dictionary:(Dictionary * _Nonnull)dictionary;
+		[Export ("initWithSize:squareLength:markerLength:dictionary:")]
+		NativeHandle Constructor (Size2i size, float squareLength, float markerLength, Dictionary dictionary);
+
+		// -(void)setLegacyPattern:(BOOL)legacyPattern __attribute__((swift_name("setLegacyPattern(legacyPattern:)")));
+		[Export ("setLegacyPattern:")]
+		void SetLegacyPattern (bool legacyPattern);
+
+		// -(BOOL)getLegacyPattern __attribute__((swift_name("getLegacyPattern()")));
+		[Export ("getLegacyPattern")]
+		bool LegacyPattern { get; }
+
+		// -(Size2i * _Nonnull)getChessboardSize __attribute__((swift_name("getChessboardSize()")));
+		[Export ("getChessboardSize")]
+		Size2i ChessboardSize { get; }
+
+		// -(float)getSquareLength __attribute__((swift_name("getSquareLength()")));
+		[Export ("getSquareLength")]
+		float SquareLength { get; }
+
+		// -(float)getMarkerLength __attribute__((swift_name("getMarkerLength()")));
+		[Export ("getMarkerLength")]
+		float MarkerLength { get; }
+
+		// -(NSArray<Point3f *> * _Nonnull)getChessboardCorners __attribute__((swift_name("getChessboardCorners()")));
+		[Export ("getChessboardCorners")]
+		Point3f [] ChessboardCorners { get; }
+
+		// -(BOOL)checkCharucoCornersCollinear:(Mat * _Nonnull)charucoIds __attribute__((swift_name("checkCharucoCornersCollinear(charucoIds:)")));
+		[Export ("checkCharucoCornersCollinear:")]
+		bool CheckCharucoCornersCollinear (Mat charucoIds);
+	}
+
+	// @interface CharucoDetector : Algorithm
+	[BaseType (typeof (Algorithm))]
+	interface CharucoDetector {
+		// -(instancetype _Nonnull)initWithBoard:(CharucoBoard * _Nonnull)board charucoParams:(CharucoParameters * _Nonnull)charucoParams detectorParams:(DetectorParameters * _Nonnull)detectorParams refineParams:(RefineParameters * _Nonnull)refineParams;
+		[Export ("initWithBoard:charucoParams:detectorParams:refineParams:")]
+		NativeHandle Constructor (CharucoBoard board, CharucoParameters charucoParams, DetectorParameters detectorParams, RefineParameters refineParams);
+
+		// -(instancetype _Nonnull)initWithBoard:(CharucoBoard * _Nonnull)board charucoParams:(CharucoParameters * _Nonnull)charucoParams detectorParams:(DetectorParameters * _Nonnull)detectorParams;
+		[Export ("initWithBoard:charucoParams:detectorParams:")]
+		NativeHandle Constructor (CharucoBoard board, CharucoParameters charucoParams, DetectorParameters detectorParams);
+
+		// -(instancetype _Nonnull)initWithBoard:(CharucoBoard * _Nonnull)board charucoParams:(CharucoParameters * _Nonnull)charucoParams;
+		[Export ("initWithBoard:charucoParams:")]
+		NativeHandle Constructor (CharucoBoard board, CharucoParameters charucoParams);
+
+		// -(instancetype _Nonnull)initWithBoard:(CharucoBoard * _Nonnull)board;
+		[Export ("initWithBoard:")]
+		NativeHandle Constructor (CharucoBoard board);
+
+		// -(CharucoBoard * _Nonnull)getBoard __attribute__((swift_name("getBoard()")));
+		[Export ("getBoard")]
+		CharucoBoard Board { get; }
+
+		// -(void)setBoard:(CharucoBoard * _Nonnull)board __attribute__((swift_name("setBoard(board:)")));
+		[Export ("setBoard:")]
+		void SetBoard (CharucoBoard board);
+
+		// -(CharucoParameters * _Nonnull)getCharucoParameters __attribute__((swift_name("getCharucoParameters()")));
+		[Export ("getCharucoParameters")]
+		CharucoParameters CharucoParameters { get; }
+
+		// -(void)setCharucoParameters:(CharucoParameters * _Nonnull)charucoParameters __attribute__((swift_name("setCharucoParameters(charucoParameters:)")));
+		[Export ("setCharucoParameters:")]
+		void SetCharucoParameters (CharucoParameters charucoParameters);
+
+		// -(DetectorParameters * _Nonnull)getDetectorParameters __attribute__((swift_name("getDetectorParameters()")));
+		[Export ("getDetectorParameters")]
+		DetectorParameters DetectorParameters { get; }
+
+		// -(void)setDetectorParameters:(DetectorParameters * _Nonnull)detectorParameters __attribute__((swift_name("setDetectorParameters(detectorParameters:)")));
+		[Export ("setDetectorParameters:")]
+		void SetDetectorParameters (DetectorParameters detectorParameters);
+
+		// -(RefineParameters * _Nonnull)getRefineParameters __attribute__((swift_name("getRefineParameters()")));
+		[Export ("getRefineParameters")]
+		RefineParameters RefineParameters { get; }
+
+		// -(void)setRefineParameters:(RefineParameters * _Nonnull)refineParameters __attribute__((swift_name("setRefineParameters(refineParameters:)")));
+		[Export ("setRefineParameters:")]
+		void SetRefineParameters (RefineParameters refineParameters);
+
+		// -(void)detectBoard:(Mat * _Nonnull)image charucoCorners:(Mat * _Nonnull)charucoCorners charucoIds:(Mat * _Nonnull)charucoIds markerCorners:(NSMutableArray<Mat *> * _Nonnull)markerCorners markerIds:(Mat * _Nonnull)markerIds __attribute__((swift_name("detectBoard(image:charucoCorners:charucoIds:markerCorners:markerIds:)")));
+		[Export ("detectBoard:charucoCorners:charucoIds:markerCorners:markerIds:")]
+		void DetectBoard (Mat image, Mat charucoCorners, Mat charucoIds, NSMutableArray<Mat> markerCorners, Mat markerIds);
+
+		// -(void)detectBoard:(Mat * _Nonnull)image charucoCorners:(Mat * _Nonnull)charucoCorners charucoIds:(Mat * _Nonnull)charucoIds markerCorners:(NSMutableArray<Mat *> * _Nonnull)markerCorners __attribute__((swift_name("detectBoard(image:charucoCorners:charucoIds:markerCorners:)")));
+		[Export ("detectBoard:charucoCorners:charucoIds:markerCorners:")]
+		void DetectBoard (Mat image, Mat charucoCorners, Mat charucoIds, NSMutableArray<Mat> markerCorners);
+
+		// -(void)detectBoard:(Mat * _Nonnull)image charucoCorners:(Mat * _Nonnull)charucoCorners charucoIds:(Mat * _Nonnull)charucoIds __attribute__((swift_name("detectBoard(image:charucoCorners:charucoIds:)")));
+		[Export ("detectBoard:charucoCorners:charucoIds:")]
+		void DetectBoard (Mat image, Mat charucoCorners, Mat charucoIds);
+
+		// -(void)detectDiamonds:(Mat * _Nonnull)image diamondCorners:(NSMutableArray<Mat *> * _Nonnull)diamondCorners diamondIds:(Mat * _Nonnull)diamondIds markerCorners:(NSMutableArray<Mat *> * _Nonnull)markerCorners markerIds:(Mat * _Nonnull)markerIds __attribute__((swift_name("detectDiamonds(image:diamondCorners:diamondIds:markerCorners:markerIds:)")));
+		[Export ("detectDiamonds:diamondCorners:diamondIds:markerCorners:markerIds:")]
+		void DetectDiamonds (Mat image, NSMutableArray<Mat> diamondCorners, Mat diamondIds, NSMutableArray<Mat> markerCorners, Mat markerIds);
+
+		// -(void)detectDiamonds:(Mat * _Nonnull)image diamondCorners:(NSMutableArray<Mat *> * _Nonnull)diamondCorners diamondIds:(Mat * _Nonnull)diamondIds markerCorners:(NSMutableArray<Mat *> * _Nonnull)markerCorners __attribute__((swift_name("detectDiamonds(image:diamondCorners:diamondIds:markerCorners:)")));
+		[Export ("detectDiamonds:diamondCorners:diamondIds:markerCorners:")]
+		void DetectDiamonds (Mat image, NSMutableArray<Mat> diamondCorners, Mat diamondIds, NSMutableArray<Mat> markerCorners);
+
+		// -(void)detectDiamonds:(Mat * _Nonnull)image diamondCorners:(NSMutableArray<Mat *> * _Nonnull)diamondCorners diamondIds:(Mat * _Nonnull)diamondIds __attribute__((swift_name("detectDiamonds(image:diamondCorners:diamondIds:)")));
+		[Export ("detectDiamonds:diamondCorners:diamondIds:")]
+		void DetectDiamonds (Mat image, NSMutableArray<Mat> diamondCorners, Mat diamondIds);
+	}
+
+	// @interface CharucoParameters : NSObject
+	[BaseType (typeof (NSObject))]
+	interface CharucoParameters {
+		// @property Mat * _Nonnull cameraMatrix;
+		[Export ("cameraMatrix", ArgumentSemantic.Assign)]
+		Mat CameraMatrix { get; set; }
+
+		// @property Mat * _Nonnull distCoeffs;
+		[Export ("distCoeffs", ArgumentSemantic.Assign)]
+		Mat DistCoeffs { get; set; }
+
+		// @property int minMarkers;
+		[Export ("minMarkers")]
+		int MinMarkers { get; set; }
+
+		// @property BOOL tryRefineMarkers;
+		[Export ("tryRefineMarkers")]
+		bool TryRefineMarkers { get; set; }
+
+		// @property BOOL checkMarkers;
+		[Export ("checkMarkers")]
+		bool CheckMarkers { get; set; }
+	}
+
+	// @interface DetectorParameters : NSObject
+	[BaseType (typeof (NSObject))]
+	interface DetectorParameters {
+		// @property int adaptiveThreshWinSizeMin;
+		[Export ("adaptiveThreshWinSizeMin")]
+		int AdaptiveThreshWinSizeMin { get; set; }
+
+		// @property int adaptiveThreshWinSizeMax;
+		[Export ("adaptiveThreshWinSizeMax")]
+		int AdaptiveThreshWinSizeMax { get; set; }
+
+		// @property int adaptiveThreshWinSizeStep;
+		[Export ("adaptiveThreshWinSizeStep")]
+		int AdaptiveThreshWinSizeStep { get; set; }
+
+		// @property double adaptiveThreshConstant;
+		[Export ("adaptiveThreshConstant")]
+		double AdaptiveThreshConstant { get; set; }
+
+		// @property double minMarkerPerimeterRate;
+		[Export ("minMarkerPerimeterRate")]
+		double MinMarkerPerimeterRate { get; set; }
+
+		// @property double maxMarkerPerimeterRate;
+		[Export ("maxMarkerPerimeterRate")]
+		double MaxMarkerPerimeterRate { get; set; }
+
+		// @property double polygonalApproxAccuracyRate;
+		[Export ("polygonalApproxAccuracyRate")]
+		double PolygonalApproxAccuracyRate { get; set; }
+
+		// @property double minCornerDistanceRate;
+		[Export ("minCornerDistanceRate")]
+		double MinCornerDistanceRate { get; set; }
+
+		// @property int minDistanceToBorder;
+		[Export ("minDistanceToBorder")]
+		int MinDistanceToBorder { get; set; }
+
+		// @property double minMarkerDistanceRate;
+		[Export ("minMarkerDistanceRate")]
+		double MinMarkerDistanceRate { get; set; }
+
+		// @property float minGroupDistance;
+		[Export ("minGroupDistance")]
+		float MinGroupDistance { get; set; }
+
+		// @property int cornerRefinementMethod;
+		[Export ("cornerRefinementMethod")]
+		int CornerRefinementMethod { get; set; }
+
+		// @property int cornerRefinementWinSize;
+		[Export ("cornerRefinementWinSize")]
+		int CornerRefinementWinSize { get; set; }
+
+		// @property float relativeCornerRefinmentWinSize;
+		[Export ("relativeCornerRefinmentWinSize")]
+		float RelativeCornerRefinmentWinSize { get; set; }
+
+		// @property int cornerRefinementMaxIterations;
+		[Export ("cornerRefinementMaxIterations")]
+		int CornerRefinementMaxIterations { get; set; }
+
+		// @property double cornerRefinementMinAccuracy;
+		[Export ("cornerRefinementMinAccuracy")]
+		double CornerRefinementMinAccuracy { get; set; }
+
+		// @property int markerBorderBits;
+		[Export ("markerBorderBits")]
+		int MarkerBorderBits { get; set; }
+
+		// @property int perspectiveRemovePixelPerCell;
+		[Export ("perspectiveRemovePixelPerCell")]
+		int PerspectiveRemovePixelPerCell { get; set; }
+
+		// @property double perspectiveRemoveIgnoredMarginPerCell;
+		[Export ("perspectiveRemoveIgnoredMarginPerCell")]
+		double PerspectiveRemoveIgnoredMarginPerCell { get; set; }
+
+		// @property double maxErroneousBitsInBorderRate;
+		[Export ("maxErroneousBitsInBorderRate")]
+		double MaxErroneousBitsInBorderRate { get; set; }
+
+		// @property double minOtsuStdDev;
+		[Export ("minOtsuStdDev")]
+		double MinOtsuStdDev { get; set; }
+
+		// @property double errorCorrectionRate;
+		[Export ("errorCorrectionRate")]
+		double ErrorCorrectionRate { get; set; }
+
+		// @property float aprilTagQuadDecimate;
+		[Export ("aprilTagQuadDecimate")]
+		float AprilTagQuadDecimate { get; set; }
+
+		// @property float aprilTagQuadSigma;
+		[Export ("aprilTagQuadSigma")]
+		float AprilTagQuadSigma { get; set; }
+
+		// @property int aprilTagMinClusterPixels;
+		[Export ("aprilTagMinClusterPixels")]
+		int AprilTagMinClusterPixels { get; set; }
+
+		// @property int aprilTagMaxNmaxima;
+		[Export ("aprilTagMaxNmaxima")]
+		int AprilTagMaxNmaxima { get; set; }
+
+		// @property float aprilTagCriticalRad;
+		[Export ("aprilTagCriticalRad")]
+		float AprilTagCriticalRad { get; set; }
+
+		// @property float aprilTagMaxLineFitMse;
+		[Export ("aprilTagMaxLineFitMse")]
+		float AprilTagMaxLineFitMse { get; set; }
+
+		// @property int aprilTagMinWhiteBlackDiff;
+		[Export ("aprilTagMinWhiteBlackDiff")]
+		int AprilTagMinWhiteBlackDiff { get; set; }
+
+		// @property int aprilTagDeglitch;
+		[Export ("aprilTagDeglitch")]
+		int AprilTagDeglitch { get; set; }
+
+		// @property BOOL detectInvertedMarker;
+		[Export ("detectInvertedMarker")]
+		bool DetectInvertedMarker { get; set; }
+
+		// @property BOOL useAruco3Detection;
+		[Export ("useAruco3Detection")]
+		bool UseAruco3Detection { get; set; }
+
+		// @property int minSideLengthCanonicalImg;
+		[Export ("minSideLengthCanonicalImg")]
+		int MinSideLengthCanonicalImg { get; set; }
+
+		// @property float minMarkerLengthRatioOriginalImg;
+		[Export ("minMarkerLengthRatioOriginalImg")]
+		float MinMarkerLengthRatioOriginalImg { get; set; }
+
+		// @property float validBitIdThreshold;
+		[Export ("validBitIdThreshold")]
+		float ValidBitIdThreshold { get; set; }
+	}
+
+	// @interface Dictionary : NSObject
+	[BaseType (typeof (NSObject))]
+	interface Dictionary {
+		// -(instancetype _Nonnull)initWithBytesList:(Mat * _Nonnull)bytesList _markerSize:(int)_markerSize maxcorr:(int)maxcorr;
+		[Export ("initWithBytesList:_markerSize:maxcorr:")]
+		NativeHandle Constructor (Mat bytesList, int _markerSize, int maxcorr);
+
+		// -(instancetype _Nonnull)initWithBytesList:(Mat * _Nonnull)bytesList _markerSize:(int)_markerSize;
+		[Export ("initWithBytesList:_markerSize:")]
+		NativeHandle Constructor (Mat bytesList, int _markerSize);
+
+		// -(BOOL)identify:(Mat * _Nonnull)onlyBits idx:(int * _Nonnull)idx rotation:(int * _Nonnull)rotation maxCorrectionRate:(double)maxCorrectionRate __attribute__((swift_name("identify(onlyBits:idx:rotation:maxCorrectionRate:)")));
+		[Export ("identify:idx:rotation:maxCorrectionRate:")]
+		unsafe bool Identify (Mat onlyBits, int* idx, int* rotation, double maxCorrectionRate);
+
+		// -(BOOL)identify:(Mat * _Nonnull)onlyCellPixelRatio idx:(int * _Nonnull)idx rotation:(int * _Nonnull)rotation maxCorrectionRate:(double)maxCorrectionRate validBitIdThreshold:(float)validBitIdThreshold __attribute__((swift_name("identify(onlyCellPixelRatio:idx:rotation:maxCorrectionRate:validBitIdThreshold:)")));
+		[Export ("identify:idx:rotation:maxCorrectionRate:validBitIdThreshold:")]
+		unsafe bool Identify (Mat onlyCellPixelRatio, int* idx, int* rotation, double maxCorrectionRate, float validBitIdThreshold);
+
+		// -(int)getDistanceToId:(Mat * _Nonnull)bits id:(int)id allRotations:(BOOL)allRotations __attribute__((swift_name("getDistanceToId(bits:id:allRotations:)")));
+		[Export ("getDistanceToId:id:allRotations:")]
+		int GetDistanceToId (Mat bits, int id, bool allRotations);
+
+		// -(int)getDistanceToId:(Mat * _Nonnull)bits id:(int)id __attribute__((swift_name("getDistanceToId(bits:id:)")));
+		[Export ("getDistanceToId:id:")]
+		int GetDistanceToId (Mat bits, int id);
+
+		// -(int)getDistanceToId:(Mat * _Nonnull)onlyCellPixelRatio id:(int)id allRotations:(BOOL)allRotations validBitIdThreshold:(float)validBitIdThreshold __attribute__((swift_name("getDistanceToId(onlyCellPixelRatio:id:allRotations:validBitIdThreshold:)")));
+		[Export ("getDistanceToId:id:allRotations:validBitIdThreshold:")]
+		int GetDistanceToId (Mat onlyCellPixelRatio, int id, bool allRotations, float validBitIdThreshold);
+
+		// -(void)generateImageMarker:(int)id sidePixels:(int)sidePixels _img:(Mat * _Nonnull)_img borderBits:(int)borderBits __attribute__((swift_name("generateImageMarker(id:sidePixels:_img:borderBits:)")));
+		[Export ("generateImageMarker:sidePixels:_img:borderBits:")]
+		void GenerateImageMarker (int id, int sidePixels, Mat _img, int borderBits);
+
+		// -(void)generateImageMarker:(int)id sidePixels:(int)sidePixels _img:(Mat * _Nonnull)_img __attribute__((swift_name("generateImageMarker(id:sidePixels:_img:)")));
+		[Export ("generateImageMarker:sidePixels:_img:")]
+		void GenerateImageMarker (int id, int sidePixels, Mat _img);
+
+		// +(Mat * _Nonnull)getByteListFromBits:(Mat * _Nonnull)bits __attribute__((swift_name("getByteListFromBits(bits:)")));
+		[Static]
+		[Export ("getByteListFromBits:")]
+		Mat GetByteListFromBits (Mat bits);
+
+		// +(Mat * _Nonnull)getBitsFromByteList:(Mat * _Nonnull)byteList markerSize:(int)markerSize rotationId:(int)rotationId __attribute__((swift_name("getBitsFromByteList(byteList:markerSize:rotationId:)")));
+		[Static]
+		[Export ("getBitsFromByteList:markerSize:rotationId:")]
+		Mat GetBitsFromByteList (Mat byteList, int markerSize, int rotationId);
+
+		// +(Mat * _Nonnull)getBitsFromByteList:(Mat * _Nonnull)byteList markerSize:(int)markerSize __attribute__((swift_name("getBitsFromByteList(byteList:markerSize:)")));
+		[Static]
+		[Export ("getBitsFromByteList:markerSize:")]
+		Mat GetBitsFromByteList (Mat byteList, int markerSize);
+
+		// -(Mat * _Nonnull)getMarkerBits:(int)markerId rotationId:(int)rotationId __attribute__((swift_name("getMarkerBits(markerId:rotationId:)")));
+		[Export ("getMarkerBits:rotationId:")]
+		Mat GetMarkerBits (int markerId, int rotationId);
+
+		// -(Mat * _Nonnull)getMarkerBits:(int)markerId __attribute__((swift_name("getMarkerBits(markerId:)")));
+		[Export ("getMarkerBits:")]
+		Mat GetMarkerBits (int markerId);
+
+		// @property Mat * _Nonnull bytesList;
+		[Export ("bytesList", ArgumentSemantic.Assign)]
+		Mat BytesList { get; set; }
+
+		// @property int markerSize;
+		[Export ("markerSize")]
+		int MarkerSize { get; set; }
+
+		// @property int maxCorrectionBits;
+		[Export ("maxCorrectionBits")]
+		int MaxCorrectionBits { get; set; }
+	}
+
+	// @interface GridBoard : Board
+	[BaseType (typeof (Board))]
+	interface GridBoard {
+		// -(instancetype _Nonnull)initWithSize:(Size2i * _Nonnull)size markerLength:(float)markerLength markerSeparation:(float)markerSeparation dictionary:(Dictionary * _Nonnull)dictionary ids:(Mat * _Nonnull)ids;
+		[Export ("initWithSize:markerLength:markerSeparation:dictionary:ids:")]
+		NativeHandle Constructor (Size2i size, float markerLength, float markerSeparation, Dictionary dictionary, Mat ids);
+
+		// -(instancetype _Nonnull)initWithSize:(Size2i * _Nonnull)size markerLength:(float)markerLength markerSeparation:(float)markerSeparation dictionary:(Dictionary * _Nonnull)dictionary;
+		[Export ("initWithSize:markerLength:markerSeparation:dictionary:")]
+		NativeHandle Constructor (Size2i size, float markerLength, float markerSeparation, Dictionary dictionary);
+
+		// -(Size2i * _Nonnull)getGridSize __attribute__((swift_name("getGridSize()")));
+		[Export ("getGridSize")]
+		Size2i GridSize { get; }
+
+		// -(float)getMarkerLength __attribute__((swift_name("getMarkerLength()")));
+		[Export ("getMarkerLength")]
+		float MarkerLength { get; }
+
+		// -(float)getMarkerSeparation __attribute__((swift_name("getMarkerSeparation()")));
+		[Export ("getMarkerSeparation")]
+		float MarkerSeparation { get; }
+	}
+
+	// @interface RefineParameters : NSObject
+	[BaseType (typeof (NSObject))]
+	interface RefineParameters {
+		// -(instancetype _Nonnull)initWithMinRepDistance:(float)minRepDistance errorCorrectionRate:(float)errorCorrectionRate checkAllOrders:(BOOL)checkAllOrders;
+		[Export ("initWithMinRepDistance:errorCorrectionRate:checkAllOrders:")]
+		NativeHandle Constructor (float minRepDistance, float errorCorrectionRate, bool checkAllOrders);
+
+		// -(instancetype _Nonnull)initWithMinRepDistance:(float)minRepDistance errorCorrectionRate:(float)errorCorrectionRate;
+		[Export ("initWithMinRepDistance:errorCorrectionRate:")]
+		NativeHandle Constructor (float minRepDistance, float errorCorrectionRate);
+
+		// -(instancetype _Nonnull)initWithMinRepDistance:(float)minRepDistance;
+		[Export ("initWithMinRepDistance:")]
+		NativeHandle Constructor (float minRepDistance);
+
+		// @property float minRepDistance;
+		[Export ("minRepDistance")]
+		float MinRepDistance { get; set; }
+
+		// @property float errorCorrectionRate;
+		[Export ("errorCorrectionRate")]
+		float ErrorCorrectionRate { get; set; }
+
+		// @property BOOL checkAllOrders;
+		[Export ("checkAllOrders")]
+		bool CheckAllOrders { get; set; }
+	}
+
+	// @interface BarcodeDetector : GraphicalCodeDetector
+	[BaseType (typeof (GraphicalCodeDetector))]
+	interface BarcodeDetector {
+		// -(instancetype _Nonnull)initWithSuper_resolution_model_path:(NSString * _Nonnull)super_resolution_model_path;
+		[Export ("initWithSuper_resolution_model_path:")]
+		NativeHandle Constructor (string super_resolution_model_path);
+
+		// -(BOOL)decodeWithType:(Mat * _Nonnull)img points:(Mat * _Nonnull)points decoded_info:(NSMutableArray<NSString *> * _Nonnull)decoded_info decoded_type:(NSMutableArray<NSString *> * _Nonnull)decoded_type __attribute__((swift_name("decodeWithType(img:points:decoded_info:decoded_type:)")));
+		[Export ("decodeWithType:points:decoded_info:decoded_type:")]
+		bool DecodeWithType (Mat img, Mat points, NSMutableArray<NSString> decoded_info, NSMutableArray<NSString> decoded_type);
+
+		// -(BOOL)detectAndDecodeWithType:(Mat * _Nonnull)img decoded_info:(NSMutableArray<NSString *> * _Nonnull)decoded_info decoded_type:(NSMutableArray<NSString *> * _Nonnull)decoded_type points:(Mat * _Nonnull)points __attribute__((swift_name("detectAndDecodeWithType(img:decoded_info:decoded_type:points:)")));
+		[Export ("detectAndDecodeWithType:decoded_info:decoded_type:points:")]
+		bool DetectAndDecodeWithType (Mat img, NSMutableArray<NSString> decoded_info, NSMutableArray<NSString> decoded_type, Mat points);
+
+		// -(BOOL)detectAndDecodeWithType:(Mat * _Nonnull)img decoded_info:(NSMutableArray<NSString *> * _Nonnull)decoded_info decoded_type:(NSMutableArray<NSString *> * _Nonnull)decoded_type __attribute__((swift_name("detectAndDecodeWithType(img:decoded_info:decoded_type:)")));
+		[Export ("detectAndDecodeWithType:decoded_info:decoded_type:")]
+		bool DetectAndDecodeWithType (Mat img, NSMutableArray<NSString> decoded_info, NSMutableArray<NSString> decoded_type);
+
+		// -(double)getDownsamplingThreshold __attribute__((swift_name("getDownsamplingThreshold()")));
+		[Export ("getDownsamplingThreshold")]
+		double DownsamplingThreshold { get; }
+
+		// -(BarcodeDetector * _Nonnull)setDownsamplingThreshold:(double)thresh __attribute__((swift_name("setDownsamplingThreshold(thresh:)")));
+		[Export ("setDownsamplingThreshold:")]
+		BarcodeDetector SetDownsamplingThreshold (double thresh);
+
+		// -(void)getDetectorScales:(FloatVector * _Nonnull)sizes __attribute__((swift_name("getDetectorScales(sizes:)")));
+		[Export ("getDetectorScales:")]
+		void GetDetectorScales (FloatVector sizes);
+
+		// -(BarcodeDetector * _Nonnull)setDetectorScales:(FloatVector * _Nonnull)sizes __attribute__((swift_name("setDetectorScales(sizes:)")));
+		[Export ("setDetectorScales:")]
+		BarcodeDetector SetDetectorScales (FloatVector sizes);
+
+		// -(double)getGradientThreshold __attribute__((swift_name("getGradientThreshold()")));
+		[Export ("getGradientThreshold")]
+		double GradientThreshold { get; }
+
+		// -(BarcodeDetector * _Nonnull)setGradientThreshold:(double)thresh __attribute__((swift_name("setGradientThreshold(thresh:)")));
+		[Export ("setGradientThreshold:")]
+		BarcodeDetector SetGradientThreshold (double thresh);
+	}
+
+	// @interface CChecker : Algorithm
+	[BaseType (typeof (Algorithm))]
+	interface CChecker {
+		// +(CChecker * _Nonnull)create __attribute__((swift_name("create()")));
+		[Static]
+		[Export ("create")]
+		CChecker Create ();
+
+		// -(void)setTarget:(ColorChart)_target __attribute__((swift_name("setTarget(_target:)")));
+		[Export ("setTarget:")]
+		void SetTarget (ColorChart _target);
+
+		// -(void)setBox:(NSArray<Point2f *> * _Nonnull)_box __attribute__((swift_name("setBox(_box:)")));
+		[Export ("setBox:")]
+		void SetBox (Point2f [] _box);
+
+		// -(void)setChartsRGB:(Mat * _Nonnull)_chartsRGB __attribute__((swift_name("setChartsRGB(_chartsRGB:)")));
+		[Export ("setChartsRGB:")]
+		void SetChartsRGB (Mat _chartsRGB);
+
+		// -(void)setChartsYCbCr:(Mat * _Nonnull)_chartsYCbCr __attribute__((swift_name("setChartsYCbCr(_chartsYCbCr:)")));
+		[Export ("setChartsYCbCr:")]
+		void SetChartsYCbCr (Mat _chartsYCbCr);
+
+		// -(void)setCost:(float)_cost __attribute__((swift_name("setCost(_cost:)")));
+		[Export ("setCost:")]
+		void SetCost (float _cost);
+
+		// -(void)setCenter:(Point2f * _Nonnull)_center __attribute__((swift_name("setCenter(_center:)")));
+		[Export ("setCenter:")]
+		void SetCenter (Point2f _center);
+
+		// -(ColorChart)getTarget __attribute__((swift_name("getTarget()")));
+		[Export ("getTarget")]
+		ColorChart Target { get; }
+
+		// -(NSArray<Point2f *> * _Nonnull)getBox __attribute__((swift_name("getBox()")));
+		[Export ("getBox")]
+		Point2f [] Box { get; }
+
+		// -(NSArray<Point2f *> * _Nonnull)getColorCharts __attribute__((swift_name("getColorCharts()")));
+		[Export ("getColorCharts")]
+		Point2f [] ColorCharts { get; }
+
+		// -(Mat * _Nonnull)getChartsRGB:(BOOL)getStats __attribute__((swift_name("getChartsRGB(getStats:)")));
+		[Export ("getChartsRGB:")]
+		Mat GetChartsRGB (bool getStats);
+
+		// -(Mat * _Nonnull)getChartsRGB __attribute__((swift_name("getChartsRGB()")));
+		[Export ("getChartsRGB")]
+		Mat ChartsRGB { get; }
+
+		// -(Mat * _Nonnull)getChartsYCbCr __attribute__((swift_name("getChartsYCbCr()")));
+		[Export ("getChartsYCbCr")]
+		Mat ChartsYCbCr { get; }
+
+		// -(float)getCost __attribute__((swift_name("getCost()")));
+		[Export ("getCost")]
+		float Cost { get; }
+
+		// -(Point2f * _Nonnull)getCenter __attribute__((swift_name("getCenter()")));
+		[Export ("getCenter")]
+		Point2f Center { get; }
+	}
+
+	// @interface CCheckerDetector : Algorithm
+	[BaseType (typeof (Algorithm))]
+	interface CCheckerDetector {
+		// -(BOOL)processWithROI:(Mat * _Nonnull)image regionsOfInterest:(NSArray<Rect2i *> * _Nonnull)regionsOfInterest nc:(int)nc __attribute__((swift_name("process(image:regionsOfInterest:nc:)")));
+		[Export ("processWithROI:regionsOfInterest:nc:")]
+		bool ProcessWithROI (Mat image, Rect2i [] regionsOfInterest, int nc);
+
+		// -(BOOL)processWithROI:(Mat * _Nonnull)image regionsOfInterest:(NSArray<Rect2i *> * _Nonnull)regionsOfInterest __attribute__((swift_name("process(image:regionsOfInterest:)")));
+		[Export ("processWithROI:regionsOfInterest:")]
+		bool ProcessWithROI (Mat image, Rect2i [] regionsOfInterest);
+
+		// -(BOOL)process:(Mat * _Nonnull)image nc:(int)nc __attribute__((swift_name("process(image:nc:)")));
+		[Export ("process:nc:")]
+		bool Process (Mat image, int nc);
+
+		// -(BOOL)process:(Mat * _Nonnull)image __attribute__((swift_name("process(image:)")));
+		[Export ("process:")]
+		bool Process (Mat image);
+
+		// +(CCheckerDetector * _Nonnull)create __attribute__((swift_name("create()")));
+		[Static]
+		[Export ("create")]
+		CCheckerDetector Create ();
+
+		// -(Mat * _Nonnull)getRefColors __attribute__((swift_name("getRefColors()")));
+		[Export ("getRefColors")]
+		Mat RefColors { get; }
+
+		// -(void)setDetectionParams:(DetectorParametersMCC * _Nonnull)params __attribute__((swift_name("setDetectionParams(params:)")));
+		[Export ("setDetectionParams:")]
+		void SetDetectionParams (DetectorParametersMCC @params);
+
+		// -(void)setColorChartType:(ColorChart)chartType __attribute__((swift_name("setColorChartType(chartType:)")));
+		[Export ("setColorChartType:")]
+		void SetColorChartType (ColorChart chartType);
+
+		// -(void)setUseDnnModel:(BOOL)useDnn __attribute__((swift_name("setUseDnnModel(useDnn:)")));
+		[Export ("setUseDnnModel:")]
+		void SetUseDnnModel (bool useDnn);
+
+		// -(BOOL)getUseDnnModel __attribute__((swift_name("getUseDnnModel()")));
+		[Export ("getUseDnnModel")]
+		bool UseDnnModel { get; }
+
+		// -(DetectorParametersMCC * _Nonnull)getDetectionParams __attribute__((swift_name("getDetectionParams()")));
+		[Export ("getDetectionParams")]
+		DetectorParametersMCC DetectionParams { get; }
+
+		// -(ColorChart)getColorChartType __attribute__((swift_name("getColorChartType()")));
+		[Export ("getColorChartType")]
+		ColorChart ColorChartType { get; }
+	}
+
+	// @interface DetectorParametersMCC : NSObject
+	[BaseType (typeof (NSObject))]
+	interface DetectorParametersMCC {
+		// @property int adaptiveThreshWinSizeMin;
+		[Export ("adaptiveThreshWinSizeMin")]
+		int AdaptiveThreshWinSizeMin { get; set; }
+
+		// @property int adaptiveThreshWinSizeMax;
+		[Export ("adaptiveThreshWinSizeMax")]
+		int AdaptiveThreshWinSizeMax { get; set; }
+
+		// @property int adaptiveThreshWinSizeStep;
+		[Export ("adaptiveThreshWinSizeStep")]
+		int AdaptiveThreshWinSizeStep { get; set; }
+
+		// @property double adaptiveThreshConstant;
+		[Export ("adaptiveThreshConstant")]
+		double AdaptiveThreshConstant { get; set; }
+
+		// @property double minContoursAreaRate;
+		[Export ("minContoursAreaRate")]
+		double MinContoursAreaRate { get; set; }
+
+		// @property double minContoursArea;
+		[Export ("minContoursArea")]
+		double MinContoursArea { get; set; }
+
+		// @property double confidenceThreshold;
+		[Export ("confidenceThreshold")]
+		double ConfidenceThreshold { get; set; }
+
+		// @property double minContourSolidity;
+		[Export ("minContourSolidity")]
+		double MinContourSolidity { get; set; }
+
+		// @property double findCandidatesApproxPolyDPEpsMultiplier;
+		[Export ("findCandidatesApproxPolyDPEpsMultiplier")]
+		double FindCandidatesApproxPolyDPEpsMultiplier { get; set; }
+
+		// @property int borderWidth;
+		[Export ("borderWidth")]
+		int BorderWidth { get; set; }
+
+		// @property float B0factor;
+		[Export ("B0factor")]
+		float B0factor { get; set; }
+
+		// @property float maxError;
+		[Export ("maxError")]
+		float MaxError { get; set; }
+
+		// @property int minContourPointsAllowed;
+		[Export ("minContourPointsAllowed")]
+		int MinContourPointsAllowed { get; set; }
+
+		// @property int minContourLengthAllowed;
+		[Export ("minContourLengthAllowed")]
+		int MinContourLengthAllowed { get; set; }
+
+		// @property int minInterContourDistance;
+		[Export ("minInterContourDistance")]
+		int MinInterContourDistance { get; set; }
+
+		// @property int minInterCheckerDistance;
+		[Export ("minInterCheckerDistance")]
+		int MinInterCheckerDistance { get; set; }
+
+		// @property int minImageSize;
+		[Export ("minImageSize")]
+		int MinImageSize { get; set; }
+
+		// @property int minGroupSize;
+		[Export ("minGroupSize")]
+		int MinGroupSize { get; set; }
+	}
+
+	// @interface Video : NSObject
+	[BaseType (typeof (NSObject))]
+	interface Video {
+		// @property (readonly, class) int OPTFLOW_USE_INITIAL_FLOW __attribute__((swift_name("OPTFLOW_USE_INITIAL_FLOW")));
+		[Static]
+		[Export ("OPTFLOW_USE_INITIAL_FLOW")]
+		int OPTFLOW_USE_INITIAL_FLOW { get; }
+
+		// @property (readonly, class) int OPTFLOW_LK_GET_MIN_EIGENVALS __attribute__((swift_name("OPTFLOW_LK_GET_MIN_EIGENVALS")));
+		[Static]
+		[Export ("OPTFLOW_LK_GET_MIN_EIGENVALS")]
+		int OPTFLOW_LK_GET_MIN_EIGENVALS { get; }
+
+		// @property (readonly, class) int OPTFLOW_FARNEBACK_GAUSSIAN __attribute__((swift_name("OPTFLOW_FARNEBACK_GAUSSIAN")));
+		[Static]
+		[Export ("OPTFLOW_FARNEBACK_GAUSSIAN")]
+		int OPTFLOW_FARNEBACK_GAUSSIAN { get; }
+
+		// @property (readonly, class) int MOTION_TRANSLATION __attribute__((swift_name("MOTION_TRANSLATION")));
+		[Static]
+		[Export ("MOTION_TRANSLATION")]
+		int MOTION_TRANSLATION { get; }
+
+		// @property (readonly, class) int MOTION_EUCLIDEAN __attribute__((swift_name("MOTION_EUCLIDEAN")));
+		[Static]
+		[Export ("MOTION_EUCLIDEAN")]
+		int MOTION_EUCLIDEAN { get; }
+
+		// @property (readonly, class) int MOTION_AFFINE __attribute__((swift_name("MOTION_AFFINE")));
+		[Static]
+		[Export ("MOTION_AFFINE")]
+		int MOTION_AFFINE { get; }
+
+		// @property (readonly, class) int MOTION_HOMOGRAPHY __attribute__((swift_name("MOTION_HOMOGRAPHY")));
+		[Static]
+		[Export ("MOTION_HOMOGRAPHY")]
+		int MOTION_HOMOGRAPHY { get; }
+
+		// +(RotatedRect * _Nonnull)CamShift:(Mat * _Nonnull)probImage window:(Rect2i * _Nonnull)window criteria:(TermCriteria * _Nonnull)criteria __attribute__((swift_name("CamShift(probImage:window:criteria:)")));
+		[Static]
+		[Export ("CamShift:window:criteria:")]
+		RotatedRect CamShift (Mat probImage, Rect2i window, TermCriteria criteria);
+
+		// +(int)meanShift:(Mat * _Nonnull)probImage window:(Rect2i * _Nonnull)window criteria:(TermCriteria * _Nonnull)criteria __attribute__((swift_name("meanShift(probImage:window:criteria:)")));
+		[Static]
+		[Export ("meanShift:window:criteria:")]
+		int MeanShift (Mat probImage, Rect2i window, TermCriteria criteria);
+
+		// +(int)buildOpticalFlowPyramid:(Mat * _Nonnull)img pyramid:(NSMutableArray<Mat *> * _Nonnull)pyramid winSize:(Size2i * _Nonnull)winSize maxLevel:(int)maxLevel withDerivatives:(BOOL)withDerivatives pyrBorder:(int)pyrBorder derivBorder:(int)derivBorder tryReuseInputImage:(BOOL)tryReuseInputImage __attribute__((swift_name("buildOpticalFlowPyramid(img:pyramid:winSize:maxLevel:withDerivatives:pyrBorder:derivBorder:tryReuseInputImage:)")));
+		[Static]
+		[Export ("buildOpticalFlowPyramid:pyramid:winSize:maxLevel:withDerivatives:pyrBorder:derivBorder:tryReuseInputImage:")]
+		int BuildOpticalFlowPyramid (Mat img, NSMutableArray<Mat> pyramid, Size2i winSize, int maxLevel, bool withDerivatives, int pyrBorder, int derivBorder, bool tryReuseInputImage);
+
+		// +(int)buildOpticalFlowPyramid:(Mat * _Nonnull)img pyramid:(NSMutableArray<Mat *> * _Nonnull)pyramid winSize:(Size2i * _Nonnull)winSize maxLevel:(int)maxLevel withDerivatives:(BOOL)withDerivatives pyrBorder:(int)pyrBorder derivBorder:(int)derivBorder __attribute__((swift_name("buildOpticalFlowPyramid(img:pyramid:winSize:maxLevel:withDerivatives:pyrBorder:derivBorder:)")));
+		[Static]
+		[Export ("buildOpticalFlowPyramid:pyramid:winSize:maxLevel:withDerivatives:pyrBorder:derivBorder:")]
+		int BuildOpticalFlowPyramid (Mat img, NSMutableArray<Mat> pyramid, Size2i winSize, int maxLevel, bool withDerivatives, int pyrBorder, int derivBorder);
+
+		// +(int)buildOpticalFlowPyramid:(Mat * _Nonnull)img pyramid:(NSMutableArray<Mat *> * _Nonnull)pyramid winSize:(Size2i * _Nonnull)winSize maxLevel:(int)maxLevel withDerivatives:(BOOL)withDerivatives pyrBorder:(int)pyrBorder __attribute__((swift_name("buildOpticalFlowPyramid(img:pyramid:winSize:maxLevel:withDerivatives:pyrBorder:)")));
+		[Static]
+		[Export ("buildOpticalFlowPyramid:pyramid:winSize:maxLevel:withDerivatives:pyrBorder:")]
+		int BuildOpticalFlowPyramid (Mat img, NSMutableArray<Mat> pyramid, Size2i winSize, int maxLevel, bool withDerivatives, int pyrBorder);
+
+		// +(int)buildOpticalFlowPyramid:(Mat * _Nonnull)img pyramid:(NSMutableArray<Mat *> * _Nonnull)pyramid winSize:(Size2i * _Nonnull)winSize maxLevel:(int)maxLevel withDerivatives:(BOOL)withDerivatives __attribute__((swift_name("buildOpticalFlowPyramid(img:pyramid:winSize:maxLevel:withDerivatives:)")));
+		[Static]
+		[Export ("buildOpticalFlowPyramid:pyramid:winSize:maxLevel:withDerivatives:")]
+		int BuildOpticalFlowPyramid (Mat img, NSMutableArray<Mat> pyramid, Size2i winSize, int maxLevel, bool withDerivatives);
+
+		// +(int)buildOpticalFlowPyramid:(Mat * _Nonnull)img pyramid:(NSMutableArray<Mat *> * _Nonnull)pyramid winSize:(Size2i * _Nonnull)winSize maxLevel:(int)maxLevel __attribute__((swift_name("buildOpticalFlowPyramid(img:pyramid:winSize:maxLevel:)")));
+		[Static]
+		[Export ("buildOpticalFlowPyramid:pyramid:winSize:maxLevel:")]
+		int BuildOpticalFlowPyramid (Mat img, NSMutableArray<Mat> pyramid, Size2i winSize, int maxLevel);
+
+		// +(void)calcOpticalFlowPyrLK:(Mat * _Nonnull)prevImg nextImg:(Mat * _Nonnull)nextImg prevPts:(Mat * _Nonnull)prevPts nextPts:(Mat * _Nonnull)nextPts status:(Mat * _Nonnull)status err:(Mat * _Nonnull)err winSize:(Size2i * _Nonnull)winSize maxLevel:(int)maxLevel criteria:(TermCriteria * _Nonnull)criteria flags:(int)flags minEigThreshold:(double)minEigThreshold __attribute__((swift_name("calcOpticalFlowPyrLK(prevImg:nextImg:prevPts:nextPts:status:err:winSize:maxLevel:criteria:flags:minEigThreshold:)")));
+		[Static]
+		[Export ("calcOpticalFlowPyrLK:nextImg:prevPts:nextPts:status:err:winSize:maxLevel:criteria:flags:minEigThreshold:")]
+		void CalcOpticalFlowPyrLK (Mat prevImg, Mat nextImg, Mat prevPts, Mat nextPts, Mat status, Mat err, Size2i winSize, int maxLevel, TermCriteria criteria, int flags, double minEigThreshold);
+
+		// +(void)calcOpticalFlowPyrLK:(Mat * _Nonnull)prevImg nextImg:(Mat * _Nonnull)nextImg prevPts:(Mat * _Nonnull)prevPts nextPts:(Mat * _Nonnull)nextPts status:(Mat * _Nonnull)status err:(Mat * _Nonnull)err winSize:(Size2i * _Nonnull)winSize maxLevel:(int)maxLevel criteria:(TermCriteria * _Nonnull)criteria flags:(int)flags __attribute__((swift_name("calcOpticalFlowPyrLK(prevImg:nextImg:prevPts:nextPts:status:err:winSize:maxLevel:criteria:flags:)")));
+		[Static]
+		[Export ("calcOpticalFlowPyrLK:nextImg:prevPts:nextPts:status:err:winSize:maxLevel:criteria:flags:")]
+		void CalcOpticalFlowPyrLK (Mat prevImg, Mat nextImg, Mat prevPts, Mat nextPts, Mat status, Mat err, Size2i winSize, int maxLevel, TermCriteria criteria, int flags);
+
+		// +(void)calcOpticalFlowPyrLK:(Mat * _Nonnull)prevImg nextImg:(Mat * _Nonnull)nextImg prevPts:(Mat * _Nonnull)prevPts nextPts:(Mat * _Nonnull)nextPts status:(Mat * _Nonnull)status err:(Mat * _Nonnull)err winSize:(Size2i * _Nonnull)winSize maxLevel:(int)maxLevel criteria:(TermCriteria * _Nonnull)criteria __attribute__((swift_name("calcOpticalFlowPyrLK(prevImg:nextImg:prevPts:nextPts:status:err:winSize:maxLevel:criteria:)")));
+		[Static]
+		[Export ("calcOpticalFlowPyrLK:nextImg:prevPts:nextPts:status:err:winSize:maxLevel:criteria:")]
+		void CalcOpticalFlowPyrLK (Mat prevImg, Mat nextImg, Mat prevPts, Mat nextPts, Mat status, Mat err, Size2i winSize, int maxLevel, TermCriteria criteria);
+
+		// +(void)calcOpticalFlowPyrLK:(Mat * _Nonnull)prevImg nextImg:(Mat * _Nonnull)nextImg prevPts:(Mat * _Nonnull)prevPts nextPts:(Mat * _Nonnull)nextPts status:(Mat * _Nonnull)status err:(Mat * _Nonnull)err winSize:(Size2i * _Nonnull)winSize maxLevel:(int)maxLevel __attribute__((swift_name("calcOpticalFlowPyrLK(prevImg:nextImg:prevPts:nextPts:status:err:winSize:maxLevel:)")));
+		[Static]
+		[Export ("calcOpticalFlowPyrLK:nextImg:prevPts:nextPts:status:err:winSize:maxLevel:")]
+		void CalcOpticalFlowPyrLK (Mat prevImg, Mat nextImg, Mat prevPts, Mat nextPts, Mat status, Mat err, Size2i winSize, int maxLevel);
+
+		// +(void)calcOpticalFlowPyrLK:(Mat * _Nonnull)prevImg nextImg:(Mat * _Nonnull)nextImg prevPts:(Mat * _Nonnull)prevPts nextPts:(Mat * _Nonnull)nextPts status:(Mat * _Nonnull)status err:(Mat * _Nonnull)err winSize:(Size2i * _Nonnull)winSize __attribute__((swift_name("calcOpticalFlowPyrLK(prevImg:nextImg:prevPts:nextPts:status:err:winSize:)")));
+		[Static]
+		[Export ("calcOpticalFlowPyrLK:nextImg:prevPts:nextPts:status:err:winSize:")]
+		void CalcOpticalFlowPyrLK (Mat prevImg, Mat nextImg, Mat prevPts, Mat nextPts, Mat status, Mat err, Size2i winSize);
+
+		// +(void)calcOpticalFlowPyrLK:(Mat * _Nonnull)prevImg nextImg:(Mat * _Nonnull)nextImg prevPts:(Mat * _Nonnull)prevPts nextPts:(Mat * _Nonnull)nextPts status:(Mat * _Nonnull)status err:(Mat * _Nonnull)err __attribute__((swift_name("calcOpticalFlowPyrLK(prevImg:nextImg:prevPts:nextPts:status:err:)")));
+		[Static]
+		[Export ("calcOpticalFlowPyrLK:nextImg:prevPts:nextPts:status:err:")]
+		void CalcOpticalFlowPyrLK (Mat prevImg, Mat nextImg, Mat prevPts, Mat nextPts, Mat status, Mat err);
+
+		// +(void)calcOpticalFlowFarneback:(Mat * _Nonnull)prev next:(Mat * _Nonnull)next flow:(Mat * _Nonnull)flow pyr_scale:(double)pyr_scale levels:(int)levels winsize:(int)winsize iterations:(int)iterations poly_n:(int)poly_n poly_sigma:(double)poly_sigma flags:(int)flags __attribute__((swift_name("calcOpticalFlowFarneback(prev:next:flow:pyr_scale:levels:winsize:iterations:poly_n:poly_sigma:flags:)")));
+		[Static]
+		[Export ("calcOpticalFlowFarneback:next:flow:pyr_scale:levels:winsize:iterations:poly_n:poly_sigma:flags:")]
+		void CalcOpticalFlowFarneback (Mat prev, Mat next, Mat flow, double pyr_scale, int levels, int winsize, int iterations, int poly_n, double poly_sigma, int flags);
+
+		// +(double)computeECC:(Mat * _Nonnull)templateImage inputImage:(Mat * _Nonnull)inputImage inputMask:(Mat * _Nonnull)inputMask __attribute__((swift_name("computeECC(templateImage:inputImage:inputMask:)")));
+		[Static]
+		[Export ("computeECC:inputImage:inputMask:")]
+		double ComputeECC (Mat templateImage, Mat inputImage, Mat inputMask);
+
+		// +(double)computeECC:(Mat * _Nonnull)templateImage inputImage:(Mat * _Nonnull)inputImage __attribute__((swift_name("computeECC(templateImage:inputImage:)")));
+		[Static]
+		[Export ("computeECC:inputImage:")]
+		double ComputeECC (Mat templateImage, Mat inputImage);
+
+		// +(double)findTransformECC:(Mat * _Nonnull)templateImage inputImage:(Mat * _Nonnull)inputImage warpMatrix:(Mat * _Nonnull)warpMatrix motionType:(int)motionType criteria:(TermCriteria * _Nonnull)criteria inputMask:(Mat * _Nonnull)inputMask gaussFiltSize:(int)gaussFiltSize __attribute__((swift_name("findTransformECC(templateImage:inputImage:warpMatrix:motionType:criteria:inputMask:gaussFiltSize:)")));
+		[Static]
+		[Export ("findTransformECC:inputImage:warpMatrix:motionType:criteria:inputMask:gaussFiltSize:")]
+		double FindTransformECC (Mat templateImage, Mat inputImage, Mat warpMatrix, int motionType, TermCriteria criteria, Mat inputMask, int gaussFiltSize);
+
+		// +(double)findTransformECC:(Mat * _Nonnull)templateImage inputImage:(Mat * _Nonnull)inputImage warpMatrix:(Mat * _Nonnull)warpMatrix motionType:(int)motionType criteria:(TermCriteria * _Nonnull)criteria inputMask:(Mat * _Nonnull)inputMask __attribute__((swift_name("findTransformECC(templateImage:inputImage:warpMatrix:motionType:criteria:inputMask:)")));
+		[Static]
+		[Export ("findTransformECC:inputImage:warpMatrix:motionType:criteria:inputMask:")]
+		double FindTransformECC (Mat templateImage, Mat inputImage, Mat warpMatrix, int motionType, TermCriteria criteria, Mat inputMask);
+
+		// +(double)findTransformECC:(Mat * _Nonnull)templateImage inputImage:(Mat * _Nonnull)inputImage warpMatrix:(Mat * _Nonnull)warpMatrix motionType:(int)motionType criteria:(TermCriteria * _Nonnull)criteria __attribute__((swift_name("findTransformECC(templateImage:inputImage:warpMatrix:motionType:criteria:)")));
+		[Static]
+		[Export ("findTransformECC:inputImage:warpMatrix:motionType:criteria:")]
+		double FindTransformECC (Mat templateImage, Mat inputImage, Mat warpMatrix, int motionType, TermCriteria criteria);
+
+		// +(double)findTransformECC:(Mat * _Nonnull)templateImage inputImage:(Mat * _Nonnull)inputImage warpMatrix:(Mat * _Nonnull)warpMatrix motionType:(int)motionType __attribute__((swift_name("findTransformECC(templateImage:inputImage:warpMatrix:motionType:)")));
+		[Static]
+		[Export ("findTransformECC:inputImage:warpMatrix:motionType:")]
+		double FindTransformECC (Mat templateImage, Mat inputImage, Mat warpMatrix, int motionType);
+
+		// +(double)findTransformECC:(Mat * _Nonnull)templateImage inputImage:(Mat * _Nonnull)inputImage warpMatrix:(Mat * _Nonnull)warpMatrix __attribute__((swift_name("findTransformECC(templateImage:inputImage:warpMatrix:)")));
+		[Static]
+		[Export ("findTransformECC:inputImage:warpMatrix:")]
+		double FindTransformECC (Mat templateImage, Mat inputImage, Mat warpMatrix);
+
+		// +(double)findTransformECCWithMask:(Mat * _Nonnull)templateImage inputImage:(Mat * _Nonnull)inputImage templateMask:(Mat * _Nonnull)templateMask inputMask:(Mat * _Nonnull)inputMask warpMatrix:(Mat * _Nonnull)warpMatrix motionType:(int)motionType criteria:(TermCriteria * _Nonnull)criteria gaussFiltSize:(int)gaussFiltSize __attribute__((swift_name("findTransformECCWithMask(templateImage:inputImage:templateMask:inputMask:warpMatrix:motionType:criteria:gaussFiltSize:)")));
+		[Static]
+		[Export ("findTransformECCWithMask:inputImage:templateMask:inputMask:warpMatrix:motionType:criteria:gaussFiltSize:")]
+		double FindTransformECCWithMask (Mat templateImage, Mat inputImage, Mat templateMask, Mat inputMask, Mat warpMatrix, int motionType, TermCriteria criteria, int gaussFiltSize);
+
+		// +(double)findTransformECCWithMask:(Mat * _Nonnull)templateImage inputImage:(Mat * _Nonnull)inputImage templateMask:(Mat * _Nonnull)templateMask inputMask:(Mat * _Nonnull)inputMask warpMatrix:(Mat * _Nonnull)warpMatrix motionType:(int)motionType criteria:(TermCriteria * _Nonnull)criteria __attribute__((swift_name("findTransformECCWithMask(templateImage:inputImage:templateMask:inputMask:warpMatrix:motionType:criteria:)")));
+		[Static]
+		[Export ("findTransformECCWithMask:inputImage:templateMask:inputMask:warpMatrix:motionType:criteria:")]
+		double FindTransformECCWithMask (Mat templateImage, Mat inputImage, Mat templateMask, Mat inputMask, Mat warpMatrix, int motionType, TermCriteria criteria);
+
+		// +(double)findTransformECCWithMask:(Mat * _Nonnull)templateImage inputImage:(Mat * _Nonnull)inputImage templateMask:(Mat * _Nonnull)templateMask inputMask:(Mat * _Nonnull)inputMask warpMatrix:(Mat * _Nonnull)warpMatrix motionType:(int)motionType __attribute__((swift_name("findTransformECCWithMask(templateImage:inputImage:templateMask:inputMask:warpMatrix:motionType:)")));
+		[Static]
+		[Export ("findTransformECCWithMask:inputImage:templateMask:inputMask:warpMatrix:motionType:")]
+		double FindTransformECCWithMask (Mat templateImage, Mat inputImage, Mat templateMask, Mat inputMask, Mat warpMatrix, int motionType);
+
+		// +(double)findTransformECCWithMask:(Mat * _Nonnull)templateImage inputImage:(Mat * _Nonnull)inputImage templateMask:(Mat * _Nonnull)templateMask inputMask:(Mat * _Nonnull)inputMask warpMatrix:(Mat * _Nonnull)warpMatrix __attribute__((swift_name("findTransformECCWithMask(templateImage:inputImage:templateMask:inputMask:warpMatrix:)")));
+		[Static]
+		[Export ("findTransformECCWithMask:inputImage:templateMask:inputMask:warpMatrix:")]
+		double FindTransformECCWithMask (Mat templateImage, Mat inputImage, Mat templateMask, Mat inputMask, Mat warpMatrix);
+
+		// +(double)findTransformECCMultiScale:(Mat * _Nonnull)reference sample:(Mat * _Nonnull)sample warpMatrix:(Mat * _Nonnull)warpMatrix eccParams:(ECCParameters * _Nonnull)eccParams referenceMask:(Mat * _Nonnull)referenceMask sampleMask:(Mat * _Nonnull)sampleMask __attribute__((swift_name("findTransformECCMultiScale(reference:sample:warpMatrix:eccParams:referenceMask:sampleMask:)")));
+		[Static]
+		[Export ("findTransformECCMultiScale:sample:warpMatrix:eccParams:referenceMask:sampleMask:")]
+		double FindTransformECCMultiScale (Mat reference, Mat sample, Mat warpMatrix, ECCParameters eccParams, Mat referenceMask, Mat sampleMask);
+
+		// +(double)findTransformECCMultiScale:(Mat * _Nonnull)reference sample:(Mat * _Nonnull)sample warpMatrix:(Mat * _Nonnull)warpMatrix eccParams:(ECCParameters * _Nonnull)eccParams referenceMask:(Mat * _Nonnull)referenceMask __attribute__((swift_name("findTransformECCMultiScale(reference:sample:warpMatrix:eccParams:referenceMask:)")));
+		[Static]
+		[Export ("findTransformECCMultiScale:sample:warpMatrix:eccParams:referenceMask:")]
+		double FindTransformECCMultiScale (Mat reference, Mat sample, Mat warpMatrix, ECCParameters eccParams, Mat referenceMask);
+
+		// +(double)findTransformECCMultiScale:(Mat * _Nonnull)reference sample:(Mat * _Nonnull)sample warpMatrix:(Mat * _Nonnull)warpMatrix eccParams:(ECCParameters * _Nonnull)eccParams __attribute__((swift_name("findTransformECCMultiScale(reference:sample:warpMatrix:eccParams:)")));
+		[Static]
+		[Export ("findTransformECCMultiScale:sample:warpMatrix:eccParams:")]
+		double FindTransformECCMultiScale (Mat reference, Mat sample, Mat warpMatrix, ECCParameters eccParams);
+
+		// +(double)findTransformECCMultiScale:(Mat * _Nonnull)reference sample:(Mat * _Nonnull)sample warpMatrix:(Mat * _Nonnull)warpMatrix __attribute__((swift_name("findTransformECCMultiScale(reference:sample:warpMatrix:)")));
+		[Static]
+		[Export ("findTransformECCMultiScale:sample:warpMatrix:")]
+		double FindTransformECCMultiScale (Mat reference, Mat sample, Mat warpMatrix);
+
+		// +(Mat * _Nonnull)readOpticalFlow:(NSString * _Nonnull)path __attribute__((swift_name("readOpticalFlow(path:)")));
+		[Static]
+		[Export ("readOpticalFlow:")]
+		Mat ReadOpticalFlow (string path);
+
+		// +(BOOL)writeOpticalFlow:(NSString * _Nonnull)path flow:(Mat * _Nonnull)flow __attribute__((swift_name("writeOpticalFlow(path:flow:)")));
+		[Static]
+		[Export ("writeOpticalFlow:flow:")]
+		bool WriteOpticalFlow (string path, Mat flow);
+
+		// +(BackgroundSubtractorMOG2 * _Nonnull)createBackgroundSubtractorMOG2:(int)history varThreshold:(double)varThreshold detectShadows:(BOOL)detectShadows __attribute__((swift_name("createBackgroundSubtractorMOG2(history:varThreshold:detectShadows:)")));
+		[Static]
+		[Export ("createBackgroundSubtractorMOG2:varThreshold:detectShadows:")]
+		BackgroundSubtractorMOG2 CreateBackgroundSubtractorMOG2 (int history, double varThreshold, bool detectShadows);
+
+		// +(BackgroundSubtractorMOG2 * _Nonnull)createBackgroundSubtractorMOG2:(int)history varThreshold:(double)varThreshold __attribute__((swift_name("createBackgroundSubtractorMOG2(history:varThreshold:)")));
+		[Static]
+		[Export ("createBackgroundSubtractorMOG2:varThreshold:")]
+		BackgroundSubtractorMOG2 CreateBackgroundSubtractorMOG2 (int history, double varThreshold);
+
+		// +(BackgroundSubtractorMOG2 * _Nonnull)createBackgroundSubtractorMOG2:(int)history __attribute__((swift_name("createBackgroundSubtractorMOG2(history:)")));
+		[Static]
+		[Export ("createBackgroundSubtractorMOG2:")]
+		BackgroundSubtractorMOG2 CreateBackgroundSubtractorMOG2 (int history);
+
+		// +(BackgroundSubtractorMOG2 * _Nonnull)createBackgroundSubtractorMOG2 __attribute__((swift_name("createBackgroundSubtractorMOG2()")));
+		[Static]
+		[Export ("createBackgroundSubtractorMOG2")]
+		BackgroundSubtractorMOG2 CreateBackgroundSubtractorMOG2 ();
+
+		// +(BackgroundSubtractorKNN * _Nonnull)createBackgroundSubtractorKNN:(int)history dist2Threshold:(double)dist2Threshold detectShadows:(BOOL)detectShadows __attribute__((swift_name("createBackgroundSubtractorKNN(history:dist2Threshold:detectShadows:)")));
+		[Static]
+		[Export ("createBackgroundSubtractorKNN:dist2Threshold:detectShadows:")]
+		BackgroundSubtractorKNN CreateBackgroundSubtractorKNN (int history, double dist2Threshold, bool detectShadows);
+
+		// +(BackgroundSubtractorKNN * _Nonnull)createBackgroundSubtractorKNN:(int)history dist2Threshold:(double)dist2Threshold __attribute__((swift_name("createBackgroundSubtractorKNN(history:dist2Threshold:)")));
+		[Static]
+		[Export ("createBackgroundSubtractorKNN:dist2Threshold:")]
+		BackgroundSubtractorKNN CreateBackgroundSubtractorKNN (int history, double dist2Threshold);
+
+		// +(BackgroundSubtractorKNN * _Nonnull)createBackgroundSubtractorKNN:(int)history __attribute__((swift_name("createBackgroundSubtractorKNN(history:)")));
+		[Static]
+		[Export ("createBackgroundSubtractorKNN:")]
+		BackgroundSubtractorKNN CreateBackgroundSubtractorKNN (int history);
+
+		// +(BackgroundSubtractorKNN * _Nonnull)createBackgroundSubtractorKNN __attribute__((swift_name("createBackgroundSubtractorKNN()")));
+		[Static]
+		[Export ("createBackgroundSubtractorKNN")]
+		BackgroundSubtractorKNN CreateBackgroundSubtractorKNN ();
+	}
+
+	// @interface BackgroundSubtractor : Algorithm
+	[BaseType (typeof (Algorithm))]
+	interface BackgroundSubtractor {
+		// -(void)apply:(Mat * _Nonnull)image fgmask:(Mat * _Nonnull)fgmask learningRate:(double)learningRate __attribute__((swift_name("apply(image:fgmask:learningRate:)")));
+		[Export ("apply:fgmask:learningRate:")]
+		void Apply (Mat image, Mat fgmask, double learningRate);
+
+		// -(void)apply:(Mat * _Nonnull)image fgmask:(Mat * _Nonnull)fgmask __attribute__((swift_name("apply(image:fgmask:)")));
+		[Export ("apply:fgmask:")]
+		void Apply (Mat image, Mat fgmask);
+
+		// -(void)apply:(Mat * _Nonnull)image knownForegroundMask:(Mat * _Nonnull)knownForegroundMask fgmask:(Mat * _Nonnull)fgmask learningRate:(double)learningRate __attribute__((swift_name("apply(image:knownForegroundMask:fgmask:learningRate:)")));
+		[Export ("apply:knownForegroundMask:fgmask:learningRate:")]
+		void Apply (Mat image, Mat knownForegroundMask, Mat fgmask, double learningRate);
+
+		// -(void)apply:(Mat * _Nonnull)image knownForegroundMask:(Mat * _Nonnull)knownForegroundMask fgmask:(Mat * _Nonnull)fgmask __attribute__((swift_name("apply(image:knownForegroundMask:fgmask:)")));
+		[Export ("apply:knownForegroundMask:fgmask:")]
+		void Apply (Mat image, Mat knownForegroundMask, Mat fgmask);
+
+		// -(void)getBackgroundImage:(Mat * _Nonnull)backgroundImage __attribute__((swift_name("getBackgroundImage(backgroundImage:)")));
+		[Export ("getBackgroundImage:")]
+		void GetBackgroundImage (Mat backgroundImage);
+	}
+
+	// @interface BackgroundSubtractorKNN : BackgroundSubtractor
+	[BaseType (typeof (BackgroundSubtractor))]
+	interface BackgroundSubtractorKNN {
+		// -(int)getHistory __attribute__((swift_name("getHistory()")));
+		[Export ("getHistory")]
+		int History { get; }
+
+		// -(void)setHistory:(int)history __attribute__((swift_name("setHistory(history:)")));
+		[Export ("setHistory:")]
+		void SetHistory (int history);
+
+		// -(int)getNSamples __attribute__((swift_name("getNSamples()")));
+		[Export ("getNSamples")]
+		int NSamples { get; }
+
+		// -(void)setNSamples:(int)_nN __attribute__((swift_name("setNSamples(_nN:)")));
+		[Export ("setNSamples:")]
+		void SetNSamples (int _nN);
+
+		// -(double)getDist2Threshold __attribute__((swift_name("getDist2Threshold()")));
+		[Export ("getDist2Threshold")]
+		double Dist2Threshold { get; }
+
+		// -(void)setDist2Threshold:(double)_dist2Threshold __attribute__((swift_name("setDist2Threshold(_dist2Threshold:)")));
+		[Export ("setDist2Threshold:")]
+		void SetDist2Threshold (double _dist2Threshold);
+
+		// -(int)getkNNSamples __attribute__((swift_name("getkNNSamples()")));
+		[Export ("getkNNSamples")]
+		int GetkNNSamples ();
+
+		// -(void)setkNNSamples:(int)_nkNN __attribute__((swift_name("setkNNSamples(_nkNN:)")));
+		[Export ("setkNNSamples:")]
+		void SetkNNSamples (int _nkNN);
+
+		// -(BOOL)getDetectShadows __attribute__((swift_name("getDetectShadows()")));
+		[Export ("getDetectShadows")]
+		bool DetectShadows { get; }
+
+		// -(void)setDetectShadows:(BOOL)detectShadows __attribute__((swift_name("setDetectShadows(detectShadows:)")));
+		[Export ("setDetectShadows:")]
+		void SetDetectShadows (bool detectShadows);
+
+		// -(int)getShadowValue __attribute__((swift_name("getShadowValue()")));
+		[Export ("getShadowValue")]
+		int ShadowValue { get; }
+
+		// -(void)setShadowValue:(int)value __attribute__((swift_name("setShadowValue(value:)")));
+		[Export ("setShadowValue:")]
+		void SetShadowValue (int value);
+
+		// -(double)getShadowThreshold __attribute__((swift_name("getShadowThreshold()")));
+		[Export ("getShadowThreshold")]
+		double ShadowThreshold { get; }
+
+		// -(void)setShadowThreshold:(double)threshold __attribute__((swift_name("setShadowThreshold(threshold:)")));
+		[Export ("setShadowThreshold:")]
+		void SetShadowThreshold (double threshold);
+	}
+
+	// @interface BackgroundSubtractorMOG2 : BackgroundSubtractor
+	[BaseType (typeof (BackgroundSubtractor))]
+	interface BackgroundSubtractorMOG2 {
+		// -(int)getHistory __attribute__((swift_name("getHistory()")));
+		[Export ("getHistory")]
+		int History { get; }
+
+		// -(void)setHistory:(int)history __attribute__((swift_name("setHistory(history:)")));
+		[Export ("setHistory:")]
+		void SetHistory (int history);
+
+		// -(int)getNMixtures __attribute__((swift_name("getNMixtures()")));
+		[Export ("getNMixtures")]
+		int NMixtures { get; }
+
+		// -(void)setNMixtures:(int)nmixtures __attribute__((swift_name("setNMixtures(nmixtures:)")));
+		[Export ("setNMixtures:")]
+		void SetNMixtures (int nmixtures);
+
+		// -(double)getBackgroundRatio __attribute__((swift_name("getBackgroundRatio()")));
+		[Export ("getBackgroundRatio")]
+		double BackgroundRatio { get; }
+
+		// -(void)setBackgroundRatio:(double)ratio __attribute__((swift_name("setBackgroundRatio(ratio:)")));
+		[Export ("setBackgroundRatio:")]
+		void SetBackgroundRatio (double ratio);
+
+		// -(double)getVarThreshold __attribute__((swift_name("getVarThreshold()")));
+		[Export ("getVarThreshold")]
+		double VarThreshold { get; }
+
+		// -(void)setVarThreshold:(double)varThreshold __attribute__((swift_name("setVarThreshold(varThreshold:)")));
+		[Export ("setVarThreshold:")]
+		void SetVarThreshold (double varThreshold);
+
+		// -(double)getVarThresholdGen __attribute__((swift_name("getVarThresholdGen()")));
+		[Export ("getVarThresholdGen")]
+		double VarThresholdGen { get; }
+
+		// -(void)setVarThresholdGen:(double)varThresholdGen __attribute__((swift_name("setVarThresholdGen(varThresholdGen:)")));
+		[Export ("setVarThresholdGen:")]
+		void SetVarThresholdGen (double varThresholdGen);
+
+		// -(double)getVarInit __attribute__((swift_name("getVarInit()")));
+		[Export ("getVarInit")]
+		double VarInit { get; }
+
+		// -(void)setVarInit:(double)varInit __attribute__((swift_name("setVarInit(varInit:)")));
+		[Export ("setVarInit:")]
+		void SetVarInit (double varInit);
+
+		// -(double)getVarMin __attribute__((swift_name("getVarMin()")));
+		[Export ("getVarMin")]
+		double VarMin { get; }
+
+		// -(void)setVarMin:(double)varMin __attribute__((swift_name("setVarMin(varMin:)")));
+		[Export ("setVarMin:")]
+		void SetVarMin (double varMin);
+
+		// -(double)getVarMax __attribute__((swift_name("getVarMax()")));
+		[Export ("getVarMax")]
+		double VarMax { get; }
+
+		// -(void)setVarMax:(double)varMax __attribute__((swift_name("setVarMax(varMax:)")));
+		[Export ("setVarMax:")]
+		void SetVarMax (double varMax);
+
+		// -(double)getComplexityReductionThreshold __attribute__((swift_name("getComplexityReductionThreshold()")));
+		[Export ("getComplexityReductionThreshold")]
+		double ComplexityReductionThreshold { get; }
+
+		// -(void)setComplexityReductionThreshold:(double)ct __attribute__((swift_name("setComplexityReductionThreshold(ct:)")));
+		[Export ("setComplexityReductionThreshold:")]
+		void SetComplexityReductionThreshold (double ct);
+
+		// -(BOOL)getDetectShadows __attribute__((swift_name("getDetectShadows()")));
+		[Export ("getDetectShadows")]
+		bool DetectShadows { get; }
+
+		// -(void)setDetectShadows:(BOOL)detectShadows __attribute__((swift_name("setDetectShadows(detectShadows:)")));
+		[Export ("setDetectShadows:")]
+		void SetDetectShadows (bool detectShadows);
+
+		// -(int)getShadowValue __attribute__((swift_name("getShadowValue()")));
+		[Export ("getShadowValue")]
+		int ShadowValue { get; }
+
+		// -(void)setShadowValue:(int)value __attribute__((swift_name("setShadowValue(value:)")));
+		[Export ("setShadowValue:")]
+		void SetShadowValue (int value);
+
+		// -(double)getShadowThreshold __attribute__((swift_name("getShadowThreshold()")));
+		[Export ("getShadowThreshold")]
+		double ShadowThreshold { get; }
+
+		// -(void)setShadowThreshold:(double)threshold __attribute__((swift_name("setShadowThreshold(threshold:)")));
+		[Export ("setShadowThreshold:")]
+		void SetShadowThreshold (double threshold);
+
+		// -(void)apply:(Mat * _Nonnull)image fgmask:(Mat * _Nonnull)fgmask learningRate:(double)learningRate __attribute__((swift_name("apply(image:fgmask:learningRate:)")));
+		[Export ("apply:fgmask:learningRate:")]
+		void Apply (Mat image, Mat fgmask, double learningRate);
+
+		// -(void)apply:(Mat * _Nonnull)image fgmask:(Mat * _Nonnull)fgmask __attribute__((swift_name("apply(image:fgmask:)")));
+		[Export ("apply:fgmask:")]
+		void Apply (Mat image, Mat fgmask);
+
+		// -(void)apply:(Mat * _Nonnull)image knownForegroundMask:(Mat * _Nonnull)knownForegroundMask fgmask:(Mat * _Nonnull)fgmask learningRate:(double)learningRate __attribute__((swift_name("apply(image:knownForegroundMask:fgmask:learningRate:)")));
+		[Export ("apply:knownForegroundMask:fgmask:learningRate:")]
+		void Apply (Mat image, Mat knownForegroundMask, Mat fgmask, double learningRate);
+
+		// -(void)apply:(Mat * _Nonnull)image knownForegroundMask:(Mat * _Nonnull)knownForegroundMask fgmask:(Mat * _Nonnull)fgmask __attribute__((swift_name("apply(image:knownForegroundMask:fgmask:)")));
+		[Export ("apply:knownForegroundMask:fgmask:")]
+		void Apply (Mat image, Mat knownForegroundMask, Mat fgmask);
+	}
+
+	// @interface DenseOpticalFlow : Algorithm
+	[BaseType (typeof (Algorithm))]
+	interface DenseOpticalFlow {
+		// -(void)calc:(Mat * _Nonnull)I0 I1:(Mat * _Nonnull)I1 flow:(Mat * _Nonnull)flow __attribute__((swift_name("calc(I0:I1:flow:)")));
+		[Export ("calc:I1:flow:")]
+		void Calc (Mat I0, Mat I1, Mat flow);
+
+		// -(void)collectGarbage __attribute__((swift_name("collectGarbage()")));
+		[Export ("collectGarbage")]
+		void CollectGarbage ();
+	}
+
+	// @interface DISOpticalFlow : DenseOpticalFlow
+	[BaseType (typeof (DenseOpticalFlow))]
+	interface DISOpticalFlow {
+		// @property (readonly, class) int PRESET_ULTRAFAST __attribute__((swift_name("PRESET_ULTRAFAST")));
+		[Static]
+		[Export ("PRESET_ULTRAFAST")]
+		int PRESET_ULTRAFAST { get; }
+
+		// @property (readonly, class) int PRESET_FAST __attribute__((swift_name("PRESET_FAST")));
+		[Static]
+		[Export ("PRESET_FAST")]
+		int PRESET_FAST { get; }
+
+		// @property (readonly, class) int PRESET_MEDIUM __attribute__((swift_name("PRESET_MEDIUM")));
+		[Static]
+		[Export ("PRESET_MEDIUM")]
+		int PRESET_MEDIUM { get; }
+
+		// -(int)getFinestScale __attribute__((swift_name("getFinestScale()")));
+		[Export ("getFinestScale")]
+		int FinestScale { get; }
+
+		// -(void)setFinestScale:(int)val __attribute__((swift_name("setFinestScale(val:)")));
+		[Export ("setFinestScale:")]
+		void SetFinestScale (int val);
+
+		// -(void)setCoarsestScale:(int)val __attribute__((swift_name("setCoarsestScale(val:)")));
+		[Export ("setCoarsestScale:")]
+		void SetCoarsestScale (int val);
+
+		// -(int)getCoarsestScale __attribute__((swift_name("getCoarsestScale()")));
+		[Export ("getCoarsestScale")]
+		int CoarsestScale { get; }
+
+		// -(int)getPatchSize __attribute__((swift_name("getPatchSize()")));
+		[Export ("getPatchSize")]
+		int PatchSize { get; }
+
+		// -(void)setPatchSize:(int)val __attribute__((swift_name("setPatchSize(val:)")));
+		[Export ("setPatchSize:")]
+		void SetPatchSize (int val);
+
+		// -(int)getPatchStride __attribute__((swift_name("getPatchStride()")));
+		[Export ("getPatchStride")]
+		int PatchStride { get; }
+
+		// -(void)setPatchStride:(int)val __attribute__((swift_name("setPatchStride(val:)")));
+		[Export ("setPatchStride:")]
+		void SetPatchStride (int val);
+
+		// -(int)getGradientDescentIterations __attribute__((swift_name("getGradientDescentIterations()")));
+		[Export ("getGradientDescentIterations")]
+		int GradientDescentIterations { get; }
+
+		// -(void)setGradientDescentIterations:(int)val __attribute__((swift_name("setGradientDescentIterations(val:)")));
+		[Export ("setGradientDescentIterations:")]
+		void SetGradientDescentIterations (int val);
+
+		// -(int)getVariationalRefinementIterations __attribute__((swift_name("getVariationalRefinementIterations()")));
+		[Export ("getVariationalRefinementIterations")]
+		int VariationalRefinementIterations { get; }
+
+		// -(void)setVariationalRefinementIterations:(int)val __attribute__((swift_name("setVariationalRefinementIterations(val:)")));
+		[Export ("setVariationalRefinementIterations:")]
+		void SetVariationalRefinementIterations (int val);
+
+		// -(float)getVariationalRefinementAlpha __attribute__((swift_name("getVariationalRefinementAlpha()")));
+		[Export ("getVariationalRefinementAlpha")]
+		float VariationalRefinementAlpha { get; }
+
+		// -(void)setVariationalRefinementAlpha:(float)val __attribute__((swift_name("setVariationalRefinementAlpha(val:)")));
+		[Export ("setVariationalRefinementAlpha:")]
+		void SetVariationalRefinementAlpha (float val);
+
+		// -(float)getVariationalRefinementDelta __attribute__((swift_name("getVariationalRefinementDelta()")));
+		[Export ("getVariationalRefinementDelta")]
+		float VariationalRefinementDelta { get; }
+
+		// -(void)setVariationalRefinementDelta:(float)val __attribute__((swift_name("setVariationalRefinementDelta(val:)")));
+		[Export ("setVariationalRefinementDelta:")]
+		void SetVariationalRefinementDelta (float val);
+
+		// -(float)getVariationalRefinementGamma __attribute__((swift_name("getVariationalRefinementGamma()")));
+		[Export ("getVariationalRefinementGamma")]
+		float VariationalRefinementGamma { get; }
+
+		// -(void)setVariationalRefinementGamma:(float)val __attribute__((swift_name("setVariationalRefinementGamma(val:)")));
+		[Export ("setVariationalRefinementGamma:")]
+		void SetVariationalRefinementGamma (float val);
+
+		// -(float)getVariationalRefinementEpsilon __attribute__((swift_name("getVariationalRefinementEpsilon()")));
+		[Export ("getVariationalRefinementEpsilon")]
+		float VariationalRefinementEpsilon { get; }
+
+		// -(void)setVariationalRefinementEpsilon:(float)val __attribute__((swift_name("setVariationalRefinementEpsilon(val:)")));
+		[Export ("setVariationalRefinementEpsilon:")]
+		void SetVariationalRefinementEpsilon (float val);
+
+		// -(BOOL)getUseMeanNormalization __attribute__((swift_name("getUseMeanNormalization()")));
+		[Export ("getUseMeanNormalization")]
+		bool UseMeanNormalization { get; }
+
+		// -(void)setUseMeanNormalization:(BOOL)val __attribute__((swift_name("setUseMeanNormalization(val:)")));
+		[Export ("setUseMeanNormalization:")]
+		void SetUseMeanNormalization (bool val);
+
+		// -(BOOL)getUseSpatialPropagation __attribute__((swift_name("getUseSpatialPropagation()")));
+		[Export ("getUseSpatialPropagation")]
+		bool UseSpatialPropagation { get; }
+
+		// -(void)setUseSpatialPropagation:(BOOL)val __attribute__((swift_name("setUseSpatialPropagation(val:)")));
+		[Export ("setUseSpatialPropagation:")]
+		void SetUseSpatialPropagation (bool val);
+
+		// +(DISOpticalFlow * _Nonnull)create:(int)preset __attribute__((swift_name("create(preset:)")));
+		[Static]
+		[Export ("create:")]
+		DISOpticalFlow Create (int preset);
+
+		// +(DISOpticalFlow * _Nonnull)create __attribute__((swift_name("create()")));
+		[Static]
+		[Export ("create")]
+		DISOpticalFlow Create ();
+	}
+
+	// @interface ECCParameters : NSObject
+	[BaseType (typeof (NSObject))]
+	interface ECCParameters {
+		// @property int motionType;
+		[Export ("motionType")]
+		int MotionType { get; set; }
+
+		// @property TermCriteria * _Nonnull criteria;
+		[Export ("criteria", ArgumentSemantic.Assign)]
+		TermCriteria Criteria { get; set; }
+
+		// @property IntVector * _Nonnull itersPerLevel;
+		[Export ("itersPerLevel", ArgumentSemantic.Assign)]
+		IntVector ItersPerLevel { get; set; }
+
+		// @property int gaussFiltSize;
+		[Export ("gaussFiltSize")]
+		int GaussFiltSize { get; set; }
+
+		// @property int nlevels;
+		[Export ("nlevels")]
+		int Nlevels { get; set; }
+
+		// @property int interpolation;
+		[Export ("interpolation")]
+		int Interpolation { get; set; }
+	}
+
+	// @interface FarnebackOpticalFlow : DenseOpticalFlow
+	[BaseType (typeof (DenseOpticalFlow))]
+	interface FarnebackOpticalFlow {
+		// -(int)getNumLevels __attribute__((swift_name("getNumLevels()")));
+		[Export ("getNumLevels")]
+		int NumLevels { get; }
+
+		// -(void)setNumLevels:(int)numLevels __attribute__((swift_name("setNumLevels(numLevels:)")));
+		[Export ("setNumLevels:")]
+		void SetNumLevels (int numLevels);
+
+		// -(double)getPyrScale __attribute__((swift_name("getPyrScale()")));
+		[Export ("getPyrScale")]
+		double PyrScale { get; }
+
+		// -(void)setPyrScale:(double)pyrScale __attribute__((swift_name("setPyrScale(pyrScale:)")));
+		[Export ("setPyrScale:")]
+		void SetPyrScale (double pyrScale);
+
+		// -(BOOL)getFastPyramids __attribute__((swift_name("getFastPyramids()")));
+		[Export ("getFastPyramids")]
+		bool FastPyramids { get; }
+
+		// -(void)setFastPyramids:(BOOL)fastPyramids __attribute__((swift_name("setFastPyramids(fastPyramids:)")));
+		[Export ("setFastPyramids:")]
+		void SetFastPyramids (bool fastPyramids);
+
+		// -(int)getWinSize __attribute__((swift_name("getWinSize()")));
+		[Export ("getWinSize")]
+		int WinSize { get; }
+
+		// -(void)setWinSize:(int)winSize __attribute__((swift_name("setWinSize(winSize:)")));
+		[Export ("setWinSize:")]
+		void SetWinSize (int winSize);
+
+		// -(int)getNumIters __attribute__((swift_name("getNumIters()")));
+		[Export ("getNumIters")]
+		int NumIters { get; }
+
+		// -(void)setNumIters:(int)numIters __attribute__((swift_name("setNumIters(numIters:)")));
+		[Export ("setNumIters:")]
+		void SetNumIters (int numIters);
+
+		// -(int)getPolyN __attribute__((swift_name("getPolyN()")));
+		[Export ("getPolyN")]
+		int PolyN { get; }
+
+		// -(void)setPolyN:(int)polyN __attribute__((swift_name("setPolyN(polyN:)")));
+		[Export ("setPolyN:")]
+		void SetPolyN (int polyN);
+
+		// -(double)getPolySigma __attribute__((swift_name("getPolySigma()")));
+		[Export ("getPolySigma")]
+		double PolySigma { get; }
+
+		// -(void)setPolySigma:(double)polySigma __attribute__((swift_name("setPolySigma(polySigma:)")));
+		[Export ("setPolySigma:")]
+		void SetPolySigma (double polySigma);
+
+		// -(int)getFlags __attribute__((swift_name("getFlags()")));
+		[Export ("getFlags")]
+		int Flags { get; }
+
+		// -(void)setFlags:(int)flags __attribute__((swift_name("setFlags(flags:)")));
+		[Export ("setFlags:")]
+		void SetFlags (int flags);
+
+		// +(FarnebackOpticalFlow * _Nonnull)create:(int)numLevels pyrScale:(double)pyrScale fastPyramids:(BOOL)fastPyramids winSize:(int)winSize numIters:(int)numIters polyN:(int)polyN polySigma:(double)polySigma flags:(int)flags __attribute__((swift_name("create(numLevels:pyrScale:fastPyramids:winSize:numIters:polyN:polySigma:flags:)")));
+		[Static]
+		[Export ("create:pyrScale:fastPyramids:winSize:numIters:polyN:polySigma:flags:")]
+		FarnebackOpticalFlow Create (int numLevels, double pyrScale, bool fastPyramids, int winSize, int numIters, int polyN, double polySigma, int flags);
+
+		// +(FarnebackOpticalFlow * _Nonnull)create:(int)numLevels pyrScale:(double)pyrScale fastPyramids:(BOOL)fastPyramids winSize:(int)winSize numIters:(int)numIters polyN:(int)polyN polySigma:(double)polySigma __attribute__((swift_name("create(numLevels:pyrScale:fastPyramids:winSize:numIters:polyN:polySigma:)")));
+		[Static]
+		[Export ("create:pyrScale:fastPyramids:winSize:numIters:polyN:polySigma:")]
+		FarnebackOpticalFlow Create (int numLevels, double pyrScale, bool fastPyramids, int winSize, int numIters, int polyN, double polySigma);
+
+		// +(FarnebackOpticalFlow * _Nonnull)create:(int)numLevels pyrScale:(double)pyrScale fastPyramids:(BOOL)fastPyramids winSize:(int)winSize numIters:(int)numIters polyN:(int)polyN __attribute__((swift_name("create(numLevels:pyrScale:fastPyramids:winSize:numIters:polyN:)")));
+		[Static]
+		[Export ("create:pyrScale:fastPyramids:winSize:numIters:polyN:")]
+		FarnebackOpticalFlow Create (int numLevels, double pyrScale, bool fastPyramids, int winSize, int numIters, int polyN);
+
+		// +(FarnebackOpticalFlow * _Nonnull)create:(int)numLevels pyrScale:(double)pyrScale fastPyramids:(BOOL)fastPyramids winSize:(int)winSize numIters:(int)numIters __attribute__((swift_name("create(numLevels:pyrScale:fastPyramids:winSize:numIters:)")));
+		[Static]
+		[Export ("create:pyrScale:fastPyramids:winSize:numIters:")]
+		FarnebackOpticalFlow Create (int numLevels, double pyrScale, bool fastPyramids, int winSize, int numIters);
+
+		// +(FarnebackOpticalFlow * _Nonnull)create:(int)numLevels pyrScale:(double)pyrScale fastPyramids:(BOOL)fastPyramids winSize:(int)winSize __attribute__((swift_name("create(numLevels:pyrScale:fastPyramids:winSize:)")));
+		[Static]
+		[Export ("create:pyrScale:fastPyramids:winSize:")]
+		FarnebackOpticalFlow Create (int numLevels, double pyrScale, bool fastPyramids, int winSize);
+
+		// +(FarnebackOpticalFlow * _Nonnull)create:(int)numLevels pyrScale:(double)pyrScale fastPyramids:(BOOL)fastPyramids __attribute__((swift_name("create(numLevels:pyrScale:fastPyramids:)")));
+		[Static]
+		[Export ("create:pyrScale:fastPyramids:")]
+		FarnebackOpticalFlow Create (int numLevels, double pyrScale, bool fastPyramids);
+
+		// +(FarnebackOpticalFlow * _Nonnull)create:(int)numLevels pyrScale:(double)pyrScale __attribute__((swift_name("create(numLevels:pyrScale:)")));
+		[Static]
+		[Export ("create:pyrScale:")]
+		FarnebackOpticalFlow Create (int numLevels, double pyrScale);
+
+		// +(FarnebackOpticalFlow * _Nonnull)create:(int)numLevels __attribute__((swift_name("create(numLevels:)")));
+		[Static]
+		[Export ("create:")]
+		FarnebackOpticalFlow Create (int numLevels);
+
+		// +(FarnebackOpticalFlow * _Nonnull)create __attribute__((swift_name("create()")));
+		[Static]
+		[Export ("create")]
+		FarnebackOpticalFlow Create ();
+	}
+
+	// @interface KalmanFilter : NSObject
+	[BaseType (typeof (NSObject))]
+	interface KalmanFilter {
+		// -(instancetype _Nonnull)initWithDynamParams:(int)dynamParams measureParams:(int)measureParams controlParams:(int)controlParams type:(int)type;
+		[Export ("initWithDynamParams:measureParams:controlParams:type:")]
+		NativeHandle Constructor (int dynamParams, int measureParams, int controlParams, int type);
+
+		// -(instancetype _Nonnull)initWithDynamParams:(int)dynamParams measureParams:(int)measureParams controlParams:(int)controlParams;
+		[Export ("initWithDynamParams:measureParams:controlParams:")]
+		NativeHandle Constructor (int dynamParams, int measureParams, int controlParams);
+
+		// -(instancetype _Nonnull)initWithDynamParams:(int)dynamParams measureParams:(int)measureParams;
+		[Export ("initWithDynamParams:measureParams:")]
+		NativeHandle Constructor (int dynamParams, int measureParams);
+
+		// -(Mat * _Nonnull)predict:(Mat * _Nonnull)control __attribute__((swift_name("predict(control:)")));
+		[Export ("predict:")]
+		Mat Predict (Mat control);
+
+		// -(Mat * _Nonnull)predict __attribute__((swift_name("predict()")));
+		[Export ("predict")]
+		Mat Predict ();
+
+		// -(Mat * _Nonnull)correct:(Mat * _Nonnull)measurement __attribute__((swift_name("correct(measurement:)")));
+		[Export ("correct:")]
+		Mat Correct (Mat measurement);
+
+		// @property Mat * _Nonnull statePre;
+		[Export ("statePre", ArgumentSemantic.Assign)]
+		Mat StatePre { get; set; }
+
+		// @property Mat * _Nonnull statePost;
+		[Export ("statePost", ArgumentSemantic.Assign)]
+		Mat StatePost { get; set; }
+
+		// @property Mat * _Nonnull transitionMatrix;
+		[Export ("transitionMatrix", ArgumentSemantic.Assign)]
+		Mat TransitionMatrix { get; set; }
+
+		// @property Mat * _Nonnull controlMatrix;
+		[Export ("controlMatrix", ArgumentSemantic.Assign)]
+		Mat ControlMatrix { get; set; }
+
+		// @property Mat * _Nonnull measurementMatrix;
+		[Export ("measurementMatrix", ArgumentSemantic.Assign)]
+		Mat MeasurementMatrix { get; set; }
+
+		// @property Mat * _Nonnull processNoiseCov;
+		[Export ("processNoiseCov", ArgumentSemantic.Assign)]
+		Mat ProcessNoiseCov { get; set; }
+
+		// @property Mat * _Nonnull measurementNoiseCov;
+		[Export ("measurementNoiseCov", ArgumentSemantic.Assign)]
+		Mat MeasurementNoiseCov { get; set; }
+
+		// @property Mat * _Nonnull errorCovPre;
+		[Export ("errorCovPre", ArgumentSemantic.Assign)]
+		Mat ErrorCovPre { get; set; }
+
+		// @property Mat * _Nonnull gain;
+		[Export ("gain", ArgumentSemantic.Assign)]
+		Mat Gain { get; set; }
+
+		// @property Mat * _Nonnull errorCovPost;
+		[Export ("errorCovPost", ArgumentSemantic.Assign)]
+		Mat ErrorCovPost { get; set; }
+	}
+
+	// @interface SparseOpticalFlow : Algorithm
+	[BaseType (typeof (Algorithm))]
+	interface SparseOpticalFlow {
+		// -(void)calc:(Mat * _Nonnull)prevImg nextImg:(Mat * _Nonnull)nextImg prevPts:(Mat * _Nonnull)prevPts nextPts:(Mat * _Nonnull)nextPts status:(Mat * _Nonnull)status err:(Mat * _Nonnull)err __attribute__((swift_name("calc(prevImg:nextImg:prevPts:nextPts:status:err:)")));
+		[Export ("calc:nextImg:prevPts:nextPts:status:err:")]
+		void Calc (Mat prevImg, Mat nextImg, Mat prevPts, Mat nextPts, Mat status, Mat err);
+
+		// -(void)calc:(Mat * _Nonnull)prevImg nextImg:(Mat * _Nonnull)nextImg prevPts:(Mat * _Nonnull)prevPts nextPts:(Mat * _Nonnull)nextPts status:(Mat * _Nonnull)status __attribute__((swift_name("calc(prevImg:nextImg:prevPts:nextPts:status:)")));
+		[Export ("calc:nextImg:prevPts:nextPts:status:")]
+		void Calc (Mat prevImg, Mat nextImg, Mat prevPts, Mat nextPts, Mat status);
+	}
+
+	// @interface SparsePyrLKOpticalFlow : SparseOpticalFlow
+	[BaseType (typeof (SparseOpticalFlow))]
+	interface SparsePyrLKOpticalFlow {
+		// -(Size2i * _Nonnull)getWinSize __attribute__((swift_name("getWinSize()")));
+		[Export ("getWinSize")]
+		Size2i WinSize { get; }
+
+		// -(void)setWinSize:(Size2i * _Nonnull)winSize __attribute__((swift_name("setWinSize(winSize:)")));
+		[Export ("setWinSize:")]
+		void SetWinSize (Size2i winSize);
+
+		// -(int)getMaxLevel __attribute__((swift_name("getMaxLevel()")));
+		[Export ("getMaxLevel")]
+		int MaxLevel { get; }
+
+		// -(void)setMaxLevel:(int)maxLevel __attribute__((swift_name("setMaxLevel(maxLevel:)")));
+		[Export ("setMaxLevel:")]
+		void SetMaxLevel (int maxLevel);
+
+		// -(TermCriteria * _Nonnull)getTermCriteria __attribute__((swift_name("getTermCriteria()")));
+		[Export ("getTermCriteria")]
+		TermCriteria TermCriteria { get; }
+
+		// -(void)setTermCriteria:(TermCriteria * _Nonnull)crit __attribute__((swift_name("setTermCriteria(crit:)")));
+		[Export ("setTermCriteria:")]
+		void SetTermCriteria (TermCriteria crit);
+
+		// -(int)getFlags __attribute__((swift_name("getFlags()")));
+		[Export ("getFlags")]
+		int Flags { get; }
+
+		// -(void)setFlags:(int)flags __attribute__((swift_name("setFlags(flags:)")));
+		[Export ("setFlags:")]
+		void SetFlags (int flags);
+
+		// -(double)getMinEigThreshold __attribute__((swift_name("getMinEigThreshold()")));
+		[Export ("getMinEigThreshold")]
+		double MinEigThreshold { get; }
+
+		// -(void)setMinEigThreshold:(double)minEigThreshold __attribute__((swift_name("setMinEigThreshold(minEigThreshold:)")));
+		[Export ("setMinEigThreshold:")]
+		void SetMinEigThreshold (double minEigThreshold);
+
+		// +(SparsePyrLKOpticalFlow * _Nonnull)create:(Size2i * _Nonnull)winSize maxLevel:(int)maxLevel crit:(TermCriteria * _Nonnull)crit flags:(int)flags minEigThreshold:(double)minEigThreshold __attribute__((swift_name("create(winSize:maxLevel:crit:flags:minEigThreshold:)")));
+		[Static]
+		[Export ("create:maxLevel:crit:flags:minEigThreshold:")]
+		SparsePyrLKOpticalFlow Create (Size2i winSize, int maxLevel, TermCriteria crit, int flags, double minEigThreshold);
+
+		// +(SparsePyrLKOpticalFlow * _Nonnull)create:(Size2i * _Nonnull)winSize maxLevel:(int)maxLevel crit:(TermCriteria * _Nonnull)crit flags:(int)flags __attribute__((swift_name("create(winSize:maxLevel:crit:flags:)")));
+		[Static]
+		[Export ("create:maxLevel:crit:flags:")]
+		SparsePyrLKOpticalFlow Create (Size2i winSize, int maxLevel, TermCriteria crit, int flags);
+
+		// +(SparsePyrLKOpticalFlow * _Nonnull)create:(Size2i * _Nonnull)winSize maxLevel:(int)maxLevel crit:(TermCriteria * _Nonnull)crit __attribute__((swift_name("create(winSize:maxLevel:crit:)")));
+		[Static]
+		[Export ("create:maxLevel:crit:")]
+		SparsePyrLKOpticalFlow Create (Size2i winSize, int maxLevel, TermCriteria crit);
+
+		// +(SparsePyrLKOpticalFlow * _Nonnull)create:(Size2i * _Nonnull)winSize maxLevel:(int)maxLevel __attribute__((swift_name("create(winSize:maxLevel:)")));
+		[Static]
+		[Export ("create:maxLevel:")]
+		SparsePyrLKOpticalFlow Create (Size2i winSize, int maxLevel);
+
+		// +(SparsePyrLKOpticalFlow * _Nonnull)create:(Size2i * _Nonnull)winSize __attribute__((swift_name("create(winSize:)")));
+		[Static]
+		[Export ("create:")]
+		SparsePyrLKOpticalFlow Create (Size2i winSize);
+
+		// +(SparsePyrLKOpticalFlow * _Nonnull)create __attribute__((swift_name("create()")));
+		[Static]
+		[Export ("create")]
+		SparsePyrLKOpticalFlow Create ();
+	}
+
+	// @interface Tracker : NSObject
+	[BaseType (typeof (NSObject))]
+	interface Tracker {
+		// -(void)init:(Mat * _Nonnull)image boundingBox:(Rect2i * _Nonnull)boundingBox __attribute__((swift_name("init(image:boundingBox:)")));
+		[Export ("init:boundingBox:")]
+		void Init (Mat image, Rect2i boundingBox);
+
+		// -(BOOL)update:(Mat * _Nonnull)image boundingBox:(Rect2i * _Nonnull)boundingBox __attribute__((swift_name("update(image:boundingBox:)")));
+		[Export ("update:boundingBox:")]
+		bool Update (Mat image, Rect2i boundingBox);
+
+		// -(float)getTrackingScore __attribute__((swift_name("getTrackingScore()")));
+		[Export ("getTrackingScore")]
+		float TrackingScore { get; }
+	}
+
+	// @interface TrackerDaSiamRPN : Tracker
+	[BaseType (typeof (Tracker))]
+	interface TrackerDaSiamRPN {
+		// +(TrackerDaSiamRPN * _Nonnull)create:(TrackerDaSiamRPNParams * _Nonnull)parameters __attribute__((swift_name("create(parameters:)")));
+		[Static]
+		[Export ("create:")]
+		TrackerDaSiamRPN Create (TrackerDaSiamRPNParams parameters);
+
+		// +(TrackerDaSiamRPN * _Nonnull)create __attribute__((swift_name("create()")));
+		[Static]
+		[Export ("create")]
+		TrackerDaSiamRPN Create ();
+	}
+
+	// @interface TrackerDaSiamRPNParams : NSObject
+	[BaseType (typeof (NSObject))]
+	interface TrackerDaSiamRPNParams {
+		// @property NSString * _Nonnull model;
+		[Export ("model")]
+		string Model { get; set; }
+
+		// @property NSString * _Nonnull kernel_cls1;
+		[Export ("kernel_cls1")]
+		string Kernel_cls1 { get; set; }
+
+		// @property NSString * _Nonnull kernel_r1;
+		[Export ("kernel_r1")]
+		string Kernel_r1 { get; set; }
+
+		// @property int backend;
+		[Export ("backend")]
+		int Backend { get; set; }
+
+		// @property int target;
+		[Export ("target")]
+		int Target { get; set; }
+	}
+
+	// @interface TrackerMIL : Tracker
+	[BaseType (typeof (Tracker))]
+	interface TrackerMIL {
+		// +(TrackerMIL * _Nonnull)create:(TrackerMILParams * _Nonnull)parameters __attribute__((swift_name("create(parameters:)")));
+		[Static]
+		[Export ("create:")]
+		TrackerMIL Create (TrackerMILParams parameters);
+
+		// +(TrackerMIL * _Nonnull)create __attribute__((swift_name("create()")));
+		[Static]
+		[Export ("create")]
+		TrackerMIL Create ();
+	}
+
+	// @interface TrackerMILParams : NSObject
+	[BaseType (typeof (NSObject))]
+	interface TrackerMILParams {
+		// @property float samplerInitInRadius;
+		[Export ("samplerInitInRadius")]
+		float SamplerInitInRadius { get; set; }
+
+		// @property int samplerInitMaxNegNum;
+		[Export ("samplerInitMaxNegNum")]
+		int SamplerInitMaxNegNum { get; set; }
+
+		// @property float samplerSearchWinSize;
+		[Export ("samplerSearchWinSize")]
+		float SamplerSearchWinSize { get; set; }
+
+		// @property float samplerTrackInRadius;
+		[Export ("samplerTrackInRadius")]
+		float SamplerTrackInRadius { get; set; }
+
+		// @property int samplerTrackMaxPosNum;
+		[Export ("samplerTrackMaxPosNum")]
+		int SamplerTrackMaxPosNum { get; set; }
+
+		// @property int samplerTrackMaxNegNum;
+		[Export ("samplerTrackMaxNegNum")]
+		int SamplerTrackMaxNegNum { get; set; }
+
+		// @property int featureSetNumFeatures;
+		[Export ("featureSetNumFeatures")]
+		int FeatureSetNumFeatures { get; set; }
+	}
+
+	// @interface TrackerNano : Tracker
+	[BaseType (typeof (Tracker))]
+	interface TrackerNano {
+		// +(TrackerNano * _Nonnull)create:(TrackerNanoParams * _Nonnull)parameters __attribute__((swift_name("create(parameters:)")));
+		[Static]
+		[Export ("create:")]
+		TrackerNano Create (TrackerNanoParams parameters);
+
+		// +(TrackerNano * _Nonnull)create __attribute__((swift_name("create()")));
+		[Static]
+		[Export ("create")]
+		TrackerNano Create ();
+	}
+
+	// @interface TrackerNanoParams : NSObject
+	[BaseType (typeof (NSObject))]
+	interface TrackerNanoParams {
+		// @property NSString * _Nonnull backbone;
+		[Export ("backbone")]
+		string Backbone { get; set; }
+
+		// @property NSString * _Nonnull neckhead;
+		[Export ("neckhead")]
+		string Neckhead { get; set; }
+
+		// @property int backend;
+		[Export ("backend")]
+		int Backend { get; set; }
+
+		// @property int target;
+		[Export ("target")]
+		int Target { get; set; }
+	}
+
+	// @interface TrackerVit : Tracker
+	[BaseType (typeof (Tracker))]
+	interface TrackerVit {
+		// +(TrackerVit * _Nonnull)create:(TrackerVitParams * _Nonnull)parameters __attribute__((swift_name("create(parameters:)")));
+		[Static]
+		[Export ("create:")]
+		TrackerVit Create (TrackerVitParams parameters);
+
+		// +(TrackerVit * _Nonnull)create __attribute__((swift_name("create()")));
+		[Static]
+		[Export ("create")]
+		TrackerVit Create ();
+	}
+
+	// @interface TrackerVitParams : NSObject
+	[BaseType (typeof (NSObject))]
+	interface TrackerVitParams {
+		// @property NSString * _Nonnull net;
+		[Export ("net")]
+		string Net { get; set; }
+
+		// @property int backend;
+		[Export ("backend")]
+		int Backend { get; set; }
+
+		// @property int target;
+		[Export ("target")]
+		int Target { get; set; }
+
+		// @property Scalar * _Nonnull meanvalue;
+		[Export ("meanvalue", ArgumentSemantic.Assign)]
+		Scalar Meanvalue { get; set; }
+
+		// @property Scalar * _Nonnull stdvalue;
+		[Export ("stdvalue", ArgumentSemantic.Assign)]
+		Scalar Stdvalue { get; set; }
+
+		// @property float tracking_score_threshold;
+		[Export ("tracking_score_threshold")]
+		float Tracking_score_threshold { get; set; }
+	}
+
+	// @interface VariationalRefinement : DenseOpticalFlow
+	[BaseType (typeof (DenseOpticalFlow))]
+	interface VariationalRefinement {
+		// -(void)calcUV:(Mat * _Nonnull)I0 I1:(Mat * _Nonnull)I1 flow_u:(Mat * _Nonnull)flow_u flow_v:(Mat * _Nonnull)flow_v __attribute__((swift_name("calcUV(I0:I1:flow_u:flow_v:)")));
+		[Export ("calcUV:I1:flow_u:flow_v:")]
+		void CalcUV (Mat I0, Mat I1, Mat flow_u, Mat flow_v);
+
+		// -(int)getFixedPointIterations __attribute__((swift_name("getFixedPointIterations()")));
+		[Export ("getFixedPointIterations")]
+		int FixedPointIterations { get; }
+
+		// -(void)setFixedPointIterations:(int)val __attribute__((swift_name("setFixedPointIterations(val:)")));
+		[Export ("setFixedPointIterations:")]
+		void SetFixedPointIterations (int val);
+
+		// -(int)getSorIterations __attribute__((swift_name("getSorIterations()")));
+		[Export ("getSorIterations")]
+		int SorIterations { get; }
+
+		// -(void)setSorIterations:(int)val __attribute__((swift_name("setSorIterations(val:)")));
+		[Export ("setSorIterations:")]
+		void SetSorIterations (int val);
+
+		// -(float)getOmega __attribute__((swift_name("getOmega()")));
+		[Export ("getOmega")]
+		float Omega { get; }
+
+		// -(void)setOmega:(float)val __attribute__((swift_name("setOmega(val:)")));
+		[Export ("setOmega:")]
+		void SetOmega (float val);
+
+		// -(float)getAlpha __attribute__((swift_name("getAlpha()")));
+		[Export ("getAlpha")]
+		float Alpha { get; }
+
+		// -(void)setAlpha:(float)val __attribute__((swift_name("setAlpha(val:)")));
+		[Export ("setAlpha:")]
+		void SetAlpha (float val);
+
+		// -(float)getDelta __attribute__((swift_name("getDelta()")));
+		[Export ("getDelta")]
+		float Delta { get; }
+
+		// -(void)setDelta:(float)val __attribute__((swift_name("setDelta(val:)")));
+		[Export ("setDelta:")]
+		void SetDelta (float val);
+
+		// -(float)getGamma __attribute__((swift_name("getGamma()")));
+		[Export ("getGamma")]
+		float Gamma { get; }
+
+		// -(void)setGamma:(float)val __attribute__((swift_name("setGamma(val:)")));
+		[Export ("setGamma:")]
+		void SetGamma (float val);
+
+		// -(float)getEpsilon __attribute__((swift_name("getEpsilon()")));
+		[Export ("getEpsilon")]
+		float Epsilon { get; }
+
+		// -(void)setEpsilon:(float)val __attribute__((swift_name("setEpsilon(val:)")));
+		[Export ("setEpsilon:")]
+		void SetEpsilon (float val);
+
+		// +(VariationalRefinement * _Nonnull)create __attribute__((swift_name("create()")));
+		[Static]
+		[Export ("create")]
+		VariationalRefinement Create ();
 	}
 
 	// @interface Calib : NSObject
@@ -16322,6 +15768,66 @@ namespace OpenCvSdk {
 		[Static]
 		[Export ("CALIB_STEREO_REGISTRATION")]
 		int CALIB_STEREO_REGISTRATION { get; }
+
+		// @property (readonly, class) int fisheye_CALIB_USE_INTRINSIC_GUESS __attribute__((swift_name("fisheye_CALIB_USE_INTRINSIC_GUESS")));
+		[Static]
+		[Export ("fisheye_CALIB_USE_INTRINSIC_GUESS")]
+		int Fisheye_CALIB_USE_INTRINSIC_GUESS { get; }
+
+		// @property (readonly, class) int fisheye_CALIB_RECOMPUTE_EXTRINSIC __attribute__((swift_name("fisheye_CALIB_RECOMPUTE_EXTRINSIC")));
+		[Static]
+		[Export ("fisheye_CALIB_RECOMPUTE_EXTRINSIC")]
+		int Fisheye_CALIB_RECOMPUTE_EXTRINSIC { get; }
+
+		// @property (readonly, class) int fisheye_CALIB_CHECK_COND __attribute__((swift_name("fisheye_CALIB_CHECK_COND")));
+		[Static]
+		[Export ("fisheye_CALIB_CHECK_COND")]
+		int Fisheye_CALIB_CHECK_COND { get; }
+
+		// @property (readonly, class) int fisheye_CALIB_FIX_SKEW __attribute__((swift_name("fisheye_CALIB_FIX_SKEW")));
+		[Static]
+		[Export ("fisheye_CALIB_FIX_SKEW")]
+		int Fisheye_CALIB_FIX_SKEW { get; }
+
+		// @property (readonly, class) int fisheye_CALIB_FIX_K1 __attribute__((swift_name("fisheye_CALIB_FIX_K1")));
+		[Static]
+		[Export ("fisheye_CALIB_FIX_K1")]
+		int Fisheye_CALIB_FIX_K1 { get; }
+
+		// @property (readonly, class) int fisheye_CALIB_FIX_K2 __attribute__((swift_name("fisheye_CALIB_FIX_K2")));
+		[Static]
+		[Export ("fisheye_CALIB_FIX_K2")]
+		int Fisheye_CALIB_FIX_K2 { get; }
+
+		// @property (readonly, class) int fisheye_CALIB_FIX_K3 __attribute__((swift_name("fisheye_CALIB_FIX_K3")));
+		[Static]
+		[Export ("fisheye_CALIB_FIX_K3")]
+		int Fisheye_CALIB_FIX_K3 { get; }
+
+		// @property (readonly, class) int fisheye_CALIB_FIX_K4 __attribute__((swift_name("fisheye_CALIB_FIX_K4")));
+		[Static]
+		[Export ("fisheye_CALIB_FIX_K4")]
+		int Fisheye_CALIB_FIX_K4 { get; }
+
+		// @property (readonly, class) int fisheye_CALIB_FIX_INTRINSIC __attribute__((swift_name("fisheye_CALIB_FIX_INTRINSIC")));
+		[Static]
+		[Export ("fisheye_CALIB_FIX_INTRINSIC")]
+		int Fisheye_CALIB_FIX_INTRINSIC { get; }
+
+		// @property (readonly, class) int fisheye_CALIB_FIX_PRINCIPAL_POINT __attribute__((swift_name("fisheye_CALIB_FIX_PRINCIPAL_POINT")));
+		[Static]
+		[Export ("fisheye_CALIB_FIX_PRINCIPAL_POINT")]
+		int Fisheye_CALIB_FIX_PRINCIPAL_POINT { get; }
+
+		// @property (readonly, class) int fisheye_CALIB_ZERO_DISPARITY __attribute__((swift_name("fisheye_CALIB_ZERO_DISPARITY")));
+		[Static]
+		[Export ("fisheye_CALIB_ZERO_DISPARITY")]
+		int Fisheye_CALIB_ZERO_DISPARITY { get; }
+
+		// @property (readonly, class) int fisheye_CALIB_FIX_FOCAL_LENGTH __attribute__((swift_name("fisheye_CALIB_FIX_FOCAL_LENGTH")));
+		[Static]
+		[Export ("fisheye_CALIB_FIX_FOCAL_LENGTH")]
+		int Fisheye_CALIB_FIX_FOCAL_LENGTH { get; }
 
 		// +(Mat * _Nonnull)initCameraMatrix2D:(NSArray<Mat *> * _Nonnull)objectPoints imagePoints:(NSArray<Mat *> * _Nonnull)imagePoints imageSize:(Size2i * _Nonnull)imageSize aspectRatio:(double)aspectRatio __attribute__((swift_name("initCameraMatrix2D(objectPoints:imagePoints:imageSize:aspectRatio:)")));
 		[Static]
@@ -16468,6 +15974,26 @@ namespace OpenCvSdk {
 		[Export ("registerCameras:objectPoints2:imagePoints1:imagePoints2:cameraMatrix1:distCoeffs1:cameraModel1:cameraMatrix2:distCoeffs2:cameraModel2:R:T:E:F:perViewErrors:")]
 		double RegisterCameras (Mat [] objectPoints1, Mat [] objectPoints2, Mat [] imagePoints1, Mat [] imagePoints2, Mat cameraMatrix1, Mat distCoeffs1, CameraModel cameraModel1, Mat cameraMatrix2, Mat distCoeffs2, CameraModel cameraModel2, Mat R, Mat T, Mat E, Mat F, Mat perViewErrors);
 
+		// +(void)calibrateHandEye:(NSArray<Mat *> * _Nonnull)R_gripper2base t_gripper2base:(NSArray<Mat *> * _Nonnull)t_gripper2base R_target2cam:(NSArray<Mat *> * _Nonnull)R_target2cam t_target2cam:(NSArray<Mat *> * _Nonnull)t_target2cam R_cam2gripper:(Mat * _Nonnull)R_cam2gripper t_cam2gripper:(Mat * _Nonnull)t_cam2gripper method:(HandEyeCalibrationMethod)method __attribute__((swift_name("calibrateHandEye(R_gripper2base:t_gripper2base:R_target2cam:t_target2cam:R_cam2gripper:t_cam2gripper:method:)")));
+		[Static]
+		[Export ("calibrateHandEye:t_gripper2base:R_target2cam:t_target2cam:R_cam2gripper:t_cam2gripper:method:")]
+		void CalibrateHandEye (Mat [] R_gripper2base, Mat [] t_gripper2base, Mat [] R_target2cam, Mat [] t_target2cam, Mat R_cam2gripper, Mat t_cam2gripper, HandEyeCalibrationMethod method);
+
+		// +(void)calibrateHandEye:(NSArray<Mat *> * _Nonnull)R_gripper2base t_gripper2base:(NSArray<Mat *> * _Nonnull)t_gripper2base R_target2cam:(NSArray<Mat *> * _Nonnull)R_target2cam t_target2cam:(NSArray<Mat *> * _Nonnull)t_target2cam R_cam2gripper:(Mat * _Nonnull)R_cam2gripper t_cam2gripper:(Mat * _Nonnull)t_cam2gripper __attribute__((swift_name("calibrateHandEye(R_gripper2base:t_gripper2base:R_target2cam:t_target2cam:R_cam2gripper:t_cam2gripper:)")));
+		[Static]
+		[Export ("calibrateHandEye:t_gripper2base:R_target2cam:t_target2cam:R_cam2gripper:t_cam2gripper:")]
+		void CalibrateHandEye (Mat [] R_gripper2base, Mat [] t_gripper2base, Mat [] R_target2cam, Mat [] t_target2cam, Mat R_cam2gripper, Mat t_cam2gripper);
+
+		// +(void)calibrateRobotWorldHandEye:(NSArray<Mat *> * _Nonnull)R_world2cam t_world2cam:(NSArray<Mat *> * _Nonnull)t_world2cam R_base2gripper:(NSArray<Mat *> * _Nonnull)R_base2gripper t_base2gripper:(NSArray<Mat *> * _Nonnull)t_base2gripper R_base2world:(Mat * _Nonnull)R_base2world t_base2world:(Mat * _Nonnull)t_base2world R_gripper2cam:(Mat * _Nonnull)R_gripper2cam t_gripper2cam:(Mat * _Nonnull)t_gripper2cam method:(RobotWorldHandEyeCalibrationMethod)method __attribute__((swift_name("calibrateRobotWorldHandEye(R_world2cam:t_world2cam:R_base2gripper:t_base2gripper:R_base2world:t_base2world:R_gripper2cam:t_gripper2cam:method:)")));
+		[Static]
+		[Export ("calibrateRobotWorldHandEye:t_world2cam:R_base2gripper:t_base2gripper:R_base2world:t_base2world:R_gripper2cam:t_gripper2cam:method:")]
+		void CalibrateRobotWorldHandEye (Mat [] R_world2cam, Mat [] t_world2cam, Mat [] R_base2gripper, Mat [] t_base2gripper, Mat R_base2world, Mat t_base2world, Mat R_gripper2cam, Mat t_gripper2cam, RobotWorldHandEyeCalibrationMethod method);
+
+		// +(void)calibrateRobotWorldHandEye:(NSArray<Mat *> * _Nonnull)R_world2cam t_world2cam:(NSArray<Mat *> * _Nonnull)t_world2cam R_base2gripper:(NSArray<Mat *> * _Nonnull)R_base2gripper t_base2gripper:(NSArray<Mat *> * _Nonnull)t_base2gripper R_base2world:(Mat * _Nonnull)R_base2world t_base2world:(Mat * _Nonnull)t_base2world R_gripper2cam:(Mat * _Nonnull)R_gripper2cam t_gripper2cam:(Mat * _Nonnull)t_gripper2cam __attribute__((swift_name("calibrateRobotWorldHandEye(R_world2cam:t_world2cam:R_base2gripper:t_base2gripper:R_base2world:t_base2world:R_gripper2cam:t_gripper2cam:)")));
+		[Static]
+		[Export ("calibrateRobotWorldHandEye:t_world2cam:R_base2gripper:t_base2gripper:R_base2world:t_base2world:R_gripper2cam:t_gripper2cam:")]
+		void CalibrateRobotWorldHandEye (Mat [] R_world2cam, Mat [] t_world2cam, Mat [] R_base2gripper, Mat [] t_base2gripper, Mat R_base2world, Mat t_base2world, Mat R_gripper2cam, Mat t_gripper2cam);
+
 		// +(double)fisheye_calibrate:(NSArray<Mat *> * _Nonnull)objectPoints imagePoints:(NSArray<Mat *> * _Nonnull)imagePoints image_size:(Size2i * _Nonnull)image_size K:(Mat * _Nonnull)K D:(Mat * _Nonnull)D rvecs:(NSMutableArray<Mat *> * _Nonnull)rvecs tvecs:(NSMutableArray<Mat *> * _Nonnull)tvecs flags:(int)flags criteria:(TermCriteria * _Nonnull)criteria __attribute__((swift_name("fisheye_calibrate(objectPoints:imagePoints:image_size:K:D:rvecs:tvecs:flags:criteria:)")));
 		[Static]
 		[Export ("fisheye_calibrate:imagePoints:image_size:K:D:rvecs:tvecs:flags:criteria:")]
@@ -16512,5 +16038,1154 @@ namespace OpenCvSdk {
 		[Static]
 		[Export ("fisheye_stereoCalibrate:imagePoints1:imagePoints2:K1:D1:K2:D2:imageSize:R:T:")]
 		double Fisheye_stereoCalibrate (Mat [] objectPoints, Mat [] imagePoints1, Mat [] imagePoints2, Mat K1, Mat D1, Mat K2, Mat D2, Size2i imageSize, Mat R, Mat T);
+	}
+
+	// @interface Ptcloud : NSObject
+	[BaseType (typeof (NSObject))]
+	interface Ptcloud {
+		// +(void)loadPointCloud:(NSString * _Nonnull)filename vertices:(Mat * _Nonnull)vertices normals:(Mat * _Nonnull)normals rgb:(Mat * _Nonnull)rgb __attribute__((swift_name("loadPointCloud(filename:vertices:normals:rgb:)")));
+		[Static]
+		[Export ("loadPointCloud:vertices:normals:rgb:")]
+		void LoadPointCloud (string filename, Mat vertices, Mat normals, Mat rgb);
+
+		// +(void)loadPointCloud:(NSString * _Nonnull)filename vertices:(Mat * _Nonnull)vertices normals:(Mat * _Nonnull)normals __attribute__((swift_name("loadPointCloud(filename:vertices:normals:)")));
+		[Static]
+		[Export ("loadPointCloud:vertices:normals:")]
+		void LoadPointCloud (string filename, Mat vertices, Mat normals);
+
+		// +(void)loadPointCloud:(NSString * _Nonnull)filename vertices:(Mat * _Nonnull)vertices __attribute__((swift_name("loadPointCloud(filename:vertices:)")));
+		[Static]
+		[Export ("loadPointCloud:vertices:")]
+		void LoadPointCloud (string filename, Mat vertices);
+
+		// +(void)savePointCloud:(NSString * _Nonnull)filename vertices:(Mat * _Nonnull)vertices normals:(Mat * _Nonnull)normals rgb:(Mat * _Nonnull)rgb __attribute__((swift_name("savePointCloud(filename:vertices:normals:rgb:)")));
+		[Static]
+		[Export ("savePointCloud:vertices:normals:rgb:")]
+		void SavePointCloud (string filename, Mat vertices, Mat normals, Mat rgb);
+
+		// +(void)savePointCloud:(NSString * _Nonnull)filename vertices:(Mat * _Nonnull)vertices normals:(Mat * _Nonnull)normals __attribute__((swift_name("savePointCloud(filename:vertices:normals:)")));
+		[Static]
+		[Export ("savePointCloud:vertices:normals:")]
+		void SavePointCloud (string filename, Mat vertices, Mat normals);
+
+		// +(void)savePointCloud:(NSString * _Nonnull)filename vertices:(Mat * _Nonnull)vertices __attribute__((swift_name("savePointCloud(filename:vertices:)")));
+		[Static]
+		[Export ("savePointCloud:vertices:")]
+		void SavePointCloud (string filename, Mat vertices);
+
+		// +(void)removeStatisticalOutliers:(Mat * _Nonnull)inputCloud outputCloud:(Mat * _Nonnull)outputCloud meanK:(int)meanK stddevMulThresh:(double)stddevMulThresh keptIndices:(Mat * _Nonnull)keptIndices __attribute__((swift_name("removeStatisticalOutliers(inputCloud:outputCloud:meanK:stddevMulThresh:keptIndices:)")));
+		[Static]
+		[Export ("removeStatisticalOutliers:outputCloud:meanK:stddevMulThresh:keptIndices:")]
+		void RemoveStatisticalOutliers (Mat inputCloud, Mat outputCloud, int meanK, double stddevMulThresh, Mat keptIndices);
+
+		// +(void)removeStatisticalOutliers:(Mat * _Nonnull)inputCloud outputCloud:(Mat * _Nonnull)outputCloud meanK:(int)meanK stddevMulThresh:(double)stddevMulThresh __attribute__((swift_name("removeStatisticalOutliers(inputCloud:outputCloud:meanK:stddevMulThresh:)")));
+		[Static]
+		[Export ("removeStatisticalOutliers:outputCloud:meanK:stddevMulThresh:")]
+		void RemoveStatisticalOutliers (Mat inputCloud, Mat outputCloud, int meanK, double stddevMulThresh);
+
+		// +(void)removeStatisticalOutliers:(Mat * _Nonnull)inputCloud outputCloud:(Mat * _Nonnull)outputCloud meanK:(int)meanK __attribute__((swift_name("removeStatisticalOutliers(inputCloud:outputCloud:meanK:)")));
+		[Static]
+		[Export ("removeStatisticalOutliers:outputCloud:meanK:")]
+		void RemoveStatisticalOutliers (Mat inputCloud, Mat outputCloud, int meanK);
+
+		// +(void)removeStatisticalOutliers:(Mat * _Nonnull)inputCloud outputCloud:(Mat * _Nonnull)outputCloud __attribute__((swift_name("removeStatisticalOutliers(inputCloud:outputCloud:)")));
+		[Static]
+		[Export ("removeStatisticalOutliers:outputCloud:")]
+		void RemoveStatisticalOutliers (Mat inputCloud, Mat outputCloud);
+
+		// +(void)removeRadiusOutliers:(Mat * _Nonnull)inputCloud outputCloud:(Mat * _Nonnull)outputCloud radius:(double)radius minNeighbors:(int)minNeighbors keptIndices:(Mat * _Nonnull)keptIndices __attribute__((swift_name("removeRadiusOutliers(inputCloud:outputCloud:radius:minNeighbors:keptIndices:)")));
+		[Static]
+		[Export ("removeRadiusOutliers:outputCloud:radius:minNeighbors:keptIndices:")]
+		void RemoveRadiusOutliers (Mat inputCloud, Mat outputCloud, double radius, int minNeighbors, Mat keptIndices);
+
+		// +(void)removeRadiusOutliers:(Mat * _Nonnull)inputCloud outputCloud:(Mat * _Nonnull)outputCloud radius:(double)radius minNeighbors:(int)minNeighbors __attribute__((swift_name("removeRadiusOutliers(inputCloud:outputCloud:radius:minNeighbors:)")));
+		[Static]
+		[Export ("removeRadiusOutliers:outputCloud:radius:minNeighbors:")]
+		void RemoveRadiusOutliers (Mat inputCloud, Mat outputCloud, double radius, int minNeighbors);
+
+		// +(void)removeRadiusOutliers:(Mat * _Nonnull)inputCloud outputCloud:(Mat * _Nonnull)outputCloud radius:(double)radius __attribute__((swift_name("removeRadiusOutliers(inputCloud:outputCloud:radius:)")));
+		[Static]
+		[Export ("removeRadiusOutliers:outputCloud:radius:")]
+		void RemoveRadiusOutliers (Mat inputCloud, Mat outputCloud, double radius);
+
+		// +(void)orientNormals:(Mat * _Nonnull)inputCloud normals:(Mat * _Nonnull)normals viewpoint:(Point3f * _Nonnull)viewpoint __attribute__((swift_name("orientNormals(inputCloud:normals:viewpoint:)")));
+		[Static]
+		[Export ("orientNormals:normals:viewpoint:")]
+		void OrientNormals (Mat inputCloud, Mat normals, Point3f viewpoint);
+
+		// +(void)orientNormalsConsistent:(Mat * _Nonnull)inputCloud normals:(Mat * _Nonnull)normals k:(int)k __attribute__((swift_name("orientNormalsConsistent(inputCloud:normals:k:)")));
+		[Static]
+		[Export ("orientNormalsConsistent:normals:k:")]
+		void OrientNormalsConsistent (Mat inputCloud, Mat normals, int k);
+
+		// +(void)orientNormalsConsistent:(Mat * _Nonnull)inputCloud normals:(Mat * _Nonnull)normals __attribute__((swift_name("orientNormalsConsistent(inputCloud:normals:)")));
+		[Static]
+		[Export ("orientNormalsConsistent:normals:")]
+		void OrientNormalsConsistent (Mat inputCloud, Mat normals);
+
+		// +(float)estimateMedianSpacing:(Mat * _Nonnull)inputCloud __attribute__((swift_name("estimateMedianSpacing(inputCloud:)")));
+		[Static]
+		[Export ("estimateMedianSpacing:")]
+		float EstimateMedianSpacing (Mat inputCloud);
+
+		// +(void)createMeshBPA:(Mat * _Nonnull)inputCloud normals:(Mat * _Nonnull)normals vertices:(Mat * _Nonnull)vertices triangles:(Mat * _Nonnull)triangles radii:(Mat * _Nonnull)radii __attribute__((swift_name("createMeshBPA(inputCloud:normals:vertices:triangles:radii:)")));
+		[Static]
+		[Export ("createMeshBPA:normals:vertices:triangles:radii:")]
+		void CreateMeshBPA (Mat inputCloud, Mat normals, Mat vertices, Mat triangles, Mat radii);
+
+		// +(void)createMeshBPA:(Mat * _Nonnull)inputCloud normals:(Mat * _Nonnull)normals vertices:(Mat * _Nonnull)vertices triangles:(Mat * _Nonnull)triangles __attribute__((swift_name("createMeshBPA(inputCloud:normals:vertices:triangles:)")));
+		[Static]
+		[Export ("createMeshBPA:normals:vertices:triangles:")]
+		void CreateMeshBPA (Mat inputCloud, Mat normals, Mat vertices, Mat triangles);
+
+		// +(void)boundingBox3D:(Mat * _Nonnull)inputCloud minBound:(Mat * _Nonnull)minBound maxBound:(Mat * _Nonnull)maxBound __attribute__((swift_name("boundingBox3D(inputCloud:minBound:maxBound:)")));
+		[Static]
+		[Export ("boundingBox3D:minBound:maxBound:")]
+		void BoundingBox3D (Mat inputCloud, Mat minBound, Mat maxBound);
+
+		// +(void)orientedBoundingBox3D:(Mat * _Nonnull)inputCloud center:(Mat * _Nonnull)center axes:(Mat * _Nonnull)axes halfExtents:(Mat * _Nonnull)halfExtents __attribute__((swift_name("orientedBoundingBox3D(inputCloud:center:axes:halfExtents:)")));
+		[Static]
+		[Export ("orientedBoundingBox3D:center:axes:halfExtents:")]
+		void OrientedBoundingBox3D (Mat inputCloud, Mat center, Mat axes, Mat halfExtents);
+
+		// +(double)approxEnclosingSphere3D:(Mat * _Nonnull)inputCloud center:(Mat * _Nonnull)center __attribute__((swift_name("approxEnclosingSphere3D(inputCloud:center:)")));
+		[Static]
+		[Export ("approxEnclosingSphere3D:center:")]
+		double ApproxEnclosingSphere3D (Mat inputCloud, Mat center);
+
+		// +(NSArray<NSString *> * _Nonnull)getGaussianSplatPlyPropNames __attribute__((swift_name("getGaussianSplatPlyPropNames()")));
+		[Static]
+		[Export ("getGaussianSplatPlyPropNames")]
+		string [] GaussianSplatPlyPropNames { get; }
+
+		// +(void)decodeGaussianSplats:(Mat * _Nonnull)attributes splats:(Mat * _Nonnull)splats __attribute__((swift_name("decodeGaussianSplats(attributes:splats:)")));
+		[Static]
+		[Export ("decodeGaussianSplats:splats:")]
+		void DecodeGaussianSplats (Mat attributes, Mat splats);
+
+		// +(void)decodeGaussianSplatsPacked:(Mat * _Nonnull)buf splats:(Mat * _Nonnull)splats __attribute__((swift_name("decodeGaussianSplatsPacked(buf:splats:)")));
+		[Static]
+		[Export ("decodeGaussianSplatsPacked:splats:")]
+		void DecodeGaussianSplatsPacked (Mat buf, Mat splats);
+
+		// +(void)loadGaussianSplats:(NSString * _Nonnull)filename splats:(Mat * _Nonnull)splats ply_properties:(NSArray<NSString *> * _Nonnull)ply_properties __attribute__((swift_name("loadGaussianSplats(filename:splats:ply_properties:)")));
+		[Static]
+		[Export ("loadGaussianSplats:splats:ply_properties:")]
+		void LoadGaussianSplats (string filename, Mat splats, string [] ply_properties);
+
+		// +(void)loadGaussianSplats:(NSString * _Nonnull)filename splats:(Mat * _Nonnull)splats __attribute__((swift_name("loadGaussianSplats(filename:splats:)")));
+		[Static]
+		[Export ("loadGaussianSplats:splats:")]
+		void LoadGaussianSplats (string filename, Mat splats);
+
+		// +(void)loadMesh:(NSString * _Nonnull)filename vertices:(Mat * _Nonnull)vertices indices:(NSMutableArray<Mat *> * _Nonnull)indices normals:(Mat * _Nonnull)normals colors:(Mat * _Nonnull)colors texCoords:(Mat * _Nonnull)texCoords __attribute__((swift_name("loadMesh(filename:vertices:indices:normals:colors:texCoords:)")));
+		[Static]
+		[Export ("loadMesh:vertices:indices:normals:colors:texCoords:")]
+		void LoadMesh (string filename, Mat vertices, NSMutableArray<Mat> indices, Mat normals, Mat colors, Mat texCoords);
+
+		// +(void)loadMesh:(NSString * _Nonnull)filename vertices:(Mat * _Nonnull)vertices indices:(NSMutableArray<Mat *> * _Nonnull)indices normals:(Mat * _Nonnull)normals colors:(Mat * _Nonnull)colors __attribute__((swift_name("loadMesh(filename:vertices:indices:normals:colors:)")));
+		[Static]
+		[Export ("loadMesh:vertices:indices:normals:colors:")]
+		void LoadMesh (string filename, Mat vertices, NSMutableArray<Mat> indices, Mat normals, Mat colors);
+
+		// +(void)loadMesh:(NSString * _Nonnull)filename vertices:(Mat * _Nonnull)vertices indices:(NSMutableArray<Mat *> * _Nonnull)indices normals:(Mat * _Nonnull)normals __attribute__((swift_name("loadMesh(filename:vertices:indices:normals:)")));
+		[Static]
+		[Export ("loadMesh:vertices:indices:normals:")]
+		void LoadMesh (string filename, Mat vertices, NSMutableArray<Mat> indices, Mat normals);
+
+		// +(void)loadMesh:(NSString * _Nonnull)filename vertices:(Mat * _Nonnull)vertices indices:(NSMutableArray<Mat *> * _Nonnull)indices __attribute__((swift_name("loadMesh(filename:vertices:indices:)")));
+		[Static]
+		[Export ("loadMesh:vertices:indices:")]
+		void LoadMesh (string filename, Mat vertices, NSMutableArray<Mat> indices);
+
+		// +(void)saveMesh:(NSString * _Nonnull)filename vertices:(Mat * _Nonnull)vertices indices:(NSArray<Mat *> * _Nonnull)indices normals:(Mat * _Nonnull)normals colors:(Mat * _Nonnull)colors texCoords:(Mat * _Nonnull)texCoords __attribute__((swift_name("saveMesh(filename:vertices:indices:normals:colors:texCoords:)")));
+		[Static]
+		[Export ("saveMesh:vertices:indices:normals:colors:texCoords:")]
+		void SaveMesh (string filename, Mat vertices, Mat [] indices, Mat normals, Mat colors, Mat texCoords);
+
+		// +(void)saveMesh:(NSString * _Nonnull)filename vertices:(Mat * _Nonnull)vertices indices:(NSArray<Mat *> * _Nonnull)indices normals:(Mat * _Nonnull)normals colors:(Mat * _Nonnull)colors __attribute__((swift_name("saveMesh(filename:vertices:indices:normals:colors:)")));
+		[Static]
+		[Export ("saveMesh:vertices:indices:normals:colors:")]
+		void SaveMesh (string filename, Mat vertices, Mat [] indices, Mat normals, Mat colors);
+
+		// +(void)saveMesh:(NSString * _Nonnull)filename vertices:(Mat * _Nonnull)vertices indices:(NSArray<Mat *> * _Nonnull)indices normals:(Mat * _Nonnull)normals __attribute__((swift_name("saveMesh(filename:vertices:indices:normals:)")));
+		[Static]
+		[Export ("saveMesh:vertices:indices:normals:")]
+		void SaveMesh (string filename, Mat vertices, Mat [] indices, Mat normals);
+
+		// +(void)saveMesh:(NSString * _Nonnull)filename vertices:(Mat * _Nonnull)vertices indices:(NSArray<Mat *> * _Nonnull)indices __attribute__((swift_name("saveMesh(filename:vertices:indices:)")));
+		[Static]
+		[Export ("saveMesh:vertices:indices:")]
+		void SaveMesh (string filename, Mat vertices, Mat [] indices);
+
+		// +(void)triangleRasterize:(Mat * _Nonnull)vertices indices:(Mat * _Nonnull)indices colors:(Mat * _Nonnull)colors colorBuf:(Mat * _Nonnull)colorBuf depthBuf:(Mat * _Nonnull)depthBuf world2cam:(Mat * _Nonnull)world2cam fovY:(double)fovY zNear:(double)zNear zFar:(double)zFar settings:(TriangleRasterizeSettings * _Nonnull)settings __attribute__((swift_name("triangleRasterize(vertices:indices:colors:colorBuf:depthBuf:world2cam:fovY:zNear:zFar:settings:)")));
+		[Static]
+		[Export ("triangleRasterize:indices:colors:colorBuf:depthBuf:world2cam:fovY:zNear:zFar:settings:")]
+		void TriangleRasterize (Mat vertices, Mat indices, Mat colors, Mat colorBuf, Mat depthBuf, Mat world2cam, double fovY, double zNear, double zFar, TriangleRasterizeSettings settings);
+
+		// +(void)triangleRasterize:(Mat * _Nonnull)vertices indices:(Mat * _Nonnull)indices colors:(Mat * _Nonnull)colors colorBuf:(Mat * _Nonnull)colorBuf depthBuf:(Mat * _Nonnull)depthBuf world2cam:(Mat * _Nonnull)world2cam fovY:(double)fovY zNear:(double)zNear zFar:(double)zFar __attribute__((swift_name("triangleRasterize(vertices:indices:colors:colorBuf:depthBuf:world2cam:fovY:zNear:zFar:)")));
+		[Static]
+		[Export ("triangleRasterize:indices:colors:colorBuf:depthBuf:world2cam:fovY:zNear:zFar:")]
+		void TriangleRasterize (Mat vertices, Mat indices, Mat colors, Mat colorBuf, Mat depthBuf, Mat world2cam, double fovY, double zNear, double zFar);
+
+		// +(void)triangleRasterizeDepth:(Mat * _Nonnull)vertices indices:(Mat * _Nonnull)indices depthBuf:(Mat * _Nonnull)depthBuf world2cam:(Mat * _Nonnull)world2cam fovY:(double)fovY zNear:(double)zNear zFar:(double)zFar settings:(TriangleRasterizeSettings * _Nonnull)settings __attribute__((swift_name("triangleRasterizeDepth(vertices:indices:depthBuf:world2cam:fovY:zNear:zFar:settings:)")));
+		[Static]
+		[Export ("triangleRasterizeDepth:indices:depthBuf:world2cam:fovY:zNear:zFar:settings:")]
+		void TriangleRasterizeDepth (Mat vertices, Mat indices, Mat depthBuf, Mat world2cam, double fovY, double zNear, double zFar, TriangleRasterizeSettings settings);
+
+		// +(void)triangleRasterizeDepth:(Mat * _Nonnull)vertices indices:(Mat * _Nonnull)indices depthBuf:(Mat * _Nonnull)depthBuf world2cam:(Mat * _Nonnull)world2cam fovY:(double)fovY zNear:(double)zNear zFar:(double)zFar __attribute__((swift_name("triangleRasterizeDepth(vertices:indices:depthBuf:world2cam:fovY:zNear:zFar:)")));
+		[Static]
+		[Export ("triangleRasterizeDepth:indices:depthBuf:world2cam:fovY:zNear:zFar:")]
+		void TriangleRasterizeDepth (Mat vertices, Mat indices, Mat depthBuf, Mat world2cam, double fovY, double zNear, double zFar);
+
+		// +(void)triangleRasterizeColor:(Mat * _Nonnull)vertices indices:(Mat * _Nonnull)indices colors:(Mat * _Nonnull)colors colorBuf:(Mat * _Nonnull)colorBuf world2cam:(Mat * _Nonnull)world2cam fovY:(double)fovY zNear:(double)zNear zFar:(double)zFar settings:(TriangleRasterizeSettings * _Nonnull)settings __attribute__((swift_name("triangleRasterizeColor(vertices:indices:colors:colorBuf:world2cam:fovY:zNear:zFar:settings:)")));
+		[Static]
+		[Export ("triangleRasterizeColor:indices:colors:colorBuf:world2cam:fovY:zNear:zFar:settings:")]
+		void TriangleRasterizeColor (Mat vertices, Mat indices, Mat colors, Mat colorBuf, Mat world2cam, double fovY, double zNear, double zFar, TriangleRasterizeSettings settings);
+
+		// +(void)triangleRasterizeColor:(Mat * _Nonnull)vertices indices:(Mat * _Nonnull)indices colors:(Mat * _Nonnull)colors colorBuf:(Mat * _Nonnull)colorBuf world2cam:(Mat * _Nonnull)world2cam fovY:(double)fovY zNear:(double)zNear zFar:(double)zFar __attribute__((swift_name("triangleRasterizeColor(vertices:indices:colors:colorBuf:world2cam:fovY:zNear:zFar:)")));
+		[Static]
+		[Export ("triangleRasterizeColor:indices:colors:colorBuf:world2cam:fovY:zNear:zFar:")]
+		void TriangleRasterizeColor (Mat vertices, Mat indices, Mat colors, Mat colorBuf, Mat world2cam, double fovY, double zNear, double zFar);
+
+		// +(void)registerDepth:(Mat * _Nonnull)unregisteredCameraMatrix registeredCameraMatrix:(Mat * _Nonnull)registeredCameraMatrix registeredDistCoeffs:(Mat * _Nonnull)registeredDistCoeffs Rt:(Mat * _Nonnull)Rt unregisteredDepth:(Mat * _Nonnull)unregisteredDepth outputImagePlaneSize:(Size2i * _Nonnull)outputImagePlaneSize registeredDepth:(Mat * _Nonnull)registeredDepth depthDilation:(BOOL)depthDilation __attribute__((swift_name("registerDepth(unregisteredCameraMatrix:registeredCameraMatrix:registeredDistCoeffs:Rt:unregisteredDepth:outputImagePlaneSize:registeredDepth:depthDilation:)")));
+		[Static]
+		[Export ("registerDepth:registeredCameraMatrix:registeredDistCoeffs:Rt:unregisteredDepth:outputImagePlaneSize:registeredDepth:depthDilation:")]
+		void RegisterDepth (Mat unregisteredCameraMatrix, Mat registeredCameraMatrix, Mat registeredDistCoeffs, Mat Rt, Mat unregisteredDepth, Size2i outputImagePlaneSize, Mat registeredDepth, bool depthDilation);
+
+		// +(void)registerDepth:(Mat * _Nonnull)unregisteredCameraMatrix registeredCameraMatrix:(Mat * _Nonnull)registeredCameraMatrix registeredDistCoeffs:(Mat * _Nonnull)registeredDistCoeffs Rt:(Mat * _Nonnull)Rt unregisteredDepth:(Mat * _Nonnull)unregisteredDepth outputImagePlaneSize:(Size2i * _Nonnull)outputImagePlaneSize registeredDepth:(Mat * _Nonnull)registeredDepth __attribute__((swift_name("registerDepth(unregisteredCameraMatrix:registeredCameraMatrix:registeredDistCoeffs:Rt:unregisteredDepth:outputImagePlaneSize:registeredDepth:)")));
+		[Static]
+		[Export ("registerDepth:registeredCameraMatrix:registeredDistCoeffs:Rt:unregisteredDepth:outputImagePlaneSize:registeredDepth:")]
+		void RegisterDepth (Mat unregisteredCameraMatrix, Mat registeredCameraMatrix, Mat registeredDistCoeffs, Mat Rt, Mat unregisteredDepth, Size2i outputImagePlaneSize, Mat registeredDepth);
+
+		// +(void)depthTo3dSparse:(Mat * _Nonnull)depth in_K:(Mat * _Nonnull)in_K in_points:(Mat * _Nonnull)in_points points3d:(Mat * _Nonnull)points3d __attribute__((swift_name("depthTo3dSparse(depth:in_K:in_points:points3d:)")));
+		[Static]
+		[Export ("depthTo3dSparse:in_K:in_points:points3d:")]
+		void DepthTo3dSparse (Mat depth, Mat in_K, Mat in_points, Mat points3d);
+
+		// +(void)depthTo3d:(Mat * _Nonnull)depth K:(Mat * _Nonnull)K points3d:(Mat * _Nonnull)points3d mask:(Mat * _Nonnull)mask __attribute__((swift_name("depthTo3d(depth:K:points3d:mask:)")));
+		[Static]
+		[Export ("depthTo3d:K:points3d:mask:")]
+		void DepthTo3d (Mat depth, Mat K, Mat points3d, Mat mask);
+
+		// +(void)depthTo3d:(Mat * _Nonnull)depth K:(Mat * _Nonnull)K points3d:(Mat * _Nonnull)points3d __attribute__((swift_name("depthTo3d(depth:K:points3d:)")));
+		[Static]
+		[Export ("depthTo3d:K:points3d:")]
+		void DepthTo3d (Mat depth, Mat K, Mat points3d);
+
+		// +(void)rescaleDepth:(Mat * _Nonnull)in type:(int)type out:(Mat * _Nonnull)out depth_factor:(double)depth_factor __attribute__((swift_name("rescaleDepth(in:type:out:depth_factor:)")));
+		[Static]
+		[Export ("rescaleDepth:type:out:depth_factor:")]
+		void RescaleDepth (Mat @in, int type, Mat @out, double depth_factor);
+
+		// +(void)rescaleDepth:(Mat * _Nonnull)in type:(int)type out:(Mat * _Nonnull)out __attribute__((swift_name("rescaleDepth(in:type:out:)")));
+		[Static]
+		[Export ("rescaleDepth:type:out:")]
+		void RescaleDepth (Mat @in, int type, Mat @out);
+
+		// +(void)warpFrame:(Mat * _Nonnull)depth image:(Mat * _Nonnull)image mask:(Mat * _Nonnull)mask Rt:(Mat * _Nonnull)Rt cameraMatrix:(Mat * _Nonnull)cameraMatrix warpedDepth:(Mat * _Nonnull)warpedDepth warpedImage:(Mat * _Nonnull)warpedImage warpedMask:(Mat * _Nonnull)warpedMask __attribute__((swift_name("warpFrame(depth:image:mask:Rt:cameraMatrix:warpedDepth:warpedImage:warpedMask:)")));
+		[Static]
+		[Export ("warpFrame:image:mask:Rt:cameraMatrix:warpedDepth:warpedImage:warpedMask:")]
+		void WarpFrame (Mat depth, Mat image, Mat mask, Mat Rt, Mat cameraMatrix, Mat warpedDepth, Mat warpedImage, Mat warpedMask);
+
+		// +(void)warpFrame:(Mat * _Nonnull)depth image:(Mat * _Nonnull)image mask:(Mat * _Nonnull)mask Rt:(Mat * _Nonnull)Rt cameraMatrix:(Mat * _Nonnull)cameraMatrix warpedDepth:(Mat * _Nonnull)warpedDepth warpedImage:(Mat * _Nonnull)warpedImage __attribute__((swift_name("warpFrame(depth:image:mask:Rt:cameraMatrix:warpedDepth:warpedImage:)")));
+		[Static]
+		[Export ("warpFrame:image:mask:Rt:cameraMatrix:warpedDepth:warpedImage:")]
+		void WarpFrame (Mat depth, Mat image, Mat mask, Mat Rt, Mat cameraMatrix, Mat warpedDepth, Mat warpedImage);
+
+		// +(void)warpFrame:(Mat * _Nonnull)depth image:(Mat * _Nonnull)image mask:(Mat * _Nonnull)mask Rt:(Mat * _Nonnull)Rt cameraMatrix:(Mat * _Nonnull)cameraMatrix warpedDepth:(Mat * _Nonnull)warpedDepth __attribute__((swift_name("warpFrame(depth:image:mask:Rt:cameraMatrix:warpedDepth:)")));
+		[Static]
+		[Export ("warpFrame:image:mask:Rt:cameraMatrix:warpedDepth:")]
+		void WarpFrame (Mat depth, Mat image, Mat mask, Mat Rt, Mat cameraMatrix, Mat warpedDepth);
+
+		// +(void)warpFrame:(Mat * _Nonnull)depth image:(Mat * _Nonnull)image mask:(Mat * _Nonnull)mask Rt:(Mat * _Nonnull)Rt cameraMatrix:(Mat * _Nonnull)cameraMatrix __attribute__((swift_name("warpFrame(depth:image:mask:Rt:cameraMatrix:)")));
+		[Static]
+		[Export ("warpFrame:image:mask:Rt:cameraMatrix:")]
+		void WarpFrame (Mat depth, Mat image, Mat mask, Mat Rt, Mat cameraMatrix);
+
+		// +(void)findPlanes:(Mat * _Nonnull)points3d normals:(Mat * _Nonnull)normals mask:(Mat * _Nonnull)mask plane_coefficients:(Mat * _Nonnull)plane_coefficients block_size:(int)block_size min_size:(int)min_size threshold:(double)threshold sensor_error_a:(double)sensor_error_a sensor_error_b:(double)sensor_error_b sensor_error_c:(double)sensor_error_c method:(RgbdPlaneMethod)method __attribute__((swift_name("findPlanes(points3d:normals:mask:plane_coefficients:block_size:min_size:threshold:sensor_error_a:sensor_error_b:sensor_error_c:method:)")));
+		[Static]
+		[Export ("findPlanes:normals:mask:plane_coefficients:block_size:min_size:threshold:sensor_error_a:sensor_error_b:sensor_error_c:method:")]
+		void FindPlanes (Mat points3d, Mat normals, Mat mask, Mat plane_coefficients, int block_size, int min_size, double threshold, double sensor_error_a, double sensor_error_b, double sensor_error_c, RgbdPlaneMethod method);
+
+		// +(void)findPlanes:(Mat * _Nonnull)points3d normals:(Mat * _Nonnull)normals mask:(Mat * _Nonnull)mask plane_coefficients:(Mat * _Nonnull)plane_coefficients block_size:(int)block_size min_size:(int)min_size threshold:(double)threshold sensor_error_a:(double)sensor_error_a sensor_error_b:(double)sensor_error_b sensor_error_c:(double)sensor_error_c __attribute__((swift_name("findPlanes(points3d:normals:mask:plane_coefficients:block_size:min_size:threshold:sensor_error_a:sensor_error_b:sensor_error_c:)")));
+		[Static]
+		[Export ("findPlanes:normals:mask:plane_coefficients:block_size:min_size:threshold:sensor_error_a:sensor_error_b:sensor_error_c:")]
+		void FindPlanes (Mat points3d, Mat normals, Mat mask, Mat plane_coefficients, int block_size, int min_size, double threshold, double sensor_error_a, double sensor_error_b, double sensor_error_c);
+
+		// +(void)findPlanes:(Mat * _Nonnull)points3d normals:(Mat * _Nonnull)normals mask:(Mat * _Nonnull)mask plane_coefficients:(Mat * _Nonnull)plane_coefficients block_size:(int)block_size min_size:(int)min_size threshold:(double)threshold sensor_error_a:(double)sensor_error_a sensor_error_b:(double)sensor_error_b __attribute__((swift_name("findPlanes(points3d:normals:mask:plane_coefficients:block_size:min_size:threshold:sensor_error_a:sensor_error_b:)")));
+		[Static]
+		[Export ("findPlanes:normals:mask:plane_coefficients:block_size:min_size:threshold:sensor_error_a:sensor_error_b:")]
+		void FindPlanes (Mat points3d, Mat normals, Mat mask, Mat plane_coefficients, int block_size, int min_size, double threshold, double sensor_error_a, double sensor_error_b);
+
+		// +(void)findPlanes:(Mat * _Nonnull)points3d normals:(Mat * _Nonnull)normals mask:(Mat * _Nonnull)mask plane_coefficients:(Mat * _Nonnull)plane_coefficients block_size:(int)block_size min_size:(int)min_size threshold:(double)threshold sensor_error_a:(double)sensor_error_a __attribute__((swift_name("findPlanes(points3d:normals:mask:plane_coefficients:block_size:min_size:threshold:sensor_error_a:)")));
+		[Static]
+		[Export ("findPlanes:normals:mask:plane_coefficients:block_size:min_size:threshold:sensor_error_a:")]
+		void FindPlanes (Mat points3d, Mat normals, Mat mask, Mat plane_coefficients, int block_size, int min_size, double threshold, double sensor_error_a);
+
+		// +(void)findPlanes:(Mat * _Nonnull)points3d normals:(Mat * _Nonnull)normals mask:(Mat * _Nonnull)mask plane_coefficients:(Mat * _Nonnull)plane_coefficients block_size:(int)block_size min_size:(int)min_size threshold:(double)threshold __attribute__((swift_name("findPlanes(points3d:normals:mask:plane_coefficients:block_size:min_size:threshold:)")));
+		[Static]
+		[Export ("findPlanes:normals:mask:plane_coefficients:block_size:min_size:threshold:")]
+		void FindPlanes (Mat points3d, Mat normals, Mat mask, Mat plane_coefficients, int block_size, int min_size, double threshold);
+
+		// +(void)findPlanes:(Mat * _Nonnull)points3d normals:(Mat * _Nonnull)normals mask:(Mat * _Nonnull)mask plane_coefficients:(Mat * _Nonnull)plane_coefficients block_size:(int)block_size min_size:(int)min_size __attribute__((swift_name("findPlanes(points3d:normals:mask:plane_coefficients:block_size:min_size:)")));
+		[Static]
+		[Export ("findPlanes:normals:mask:plane_coefficients:block_size:min_size:")]
+		void FindPlanes (Mat points3d, Mat normals, Mat mask, Mat plane_coefficients, int block_size, int min_size);
+
+		// +(void)findPlanes:(Mat * _Nonnull)points3d normals:(Mat * _Nonnull)normals mask:(Mat * _Nonnull)mask plane_coefficients:(Mat * _Nonnull)plane_coefficients block_size:(int)block_size __attribute__((swift_name("findPlanes(points3d:normals:mask:plane_coefficients:block_size:)")));
+		[Static]
+		[Export ("findPlanes:normals:mask:plane_coefficients:block_size:")]
+		void FindPlanes (Mat points3d, Mat normals, Mat mask, Mat plane_coefficients, int block_size);
+
+		// +(void)findPlanes:(Mat * _Nonnull)points3d normals:(Mat * _Nonnull)normals mask:(Mat * _Nonnull)mask plane_coefficients:(Mat * _Nonnull)plane_coefficients __attribute__((swift_name("findPlanes(points3d:normals:mask:plane_coefficients:)")));
+		[Static]
+		[Export ("findPlanes:normals:mask:plane_coefficients:")]
+		void FindPlanes (Mat points3d, Mat normals, Mat mask, Mat plane_coefficients);
+
+		// +(void)setPerspective:(NSString * _Nonnull)win_name fov:(float)fov z_near:(float)z_near z_far:(float)z_far __attribute__((swift_name("setPerspective(win_name:fov:z_near:z_far:)")));
+		[Static]
+		[Export ("setPerspective:fov:z_near:z_far:")]
+		void SetPerspective (string win_name, float fov, float z_near, float z_far);
+
+		// +(void)setGridVisible:(NSString * _Nonnull)win_name visible:(BOOL)visible __attribute__((swift_name("setGridVisible(win_name:visible:)")));
+		[Static]
+		[Export ("setGridVisible:visible:")]
+		void SetGridVisible (string win_name, bool visible);
+
+		// +(void)showMesh2:(NSString * _Nonnull)win_name obj_name:(NSString * _Nonnull)obj_name verts:(Mat * _Nonnull)verts __attribute__((swift_name("showMesh(win_name:obj_name:verts:)")));
+		[Static]
+		[Export ("showMesh2:obj_name:verts:")]
+		void ShowMesh2 (string win_name, string obj_name, Mat verts);
+
+		// +(void)showPoints:(NSString * _Nonnull)win_name obj_name:(NSString * _Nonnull)obj_name points:(Mat * _Nonnull)points __attribute__((swift_name("showPoints(win_name:obj_name:points:)")));
+		[Static]
+		[Export ("showPoints:obj_name:points:")]
+		void ShowPoints (string win_name, string obj_name, Mat points);
+
+		// +(void)showGaussianSplats:(NSString * _Nonnull)win_name obj_name:(NSString * _Nonnull)obj_name splats:(Mat * _Nonnull)splats __attribute__((swift_name("showGaussianSplats(win_name:obj_name:splats:)")));
+		[Static]
+		[Export ("showGaussianSplats:obj_name:splats:")]
+		void ShowGaussianSplats (string win_name, string obj_name, Mat splats);
+
+		// +(void)showLines:(NSString * _Nonnull)win_name obj_name:(NSString * _Nonnull)obj_name points:(Mat * _Nonnull)points __attribute__((swift_name("showLines(win_name:obj_name:points:)")));
+		[Static]
+		[Export ("showLines:obj_name:points:")]
+		void ShowLines (string win_name, string obj_name, Mat points);
+
+		// +(void)destroyObject:(NSString * _Nonnull)win_name obj_name:(NSString * _Nonnull)obj_name __attribute__((swift_name("destroyObject(win_name:obj_name:)")));
+		[Static]
+		[Export ("destroyObject:obj_name:")]
+		void DestroyObject (string win_name, string obj_name);
+	}
+
+	// @interface Octree : NSObject
+	[BaseType (typeof (NSObject))]
+	interface Octree {
+		// +(Octree * _Nonnull)createWithDepth:(int)maxDepth size:(double)size origin:(Point3f * _Nonnull)origin withColors:(BOOL)withColors __attribute__((swift_name("createWithDepth(maxDepth:size:origin:withColors:)")));
+		[Static]
+		[Export ("createWithDepth:size:origin:withColors:")]
+		Octree CreateWithDepth (int maxDepth, double size, Point3f origin, bool withColors);
+
+		// +(Octree * _Nonnull)createWithDepth:(int)maxDepth size:(double)size origin:(Point3f * _Nonnull)origin __attribute__((swift_name("createWithDepth(maxDepth:size:origin:)")));
+		[Static]
+		[Export ("createWithDepth:size:origin:")]
+		Octree CreateWithDepth (int maxDepth, double size, Point3f origin);
+
+		// +(Octree * _Nonnull)createWithDepth:(int)maxDepth size:(double)size __attribute__((swift_name("createWithDepth(maxDepth:size:)")));
+		[Static]
+		[Export ("createWithDepth:size:")]
+		Octree CreateWithDepth (int maxDepth, double size);
+
+		// +(Octree * _Nonnull)createWithDepth:(int)maxDepth pointCloud:(Mat * _Nonnull)pointCloud colors:(Mat * _Nonnull)colors __attribute__((swift_name("createWithDepth(maxDepth:pointCloud:colors:)")));
+		[Static]
+		[Export ("createWithDepth:pointCloud:colors:")]
+		Octree CreateWithDepth (int maxDepth, Mat pointCloud, Mat colors);
+
+		// +(Octree * _Nonnull)createWithDepth:(int)maxDepth pointCloud:(Mat * _Nonnull)pointCloud __attribute__((swift_name("createWithDepth(maxDepth:pointCloud:)")));
+		[Static]
+		[Export ("createWithDepth:pointCloud:")]
+		Octree CreateWithDepth (int maxDepth, Mat pointCloud);
+
+		// +(Octree * _Nonnull)createWithResolution:(double)resolution size:(double)size origin:(Point3f * _Nonnull)origin withColors:(BOOL)withColors __attribute__((swift_name("createWithResolution(resolution:size:origin:withColors:)")));
+		[Static]
+		[Export ("createWithResolution:size:origin:withColors:")]
+		Octree CreateWithResolution (double resolution, double size, Point3f origin, bool withColors);
+
+		// +(Octree * _Nonnull)createWithResolution:(double)resolution size:(double)size origin:(Point3f * _Nonnull)origin __attribute__((swift_name("createWithResolution(resolution:size:origin:)")));
+		[Static]
+		[Export ("createWithResolution:size:origin:")]
+		Octree CreateWithResolution (double resolution, double size, Point3f origin);
+
+		// +(Octree * _Nonnull)createWithResolution:(double)resolution size:(double)size __attribute__((swift_name("createWithResolution(resolution:size:)")));
+		[Static]
+		[Export ("createWithResolution:size:")]
+		Octree CreateWithResolution (double resolution, double size);
+
+		// +(Octree * _Nonnull)createWithResolution:(double)resolution pointCloud:(Mat * _Nonnull)pointCloud colors:(Mat * _Nonnull)colors __attribute__((swift_name("createWithResolution(resolution:pointCloud:colors:)")));
+		[Static]
+		[Export ("createWithResolution:pointCloud:colors:")]
+		Octree CreateWithResolution (double resolution, Mat pointCloud, Mat colors);
+
+		// +(Octree * _Nonnull)createWithResolution:(double)resolution pointCloud:(Mat * _Nonnull)pointCloud __attribute__((swift_name("createWithResolution(resolution:pointCloud:)")));
+		[Static]
+		[Export ("createWithResolution:pointCloud:")]
+		Octree CreateWithResolution (double resolution, Mat pointCloud);
+
+		// -(BOOL)insertPoint:(Point3f * _Nonnull)point color:(Point3f * _Nonnull)color __attribute__((swift_name("insertPoint(point:color:)")));
+		[Export ("insertPoint:color:")]
+		bool InsertPoint (Point3f point, Point3f color);
+
+		// -(BOOL)insertPoint:(Point3f * _Nonnull)point __attribute__((swift_name("insertPoint(point:)")));
+		[Export ("insertPoint:")]
+		bool InsertPoint (Point3f point);
+
+		// -(BOOL)isPointInBound:(Point3f * _Nonnull)point __attribute__((swift_name("isPointInBound(point:)")));
+		[Export ("isPointInBound:")]
+		bool IsPointInBound (Point3f point);
+
+		// -(BOOL)empty __attribute__((swift_name("empty()")));
+		[Export ("empty")]
+		bool Empty { get; }
+
+		// -(void)clear __attribute__((swift_name("clear()")));
+		[Export ("clear")]
+		void Clear ();
+
+		// -(BOOL)deletePoint:(Point3f * _Nonnull)point __attribute__((swift_name("deletePoint(point:)")));
+		[Export ("deletePoint:")]
+		bool DeletePoint (Point3f point);
+
+		// -(void)getPointCloudByOctree:(Mat * _Nonnull)restoredPointCloud restoredColor:(Mat * _Nonnull)restoredColor __attribute__((swift_name("getPointCloudByOctree(restoredPointCloud:restoredColor:)")));
+		[Export ("getPointCloudByOctree:restoredColor:")]
+		void GetPointCloudByOctree (Mat restoredPointCloud, Mat restoredColor);
+
+		// -(void)getPointCloudByOctree:(Mat * _Nonnull)restoredPointCloud __attribute__((swift_name("getPointCloudByOctree(restoredPointCloud:)")));
+		[Export ("getPointCloudByOctree:")]
+		void GetPointCloudByOctree (Mat restoredPointCloud);
+
+		// -(int)radiusNNSearch:(Point3f * _Nonnull)query radius:(float)radius points:(Mat * _Nonnull)points squareDists:(Mat * _Nonnull)squareDists __attribute__((swift_name("radiusNNSearch(query:radius:points:squareDists:)")));
+		[Export ("radiusNNSearch:radius:points:squareDists:")]
+		int RadiusNNSearch (Point3f query, float radius, Mat points, Mat squareDists);
+
+		// -(int)radiusNNSearch:(Point3f * _Nonnull)query radius:(float)radius points:(Mat * _Nonnull)points __attribute__((swift_name("radiusNNSearch(query:radius:points:)")));
+		[Export ("radiusNNSearch:radius:points:")]
+		int RadiusNNSearch (Point3f query, float radius, Mat points);
+
+		// -(int)radiusNNSearch:(Point3f * _Nonnull)query radius:(float)radius points:(Mat * _Nonnull)points colors:(Mat * _Nonnull)colors squareDists:(Mat * _Nonnull)squareDists __attribute__((swift_name("radiusNNSearch(query:radius:points:colors:squareDists:)")));
+		[Export ("radiusNNSearch:radius:points:colors:squareDists:")]
+		int RadiusNNSearch (Point3f query, float radius, Mat points, Mat colors, Mat squareDists);
+
+		// -(void)KNNSearch:(Point3f * _Nonnull)query K:(int)K points:(Mat * _Nonnull)points squareDists:(Mat * _Nonnull)squareDists __attribute__((swift_name("KNNSearch(query:K:points:squareDists:)")));
+		[Export ("KNNSearch:K:points:squareDists:")]
+		void KNNSearch (Point3f query, int K, Mat points, Mat squareDists);
+
+		// -(void)KNNSearch:(Point3f * _Nonnull)query K:(int)K points:(Mat * _Nonnull)points __attribute__((swift_name("KNNSearch(query:K:points:)")));
+		[Export ("KNNSearch:K:points:")]
+		void KNNSearch (Point3f query, int K, Mat points);
+
+		// -(void)KNNSearch:(Point3f * _Nonnull)query K:(int)K points:(Mat * _Nonnull)points colors:(Mat * _Nonnull)colors squareDists:(Mat * _Nonnull)squareDists __attribute__((swift_name("KNNSearch(query:K:points:colors:squareDists:)")));
+		[Export ("KNNSearch:K:points:colors:squareDists:")]
+		void KNNSearch (Point3f query, int K, Mat points, Mat colors, Mat squareDists);
+	}
+
+	// @interface Odometry : NSObject
+	[BaseType (typeof (NSObject))]
+	interface Odometry {
+		// -(instancetype _Nonnull)initWithOtype:(OdometryType)otype;
+		[Export ("initWithOtype:")]
+		NativeHandle Constructor (OdometryType otype);
+
+		// -(instancetype _Nonnull)initWithOtype:(OdometryType)otype settings:(OdometrySettings * _Nonnull)settings algtype:(OdometryAlgoType)algtype;
+		[Export ("initWithOtype:settings:algtype:")]
+		NativeHandle Constructor (OdometryType otype, OdometrySettings settings, OdometryAlgoType algtype);
+
+		// -(void)prepareFrame:(OdometryFrame * _Nonnull)frame __attribute__((swift_name("prepareFrame(frame:)")));
+		[Export ("prepareFrame:")]
+		void PrepareFrame (OdometryFrame frame);
+
+		// -(void)prepareFrames:(OdometryFrame * _Nonnull)srcFrame dstFrame:(OdometryFrame * _Nonnull)dstFrame __attribute__((swift_name("prepareFrames(srcFrame:dstFrame:)")));
+		[Export ("prepareFrames:dstFrame:")]
+		void PrepareFrames (OdometryFrame srcFrame, OdometryFrame dstFrame);
+
+		// -(BOOL)compute:(OdometryFrame * _Nonnull)srcFrame dstFrame:(OdometryFrame * _Nonnull)dstFrame Rt:(Mat * _Nonnull)Rt __attribute__((swift_name("compute(srcFrame:dstFrame:Rt:)")));
+		[Export ("compute:dstFrame:Rt:")]
+		bool Compute (OdometryFrame srcFrame, OdometryFrame dstFrame, Mat Rt);
+
+		// -(BOOL)compute:(Mat * _Nonnull)srcDepth dstDepth:(Mat * _Nonnull)dstDepth Rt:(Mat * _Nonnull)Rt __attribute__((swift_name("compute(srcDepth:dstDepth:Rt:)")));
+		[Export ("compute:dstDepth:Rt:")]
+		bool Compute (Mat srcDepth, Mat dstDepth, Mat Rt);
+
+		// -(BOOL)compute:(Mat * _Nonnull)srcDepth srcRGB:(Mat * _Nonnull)srcRGB dstDepth:(Mat * _Nonnull)dstDepth dstRGB:(Mat * _Nonnull)dstRGB Rt:(Mat * _Nonnull)Rt __attribute__((swift_name("compute(srcDepth:srcRGB:dstDepth:dstRGB:Rt:)")));
+		[Export ("compute:srcRGB:dstDepth:dstRGB:Rt:")]
+		bool Compute (Mat srcDepth, Mat srcRGB, Mat dstDepth, Mat dstRGB, Mat Rt);
+
+		// -(RgbdNormals * _Nonnull)getNormalsComputer __attribute__((swift_name("getNormalsComputer()")));
+		[Export ("getNormalsComputer")]
+		RgbdNormals NormalsComputer { get; }
+	}
+
+	// @interface OdometryFrame : NSObject
+	[BaseType (typeof (NSObject))]
+	interface OdometryFrame {
+		// -(instancetype _Nonnull)initWithDepth:(Mat * _Nonnull)depth image:(Mat * _Nonnull)image mask:(Mat * _Nonnull)mask normals:(Mat * _Nonnull)normals;
+		[Export ("initWithDepth:image:mask:normals:")]
+		NativeHandle Constructor (Mat depth, Mat image, Mat mask, Mat normals);
+
+		// -(instancetype _Nonnull)initWithDepth:(Mat * _Nonnull)depth image:(Mat * _Nonnull)image mask:(Mat * _Nonnull)mask;
+		[Export ("initWithDepth:image:mask:")]
+		NativeHandle Constructor (Mat depth, Mat image, Mat mask);
+
+		// -(instancetype _Nonnull)initWithDepth:(Mat * _Nonnull)depth image:(Mat * _Nonnull)image;
+		[Export ("initWithDepth:image:")]
+		NativeHandle Constructor (Mat depth, Mat image);
+
+		// -(instancetype _Nonnull)initWithDepth:(Mat * _Nonnull)depth;
+		[Export ("initWithDepth:")]
+		NativeHandle Constructor (Mat depth);
+
+		// -(void)getImage:(Mat * _Nonnull)image __attribute__((swift_name("getImage(image:)")));
+		[Export ("getImage:")]
+		void GetImage (Mat image);
+
+		// -(void)getGrayImage:(Mat * _Nonnull)image __attribute__((swift_name("getGrayImage(image:)")));
+		[Export ("getGrayImage:")]
+		void GetGrayImage (Mat image);
+
+		// -(void)getDepth:(Mat * _Nonnull)depth __attribute__((swift_name("getDepth(depth:)")));
+		[Export ("getDepth:")]
+		void GetDepth (Mat depth);
+
+		// -(void)getProcessedDepth:(Mat * _Nonnull)depth __attribute__((swift_name("getProcessedDepth(depth:)")));
+		[Export ("getProcessedDepth:")]
+		void GetProcessedDepth (Mat depth);
+
+		// -(void)getMask:(Mat * _Nonnull)mask __attribute__((swift_name("getMask(mask:)")));
+		[Export ("getMask:")]
+		void GetMask (Mat mask);
+
+		// -(void)getNormals:(Mat * _Nonnull)normals __attribute__((swift_name("getNormals(normals:)")));
+		[Export ("getNormals:")]
+		void GetNormals (Mat normals);
+
+		// -(int)getPyramidLevels __attribute__((swift_name("getPyramidLevels()")));
+		[Export ("getPyramidLevels")]
+		int PyramidLevels { get; }
+
+		// -(void)getPyramidAt:(Mat * _Nonnull)img pyrType:(OdometryFramePyramidType)pyrType level:(size_t)level __attribute__((swift_name("getPyramidAt(img:pyrType:level:)")));
+		[Export ("getPyramidAt:pyrType:level:")]
+		void GetPyramidAt (Mat img, OdometryFramePyramidType pyrType, nuint level);
+	}
+
+	// @interface RgbdNormals : NSObject
+	[BaseType (typeof (NSObject))]
+	interface RgbdNormals {
+		// +(RgbdNormals * _Nonnull)create:(int)rows cols:(int)cols depth:(int)depth K:(Mat * _Nonnull)K window_size:(int)window_size diff_threshold:(float)diff_threshold method:(RgbdNormalsMethod)method __attribute__((swift_name("create(rows:cols:depth:K:window_size:diff_threshold:method:)")));
+		[Static]
+		[Export ("create:cols:depth:K:window_size:diff_threshold:method:")]
+		RgbdNormals Create (int rows, int cols, int depth, Mat K, int window_size, float diff_threshold, RgbdNormalsMethod method);
+
+		// +(RgbdNormals * _Nonnull)create:(int)rows cols:(int)cols depth:(int)depth K:(Mat * _Nonnull)K window_size:(int)window_size diff_threshold:(float)diff_threshold __attribute__((swift_name("create(rows:cols:depth:K:window_size:diff_threshold:)")));
+		[Static]
+		[Export ("create:cols:depth:K:window_size:diff_threshold:")]
+		RgbdNormals Create (int rows, int cols, int depth, Mat K, int window_size, float diff_threshold);
+
+		// +(RgbdNormals * _Nonnull)create:(int)rows cols:(int)cols depth:(int)depth K:(Mat * _Nonnull)K window_size:(int)window_size __attribute__((swift_name("create(rows:cols:depth:K:window_size:)")));
+		[Static]
+		[Export ("create:cols:depth:K:window_size:")]
+		RgbdNormals Create (int rows, int cols, int depth, Mat K, int window_size);
+
+		// +(RgbdNormals * _Nonnull)create:(int)rows cols:(int)cols depth:(int)depth K:(Mat * _Nonnull)K __attribute__((swift_name("create(rows:cols:depth:K:)")));
+		[Static]
+		[Export ("create:cols:depth:K:")]
+		RgbdNormals Create (int rows, int cols, int depth, Mat K);
+
+		// +(RgbdNormals * _Nonnull)create:(int)rows cols:(int)cols depth:(int)depth __attribute__((swift_name("create(rows:cols:depth:)")));
+		[Static]
+		[Export ("create:cols:depth:")]
+		RgbdNormals Create (int rows, int cols, int depth);
+
+		// +(RgbdNormals * _Nonnull)create:(int)rows cols:(int)cols __attribute__((swift_name("create(rows:cols:)")));
+		[Static]
+		[Export ("create:cols:")]
+		RgbdNormals Create (int rows, int cols);
+
+		// +(RgbdNormals * _Nonnull)create:(int)rows __attribute__((swift_name("create(rows:)")));
+		[Static]
+		[Export ("create:")]
+		RgbdNormals Create (int rows);
+
+		// +(RgbdNormals * _Nonnull)create __attribute__((swift_name("create()")));
+		[Static]
+		[Export ("create")]
+		RgbdNormals Create ();
+
+		// -(void)apply:(Mat * _Nonnull)points normals:(Mat * _Nonnull)normals __attribute__((swift_name("apply(points:normals:)")));
+		[Export ("apply:normals:")]
+		void Apply (Mat points, Mat normals);
+
+		// -(void)cache __attribute__((swift_name("cache()")));
+		[Export ("cache")]
+		void Cache ();
+
+		// -(int)getRows __attribute__((swift_name("getRows()")));
+		[Export ("getRows")]
+		int Rows { get; }
+
+		// -(void)setRows:(int)val __attribute__((swift_name("setRows(val:)")));
+		[Export ("setRows:")]
+		void SetRows (int val);
+
+		// -(int)getCols __attribute__((swift_name("getCols()")));
+		[Export ("getCols")]
+		int Cols { get; }
+
+		// -(void)setCols:(int)val __attribute__((swift_name("setCols(val:)")));
+		[Export ("setCols:")]
+		void SetCols (int val);
+
+		// -(int)getWindowSize __attribute__((swift_name("getWindowSize()")));
+		[Export ("getWindowSize")]
+		int WindowSize { get; }
+
+		// -(void)setWindowSize:(int)val __attribute__((swift_name("setWindowSize(val:)")));
+		[Export ("setWindowSize:")]
+		void SetWindowSize (int val);
+
+		// -(int)getDepth __attribute__((swift_name("getDepth()")));
+		[Export ("getDepth")]
+		int Depth { get; }
+
+		// -(void)getK:(Mat * _Nonnull)val __attribute__((swift_name("getK(val:)")));
+		[Export ("getK:")]
+		void GetK (Mat val);
+
+		// -(void)setK:(Mat * _Nonnull)val __attribute__((swift_name("setK(val:)")));
+		[Export ("setK:")]
+		void SetK (Mat val);
+
+		// -(RgbdNormalsMethod)getMethod __attribute__((swift_name("getMethod()")));
+		[Export ("getMethod")]
+		RgbdNormalsMethod Method { get; }
+	}
+
+	// @interface OdometrySettings : NSObject
+	[BaseType (typeof (NSObject))]
+	interface OdometrySettings {
+		// -(void)setCameraMatrix:(Mat * _Nonnull)val __attribute__((swift_name("setCameraMatrix(val:)")));
+		[Export ("setCameraMatrix:")]
+		void SetCameraMatrix (Mat val);
+
+		// -(void)getCameraMatrix:(Mat * _Nonnull)val __attribute__((swift_name("getCameraMatrix(val:)")));
+		[Export ("getCameraMatrix:")]
+		void GetCameraMatrix (Mat val);
+
+		// -(void)setIterCounts:(Mat * _Nonnull)val __attribute__((swift_name("setIterCounts(val:)")));
+		[Export ("setIterCounts:")]
+		void SetIterCounts (Mat val);
+
+		// -(void)getIterCounts:(Mat * _Nonnull)val __attribute__((swift_name("getIterCounts(val:)")));
+		[Export ("getIterCounts:")]
+		void GetIterCounts (Mat val);
+
+		// -(void)setMinDepth:(float)val __attribute__((swift_name("setMinDepth(val:)")));
+		[Export ("setMinDepth:")]
+		void SetMinDepth (float val);
+
+		// -(float)getMinDepth __attribute__((swift_name("getMinDepth()")));
+		[Export ("getMinDepth")]
+		float MinDepth { get; }
+
+		// -(void)setMaxDepth:(float)val __attribute__((swift_name("setMaxDepth(val:)")));
+		[Export ("setMaxDepth:")]
+		void SetMaxDepth (float val);
+
+		// -(float)getMaxDepth __attribute__((swift_name("getMaxDepth()")));
+		[Export ("getMaxDepth")]
+		float MaxDepth { get; }
+
+		// -(void)setMaxDepthDiff:(float)val __attribute__((swift_name("setMaxDepthDiff(val:)")));
+		[Export ("setMaxDepthDiff:")]
+		void SetMaxDepthDiff (float val);
+
+		// -(float)getMaxDepthDiff __attribute__((swift_name("getMaxDepthDiff()")));
+		[Export ("getMaxDepthDiff")]
+		float MaxDepthDiff { get; }
+
+		// -(void)setMaxPointsPart:(float)val __attribute__((swift_name("setMaxPointsPart(val:)")));
+		[Export ("setMaxPointsPart:")]
+		void SetMaxPointsPart (float val);
+
+		// -(float)getMaxPointsPart __attribute__((swift_name("getMaxPointsPart()")));
+		[Export ("getMaxPointsPart")]
+		float MaxPointsPart { get; }
+
+		// -(void)setSobelSize:(int)val __attribute__((swift_name("setSobelSize(val:)")));
+		[Export ("setSobelSize:")]
+		void SetSobelSize (int val);
+
+		// -(int)getSobelSize __attribute__((swift_name("getSobelSize()")));
+		[Export ("getSobelSize")]
+		int SobelSize { get; }
+
+		// -(void)setSobelScale:(double)val __attribute__((swift_name("setSobelScale(val:)")));
+		[Export ("setSobelScale:")]
+		void SetSobelScale (double val);
+
+		// -(double)getSobelScale __attribute__((swift_name("getSobelScale()")));
+		[Export ("getSobelScale")]
+		double SobelScale { get; }
+
+		// -(void)setNormalWinSize:(int)val __attribute__((swift_name("setNormalWinSize(val:)")));
+		[Export ("setNormalWinSize:")]
+		void SetNormalWinSize (int val);
+
+		// -(int)getNormalWinSize __attribute__((swift_name("getNormalWinSize()")));
+		[Export ("getNormalWinSize")]
+		int NormalWinSize { get; }
+
+		// -(void)setNormalDiffThreshold:(float)val __attribute__((swift_name("setNormalDiffThreshold(val:)")));
+		[Export ("setNormalDiffThreshold:")]
+		void SetNormalDiffThreshold (float val);
+
+		// -(float)getNormalDiffThreshold __attribute__((swift_name("getNormalDiffThreshold()")));
+		[Export ("getNormalDiffThreshold")]
+		float NormalDiffThreshold { get; }
+
+		// -(void)setNormalMethod:(RgbdNormalsMethod)nm __attribute__((swift_name("setNormalMethod(nm:)")));
+		[Export ("setNormalMethod:")]
+		void SetNormalMethod (RgbdNormalsMethod nm);
+
+		// -(RgbdNormalsMethod)getNormalMethod __attribute__((swift_name("getNormalMethod()")));
+		[Export ("getNormalMethod")]
+		RgbdNormalsMethod NormalMethod { get; }
+
+		// -(void)setAngleThreshold:(float)val __attribute__((swift_name("setAngleThreshold(val:)")));
+		[Export ("setAngleThreshold:")]
+		void SetAngleThreshold (float val);
+
+		// -(float)getAngleThreshold __attribute__((swift_name("getAngleThreshold()")));
+		[Export ("getAngleThreshold")]
+		float AngleThreshold { get; }
+
+		// -(void)setMaxTranslation:(float)val __attribute__((swift_name("setMaxTranslation(val:)")));
+		[Export ("setMaxTranslation:")]
+		void SetMaxTranslation (float val);
+
+		// -(float)getMaxTranslation __attribute__((swift_name("getMaxTranslation()")));
+		[Export ("getMaxTranslation")]
+		float MaxTranslation { get; }
+
+		// -(void)setMaxRotation:(float)val __attribute__((swift_name("setMaxRotation(val:)")));
+		[Export ("setMaxRotation:")]
+		void SetMaxRotation (float val);
+
+		// -(float)getMaxRotation __attribute__((swift_name("getMaxRotation()")));
+		[Export ("getMaxRotation")]
+		float MaxRotation { get; }
+
+		// -(void)setMinGradientMagnitude:(float)val __attribute__((swift_name("setMinGradientMagnitude(val:)")));
+		[Export ("setMinGradientMagnitude:")]
+		void SetMinGradientMagnitude (float val);
+
+		// -(float)getMinGradientMagnitude __attribute__((swift_name("getMinGradientMagnitude()")));
+		[Export ("getMinGradientMagnitude")]
+		float MinGradientMagnitude { get; }
+
+		// -(void)setMinGradientMagnitudes:(Mat * _Nonnull)val __attribute__((swift_name("setMinGradientMagnitudes(val:)")));
+		[Export ("setMinGradientMagnitudes:")]
+		void SetMinGradientMagnitudes (Mat val);
+
+		// -(void)getMinGradientMagnitudes:(Mat * _Nonnull)val __attribute__((swift_name("getMinGradientMagnitudes(val:)")));
+		[Export ("getMinGradientMagnitudes:")]
+		void GetMinGradientMagnitudes (Mat val);
+	}
+
+	// @interface TriangleRasterizeSettings : NSObject
+	[BaseType (typeof (NSObject))]
+	interface TriangleRasterizeSettings {
+		// -(TriangleRasterizeSettings * _Nonnull)setShadingType:(TriangleShadingType)st __attribute__((swift_name("setShadingType(st:)")));
+		[Export ("setShadingType:")]
+		TriangleRasterizeSettings SetShadingType (TriangleShadingType st);
+
+		// -(TriangleRasterizeSettings * _Nonnull)setCullingMode:(TriangleCullingMode)cm __attribute__((swift_name("setCullingMode(cm:)")));
+		[Export ("setCullingMode:")]
+		TriangleRasterizeSettings SetCullingMode (TriangleCullingMode cm);
+
+		// -(TriangleRasterizeSettings * _Nonnull)setGlCompatibleMode:(TriangleGlCompatibleMode)gm __attribute__((swift_name("setGlCompatibleMode(gm:)")));
+		[Export ("setGlCompatibleMode:")]
+		TriangleRasterizeSettings SetGlCompatibleMode (TriangleGlCompatibleMode gm);
+	}
+
+	// @interface Volume : NSObject
+	[BaseType (typeof (NSObject))]
+	interface Volume {
+		// -(instancetype _Nonnull)initWithVtype:(CV_VolumeType)vtype settings:(VolumeSettings * _Nonnull)settings;
+		[Export ("initWithVtype:settings:")]
+		NativeHandle Constructor (CV_VolumeType vtype, VolumeSettings settings);
+
+		// -(instancetype _Nonnull)initWithVtype:(CV_VolumeType)vtype;
+		[Export ("initWithVtype:")]
+		NativeHandle Constructor (CV_VolumeType vtype);
+
+		// -(void)integrateFrame:(OdometryFrame * _Nonnull)frame pose:(Mat * _Nonnull)pose __attribute__((swift_name("integrate(frame:pose:)")));
+		[Export ("integrateFrame:pose:")]
+		void IntegrateFrame (OdometryFrame frame, Mat pose);
+
+		// -(void)integrate:(Mat * _Nonnull)depth pose:(Mat * _Nonnull)pose __attribute__((swift_name("integrate(depth:pose:)")));
+		[Export ("integrate:pose:")]
+		void Integrate (Mat depth, Mat pose);
+
+		// -(void)integrateColor:(Mat * _Nonnull)depth image:(Mat * _Nonnull)image pose:(Mat * _Nonnull)pose __attribute__((swift_name("integrate(depth:image:pose:)")));
+		[Export ("integrateColor:image:pose:")]
+		void IntegrateColor (Mat depth, Mat image, Mat pose);
+
+		// -(void)raycast:(Mat * _Nonnull)cameraPose points:(Mat * _Nonnull)points normals:(Mat * _Nonnull)normals __attribute__((swift_name("raycast(cameraPose:points:normals:)")));
+		[Export ("raycast:points:normals:")]
+		void Raycast (Mat cameraPose, Mat points, Mat normals);
+
+		// -(void)raycastColor:(Mat * _Nonnull)cameraPose points:(Mat * _Nonnull)points normals:(Mat * _Nonnull)normals colors:(Mat * _Nonnull)colors __attribute__((swift_name("raycast(cameraPose:points:normals:colors:)")));
+		[Export ("raycastColor:points:normals:colors:")]
+		void RaycastColor (Mat cameraPose, Mat points, Mat normals, Mat colors);
+
+		// -(void)raycastEx:(Mat * _Nonnull)cameraPose height:(int)height width:(int)width K:(Mat * _Nonnull)K points:(Mat * _Nonnull)points normals:(Mat * _Nonnull)normals __attribute__((swift_name("raycast(cameraPose:height:width:K:points:normals:)")));
+		[Export ("raycastEx:height:width:K:points:normals:")]
+		void RaycastEx (Mat cameraPose, int height, int width, Mat K, Mat points, Mat normals);
+
+		// -(void)raycastExColor:(Mat * _Nonnull)cameraPose height:(int)height width:(int)width K:(Mat * _Nonnull)K points:(Mat * _Nonnull)points normals:(Mat * _Nonnull)normals colors:(Mat * _Nonnull)colors __attribute__((swift_name("raycast(cameraPose:height:width:K:points:normals:colors:)")));
+		[Export ("raycastExColor:height:width:K:points:normals:colors:")]
+		void RaycastExColor (Mat cameraPose, int height, int width, Mat K, Mat points, Mat normals, Mat colors);
+
+		// -(void)fetchNormals:(Mat * _Nonnull)points normals:(Mat * _Nonnull)normals __attribute__((swift_name("fetchNormals(points:normals:)")));
+		[Export ("fetchNormals:normals:")]
+		void FetchNormals (Mat points, Mat normals);
+
+		// -(void)fetchPointsNormals:(Mat * _Nonnull)points normals:(Mat * _Nonnull)normals __attribute__((swift_name("fetchPointsNormals(points:normals:)")));
+		[Export ("fetchPointsNormals:normals:")]
+		void FetchPointsNormals (Mat points, Mat normals);
+
+		// -(void)fetchPointsNormalsColors:(Mat * _Nonnull)points normals:(Mat * _Nonnull)normals colors:(Mat * _Nonnull)colors __attribute__((swift_name("fetchPointsNormalsColors(points:normals:colors:)")));
+		[Export ("fetchPointsNormalsColors:normals:colors:")]
+		void FetchPointsNormalsColors (Mat points, Mat normals, Mat colors);
+
+		// -(void)reset __attribute__((swift_name("reset()")));
+		[Export ("reset")]
+		void Reset ();
+
+		// -(int)getVisibleBlocks __attribute__((swift_name("getVisibleBlocks()")));
+		[Export ("getVisibleBlocks")]
+		int VisibleBlocks { get; }
+
+		// -(size_t)getTotalVolumeUnits __attribute__((swift_name("getTotalVolumeUnits()")));
+		[Export ("getTotalVolumeUnits")]
+		nuint TotalVolumeUnits { get; }
+
+		// -(void)getBoundingBox:(Mat * _Nonnull)bb precision:(int)precision __attribute__((swift_name("getBoundingBox(bb:precision:)")));
+		[Export ("getBoundingBox:precision:")]
+		void GetBoundingBox (Mat bb, int precision);
+
+		// -(void)setEnableGrowth:(BOOL)v __attribute__((swift_name("setEnableGrowth(v:)")));
+		[Export ("setEnableGrowth:")]
+		void SetEnableGrowth (bool v);
+
+		// -(BOOL)getEnableGrowth __attribute__((swift_name("getEnableGrowth()")));
+		[Export ("getEnableGrowth")]
+		bool EnableGrowth { get; }
+	}
+
+	// @interface VolumeSettings : NSObject
+	[BaseType (typeof (NSObject))]
+	interface VolumeSettings {
+		// -(instancetype _Nonnull)initWithVolumeType:(CV_VolumeType)volumeType;
+		[Export ("initWithVolumeType:")]
+		NativeHandle Constructor (CV_VolumeType volumeType);
+
+		// -(void)setIntegrateWidth:(int)val __attribute__((swift_name("setIntegrateWidth(val:)")));
+		[Export ("setIntegrateWidth:")]
+		void SetIntegrateWidth (int val);
+
+		// -(int)getIntegrateWidth __attribute__((swift_name("getIntegrateWidth()")));
+		[Export ("getIntegrateWidth")]
+		int IntegrateWidth { get; }
+
+		// -(void)setIntegrateHeight:(int)val __attribute__((swift_name("setIntegrateHeight(val:)")));
+		[Export ("setIntegrateHeight:")]
+		void SetIntegrateHeight (int val);
+
+		// -(int)getIntegrateHeight __attribute__((swift_name("getIntegrateHeight()")));
+		[Export ("getIntegrateHeight")]
+		int IntegrateHeight { get; }
+
+		// -(void)setRaycastWidth:(int)val __attribute__((swift_name("setRaycastWidth(val:)")));
+		[Export ("setRaycastWidth:")]
+		void SetRaycastWidth (int val);
+
+		// -(int)getRaycastWidth __attribute__((swift_name("getRaycastWidth()")));
+		[Export ("getRaycastWidth")]
+		int RaycastWidth { get; }
+
+		// -(void)setRaycastHeight:(int)val __attribute__((swift_name("setRaycastHeight(val:)")));
+		[Export ("setRaycastHeight:")]
+		void SetRaycastHeight (int val);
+
+		// -(int)getRaycastHeight __attribute__((swift_name("getRaycastHeight()")));
+		[Export ("getRaycastHeight")]
+		int RaycastHeight { get; }
+
+		// -(void)setDepthFactor:(float)val __attribute__((swift_name("setDepthFactor(val:)")));
+		[Export ("setDepthFactor:")]
+		void SetDepthFactor (float val);
+
+		// -(float)getDepthFactor __attribute__((swift_name("getDepthFactor()")));
+		[Export ("getDepthFactor")]
+		float DepthFactor { get; }
+
+		// -(void)setVoxelSize:(float)val __attribute__((swift_name("setVoxelSize(val:)")));
+		[Export ("setVoxelSize:")]
+		void SetVoxelSize (float val);
+
+		// -(float)getVoxelSize __attribute__((swift_name("getVoxelSize()")));
+		[Export ("getVoxelSize")]
+		float VoxelSize { get; }
+
+		// -(void)setTsdfTruncateDistance:(float)val __attribute__((swift_name("setTsdfTruncateDistance(val:)")));
+		[Export ("setTsdfTruncateDistance:")]
+		void SetTsdfTruncateDistance (float val);
+
+		// -(float)getTsdfTruncateDistance __attribute__((swift_name("getTsdfTruncateDistance()")));
+		[Export ("getTsdfTruncateDistance")]
+		float TsdfTruncateDistance { get; }
+
+		// -(void)setGradientDeltaFactor:(float)val __attribute__((swift_name("setGradientDeltaFactor(val:)")));
+		[Export ("setGradientDeltaFactor:")]
+		void SetGradientDeltaFactor (float val);
+
+		// -(float)getGradientDeltaFactor __attribute__((swift_name("getGradientDeltaFactor()")));
+		[Export ("getGradientDeltaFactor")]
+		float GradientDeltaFactor { get; }
+
+		// -(void)setVolumeUnitHideThreshold:(int)val __attribute__((swift_name("setVolumeUnitHideThreshold(val:)")));
+		[Export ("setVolumeUnitHideThreshold:")]
+		void SetVolumeUnitHideThreshold (int val);
+
+		// -(int)getVolumeUnitHideThreshold __attribute__((swift_name("getVolumeUnitHideThreshold()")));
+		[Export ("getVolumeUnitHideThreshold")]
+		int VolumeUnitHideThreshold { get; }
+
+		// -(void)setMaxDepth:(float)val __attribute__((swift_name("setMaxDepth(val:)")));
+		[Export ("setMaxDepth:")]
+		void SetMaxDepth (float val);
+
+		// -(float)getMaxDepth __attribute__((swift_name("getMaxDepth()")));
+		[Export ("getMaxDepth")]
+		float MaxDepth { get; }
+
+		// -(void)setMaxWeight:(int)val __attribute__((swift_name("setMaxWeight(val:)")));
+		[Export ("setMaxWeight:")]
+		void SetMaxWeight (int val);
+
+		// -(int)getMaxWeight __attribute__((swift_name("getMaxWeight()")));
+		[Export ("getMaxWeight")]
+		int MaxWeight { get; }
+
+		// -(void)setRaycastStepFactor:(float)val __attribute__((swift_name("setRaycastStepFactor(val:)")));
+		[Export ("setRaycastStepFactor:")]
+		void SetRaycastStepFactor (float val);
+
+		// -(float)getRaycastStepFactor __attribute__((swift_name("getRaycastStepFactor()")));
+		[Export ("getRaycastStepFactor")]
+		float RaycastStepFactor { get; }
+
+		// -(void)setVolumePose:(Mat * _Nonnull)val __attribute__((swift_name("setVolumePose(val:)")));
+		[Export ("setVolumePose:")]
+		void SetVolumePose (Mat val);
+
+		// -(void)getVolumePose:(Mat * _Nonnull)val __attribute__((swift_name("getVolumePose(val:)")));
+		[Export ("getVolumePose:")]
+		void GetVolumePose (Mat val);
+
+		// -(void)setVolumeResolution:(Mat * _Nonnull)val __attribute__((swift_name("setVolumeResolution(val:)")));
+		[Export ("setVolumeResolution:")]
+		void SetVolumeResolution (Mat val);
+
+		// -(void)getVolumeResolution:(Mat * _Nonnull)val __attribute__((swift_name("getVolumeResolution(val:)")));
+		[Export ("getVolumeResolution:")]
+		void GetVolumeResolution (Mat val);
+
+		// -(void)getVolumeStrides:(Mat * _Nonnull)val __attribute__((swift_name("getVolumeStrides(val:)")));
+		[Export ("getVolumeStrides:")]
+		void GetVolumeStrides (Mat val);
+
+		// -(void)setCameraIntegrateIntrinsics:(Mat * _Nonnull)val __attribute__((swift_name("setCameraIntegrateIntrinsics(val:)")));
+		[Export ("setCameraIntegrateIntrinsics:")]
+		void SetCameraIntegrateIntrinsics (Mat val);
+
+		// -(void)getCameraIntegrateIntrinsics:(Mat * _Nonnull)val __attribute__((swift_name("getCameraIntegrateIntrinsics(val:)")));
+		[Export ("getCameraIntegrateIntrinsics:")]
+		void GetCameraIntegrateIntrinsics (Mat val);
+
+		// -(void)setCameraRaycastIntrinsics:(Mat * _Nonnull)val __attribute__((swift_name("setCameraRaycastIntrinsics(val:)")));
+		[Export ("setCameraRaycastIntrinsics:")]
+		void SetCameraRaycastIntrinsics (Mat val);
+
+		// -(void)getCameraRaycastIntrinsics:(Mat * _Nonnull)val __attribute__((swift_name("getCameraRaycastIntrinsics(val:)")));
+		[Export ("getCameraRaycastIntrinsics:")]
+		void GetCameraRaycastIntrinsics (Mat val);
+	}
+
+	// @interface PoseGraph : NSObject
+	[BaseType (typeof (NSObject))]
+	interface PoseGraph {
+	}
+
+	// @interface OdometryParams : NSObject
+	[BaseType (typeof (NSObject))]
+	interface OdometryParams {
+		// @property int minInitInliers;
+		[Export ("minInitInliers")]
+		int MinInitInliers { get; set; }
+
+		// @property double minInitParallaxDeg;
+		[Export ("minInitParallaxDeg")]
+		double MinInitParallaxDeg { get; set; }
+
+		// @property int minInitPoints;
+		[Export ("minInitPoints")]
+		int MinInitPoints { get; set; }
+
+		// @property double hfRatioThresh;
+		[Export ("hfRatioThresh")]
+		double HfRatioThresh { get; set; }
+
+		// @property double minGrowthParallaxDeg;
+		[Export ("minGrowthParallaxDeg")]
+		double MinGrowthParallaxDeg { get; set; }
+
+		// @property double essentialRansacThresh;
+		[Export ("essentialRansacThresh")]
+		double EssentialRansacThresh { get; set; }
+
+		// @property double essentialRansacConfidence;
+		[Export ("essentialRansacConfidence")]
+		double EssentialRansacConfidence { get; set; }
+
+		// @property double pnpReprojThresh;
+		[Export ("pnpReprojThresh")]
+		double PnpReprojThresh { get; set; }
+
+		// @property int pnpMinInliers;
+		[Export ("pnpMinInliers")]
+		int PnpMinInliers { get; set; }
+
+		// @property int pnpRansacIters;
+		[Export ("pnpRansacIters")]
+		int PnpRansacIters { get; set; }
+
+		// @property double pnpConfidence;
+		[Export ("pnpConfidence")]
+		double PnpConfidence { get; set; }
+
+		// @property double motionModelRadius;
+		[Export ("motionModelRadius")]
+		double MotionModelRadius { get; set; }
+
+		// @property double motionModelRadiusWide;
+		[Export ("motionModelRadiusWide")]
+		double MotionModelRadiusWide { get; set; }
+
+		// @property int motionModelMinMatches;
+		[Export ("motionModelMinMatches")]
+		int MotionModelMinMatches { get; set; }
+
+		// @property double descProjThresh;
+		[Export ("descProjThresh")]
+		double DescProjThresh { get; set; }
+
+		// @property int opticalFlowMinInliers;
+		[Export ("opticalFlowMinInliers")]
+		int OpticalFlowMinInliers { get; set; }
+
+		// @property int kfMinFrames;
+		[Export ("kfMinFrames")]
+		int KfMinFrames { get; set; }
+
+		// @property int kfMaxFrames;
+		[Export ("kfMaxFrames")]
+		int KfMaxFrames { get; set; }
+
+		// @property double kfInlierRatio;
+		[Export ("kfInlierRatio")]
+		double KfInlierRatio { get; set; }
+
+		// @property int kfMinInliers;
+		[Export ("kfMinInliers")]
+		int KfMinInliers { get; set; }
+
+		// @property double kfRotThreshDeg;
+		[Export ("kfRotThreshDeg")]
+		double KfRotThreshDeg { get; set; }
+
+		// @property double kfTransThresh;
+		[Export ("kfTransThresh")]
+		double KfTransThresh { get; set; }
+
+		// @property int localMapTopK;
+		[Export ("localMapTopK")]
+		int LocalMapTopK { get; set; }
+
+		// @property int localMapNeighborK;
+		[Export ("localMapNeighborK")]
+		int LocalMapNeighborK { get; set; }
+
+		// @property double localMapRadius;
+		[Export ("localMapRadius")]
+		double LocalMapRadius { get; set; }
+	}
+
+	// @interface VisualOdometry : NSObject
+	[BaseType (typeof (NSObject))]
+	interface VisualOdometry {
+		// +(VisualOdometry * _Nonnull)create:(Feature2D * _Nonnull)detector matcher:(DescriptorMatcher * _Nonnull)matcher cameraMatrix:(Mat * _Nonnull)cameraMatrix distCoeffs:(Mat * _Nonnull)distCoeffs params:(OdometryParams * _Nonnull)params __attribute__((swift_name("create(detector:matcher:cameraMatrix:distCoeffs:params:)")));
+		[Static]
+		[Export ("create:matcher:cameraMatrix:distCoeffs:params:")]
+		VisualOdometry Create (Feature2D detector, DescriptorMatcher matcher, Mat cameraMatrix, Mat distCoeffs, OdometryParams @params);
+
+		// +(VisualOdometry * _Nonnull)create:(Feature2D * _Nonnull)detector matcher:(DescriptorMatcher * _Nonnull)matcher cameraMatrix:(Mat * _Nonnull)cameraMatrix distCoeffs:(Mat * _Nonnull)distCoeffs __attribute__((swift_name("create(detector:matcher:cameraMatrix:distCoeffs:)")));
+		[Static]
+		[Export ("create:matcher:cameraMatrix:distCoeffs:")]
+		VisualOdometry Create (Feature2D detector, DescriptorMatcher matcher, Mat cameraMatrix, Mat distCoeffs);
+
+		// +(VisualOdometry * _Nonnull)create:(Feature2D * _Nonnull)detector matcher:(DescriptorMatcher * _Nonnull)matcher cameraMatrix:(Mat * _Nonnull)cameraMatrix __attribute__((swift_name("create(detector:matcher:cameraMatrix:)")));
+		[Static]
+		[Export ("create:matcher:cameraMatrix:")]
+		VisualOdometry Create (Feature2D detector, DescriptorMatcher matcher, Mat cameraMatrix);
+
+		// -(BOOL)processFrame:(Mat * _Nonnull)image __attribute__((swift_name("processFrame(image:)")));
+		[Export ("processFrame:")]
+		bool ProcessFrame (Mat image);
+
+		// -(void)reset __attribute__((swift_name("reset()")));
+		[Export ("reset")]
+		void Reset ();
+
+		// -(OdometryState)getState __attribute__((swift_name("getState()")));
+		[Export ("getState")]
+		OdometryState State { get; }
+
+		// -(int)getNumKeyframes __attribute__((swift_name("getNumKeyframes()")));
+		[Export ("getNumKeyframes")]
+		int NumKeyframes { get; }
+
+		// -(int)getNumMapPoints __attribute__((swift_name("getNumMapPoints()")));
+		[Export ("getNumMapPoints")]
+		int NumMapPoints { get; }
+
+		// -(OdometryParams * _Nonnull)getParams __attribute__((swift_name("getParams()")));
+		[Export ("getParams")]
+		OdometryParams Params { get; }
+
+		// -(void)setParams:(OdometryParams * _Nonnull)params __attribute__((swift_name("setParams(params:)")));
+		[Export ("setParams:")]
+		void SetParams (OdometryParams @params);
 	}
 }

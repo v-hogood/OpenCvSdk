@@ -8,7 +8,7 @@
     <PackOnBuild>true</PackOnBuild>
     <GeneratePackageOnBuild>$(PackOnBuild)</GeneratePackageOnBuild>
     <PackageId>OpenCvSdk.Android</PackageId>
-    <PackageVersion>5.0.0</PackageVersion>
+    <PackageVersion>5.1.0</PackageVersion>
     <Authors>Howard Good</Authors>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <Owners>https://www.nuget.org/profiles/v-hogood</Owners>
@@ -22,10 +22,10 @@
     <NoWarn>0108;0114;1572;BG8403</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <JavaSourceJar Include="Jars\opencv-5.0.0-sources.jar" />
+    <JavaSourceJar Include="Jars\opencv-5.1.0-sources.jar" />
   </ItemGroup>
   <ItemGroup>
-    <JavaDocJar Include="Jars\opencv-5.0.0-javadoc.jar" />
+    <JavaDocJar Include="Jars\opencv-5.1.0-javadoc.jar" />
   </ItemGroup>
   <ItemGroup>
     <None Include="LICENSE" Pack="true" PackagePath="" />

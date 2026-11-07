@@ -118,7 +118,12 @@ namespace OpenCvSdk {
 	}
 
 	public enum ReduceTypes {
-		ReduceSum2 = 4
+		Sum2 = 4,
+		Prod = 5,
+		L1 = 6,
+		L2 = 7,
+		LogSum = 8,
+		LogSumExp = 9
 	}
 
 	public enum RotateFlags {
@@ -226,6 +231,22 @@ namespace OpenCvSdk {
 	public enum AdaptiveThresholdTypes {
 		MeanC = 0,
 		GaussianC = 1
+	}
+
+	public enum AlphaCompositeOperations {
+		Clear = 0,
+		Source = 1,
+		Dest = 2,
+		Over = 3,
+		DestOver = 4,
+		In = 5,
+		DestIn = 6,
+		Out = 7,
+		DestOut = 8,
+		Atop = 9,
+		DestAtop = 10,
+		Xor = 11,
+		Plus = 12
 	}
 
 	public enum ColorConversionCodes {
@@ -498,7 +519,11 @@ namespace OpenCvSdk {
 		Bgra2yuvYuyv = Bgra2yuvYuy2,
 		Rgba2yuvYunv = Rgba2yuvYuy2,
 		Bgra2yuvYunv = Bgra2yuvYuy2,
-		ColorcvtMax = 155
+		BGR2Oklab = 155,
+		RGB2Oklab = 156,
+		Oklab2BGR = 157,
+		Oklab2RGB = 158,
+		ColorcvtMax = 159
 	}
 
 	public enum ColormapTypes {
@@ -823,243 +848,6 @@ namespace OpenCvSdk {
 		Graylogpolyfit = 5
 	}
 
-	public enum OdometryAlgoType {
-		Common = 0,
-		Fast = 1
-	}
-
-	public enum OdometryFramePyramidType {
-		PyrImage = 0,
-		PyrDepth = 1,
-		PyrMask = 2,
-		PyrCloud = 3,
-		PyrDix = 4,
-		PyrDiy = 5,
-		PyrTexmask = 6,
-		PyrNorm = 7,
-		PyrNormmask = 8,
-		NPyramids = 8 + 1
-	}
-
-	public enum OdometryType {
-		Depth = 0,
-		Rgb = 1,
-		RgbDepth = 2
-	}
-
-	public enum RgbdPlaneMethod {
-		RgbdPlaneMethodDefault = 0
-	}
-
-	public enum TriangleCullingMode {
-		None = 0,
-		Cw = 1,
-		Ccw = 2
-	}
-
-	public enum TriangleGlCompatibleMode {
-		Disabled = 0,
-		Invdepth = 1
-	}
-
-	public enum TriangleShadingType {
-		White = 0,
-		Flat = 1,
-		Shaded = 2
-	}
-
-	public enum VolumeType {
-		Tsdf = 0,
-		HashTSDF = 1,
-		ColorTSDF = 2
-	}
-
-	public enum RgbdNormalsMethod {
-		Fals = 0,
-		Linemod = 1,
-		Sri = 2,
-		CrossProduct = 3
-	}
-
-	public enum BoundingBoxPrecision {
-		LumeUnit = 0,
-		Xel = 1
-	}
-
-	public enum ActivationType {
-		None = 0,
-		Mish = 0 + 1,
-		Swish = 0 + 2,
-		Sigmoid = 0 + 3,
-		Tanh = 0 + 4,
-		Elu = 0 + 5,
-		Hardswish = 0 + 6,
-		Hardsigmoid = 0 + 7,
-		Gelu = 0 + 8,
-		GeluApprox = 0 + 9,
-		Relu = 0 + 10,
-		Clip = 0 + 11
-	}
-
-	public enum ArgKind {
-		Empty = 0,
-		Const = 1,
-		Input = 2,
-		Output = 3,
-		Temp = 4,
-		Pattern = 5
-	}
-
-	public enum AutoPadding {
-		None = 0,
-		SameUpper = 1,
-		SameLower = 2,
-		Valid = 3
-	}
-
-	public enum Backend {
-		Default = 0,
-		InferenceEngine = 2,
-		Opencv = 2 + 1,
-		Vkcom = 2 + 2,
-		Cuda = 2 + 3,
-		Webnn = 2 + 4,
-		Timvx = 2 + 5,
-		Cann = 2 + 6
-	}
-
-	public enum EngineType {
-		Classic = 1,
-		New = 2,
-		Auto = 3,
-		Ort = 4
-	}
-
-	public enum ImagePaddingMode {
-		Null = 0,
-		CropCenter = 1,
-		Letterbox = 2
-	}
-
-	public enum LossReduction {
-		None = 0,
-		Mean = 1,
-		Sum = 2
-	}
-
-	public enum ModelFormat {
-		Generic = 0,
-		Onnx = 1,
-		Tf = 2,
-		Tflite = 3
-	}
-
-	public enum Operation {
-		And = 0,
-		Equal = 0 + 1,
-		Greater = 0 + 2,
-		GreaterEqual = 0 + 3,
-		Less = 0 + 4,
-		LessEqual = 0 + 5,
-		Or = 0 + 6,
-		Pow = 0 + 7,
-		Xor = 0 + 8,
-		Bitshift = 0 + 9,
-		Max = 0 + 10,
-		Mean = 0 + 11,
-		Min = 0 + 12,
-		Mod = 0 + 13,
-		Fmod = 0 + 14,
-		Prod = 0 + 15,
-		Sub = 0 + 16,
-		Sum = 0 + 17,
-		Add = 0 + 18,
-		Div = 0 + 19,
-		Where = 0 + 20,
-		BitwiseAnd = 0 + 21,
-		BitwiseOr = 0 + 22,
-		BitwiseXor = 0 + 23
-	}
-
-	public enum ProfilingMode {
-		None = 0,
-		Summary = 1,
-		Detailed = 2
-	}
-
-	public enum ReduceType {
-		Max = 0,
-		Min = 1,
-		Mean = 2,
-		Sum = 3,
-		L1 = 4,
-		L2 = 5,
-		Prod = 6,
-		SumSquare = 7,
-		LogSum = 8,
-		LogSumExp = 9
-	}
-
-	public enum SoftNMSMethod {
-		Linear = 1,
-		Gaussian = 2
-	}
-
-	public enum Target {
-		Cpu = 0,
-		Opencl = 0 + 1,
-		OpenclFp16 = 0 + 2,
-		Myriad = 0 + 3,
-		Vulkan = 0 + 4,
-		Fpga = 0 + 5,
-		Cuda = 0 + 6,
-		CudaFp16 = 0 + 7,
-		Hddl = 0 + 8,
-		Npu = 0 + 9,
-		CpuFp16 = 0 + 10
-	}
-
-	public enum TracingMode {
-		None = 0,
-		All = 1,
-		Op = 2
-	}
-
-	public enum DrawMatchesFlags {
-		Default = 0,
-		DrawOverOutimg = 1,
-		NotDrawSinglePoints = 2,
-		DrawRichKeypoints = 4
-	}
-
-	public enum Distance {
-		Euclidean = 0,
-		Manhattan = 1,
-		Angular = 2,
-		Hamming = 3,
-		Dotproduct = 4
-	}
-
-	public enum MatcherType {
-		Flannbased = 1,
-		Bruteforce = 2,
-		BruteforceL1 = 3,
-		BruteforceHamming = 4,
-		BruteforceHamminglut = 5,
-		BruteforceSl2 = 6
-	}
-
-	public enum FastDetectorType {
-		FastFeatureDetector_TYPE_5_8 = 0,
-		FastFeatureDetector_TYPE_7_12 = 1,
-		FastFeatureDetector_TYPE_9_16 = 2
-	}
-
-	public enum ScoreType {
-		HarrisScore = 0,
-		FastScore = 1
-	}
-
 	public enum ImageMetadataType {
 		Unknown = -1,
 		Exif = 0,
@@ -1135,12 +923,14 @@ namespace OpenCvSdk {
 		TiffXdpi = 257,
 		TiffYdpi = 258,
 		TiffCompression = 259,
+		TiffCompressionLevel = 260,
 		TiffRowsperstrip = 278,
 		TiffPredictor = 317,
 		Jpeg2000CompressionX1000 = 272,
 		AvifQuality = 512,
 		AvifDepth = 513,
 		AvifSpeed = 514,
+		AvifAlphaQuality = 515,
 		JpegxlQuality = 640,
 		JpegxlEffort = 641,
 		JpegxlDistance = 642,
@@ -1257,76 +1047,6 @@ namespace OpenCvSdk {
 		Off = 0,
 		On = 1,
 		PreserveColor = 2
-	}
-
-	public enum CornerRefineMethod {
-		None = 0,
-		Subpix = 1,
-		Contour = 2,
-		Apriltag = 3
-	}
-
-	public enum PredefinedDictionaryType {
-		Dict4x450 = 0,
-		Dict4x4100 = 0 + 1,
-		Dict4x4250 = 0 + 2,
-		Dict4x41000 = 0 + 3,
-		Dict5x550 = 0 + 4,
-		Dict5x5100 = 0 + 5,
-		Dict5x5250 = 0 + 6,
-		Dict5x51000 = 0 + 7,
-		Dict6x650 = 0 + 8,
-		Dict6x6100 = 0 + 9,
-		Dict6x6250 = 0 + 10,
-		Dict6x61000 = 0 + 11,
-		Dict7x750 = 0 + 12,
-		Dict7x7100 = 0 + 13,
-		Dict7x7250 = 0 + 14,
-		Dict7x71000 = 0 + 15,
-		ArucoOriginal = 0 + 16,
-		APRILTAG_16h5 = 0 + 17,
-		APRILTAG_25h9 = 0 + 18,
-		APRILTAG_36h10 = 0 + 19,
-		APRILTAG_36h11 = 0 + 20,
-		ARUCO_MIP_36h12 = 0 + 21
-	}
-
-	public enum ColorChart {
-		Mcc24 = 0,
-		Sg140 = 0 + 1,
-		Vinyl18 = 0 + 2
-	}
-
-	public enum GridType {
-		SymmetricGrid = 0,
-		AsymmetricGrid = 1
-	}
-
-	public enum DisType {
-		Cosine = 0,
-		NormL2 = 1
-	}
-
-	public enum CorrectionLevel {
-		L = 0,
-		M = 1,
-		Q = 2,
-		H = 3
-	}
-
-	public enum ECIEncodings {
-		ShiftJis = 20,
-		Utf8 = 26
-	}
-
-	public enum EncodeMode {
-		Auto = -1,
-		Numeric = 1,
-		Alphanumeric = 2,
-		Byte = 4,
-		Eci = 7,
-		Kanji = 8,
-		StructuredAppend = 3
 	}
 
 	public enum VideoAccelerationType {
@@ -1481,6 +1201,19 @@ namespace OpenCvSdk {
 		ImageSeqStart = 73
 	}
 
+	public enum VideoWriterPresets {
+		Ultrafast = 0,
+		Superfast = 1,
+		Veryfast = 2,
+		Faster = 3,
+		Fast = 4,
+		Medium = 5,
+		Slow = 6,
+		Slower = 7,
+		Veryslow = 8,
+		Placebo = 9
+	}
+
 	public enum VideoWriterProperties {
 		Unknown = -1,
 		Quality = 1,
@@ -1497,7 +1230,278 @@ namespace OpenCvSdk {
 		Pts = 12,
 		DtsDelay = 13,
 		ColorSpace = 14,
-		EnableAlpha = 15
+		EnableAlpha = 15,
+		Bitrate = 16,
+		Crf = 17,
+		Preset = 18,
+		GopSize = 19
+	}
+
+	public enum ActivationType {
+		None = 0,
+		Mish = 0 + 1,
+		Swish = 0 + 2,
+		Sigmoid = 0 + 3,
+		Tanh = 0 + 4,
+		Elu = 0 + 5,
+		Hardswish = 0 + 6,
+		Hardsigmoid = 0 + 7,
+		Gelu = 0 + 8,
+		GeluApprox = 0 + 9,
+		Relu = 0 + 10,
+		Clip = 0 + 11,
+		Log = 0 + 12,
+		Erf = 0 + 13,
+		Exp = 0 + 14,
+		Sin = 0 + 15,
+		Cos = 0 + 16,
+		Sinh = 0 + 17,
+		Cosh = 0 + 18,
+		Tan = 0 + 19,
+		Softplus = 0 + 20,
+		Bnll = 0 + 21,
+		Asinh = 0 + 22,
+		Acosh = 0 + 23,
+		Atanh = 0 + 24
+	}
+
+	public enum ArgKind {
+		Empty = 0,
+		Const = 1,
+		Input = 2,
+		Output = 3,
+		Temp = 4,
+		Pattern = 5
+	}
+
+	public enum AutoPadding {
+		None = 0,
+		SameUpper = 1,
+		SameLower = 2,
+		Valid = 3
+	}
+
+	public enum Backend {
+		Default = 0,
+		InferenceEngine = 2,
+		Opencv = 2 + 1,
+		Vkcom = 2 + 2,
+		Cuda = 2 + 3,
+		Webnn = 2 + 4,
+		Timvx = 2 + 5,
+		Cann = 2 + 6
+	}
+
+	public enum EngineType {
+		Auto = 0,
+		Opencv = 1,
+		Ort = 2
+	}
+
+	public enum ImagePaddingMode {
+		Null = 0,
+		CropCenter = 1,
+		Letterbox = 2
+	}
+
+	public enum LossReduction {
+		None = 0,
+		Mean = 1,
+		Sum = 2
+	}
+
+	public enum ModelFormat {
+		Generic = 0,
+		Onnx = 1,
+		Tflite = 2
+	}
+
+	public enum Operation {
+		And = 0,
+		Equal = 0 + 1,
+		Greater = 0 + 2,
+		GreaterEqual = 0 + 3,
+		Less = 0 + 4,
+		LessEqual = 0 + 5,
+		Or = 0 + 6,
+		Pow = 0 + 7,
+		Xor = 0 + 8,
+		Bitshift = 0 + 9,
+		Max = 0 + 10,
+		Mean = 0 + 11,
+		Min = 0 + 12,
+		Mod = 0 + 13,
+		Fmod = 0 + 14,
+		Prod = 0 + 15,
+		Sub = 0 + 16,
+		Sum = 0 + 17,
+		Add = 0 + 18,
+		Div = 0 + 19,
+		Where = 0 + 20,
+		BitwiseAnd = 0 + 21,
+		BitwiseOr = 0 + 22,
+		BitwiseXor = 0 + 23,
+		NotEqual = 0 + 24,
+		Prelu = 0 + 25
+	}
+
+	public enum ProfilingMode {
+		None = 0,
+		Summary = 1,
+		Detailed = 2
+	}
+
+	public enum ReduceType {
+		Max = 0,
+		Min = 1,
+		Mean = 2,
+		Sum = 3,
+		L1 = 4,
+		L2 = 5,
+		Prod = 6,
+		SumSquare = 7,
+		LogSum = 8,
+		LogSumExp = 9
+	}
+
+	public enum SoftNMSMethod {
+		Linear = 1,
+		Gaussian = 2
+	}
+
+	public enum Target {
+		Cpu = 0,
+		Opencl = 0 + 1,
+		OpenclFp16 = 0 + 2,
+		Myriad = 0 + 3,
+		Vulkan = 0 + 4,
+		Fpga = 0 + 5,
+		Cuda = 0 + 6,
+		CudaFp16 = 0 + 7,
+		Hddl = 0 + 8,
+		Npu = 0 + 9,
+		CpuFp16 = 0 + 10
+	}
+
+	public enum TracingMode {
+		None = 0,
+		All = 1,
+		Op = 2
+	}
+
+	public enum DrawMatchesFlags {
+		Default = 0,
+		DrawOverOutimg = 1,
+		NotDrawSinglePoints = 2,
+		DrawRichKeypoints = 4
+	}
+
+	public enum LightGlueNormalization {
+		Odel = 0,
+		AxSide = 1
+	}
+
+	public enum LightGlueType {
+		Aliked = 0,
+		Disk = 1
+	}
+
+	public enum Distance {
+		Euclidean = 0,
+		Manhattan = 1,
+		Angular = 2,
+		Hamming = 3,
+		Dotproduct = 4
+	}
+
+	public enum MatcherType {
+		Flannbased = 1,
+		Bruteforce = 2,
+		BruteforceL1 = 3,
+		BruteforceHamming = 4,
+		BruteforceHamminglut = 5,
+		BruteforceSl2 = 6
+	}
+
+	public enum FastDetectorType {
+		FastFeatureDetector_TYPE_5_8 = 0,
+		FastFeatureDetector_TYPE_7_12 = 1,
+		FastFeatureDetector_TYPE_9_16 = 2
+	}
+
+	public enum ScoreType {
+		HarrisScore = 0,
+		FastScore = 1
+	}
+
+	public enum CornerRefineMethod {
+		None = 0,
+		Subpix = 1,
+		Contour = 2,
+		Apriltag = 3
+	}
+
+	public enum PredefinedDictionaryType {
+		Dict4x450 = 0,
+		Dict4x4100 = 0 + 1,
+		Dict4x4250 = 0 + 2,
+		Dict4x41000 = 0 + 3,
+		Dict5x550 = 0 + 4,
+		Dict5x5100 = 0 + 5,
+		Dict5x5250 = 0 + 6,
+		Dict5x51000 = 0 + 7,
+		Dict6x650 = 0 + 8,
+		Dict6x6100 = 0 + 9,
+		Dict6x6250 = 0 + 10,
+		Dict6x61000 = 0 + 11,
+		Dict7x750 = 0 + 12,
+		Dict7x7100 = 0 + 13,
+		Dict7x7250 = 0 + 14,
+		Dict7x71000 = 0 + 15,
+		ArucoOriginal = 0 + 16,
+		APRILTAG_16h5 = 0 + 17,
+		APRILTAG_25h9 = 0 + 18,
+		APRILTAG_36h10 = 0 + 19,
+		APRILTAG_36h11 = 0 + 20,
+		ARUCO_MIP_36h12 = 0 + 21
+	}
+
+	public enum ColorChart {
+		Mcc24 = 0,
+		Sg140 = 0 + 1,
+		Vinyl18 = 0 + 2
+	}
+
+	public enum GridType {
+		SymmetricGrid = 0,
+		AsymmetricGrid = 1
+	}
+
+	public enum DisType {
+		Cosine = 0,
+		NormL2 = 1
+	}
+
+	public enum CorrectionLevel {
+		L = 0,
+		M = 1,
+		Q = 2,
+		H = 3
+	}
+
+	public enum ECIEncodings {
+		ShiftJis = 20,
+		Utf8 = 26
+	}
+
+	public enum EncodeMode {
+		Auto = -1,
+		Numeric = 1,
+		Alphanumeric = 2,
+		Byte = 4,
+		Eci = 7,
+		Kanji = 8,
+		StructuredAppend = 3
 	}
 
 	public enum CameraModel {
@@ -1516,5 +1520,89 @@ namespace OpenCvSdk {
 	public enum RobotWorldHandEyeCalibrationMethod {
 		Shah = 0,
 		Li = 1
+	}
+
+	public enum GaussianSplatLayout {
+		Stride = 13,
+		Pos = 0,
+		Cov = 3,
+		Rgb = 9,
+		Alpha = 12
+	}
+
+	public enum OdometryAlgoType {
+		Common = 0,
+		Fast = 1
+	}
+
+	public enum OdometryFramePyramidType {
+		PyrImage = 0,
+		PyrDepth = 1,
+		PyrMask = 2,
+		PyrCloud = 3,
+		PyrDix = 4,
+		PyrDiy = 5,
+		PyrTexmask = 6,
+		PyrNorm = 7,
+		PyrNormmask = 8,
+		NPyramids = 8 + 1
+	}
+
+	public enum OdometryType {
+		Depth = 0,
+		Rgb = 1,
+		RgbDepth = 2
+	}
+
+	public enum RgbdPlaneMethod {
+		RgbdPlaneMethodDefault = 0
+	}
+
+	public enum TriangleCullingMode {
+		None = 0,
+		Cw = 1,
+		Ccw = 2
+	}
+
+	public enum TriangleGlCompatibleMode {
+		Disabled = 0,
+		Invdepth = 1
+	}
+
+	public enum TriangleShadingType {
+		White = 0,
+		Flat = 1,
+		Shaded = 2
+	}
+
+	public enum CV_VolumeType {
+		Tsdf = 0,
+		HashTSDF = 1,
+		ColorTSDF = 2,
+		ColorHashTSDF = 3
+	}
+
+	public enum OdometryState {
+		NotInitialized = 0,
+		Initializing = 1,
+		Tracking = 2
+	}
+
+	public enum RenderMode {
+		Simple = 0,
+		Shading = 1,
+		Wireframe = 2
+	}
+
+	public enum RgbdNormalsMethod {
+		Fals = 0,
+		Linemod = 1,
+		Sri = 2,
+		CrossProduct = 3
+	}
+
+	public enum BoundingBoxPrecision {
+		LumeUnit = 0,
+		Xel = 1
 	}
 }

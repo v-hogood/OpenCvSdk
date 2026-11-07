@@ -7,7 +7,7 @@
     <PackOnBuild>true</PackOnBuild>
     <GeneratePackageOnBuild>$(PackOnBuild)</GeneratePackageOnBuild>
     <PackageId>OpenCvSdk.iOS</PackageId>
-    <PackageVersion>5.0.0</PackageVersion>
+    <PackageVersion>5.1.0</PackageVersion>
     <Authors>Howard Good</Authors>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <Owners>https://www.nuget.org/profiles/v-hogood</Owners>
@@ -40,9 +40,9 @@
   </ItemGroup>
   <Target Name="DownloadFile" BeforeTargets="BeforeBuild">
     <DownloadFile SourceUrl="https://raw.githubusercontent.com/opencv/opencv/refs/heads/5.x/LICENSE" DestinationFolder="." />
-    <DownloadFile SourceUrl="https://github.com/opencv/opencv/releases/download/5.0.0/opencv-5.0.0-ios-framework.zip" DestinationFolder="." />
-    <Exec Command="tar -xf opencv-5.0.0-ios-framework.zip --strip-components=2 -s/A/opencv2.framework/ opencv2.framework/Versions/A" />
-    <Exec Command="sed -i '' '86s/ NS_SWIFT_NAME.*/;/' opencv2.framework/Headers/LightGlueMatcher.h" />
-    <Exec Command="unzip -o opencv-5.0.0-ios.zip" />
+    <DownloadFile SourceUrl="https://github.com/opencv/opencv/releases/download/5.1.0/opencv-5.1.0-ios-framework.zip" DestinationFolder="." />
+    <Exec Command="tar -xf opencv-5.1.0-ios-framework.zip --strip-components=2 -s/A/opencv2.framework/ opencv2.framework/Versions/A" />
+    <Exec Command="sed -i '' '97s/ NS_SWIFT_NAME.*/;/' opencv2.framework/Headers/LightGlueMatcher.h" />
+    <Exec Command="unzip -o opencv-5.1.0-ios.zip" />
   </Target>
 </Project>
